@@ -5,7 +5,7 @@ defmodule AwardsVoter.Show do
   defstruct [:name, :categories]
   @type t :: %__MODULE__{name: String.t(), categories: list()}
   
-  def new(name, categories) do
+  def new(name, categories \\ []) do
     {:ok, %Show{name: name, categories: categories}}
   end
 end

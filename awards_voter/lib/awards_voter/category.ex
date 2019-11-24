@@ -5,7 +5,7 @@ defmodule AwardsVoter.Category do
   defstruct [:name, :contestants, :winner]
   @type t :: %__MODULE__{name: String.t(), contestants: list(), winner: String.t()}
   
-  def new(name, contestants, winner) do
+  def new(name, contestants \\ [], winner \\ nil) do
     {:ok, %Category{name: name, contestants: contestants, winner: winner}}
   end
 end
