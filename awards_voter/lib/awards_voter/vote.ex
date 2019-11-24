@@ -1,9 +1,11 @@
 defmodule AwardsVoter.Vote do
   alias __MODULE__
+  alias AwardsVoter.Category
+  alias AwardsVoter.Contestant
   
   @enforce_keys [:category, :contestant]
   defstruct [:category, :contestant]
-  @type t :: %__MODULE__{category: String.t(), contestant: String.t()}
+  @type t :: %__MODULE__{category: %Category{}, contestant: %Contestant{}}
   
   def new(category, contestant) do
     {:ok, %Vote{category: category, contestant: contestant}}
