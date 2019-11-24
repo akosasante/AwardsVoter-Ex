@@ -4,7 +4,7 @@ defmodule AwardsVoter.Category do
   
   @enforce_keys [:name]
   defstruct [:name, :contestants, :winner]
-  @type t :: %__MODULE__{name: String.t(), contestants: nonempty_list(%Contestant{}), winner: %Contestant{}}
+  @type t :: %__MODULE__{name: String.t(), contestants: nonempty_list(Contestant.t()), winner: Contestant.t()}
   
   def new(name, contestants \\ [], winner \\ nil) do
     {:ok, %Category{name: name, contestants: contestants, winner: winner}}

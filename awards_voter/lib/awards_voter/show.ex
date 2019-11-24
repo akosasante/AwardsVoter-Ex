@@ -4,7 +4,7 @@ defmodule AwardsVoter.Show do
   
   @enforce_keys [:name]
   defstruct [:name, :categories]
-  @type t :: %__MODULE__{name: String.t(), categories: nonempty_list(%Category{})}
+  @type t :: %__MODULE__{name: String.t(), categories: nonempty_list(Category.t())}
   
   def new(name, categories \\ []) do
     {:ok, %Show{name: name, categories: categories}}
