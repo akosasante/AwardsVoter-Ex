@@ -87,6 +87,9 @@ defmodule AwardsVoter.VoteTest do
       assert vote == context[:vote]
       refute vote.contestant
     end
+    test "returns :error if vote is nil" do
+      assert :error == Vote.vote(nil, "Billie Eillish")
+    end
     test "returns {:ok, updated_vote} if vote was valid", context do
       {:ok, vote} = Vote.vote(context[:vote], "Billie Eillish")
       refute vote == context[:vote]
