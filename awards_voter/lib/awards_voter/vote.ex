@@ -26,9 +26,9 @@ defmodule AwardsVoter.Vote do
     vote.contestant == vote.category.winner
   end
   
-  @spec vote(Vote.t(), Contestant.t()) :: {:ok, Vote.t()} | {:invalid_vote, Vote.t()}
-  def vote(vote, voted_contestant) do
-    case Enum.find(vote.category.contestants, nil, fn contestant -> contestant.name == voted_contestant.name end) do
+  @spec vote(Vote.t(), String.t()) :: {:ok, Vote.t()} | {:invalid_vote, Vote.t()}
+  def vote(vote, contestant_name) do
+    case Enum.find(vote.category.contestants, nil, fn contestant -> contestant.name == contestant_name end) do
       nil -> {:invalid_vote, vote}
       cont -> {:ok,  %{vote | contestant: cont}}
     end

@@ -83,12 +83,12 @@ defmodule AwardsVoter.VoteTest do
       [vote: vote]
     end
     test "returns {:invalid_vote, original vote} if trying to vote for contestant that is not in the passed-in category", context do
-      {:invalid_vote, vote} = Vote.vote(context[:vote], %Contestant{name: "Cher"}) 
+      {:invalid_vote, vote} = Vote.vote(context[:vote], "Cher") 
       assert vote == context[:vote]
       refute vote.contestant
     end
     test "returns {:ok, updated_vote} if vote was valid", context do
-      {:ok, vote} = Vote.vote(context[:vote], %Contestant{name: "Billie Eillish"})
+      {:ok, vote} = Vote.vote(context[:vote], "Billie Eillish")
       refute vote == context[:vote]
       assert vote.contestant == %Contestant{name: "Billie Eillish"}
     end
