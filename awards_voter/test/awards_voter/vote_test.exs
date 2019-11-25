@@ -16,7 +16,7 @@ defmodule AwardsVoter.VoteTest do
     }
 
     losing_vote = %Vote{
-      category: %AwardsVoter.Category{
+      category: %Category{
         contestants: [],
         name: "Songwriter of the Year",
         winner: %Contestant{name: "Billie Eillish"}
@@ -25,7 +25,7 @@ defmodule AwardsVoter.VoteTest do
     }
     
     empty_vote = %Vote{
-      category: %AwardsVoter.Category{
+      category: %Category{
         contestants: [],
         name: "Songwriter of the Year",
         winner: nil
@@ -34,7 +34,7 @@ defmodule AwardsVoter.VoteTest do
     }
 
     empty_vote_with_winner = %Vote{
-      category: %AwardsVoter.Category{
+      category: %Category{
         contestants: [],
         name: "Songwriter of the Year",
         winner: %Contestant{name: "Billie Eillish"}
@@ -43,7 +43,7 @@ defmodule AwardsVoter.VoteTest do
     }
     
     early_vote = %Vote{
-      category: %AwardsVoter.Category{
+      category: %Category{
         contestants: [],
         name: "Songwriter of the Year",
         winner: nil
@@ -64,6 +64,33 @@ defmodule AwardsVoter.VoteTest do
     end
     test "returns true if vote contestant matches category winner", context do
       assert Vote.is_winning_vote?(context[:winning_vote])
+    end
+  end
+  
+  describe "Vote.vote/2" do
+    setup do
+      contestants = [
+        %Contestant{name: "Billie Eillish"},
+        %Contestant{name: "Justin Bieber"},
+        %Contestant{name: "Katy Perry"},
+      ]
+      category = %Category{
+        contestants: contestants,
+        name: "Songwriter of the Year",
+        winner: nil
+      }
+      {:ok, vote} = Vote.new(category)
+      [vote: vote]
+    end
+    test "returns {:invalid_vote, original vote} if trying to vote for contestant that is not in the passed-in category", context do
+      {:invalid_vote, vote} = Vote.vote(context[:vote], %Contestant{name: "Cher"}) 
+      assert vote == context[:vote]
+      refute vote.contestant
+    end
+    test "returns {:ok, updated_vote} if vote was valid", context do
+      {:ok, vote} = Vote.vote(context[:vote], %Contestant{name: "Billie Eillish"})
+      refute vote == context[:vote]
+      assert vote.contestant == %Contestant{name: "Billie Eillish"}
     end
   end
 end
