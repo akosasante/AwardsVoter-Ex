@@ -25,6 +25,9 @@ defmodule AwardsVoter.Vote do
   def is_winning_vote?(vote) do
     vote.contestant == vote.category.winner
   end
+
+  @spec vote(Vote.t(), String.t()) :: {:error, String.t()}
+  def vote(nil, contestant_name), do: {:error, "Cannot pass nil for vote"}
   
   @spec vote(Vote.t(), String.t()) :: {:ok, Vote.t()} | {:invalid_vote, Vote.t()}
   def vote(vote, contestant_name) do

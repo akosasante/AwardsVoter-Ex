@@ -4,6 +4,7 @@ defmodule AwardsVoter.BallotTest do
   alias AwardsVoter.Ballot
   alias AwardsVoter.Category
   alias AwardsVoter.Vote
+  alias AwardsVoter.Contestant
   
   @test_voter "Tester"
   
@@ -15,7 +16,11 @@ defmodule AwardsVoter.BallotTest do
         winner: nil
       },
       %Category{
-        contestants: [],
+        contestants: [
+          %Contestant{name: "Billie Eillish"},
+          %Contestant{name: "Justin Bieber"},
+          %Contestant{name: "Katy Perry"},
+        ],
         name: "Record of the Year",
         winner: nil
       },
@@ -60,7 +65,11 @@ defmodule AwardsVoter.BallotTest do
           },
           %Vote{
             category: %Category{
-              contestants: [],
+              contestants: [
+                %Contestant{name: "Billie Eillish"},
+                %Contestant{name: "Justin Bieber"},
+                %Contestant{name: "Katy Perry"},
+              ],
               name: "Record of the Year",
               winner: nil
             },
@@ -82,8 +91,23 @@ defmodule AwardsVoter.BallotTest do
       assert Ballot.new(@test_voter, context[:show]) == {:ok, context[:expected]}
     end
     
-    test "creates an empty ballot using passed-in ncategories", context do
+    test "creates an empty ballot using passed-in categories", context do
       assert Ballot.new(@test_voter, context[:categories]) == {:ok, context[:expected]}
+    end
+  end
+  
+  describe "Ballot.vote/2" do
+    test "returns {:ok, updated_ballot} when a valid vote is attempted", context do
+      {:ok, orig_ballot} = Ballot.new(@test_voter, context[:show])
+      {:ok, ballot} = Ballot.vote(orig_ballot, "Record of the Year", "Billie Eillish")
+      refute ballot == orig_ballot
+      assert ballot.votes["Record of the Year"].contestant.name == "Billie Eillish"
+    end
+    test "returns the original ballot with an explanatory atom if an invalid vote is attempted", context do
+      {:ok, orig_ballot} = Ballot.new(@test_voter, context[:show])
+      {:invalid_vote, ballot} = Ballot.vote(orig_ballot, "Movie of the Year", "Jumanji")
+      assert ballot == orig_ballot
+      refute ballot.votes["Movie of the Year"]
     end
   end
 end

@@ -17,10 +17,27 @@ defmodule AwardsVoter.Ballot do
   def new(voter, show) do
     Ballot.new(voter, show.categories)
   end
+
+  @spec vote(Ballot.t(), String.t(), String.t()) :: {atom(), Ballot.t()} | {:error, String.t()}
+  def vote(ballot, category_name, contestant_name) do
+    case Vote.vote(ballot.votes[category_name], contestant_name) do
+      {:ok, vote} -> update_ballot_with_vote!(ballot, vote)
+      _ -> {:invalid_vote, ballot}
+    end
+  end
   
   @spec init_ballot_with_empty_votes(Ballot.t(), nonempty_list(Category.t())) :: Ballot.t()
   defp init_ballot_with_empty_votes(ballot, categories) do
     votes = Enum.map(categories, fn category -> Vote.new(category) end)
     %{ballot | votes: Map.new(votes, fn {:ok, vote} ->{vote.category.name, vote} end)}
+  end
+  
+  defp update_ballot_with_vote!(ballot, vote) do
+    try do
+      {:ok, %{ballot | votes: Map.update!(ballot.votes, vote.category.name, fn _ -> vote end)}}
+    rescue
+      KeyError -> {:invalid_category, ballot}
+      e -> {:error, inspect(e)}
+    end
   end
 end
