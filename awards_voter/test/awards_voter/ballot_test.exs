@@ -39,7 +39,7 @@ defmodule AwardsVoter.BallotTest do
     setup do
       expected = %Ballot{
         voter: @test_voter,
-        votes: MapSet.new([
+        votes: Map.new([
           %AwardsVoter.Vote{
             category: %AwardsVoter.Category{
               contestants: [],
@@ -72,7 +72,7 @@ defmodule AwardsVoter.BallotTest do
             },
             contestant: nil
           }
-        ])
+        ], fn vote ->{vote.category.name, vote} end)
       }
       [expected: expected]
     end

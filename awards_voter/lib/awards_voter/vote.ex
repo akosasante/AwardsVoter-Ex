@@ -7,7 +7,17 @@ defmodule AwardsVoter.Vote do
   defstruct [:category, :contestant]
   @type t :: %__MODULE__{category: Category.t(), contestant: Contestant.t()}
   
+  @spec new(Category.t(), Contestant.t()) :: {:ok, Vote.t()}
   def new(category, contestant \\ nil) do
     {:ok, %Vote{category: category, contestant: contestant}}
+  end
+
+  @spec is_winning_vote?(Vote.t()) :: boolean()
+  def is_winning_vote?(%Vote{contestant: nil}), do: false
+  
+  @spec is_winning_vote?(Vote.t()) :: boolean()
+  def is_winning_vote?(vote) do
+    IO.puts("hihii")
+    vote.contestant == vote.category.winner
   end
 end
