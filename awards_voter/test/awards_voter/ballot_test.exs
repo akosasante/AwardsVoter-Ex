@@ -22,7 +22,7 @@ defmodule AwardsVoter.BallotTest do
           %Contestant{name: "Katy Perry"},
         ],
         name: "Record of the Year",
-        winner: nil
+        winner: %Contestant{name: "Billie Eillish"}
       },
       %Category{
         contestants: [],
@@ -71,7 +71,7 @@ defmodule AwardsVoter.BallotTest do
                 %Contestant{name: "Katy Perry"},
               ],
               name: "Record of the Year",
-              winner: nil
+              winner: %Contestant{name: "Billie Eillish"}
             },
             contestant: nil
           },
@@ -108,6 +108,18 @@ defmodule AwardsVoter.BallotTest do
       {:invalid_vote, ballot} = Ballot.vote(orig_ballot, "Movie of the Year", "Jumanji")
       assert ballot == orig_ballot
       refute ballot.votes["Movie of the Year"]
+    end
+  end
+  
+  describe "Ballot.score/1" do
+    test "Should return 0 for a fresh ballot", context do
+      {:ok, ballot} = Ballot.new(@test_voter, context[:show])
+      assert 0 == Ballot.score(ballot)
+    end
+    test "Should return number of winning votes on ballot", context do
+      {:ok, ballot} = Ballot.new(@test_voter, context[:show])
+      {:ok, ballot} = Ballot.vote(ballot, "Record of the Year", "Billie Eillish")
+      assert 1 == Ballot.score(ballot)
     end
   end
 end
