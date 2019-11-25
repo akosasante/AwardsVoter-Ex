@@ -2,27 +2,29 @@ defmodule AwardsVoter.BallotTest do
   use ExUnit.Case
   
   alias AwardsVoter.Ballot
+  alias AwardsVoter.Category
+  alias AwardsVoter.Vote
   
   @test_voter "Tester"
   
   setup do
     categories = [
-      %AwardsVoter.Category{
+      %Category{
         contestants: [],
         name: "Album of the Year",
         winner: nil
       },
-      %AwardsVoter.Category{
+      %Category{
         contestants: [],
         name: "Record of the Year",
         winner: nil
       },
-      %AwardsVoter.Category{
+      %Category{
         contestants: [],
         name: "Artist of the Year",
         winner: nil
       },
-      %AwardsVoter.Category{
+      %Category{
         contestants: [],
         name: "Songwriter of the Year",
         winner: nil
@@ -40,32 +42,32 @@ defmodule AwardsVoter.BallotTest do
       expected = %Ballot{
         voter: @test_voter,
         votes: Map.new([
-          %AwardsVoter.Vote{
-            category: %AwardsVoter.Category{
+          %Vote{
+            category: %Category{
               contestants: [],
               name: "Album of the Year",
               winner: nil
             },
             contestant: nil
           },
-          %AwardsVoter.Vote{
-            category: %AwardsVoter.Category{
+          %Vote{
+            category: %Category{
               contestants: [],
               name: "Artist of the Year",
               winner: nil
             },
             contestant: nil
           },
-          %AwardsVoter.Vote{
-            category: %AwardsVoter.Category{
+          %Vote{
+            category: %Category{
               contestants: [],
               name: "Record of the Year",
               winner: nil
             },
             contestant: nil
           },
-          %AwardsVoter.Vote{
-            category: %AwardsVoter.Category{
+          %Vote{
+            category: %Category{
               contestants: [],
               name: "Songwriter of the Year",
               winner: nil

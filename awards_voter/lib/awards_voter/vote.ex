@@ -16,8 +16,13 @@ defmodule AwardsVoter.Vote do
   def is_winning_vote?(%Vote{contestant: nil}), do: false
   
   @spec is_winning_vote?(Vote.t()) :: boolean()
+  def is_winning_vote?(%Vote{category: nil}), do: false
+    
+  @spec is_winning_vote?(Vote.t()) :: boolean()
+  def is_winning_vote?(%Vote{category: %Category{winner: nil}}), do: false
+  
+  @spec is_winning_vote?(Vote.t()) :: boolean()
   def is_winning_vote?(vote) do
-    IO.puts("hihii")
     vote.contestant == vote.category.winner
   end
 end
