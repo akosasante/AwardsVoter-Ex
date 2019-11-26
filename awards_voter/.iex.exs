@@ -12,9 +12,9 @@ end
 category_names = ["Best New Artist", "Best New Song", "Best New Album"]
 
 test_contestants = %{
-  "Best New Artist": IexDev.make_contestants(["Billie", "Justin", "Lil Nas X"]),
-  "Best New Song": IexDev.make_contestants(["Bad Guy", "Sorry", "Panini"]),
-  "Best New Album": IexDev.make_contestants(["XXX", "YYY", "ZZZ"])
+  "Best New Artist" => IexDev.make_contestants(["Billie", "Justin", "Lil Nas X"]),
+  "Best New Song" => IexDev.make_contestants(["Bad Guy", "Sorry", "Panini"]),
+  "Best New Album" => IexDev.make_contestants(["XXX", "YYY", "ZZZ"])
 }
 test_categories = Enum.map(category_names, fn category -> Category.new(category, test_contestants[category]) end)
                   |> Enum.map(fn {:ok, category} -> category end)
