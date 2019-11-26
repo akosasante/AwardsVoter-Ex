@@ -7,12 +7,12 @@ defmodule AwardsVoter.BallotState do
           status: :initialized | :show_set | :ballot_set | :voting | :submitted | :show_ended
         }
 
-  @spec new() :: BallotState.t()
-  def new(), do: %BallotState{}
+  @spec new() :: {:ok, BallotState.t()}
+  def new(), do: {:ok, %BallotState{}}
 
   @spec check(BallotState.t(), atom()) :: {:ok, BallotState.t()}
   def check(%BallotState{} = state, :reset_state) do
-    {:ok, %{state | status: initialized}}
+    {:ok, %{state | status: :initialized}}
   end
   
   def check(%BallotState{status: :initialized} = state, :set_show) do
@@ -22,11 +22,11 @@ defmodule AwardsVoter.BallotState do
   def check(%BallotState{status: :show_set} = state, :set_show) do
     {:ok, %{state | status: :show_set}}
   end
-
+  
   def check(%BallotState{status: :show_set} = state, :set_ballot) do
     {:ok, %{state | status: :ballot_set}}
   end
-
+  
   def check(%BallotState{status: :ballot_set} = state, :set_ballot) do
     {:ok, %{state | status: :ballot_set}}
   end
