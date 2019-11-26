@@ -3,6 +3,10 @@ defmodule AwardsVoter.Voter do
   
   alias AwardsVoter.{BallotState, Show, Ballot}
   
+  defmodule VoterState do
+    defstruct [:ballot_state, :show, :ballot, :score]
+  end
+  
   # Client API
   def start_new_voter(voter_name, show) do
     GenServer.start_link(__MODULE__, {voter_name, show}, [])
