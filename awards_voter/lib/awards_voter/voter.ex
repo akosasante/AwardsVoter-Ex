@@ -47,11 +47,13 @@ defmodule AwardsVoter.Voter do
       {:ok, ballot_state} <- BallotState.check(ballot_state, :set_ballot),
       {:ok, ballot} <- Ballot.new(voter_name, show)
     do
-      voter_state = voter
+      voter_state = %VoterState{}
       |> update_ballot_state(ballot_state)
       |> update_voter_show(show)
       |> update_voter_ballot(ballot)
       {:ok, voter_state}
+    else
+      :error -> reply_with_atom(%VoterState{}, :state_error)
     end
   end
 
@@ -60,7 +62,9 @@ defmodule AwardsVoter.Voter do
       do
       state
       |> update_ballot_state(ballot_state)
-      |> reply_success(:ok)
+      |> reply_with_atom(:ok)
+    else
+      :error -> reply_with_atom(state, :state_error)
     end
   end
   
@@ -70,7 +74,9 @@ defmodule AwardsVoter.Voter do
         state
         |> update_ballot_state(ballot_state)
         |> update_voter_show(show)
-        |> reply_success(:ok)
+        |> reply_with_atom(:ok)
+    else
+      :error -> reply_with_atom(state, :state_error)
     end
   end
   
@@ -81,7 +87,9 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> update_voter_ballot(ballot)
-      |> reply_success(:ok)
+      |> reply_with_atom(:ok)
+    else
+      :error -> reply_with_atom(state, :state_error)
     end
   end
   
@@ -92,7 +100,9 @@ defmodule AwardsVoter.Voter do
         state
         |> update_ballot_state(ballot_state)
         |> update_voter_ballot(ballot)
-        |> reply_success(:ok)
+        |> reply_with_atom(:ok)
+    else
+      :error -> reply_with_atom(state, :state_error)
     end
   end
   
@@ -101,7 +111,9 @@ defmodule AwardsVoter.Voter do
       do
         state
         |> update_ballot_state(ballot_state)
-        |> reply_success(:ok)
+        |> reply_with_atom(:ok)
+    else
+      :error -> reply_with_atom(state, :state_error)
     end
   end
   
@@ -110,7 +122,7 @@ defmodule AwardsVoter.Voter do
       do
         state
         |> update_ballot_state(ballot_state)
-        |> reply_success(:ok)
+        |> reply_with_atom(:ok)
     end
   end
   
@@ -119,8 +131,11 @@ defmodule AwardsVoter.Voter do
          {:ok, score} <- Ballot.score(state.ballot)
       do
         state
+        |> update_ballot_state(ballot_state)
         |> update_ballot_score(score)
-        |> reply_success(:ok)
+        |> reply_with_atom(:ok)
+    else
+      :error -> reply_with_atom(state, :state_error)
     end
   end
   
@@ -134,5 +149,5 @@ defmodule AwardsVoter.Voter do
   
   defp update_ballot_score(voter_state, score), do: %{voter_state | score: score}
   
-  defp reply_success(voter_state, reply_atom), do: {:reply, reply_atom, state_data}
+  defp reply_with_atom(voter_state, reply_atom), do: {:reply, reply_atom, voter_state}
 end
