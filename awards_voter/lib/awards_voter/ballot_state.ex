@@ -1,9 +1,12 @@
 defmodule AwardsVoter.BallotState do
   alias __MODULE__
-  
+
   defstruct status: :initialized
-  @type t :: %__MODULE__{status: :initialized | :show_set | :ballot_set | :voting | :submitted | :show_ended}
-  
+
+  @type t :: %__MODULE__{
+          status: :initialized | :show_set | :ballot_set | :voting | :submitted | :show_ended
+        }
+
   @spec new() :: BallotState.t()
   def new(), do: %BallotState{}
 
@@ -15,11 +18,11 @@ defmodule AwardsVoter.BallotState do
   def check(%BallotState{status: :show_set} = state, :set_show) do
     {:ok, %{state | status: :show_set}}
   end
-  
+
   def check(%BallotState{status: :show_set} = state, :set_ballot) do
     {:ok, %{state | status: :ballot_set}}
   end
-  
+
   def check(%BallotState{status: :ballot_set} = state, :set_ballot) do
     {:ok, %{state | status: :ballot_set}}
   end
@@ -51,7 +54,6 @@ defmodule AwardsVoter.BallotState do
   def check(%BallotState{status: :submitted} = state, :end_show) do
     {:ok, %{state | status: :show_ended}}
   end
-  
-  def check(_state, _action), do: :error
 
+  def check(_state, _action), do: :error
 end
