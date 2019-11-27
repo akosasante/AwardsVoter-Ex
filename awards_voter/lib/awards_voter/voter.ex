@@ -149,6 +149,12 @@ defmodule AwardsVoter.Voter do
   def handle_info(:timeout, state) do
     {:stop, {:shutdown, :timeout}, state}
   end
+  
+  def terminate({:shutdown, :timeout}, state) do
+    :ets.delete(:voter_ballots, state.ballot.voter)
+    :ok
+  end
+  def terminate(_reason, _state), do: :ok
 
   # Private Methods
 
