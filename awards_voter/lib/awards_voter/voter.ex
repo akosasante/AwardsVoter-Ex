@@ -46,19 +46,12 @@ defmodule AwardsVoter.Voter do
 
   # Server Callbacks
   def init({voter_name, show}) do
-    with {:ok, ballot_state} <- BallotState.new(),
-         {:ok, ballot_state} <- BallotState.check(ballot_state, :set_show),
-         {:ok, ballot_state} <- BallotState.check(ballot_state, :set_ballot),
-         {:ok, ballot} <- Ballot.new(voter_name, show) do
-      
-      voter_state = case :ets.lookup(:voter_ballots, voter_name) do
-        [] -> fresh_state(name, ballot_state, show, ballot)
-        [{_key, state}] -> state
-      end
-      :ets.insert(:voter_ballots, {voter_name, voter_state})
-      {:ok, voter_state, @timeout}
-    else
-      :error -> reply_with_atom(%VoterState{}, :state_error)
+    send(self(), {:set_state, voter_name, show})
+    case fresh_state(voter_name, show) do
+      :state_error ->
+        IO.puts "Encountered an invalid state change when setting initial state"
+        {:stop, :state_error}
+      valid_state -> {:ok, valid_state}
     end
   end
 
@@ -66,9 +59,9 @@ defmodule AwardsVoter.Voter do
     with {:ok, ballot_state} <- BallotState.check(state.ballot_state, :reset_state) do
       state
       |> update_ballot_state(ballot_state)
-      |> reply_with_atom(:ok)
+      |> reply_success(:ok)
     else
-      :error -> reply_with_atom(state, :state_error)
+      :error -> reply_error(state, :state_error)
     end
   end
 
@@ -77,9 +70,9 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> update_voter_show(show)
-      |> reply_with_atom(:ok)
+      |> reply_success(:ok)
     else
-      :error -> reply_with_atom(state, :state_error)
+      :error -> reply_error(state, :state_error)
     end
   end
 
@@ -89,9 +82,9 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> update_voter_ballot(ballot)
-      |> reply_with_atom(:ok)
+      |> reply_success(:ok)
     else
-      :error -> reply_with_atom(state, :state_error)
+      :error -> reply_error(state, :state_error)
     end
   end
 
@@ -101,9 +94,10 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> update_voter_ballot(ballot)
-      |> reply_with_atom(:ok)
+      |> reply_success(:ok)
     else
-      :error -> reply_with_atom(state, :state_error)
+      :error -> reply_error(state, :state_error)
+      {:invalid_vote, _} -> reply_error(state, :invalid_vote)
     end
   end
 
@@ -111,9 +105,9 @@ defmodule AwardsVoter.Voter do
     with {:ok, ballot_state} <- BallotState.check(state.ballot_state, :submit) do
       state
       |> update_ballot_state(ballot_state)
-      |> reply_with_atom(:ok)
+      |> reply_success(:ok)
     else
-      :error -> reply_with_atom(state, :state_error)
+      :error -> reply_error(state, :state_error)
     end
   end
 
@@ -121,7 +115,7 @@ defmodule AwardsVoter.Voter do
     with {:ok, ballot_state} <- BallotState.check(state.ballot_state, :end_show) do
       state
       |> update_ballot_state(ballot_state)
-      |> reply_with_atom(:ok)
+      |> reply_success(:ok)
     end
   end
 
@@ -131,9 +125,24 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> update_ballot_score(score)
-      |> reply_with_atom(:ok)
+      |> reply_success(:ok)
     else
-      :error -> reply_with_atom(state, :state_error)
+      :error -> reply_error(state, :state_error)
+    end
+  end
+  
+  def handle_info({:set_state, voter_name, show}, state) do
+    voter_state = case :ets.lookup(:voter_ballots, voter_name) do
+      [] -> fresh_state(voter_name, show)
+      [{_key, state}] -> state
+    end
+    case voter_state do
+      :state_error -> 
+        IO.puts "Encountered an invalid state change when setting initial state"
+        {:stop, :state_error, %VoterState{}}
+      valid_state ->
+        :ets.insert(:voter_ballots, {voter_name, valid_state})
+        {:noreply, valid_state, @timeout}
     end
   end
   
@@ -154,14 +163,21 @@ defmodule AwardsVoter.Voter do
 
   defp reply_error(voter_state, reply_atom), do: {:reply, reply_atom, voter_state, @timeout}
   defp reply_success(voter_state, reply_atom) do
-    :ets.insert(:voter_ballots, {voter_state.ballot.name, voter_state})
+    :ets.insert(:voter_ballots, {voter_state.ballot.voter, voter_state})
     {:reply, reply_atom, voter_state, @timeout}
   end
   
-  defp fresh_state(name, ballot_state, show, ballot) do
-    %VoterState{}
-    |> update_ballot_state(ballot_state)
-    |> update_voter_show(show)
-    |> update_voter_ballot(ballot)
+  defp fresh_state(voter_name, show) do
+    with {:ok, ballot_state} <- BallotState.new(),
+         {:ok, ballot_state} <- BallotState.check(ballot_state, :set_show),
+         {:ok, ballot_state} <- BallotState.check(ballot_state, :set_ballot),
+         {:ok, ballot} <- Ballot.new(voter_name, show) do
+      %VoterState{}
+      |> update_ballot_state(ballot_state)
+      |> update_voter_show(show)
+      |> update_voter_ballot(ballot)
+    else
+      :error -> :state_error
+    end
   end
 end
