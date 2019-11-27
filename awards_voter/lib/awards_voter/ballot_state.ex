@@ -1,10 +1,13 @@
 defmodule AwardsVoter.BallotState do
   alias __MODULE__
   
-  defstruct status: :initialized, ballot: nil, show: nil
+  defstruct status: :initialized
+  @type t :: %__MODULE__{status: :initialized | :show_set | :ballot_set | :voting | :submitted | :show_ended}
   
+  @spec new() :: BallotState.t()
   def new(), do: %BallotState{}
 
+  @spec check(BallotState.t(), atom)
   def check(%BallotState{status: :initialized} = state, :set_show) do
     {:ok, %{state | status: :show_set}}
   end
