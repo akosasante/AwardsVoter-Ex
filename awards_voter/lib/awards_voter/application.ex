@@ -7,8 +7,7 @@ defmodule AwardsVoter.Application do
 
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: AwardsVoter.Worker.start_link(arg)
-      # {AwardsVoter.Worker, arg}
+      {Registry, keys: :unique, name: Registry.Voter}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

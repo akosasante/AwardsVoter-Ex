@@ -1,15 +1,17 @@
 defmodule AwardsVoter.Voter do
-  use GenServer
+  use GenServer, start: {__MODULE__, :start_link, []}, restart: :transient
 
   alias AwardsVoter.{BallotState, Show, Ballot}
 
   defmodule VoterState do
     defstruct [:ballot_state, :show, :ballot, :score]
   end
+  
+  def via_tuple(name), do: {:via, Registry, {Registry.Voter, name}}
 
   # Client API
   def start_new_voter(voter_name, show) do
-    GenServer.start_link(__MODULE__, {voter_name, show}, [])
+    GenServer.start_link(__MODULE__, {voter_name, show}, name: via_tuple(voter_name))
   end
 
   def reset_voter(voter) do
