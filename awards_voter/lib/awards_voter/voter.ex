@@ -1,7 +1,9 @@
 defmodule AwardsVoter.Voter do
-  use GenServer, start: {__MODULE__, :start_link, []}, restart: :transient
+  use GenServer, restart: :transient
 
   alias AwardsVoter.{BallotState, Show, Ballot}
+  
+  @timeout 24 * 60 * 60 * 1000 # kill process after 1 day of inactivity
 
   defmodule VoterState do
     defstruct [:ballot_state, :show, :ballot, :score]
@@ -10,7 +12,7 @@ defmodule AwardsVoter.Voter do
   def via_tuple(name), do: {:via, Registry, {Registry.Voter, name}}
 
   # Client API
-  def start_new_voter(voter_name, show) do
+  def start_link([voter_name, show]) do
     GenServer.start_link(__MODULE__, {voter_name, show}, name: via_tuple(voter_name))
   end
 
@@ -54,7 +56,7 @@ defmodule AwardsVoter.Voter do
         |> update_voter_show(show)
         |> update_voter_ballot(ballot)
 
-      {:ok, voter_state}
+      {:ok, voter_state, @timeout}
     else
       :error -> reply_with_atom(%VoterState{}, :state_error)
     end
@@ -134,6 +136,10 @@ defmodule AwardsVoter.Voter do
       :error -> reply_with_atom(state, :state_error)
     end
   end
+  
+  def handle_info(:timeout, state) do
+    {:stop, {:shutdown, :timeout}, state}
+  end
 
   # Private Methods
 
@@ -146,5 +152,5 @@ defmodule AwardsVoter.Voter do
 
   defp update_ballot_score(voter_state, score), do: %{voter_state | score: score}
 
-  defp reply_with_atom(voter_state, reply_atom), do: {:reply, reply_atom, voter_state}
+  defp reply_with_atom(voter_state, reply_atom), do: {:reply, reply_atom, voter_state, @timeout}
 end

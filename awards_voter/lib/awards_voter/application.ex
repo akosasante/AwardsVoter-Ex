@@ -7,7 +7,8 @@ defmodule AwardsVoter.Application do
 
   def start(_type, _args) do
     children = [
-      {Registry, keys: :unique, name: Registry.Voter}
+      {Registry, keys: :unique, name: Registry.Voter},
+      AwardsVoter.VoterSupervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
