@@ -50,12 +50,12 @@ defmodule AwardsVoter.Voter do
          {:ok, ballot_state} <- BallotState.check(ballot_state, :set_show),
          {:ok, ballot_state} <- BallotState.check(ballot_state, :set_ballot),
          {:ok, ballot} <- Ballot.new(voter_name, show) do
-      voter_state =
-        %VoterState{}
-        |> update_ballot_state(ballot_state)
-        |> update_voter_show(show)
-        |> update_voter_ballot(ballot)
-
+      
+      voter_state = case :ets.lookup(:voter_ballots, voter_name) do
+        [] -> fresh_state(name, ballot_state, show, ballot)
+        [{_key, state}] -> state
+      end
+      :ets.insert(:voter_ballots, {voter_name, voter_state})
       {:ok, voter_state, @timeout}
     else
       :error -> reply_with_atom(%VoterState{}, :state_error)
@@ -152,5 +152,16 @@ defmodule AwardsVoter.Voter do
 
   defp update_ballot_score(voter_state, score), do: %{voter_state | score: score}
 
-  defp reply_with_atom(voter_state, reply_atom), do: {:reply, reply_atom, voter_state, @timeout}
+  defp reply_error(voter_state, reply_atom), do: {:reply, reply_atom, voter_state, @timeout}
+  defp reply_success(voter_state, reply_atom) do
+    :ets.insert(:voter_ballots, {voter_state.ballot.name, voter_state})
+    {:reply, reply_atom, voter_state, @timeout}
+  end
+  
+  defp fresh_state(name, ballot_state, show, ballot) do
+    %VoterState{}
+    |> update_ballot_state(ballot_state)
+    |> update_voter_show(show)
+    |> update_voter_ballot(ballot)
+  end
 end
