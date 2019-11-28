@@ -10,7 +10,7 @@ defmodule AwardsVoter.Application do
       {Registry, keys: :unique, name: Registry.Voter},
       AwardsVoter.VoterSupervisor
     ]
-    
+
     # Set up an ETS table to 
     :ets.new(:voter_ballots, [:public, :named_table])
 

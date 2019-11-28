@@ -2,13 +2,14 @@ defmodule AwardsVoter.Voter do
   use GenServer, restart: :transient
 
   alias AwardsVoter.{BallotState, Show, Ballot}
-  
-  @timeout 24 * 60 * 60 * 1000 # kill process after 1 day of inactivity
+
+  # kill process after 1 day of inactivity
+  @timeout 24 * 60 * 60 * 1000
 
   defmodule VoterState do
     defstruct [:ballot_state, :show, :ballot, :score]
   end
-  
+
   def via_tuple(name), do: {:via, Registry, {Registry.Voter, name}}
 
   # Client API
@@ -47,11 +48,14 @@ defmodule AwardsVoter.Voter do
   # Server Callbacks
   def init({voter_name, show}) do
     send(self(), {:set_state, voter_name, show})
+
     case fresh_state(voter_name, show) do
       :state_error ->
-        IO.puts "Encountered an invalid state change when setting initial state"
+        IO.puts("Encountered an invalid state change when setting initial state")
         {:stop, :state_error}
-      valid_state -> {:ok, valid_state}
+
+      valid_state ->
+        {:ok, valid_state}
     end
   end
 
@@ -130,30 +134,34 @@ defmodule AwardsVoter.Voter do
       :error -> reply_error(state, :state_error)
     end
   end
-  
+
   def handle_info({:set_state, voter_name, show}, state) do
-    voter_state = case :ets.lookup(:voter_ballots, voter_name) do
-      [] -> fresh_state(voter_name, show)
-      [{_key, state}] -> state
-    end
+    voter_state =
+      case :ets.lookup(:voter_ballots, voter_name) do
+        [] -> fresh_state(voter_name, show)
+        [{_key, state}] -> state
+      end
+
     case voter_state do
-      :state_error -> 
-        IO.puts "Encountered an invalid state change when setting initial state"
+      :state_error ->
+        IO.puts("Encountered an invalid state change when setting initial state")
         {:stop, :state_error, %VoterState{}}
+
       valid_state ->
         :ets.insert(:voter_ballots, {voter_name, valid_state})
         {:noreply, valid_state, @timeout}
     end
   end
-  
+
   def handle_info(:timeout, state) do
     {:stop, {:shutdown, :timeout}, state}
   end
-  
+
   def terminate({:shutdown, :timeout}, state) do
     :ets.delete(:voter_ballots, state.ballot.voter)
     :ok
   end
+
   def terminate(_reason, _state), do: :ok
 
   # Private Methods
@@ -168,11 +176,12 @@ defmodule AwardsVoter.Voter do
   defp update_ballot_score(voter_state, score), do: %{voter_state | score: score}
 
   defp reply_error(voter_state, reply_atom), do: {:reply, reply_atom, voter_state, @timeout}
+
   defp reply_success(voter_state, reply_atom) do
     :ets.insert(:voter_ballots, {voter_state.ballot.voter, voter_state})
     {:reply, reply_atom, voter_state, @timeout}
   end
-  
+
   defp fresh_state(voter_name, show) do
     with {:ok, ballot_state} <- BallotState.new(),
          {:ok, ballot_state} <- BallotState.check(ballot_state, :set_show),

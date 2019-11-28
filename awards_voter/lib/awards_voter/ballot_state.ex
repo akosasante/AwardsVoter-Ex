@@ -17,19 +17,19 @@ defmodule AwardsVoter.BallotState do
       _ -> {:ok, %{state | status: :initialized}}
     end
   end
-  
+
   def check(%BallotState{status: :initialized} = state, :set_show) do
     {:ok, %{state | status: :show_set}}
   end
-  
+
   def check(%BallotState{status: :show_set} = state, :set_show) do
     {:ok, %{state | status: :show_set}}
   end
-  
+
   def check(%BallotState{status: :show_set} = state, :set_ballot) do
     {:ok, %{state | status: :ballot_set}}
   end
-  
+
   def check(%BallotState{status: :ballot_set} = state, :set_ballot) do
     {:ok, %{state | status: :ballot_set}}
   end
@@ -69,7 +69,6 @@ defmodule AwardsVoter.BallotState do
   def check(%BallotState{status: :show_ended} = state, :get_score) do
     {:ok, state}
   end
-  
-  def check(_state, _action), do: :error
 
+  def check(_state, _action), do: :error
 end
