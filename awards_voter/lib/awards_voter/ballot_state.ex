@@ -11,10 +11,14 @@ defmodule AwardsVoter.BallotState do
   def new(), do: %BallotState{}
 
   @spec check(BallotState.t(), atom()) :: {:ok, BallotState.t()}
+  def check(%BallotState{} = state, :reset_state) do
+    {:ok, %{state | status: initialized}}
+  end
+  
   def check(%BallotState{status: :initialized} = state, :set_show) do
     {:ok, %{state | status: :show_set}}
   end
-
+  
   def check(%BallotState{status: :show_set} = state, :set_show) do
     {:ok, %{state | status: :show_set}}
   end
@@ -39,7 +43,11 @@ defmodule AwardsVoter.BallotState do
     {:ok, %{state | status: :submitted}}
   end
 
-  def check(%BallotState{status: :submitted} = state, :revote) do
+  def check(%BallotState{status: :voting} = state, :end_show) do
+    {:ok, %{state | status: :show_ended}}
+  end
+
+  def check(%BallotState{status: :submitted} = state, :vote) do
     {:ok, %{state | status: :voting}}
   end
 
@@ -47,13 +55,18 @@ defmodule AwardsVoter.BallotState do
     {:ok, %{state | status: :submitted}}
   end
 
-  def check(%BallotState{status: :voting} = state, :end_show) do
-    {:ok, %{state | status: :show_ended}}
+  def check(%BallotState{status: :submitted} = state, :get_score) do
+    {:ok, state}
   end
 
   def check(%BallotState{status: :submitted} = state, :end_show) do
     {:ok, %{state | status: :show_ended}}
   end
 
+  def check(%BallotState{status: :show_ended} = state, :get_score) do
+    {:ok, state}
+  end
+  
   def check(_state, _action), do: :error
+
 end
