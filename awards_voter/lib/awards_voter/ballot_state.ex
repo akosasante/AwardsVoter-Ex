@@ -10,7 +10,7 @@ defmodule AwardsVoter.BallotState do
   @spec new() :: BallotState.t()
   def new(), do: %BallotState{}
 
-  @spec check(BallotState.t(), atom)
+  @spec check(BallotState.t(), atom()) :: {:ok, BallotState.t()}
   def check(%BallotState{status: :initialized} = state, :set_show) do
     {:ok, %{state | status: :show_set}}
   end

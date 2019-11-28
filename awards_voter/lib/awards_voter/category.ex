@@ -11,7 +11,6 @@ defmodule AwardsVoter.Category do
           winner: Contestant.t()
         }
 
-  # TODO: Can we have nullable types in typespecs?
   @spec new(String.t(), list(Contestant.t()), Contestant.t()) :: {:ok, Category.t()}
   def new(name, contestants \\ [], winner \\ nil) do
     {:ok, %Category{name: name, contestants: contestants, winner: winner}}
