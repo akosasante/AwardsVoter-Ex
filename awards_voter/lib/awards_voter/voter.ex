@@ -135,7 +135,7 @@ defmodule AwardsVoter.Voter do
     end
   end
 
-  def handle_info({:set_state, voter_name, show}, state) do
+  def handle_info({:set_state, voter_name, show}, _state) do
     voter_state =
       case :ets.lookup(:voter_ballots, voter_name) do
         [] -> fresh_state(voter_name, show)
@@ -155,6 +155,10 @@ defmodule AwardsVoter.Voter do
 
   def handle_info(:timeout, state) do
     {:stop, {:shutdown, :timeout}, state}
+  end
+
+  def handle_info(_msg, state) do
+    {:noreply, state}
   end
 
   def terminate({:shutdown, :timeout}, state) do
