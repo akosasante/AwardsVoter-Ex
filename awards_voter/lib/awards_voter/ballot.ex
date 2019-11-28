@@ -35,6 +35,7 @@ defmodule AwardsVoter.Ballot do
     %{ballot | votes: Map.new(votes, fn {:ok, vote} -> {vote.category.name, vote} end)}
   end
 
+  @spec update_ballot_with_vote!(Ballot.t(), Vote.t()) :: {:ok, Ballot.t()} | {:error, term()}
   defp update_ballot_with_vote!(ballot, vote) do
     try do
       {:ok, %{ballot | votes: Map.update!(ballot.votes, vote.category.name, fn _ -> vote end)}}
