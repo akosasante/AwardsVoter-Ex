@@ -1,5 +1,5 @@
 defmodule AwardsVoter.BallotTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias AwardsVoter.{Ballot, Category, Vote, Contestant}
 
