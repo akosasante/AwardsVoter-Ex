@@ -4,25 +4,6 @@ defmodule AwardsVoter.VoterTest do
   alias AwardsVoter.{Voter, BallotState, Ballot, Show, Category, Contestant}
   
   describe "Voter server callbacks (handle_call)" do
-    test ":reset_voter, from allowed state" do
-      state = %Voter.VoterState{
-        ballot: %Ballot{voter: "Tester"}, # TODO: This should actually wipe the whole slate clean except for maybe ballot name
-        ballot_state: %BallotState{status: :show_set}
-      }
-      expected_state = %Voter.VoterState{
-        ballot: %Ballot{voter: "Tester"},
-        ballot_state: %BallotState{status: :initialized}
-      }
-      assert {:reply, :ok, ^expected_state, _timeout} = Voter.handle_call({:reset_voter}, :pid, state)
-    end
-    test ":reset_voter, from illegal state" do
-      state = %Voter.VoterState{
-        ballot: %Ballot{voter: "Tester"},
-        ballot_state: %BallotState{status: :show_ended}
-      }
-      assert {:reply, :state_error, ^state, _timeout} = Voter.handle_call({:reset_voter}, :pid, state)
-    end
-
     test ":reset_show, from allowed state" do
       state = %Voter.VoterState{
         ballot: %Ballot{voter: "Tester"},

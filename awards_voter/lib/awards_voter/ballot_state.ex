@@ -34,6 +34,14 @@ defmodule AwardsVoter.BallotState do
     {:ok, %{state | status: :ballot_set}}
   end
 
+  def check(%BallotState{status: :voting} = state, :set_ballot) do
+    {:ok, %{state | status: :ballot_set}}
+  end
+
+  def check(%BallotState{status: :submitted} = state, :set_ballot) do
+    {:ok, %{state | status: :ballot_set}}
+  end
+
   def check(%BallotState{status: :ballot_set} = state, :vote) do
     {:ok, %{state | status: :voting}}
   end

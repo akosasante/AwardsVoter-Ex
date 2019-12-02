@@ -17,10 +17,6 @@ defmodule AwardsVoter.Voter do
     GenServer.start_link(__MODULE__, {voter_name, show}, name: via_tuple(voter_name))
   end
 
-  def reset_voter(voter) do
-    GenServer.call(voter, {:reset_voter})
-  end
-
   def reset_show(voter, %Show{} = show) do
     GenServer.call(voter, {:reset_show, show})
   end
@@ -58,17 +54,7 @@ defmodule AwardsVoter.Voter do
         {:ok, valid_state}
     end
   end
-
-  def handle_call({:reset_voter}, _from, state) do
-    with {:ok, ballot_state} <- BallotState.check(state.ballot_state, :reset_state) do
-      state
-      |> update_ballot_state(ballot_state)
-      |> reply_success(:ok)
-    else
-      :error -> reply_error(state, :state_error)
-    end
-  end
-
+  
   def handle_call({:reset_show, show}, _from, state) do
     with {:ok, ballot_state} <- BallotState.check(state.ballot_state, :set_show) do
       state
