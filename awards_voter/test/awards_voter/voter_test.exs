@@ -57,7 +57,7 @@ defmodule AwardsVoter.VoterTest do
       {:ok, ballot} = Ballot.new("Tester", categories)
       state = %Voter.VoterState{
         ballot: ballot,
-        ballot_state: %BallotState{status: :voting},
+        ballot_state: %BallotState{status: :initialized},
         show: %Show{name: "My Big Music Awards", categories: categories}
       }
       assert {:reply, :state_error, ^state, _timeout} = Voter.handle_call({:reset_ballot, "New Tester"}, :pid, state)
