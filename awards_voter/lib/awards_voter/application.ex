@@ -11,7 +11,7 @@ defmodule AwardsVoter.Application do
       AwardsVoter.VoterSupervisor
     ]
 
-    # Set up an ETS table to 
+    # Set up an ETS table to store voter ballots
     :ets.new(:voter_ballots, [:public, :named_table])
 
     # See https://hexdocs.pm/elixir/Supervisor.html

@@ -26,7 +26,7 @@ defmodule AwardsVoter.Ballot do
 
   @spec score(Ballot.t()) :: non_neg_integer()
   def score(ballot) do
-    Enum.count(ballot.votes, fn {_category_name, vote} -> Vote.is_winning_vote?(vote) end)
+    {:ok, Enum.count(ballot.votes, fn {_category_name, vote} -> Vote.is_winning_vote?(vote) end)}
   end
 
   @spec init_ballot_with_empty_votes(Ballot.t(), nonempty_list(Category.t())) :: Ballot.t()

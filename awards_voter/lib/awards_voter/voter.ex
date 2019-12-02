@@ -120,6 +120,8 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> reply_success(:ok)
+    else
+      :error -> reply_error(state, :state_error)
     end
   end
 
