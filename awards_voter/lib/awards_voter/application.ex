@@ -7,9 +7,12 @@ defmodule AwardsVoter.Application do
 
   def start(_type, _args) do
     children = [
-      # Starts a worker by calling: AwardsVoter.Worker.start_link(arg)
-      # {AwardsVoter.Worker, arg}
+      {Registry, keys: :unique, name: Registry.Voter},
+      AwardsVoter.VoterSupervisor
     ]
+
+    # Set up an ETS table to store voter ballots
+    :ets.new(:voter_ballots, [:public, :named_table])
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

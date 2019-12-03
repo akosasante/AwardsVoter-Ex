@@ -1,5 +1,5 @@
 defmodule AwardsVoterTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
   doctest AwardsVoter
 
   test "greets the world" do

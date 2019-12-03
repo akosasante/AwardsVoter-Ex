@@ -1,5 +1,5 @@
 defmodule AwardsVoter.BallotTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias AwardsVoter.{Ballot, Category, Vote, Contestant}
 
@@ -121,13 +121,13 @@ defmodule AwardsVoter.BallotTest do
   describe "Ballot.score/1" do
     test "Should return 0 for a fresh ballot", context do
       {:ok, ballot} = Ballot.new(@test_voter, context[:show])
-      assert 0 == Ballot.score(ballot)
+      assert {:ok, 0} == Ballot.score(ballot)
     end
 
     test "Should return number of winning votes on ballot", context do
       {:ok, ballot} = Ballot.new(@test_voter, context[:show])
       {:ok, ballot} = Ballot.vote(ballot, "Record of the Year", "Billie Eillish")
-      assert 1 == Ballot.score(ballot)
+      assert {:ok, 1} == Ballot.score(ballot)
     end
   end
 end

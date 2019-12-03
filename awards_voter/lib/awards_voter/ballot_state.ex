@@ -7,10 +7,17 @@ defmodule AwardsVoter.BallotState do
           status: :initialized | :show_set | :ballot_set | :voting | :submitted | :show_ended
         }
 
-  @spec new() :: BallotState.t()
-  def new(), do: %BallotState{}
+  @spec new() :: {:ok, BallotState.t()}
+  def new(), do: {:ok, %BallotState{}}
 
   @spec check(BallotState.t(), atom()) :: {:ok, BallotState.t()}
+  def check(%BallotState{} = state, :reset_state) do
+    case state do
+      %BallotState{status: :show_ended} -> :error
+      _ -> {:ok, %{state | status: :initialized}}
+    end
+  end
+
   def check(%BallotState{status: :initialized} = state, :set_show) do
     {:ok, %{state | status: :show_set}}
   end
@@ -27,6 +34,14 @@ defmodule AwardsVoter.BallotState do
     {:ok, %{state | status: :ballot_set}}
   end
 
+  def check(%BallotState{status: :voting} = state, :set_ballot) do
+    {:ok, %{state | status: :ballot_set}}
+  end
+
+  def check(%BallotState{status: :submitted} = state, :set_ballot) do
+    {:ok, %{state | status: :ballot_set}}
+  end
+
   def check(%BallotState{status: :ballot_set} = state, :vote) do
     {:ok, %{state | status: :voting}}
   end
@@ -39,7 +54,11 @@ defmodule AwardsVoter.BallotState do
     {:ok, %{state | status: :submitted}}
   end
 
-  def check(%BallotState{status: :submitted} = state, :revote) do
+  def check(%BallotState{status: :voting} = state, :end_show) do
+    {:ok, %{state | status: :show_ended}}
+  end
+
+  def check(%BallotState{status: :submitted} = state, :vote) do
     {:ok, %{state | status: :voting}}
   end
 
@@ -47,12 +66,16 @@ defmodule AwardsVoter.BallotState do
     {:ok, %{state | status: :submitted}}
   end
 
-  def check(%BallotState{status: :voting} = state, :end_show) do
-    {:ok, %{state | status: :show_ended}}
+  def check(%BallotState{status: :submitted} = state, :get_score) do
+    {:ok, state}
   end
 
   def check(%BallotState{status: :submitted} = state, :end_show) do
     {:ok, %{state | status: :show_ended}}
+  end
+
+  def check(%BallotState{status: :show_ended} = state, :get_score) do
+    {:ok, state}
   end
 
   def check(_state, _action), do: :error
