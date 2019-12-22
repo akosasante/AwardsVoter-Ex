@@ -125,7 +125,7 @@ defmodule AwardsVoter.Voter do
 
   def handle_info({:set_state, voter_name, show}, _state) do
     voter_state =
-      case :ets.lookup(:voter_ballots, voter_name) do
+      case :dets.lookup(:voter_ballots, voter_name) do
         [] -> fresh_state(voter_name, show)
         [{_key, state}] -> state
       end
@@ -136,7 +136,7 @@ defmodule AwardsVoter.Voter do
         {:stop, :state_error, %VoterState{}}
 
       valid_state ->
-        :ets.insert(:voter_ballots, {voter_name, valid_state})
+        :dets.insert(:voter_ballots, {voter_name, valid_state})
         {:noreply, valid_state, @timeout}
     end
   end
@@ -150,7 +150,7 @@ defmodule AwardsVoter.Voter do
   end
 
   def terminate({:shutdown, :timeout}, state) do
-    :ets.delete(:voter_ballots, state.ballot.voter)
+    :dets.delete(:voter_ballots, state.ballot.voter)
     :ok
   end
 
@@ -170,7 +170,7 @@ defmodule AwardsVoter.Voter do
   defp reply_error(voter_state, reply_atom), do: {:reply, reply_atom, voter_state, @timeout}
 
   defp reply_success(voter_state, reply_atom) do
-    :ets.insert(:voter_ballots, {voter_state.ballot.voter, voter_state})
+    :dets.insert(:voter_ballots, {voter_state.ballot.voter, voter_state})
     {:reply, reply_atom, voter_state, @timeout}
   end
 
