@@ -12,7 +12,7 @@ defmodule AwardsVoter.Application do
     ]
 
     # Set up an ETS table to store voter ballots
-    :ets.new(:voter_ballots, [:public, :named_table])
+    :dets.open_file(:voter_ballots, [])
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options

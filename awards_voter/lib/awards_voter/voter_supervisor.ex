@@ -26,7 +26,7 @@ defmodule AwardsVoter.VoterSupervisor do
 
   @spec shutdown_voter(String.t()) :: :ok | {:error, :not_found}
   def shutdown_voter(name) do
-    :ets.delete(:voter_ballots, name)
+    :dets.delete(:voter_ballots, name)
     DynamicSupervisor.terminate_child(__MODULE__, pid_from_name(name))
   end
 
