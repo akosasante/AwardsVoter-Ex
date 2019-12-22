@@ -16,6 +16,10 @@ defmodule AwardsVoter.Voter do
   def start_link([voter_name, show]) do
     GenServer.start_link(__MODULE__, {voter_name, show}, name: via_tuple(voter_name))
   end
+  
+  def get_ballot(voter) do
+    GenServer.call(voter, {:get_ballot})
+  end
 
   def reset_show(voter, %Show{} = show) do
     GenServer.call(voter, {:reset_show, show})
@@ -52,6 +56,13 @@ defmodule AwardsVoter.Voter do
 
       valid_state ->
         {:ok, valid_state}
+    end
+  end
+  
+  def handle_call({:get_ballot}, _from, state) do
+    case :dets.lookup(:voter_ballots, state.ballot.voter) do
+      [] -> reply_success(state, state)
+      [{_key, saved_state}] -> reply_success(state, saved_state)
     end
   end
   
