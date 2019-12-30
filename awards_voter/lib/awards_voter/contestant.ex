@@ -9,6 +9,7 @@ defmodule AwardsVoter.Contestant do
           description: String.t(),
           image_url: String.t(),
           youtube_url: String.t(),
+          spotify_url: String.t(),
           wiki_url: String.t(),
           billboard_stats: String.t()
         }
@@ -31,6 +32,11 @@ defmodule AwardsVoter.Contestant do
   @spec set_wiki_url(Contestant.t(), String.t()) :: Contestant.t()
   def set_wiki_url(%Contestant{} = contestant, wiki_url) do
     {:ok, %{contestant | wiki_url: wiki_url}}
+  end
+
+  @spec set_spotify_url(Contestant.t(), String.t()) :: Contestant.t()
+  def set_spotify_url(%Contestant{} = contestant, spotify_url) do
+    {:ok, %{contestant | spotify_url: spotify_url}}
   end
 
   @spec set_billboard_stats(Contestant.t(), String.t()) :: Contestant.t()
