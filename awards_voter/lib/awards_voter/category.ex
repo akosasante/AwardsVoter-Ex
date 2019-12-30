@@ -3,7 +3,7 @@ defmodule AwardsVoter.Category do
   alias AwardsVoter.Contestant
 
   @enforce_keys [:name]
-  defstruct [:name, :contestants, :winner]
+  defstruct [:name, :contestants, :winner, :description]
 
   @type t :: %__MODULE__{
           name: String.t(),

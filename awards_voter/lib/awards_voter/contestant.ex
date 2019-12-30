@@ -2,7 +2,7 @@ defmodule AwardsVoter.Contestant do
   alias __MODULE__
 
   @enforce_keys [:name]
-  defstruct [:name, :description, :image_url, :youtube_url, :wiki_url, :billboard_stats]
+  defstruct [:name, :description, :image_url, :youtube_url, :wiki_url, :billboard_stats, :spotify_url]
 
   @type t :: %__MODULE__{
           name: String.t(),
