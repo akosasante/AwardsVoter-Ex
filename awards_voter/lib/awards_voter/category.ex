@@ -12,8 +12,8 @@ defmodule AwardsVoter.Category do
           description: String.t()
         }
 
-  @spec new(String.t(), list(Contestant.t()), Contestant.t()) :: {:ok, Category.t()}
-  def new(name, contestants \\ [], winner \\ nil, description \\ nil) do
+  @spec new(String.t(), list(Contestant.t()|map()), String.t(), Contestant.t()) :: {:ok, Category.t()}
+  def new(name, contestants \\ [], description \\ nil, winner \\ nil) do
     struct_contestants = Enum.map(contestants, fn
       %Contestant{} = contestant -> contestant
       contestant_map ->
