@@ -18,7 +18,7 @@ defmodule AwardsVoter.CategoryTest do
       [expected: expected]
     end
     
-    test "converts all of the passed in contestant maps to %Contestant{} structs", context do
+    test "converts all of the passed in contestant Maps to %Contestant{} structs", context do
       contestants = [
         %Contestant{name: "Billie", wiki_url: "www.wikipedia.org"},
         %{name: "Justin", youtube_url: "www.youtube.com"}

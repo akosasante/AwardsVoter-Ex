@@ -11,7 +11,7 @@ defmodule AwardsVoter.Show do
     struct_categories = Enum.map(categories, fn 
       %Category{} = category -> category
       category_map -> 
-        {:ok, category} = Category.new(Map.get(category_map, :name), Map.get(category_map, :contestants), Map.get(category_map, :winner)) 
+        {:ok, category} = Category.new(Map.get(category_map, :name), Map.get(category_map, :contestants, []), Map.get(category_map, :description), Map.get(category_map, :winner)) 
         category
     end)
     {:ok, %Show{name: name, categories: struct_categories}}
