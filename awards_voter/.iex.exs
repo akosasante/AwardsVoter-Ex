@@ -1,6 +1,6 @@
 IO.puts("Setting up AwardsVoter for console")
 #import_if_available(AwardsVoter)
-alias AwardsVoter.{Ballot, Category, Contestant, Show, Vote}
+alias AwardsVoter.{Ballot, Category, Contestant, Show, Vote, Voter}
 
 defmodule IexDev do
   def make_contestants(contestant_list) do
