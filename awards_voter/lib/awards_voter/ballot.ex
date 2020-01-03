@@ -3,9 +3,10 @@ defmodule AwardsVoter.Ballot do
   alias AwardsVoter.{Vote, Show, Category}
 
   defstruct [:voter, :votes]
-  @type t :: %__MODULE__{voter: String.t(), votes: Map.t(Vote.t())}
+  @type votemap :: %{required(String.t()) => Vote.t()}
+  @type t :: %__MODULE__{voter: String.t(), votes: votemap | nil}
 
-  @spec new(String.t(), nonempty_list(Categories.t())) :: {:ok, Ballot.t()}
+  @spec new(String.t(), nonempty_list(Category.t())) :: {:ok, %Ballot{votes: votemap}}
   def new(voter, [_ | _] = categories) do
     ballot = init_ballot_with_empty_votes(%Ballot{voter: voter}, categories)
     {:ok, ballot}
@@ -24,13 +25,13 @@ defmodule AwardsVoter.Ballot do
     end
   end
 
-  @spec score(Ballot.t()) :: non_neg_integer()
+  @spec score(Ballot.t()) :: {:ok, non_neg_integer()}
   def score(ballot) do
     {:ok, Enum.count(ballot.votes, fn {_category_name, vote} -> Vote.is_winning_vote?(vote) end)}
   end
 
-  @spec init_ballot_with_empty_votes(Ballot.t(), nonempty_list(Category.t())) :: Ballot.t()
-  defp init_ballot_with_empty_votes(ballot, categories) do
+  @spec init_ballot_with_empty_votes(Ballot.t(), nonempty_list(Category.t())) :: %Ballot{votes: votemap}
+  def init_ballot_with_empty_votes(ballot, categories) do
     votes = Enum.map(categories, fn category -> Vote.new(category) end)
     %{ballot | votes: Map.new(votes, fn {:ok, vote} -> {vote.category.name, vote} end)}
   end

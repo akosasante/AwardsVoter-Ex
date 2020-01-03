@@ -10,7 +10,7 @@ defmodule AwardsVoter.BallotState do
   @spec new() :: {:ok, BallotState.t()}
   def new(), do: {:ok, %BallotState{}}
 
-  @spec check(BallotState.t(), atom()) :: {:ok, BallotState.t()}
+  @spec check(BallotState.t(), atom()) :: {:ok, BallotState.t()} | :error
   def check(%BallotState{} = state, :reset_state) do
     case state do
       %BallotState{status: :show_ended} -> :error

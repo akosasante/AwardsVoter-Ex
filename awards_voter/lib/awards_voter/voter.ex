@@ -185,6 +185,7 @@ defmodule AwardsVoter.Voter do
     {:reply, reply_atom, voter_state, @timeout}
   end
 
+  
   defp fresh_state(voter_name, show) do
     with {:ok, ballot_state} <- BallotState.new(),
          {:ok, ballot_state} <- BallotState.check(ballot_state, :set_show),
