@@ -19,4 +19,9 @@ defmodule AwardsVoter.Application do
     opts = [strategy: :one_for_one, name: AwardsVoter.Supervisor]
     Supervisor.start_link(children, opts)
   end
+  
+  def stop(state) do
+    IO.puts("Application shutting down: #{inspect state}")
+    :ok = :dets.close(:voter_ballots)
+  end
 end
