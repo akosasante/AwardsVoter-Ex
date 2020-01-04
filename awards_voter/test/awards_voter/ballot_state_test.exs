@@ -3,15 +3,6 @@ defmodule AwardsVoter.BallotStateTest do
 
   alias AwardsVoter.BallotState
 
-#  @all_states [
-#    :initialized,
-#    :show_set,
-#    :ballot_set,
-#    :voting,
-#    :submitted,
-#    :show_ended,
-#  ]
-
   @all_transitions [
     :set_show,
     :set_ballot,
@@ -66,6 +57,10 @@ defmodule AwardsVoter.BallotStateTest do
   end
 
   defp test_state_transition(start_state, transitions) do
+    transitions = case start_state do
+      :show_ended -> transitions
+      _ -> transitions ++ [:reset_state]
+    end
     allowed = all_transitions_allowed(start_state, transitions)
     not_allowed = all_transitions_refused(start_state, @all_transitions -- transitions)
     allowed and not_allowed
