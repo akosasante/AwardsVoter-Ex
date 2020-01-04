@@ -109,10 +109,18 @@ defmodule AwardsVoter.BallotTest do
       assert ballot.votes["Record of the Year"].contestant.name == "Billie Eillish"
     end
 
-    test "returns the original ballot with an explanatory atom if an invalid vote is attempted",
+    test "returns the original ballot with an invalid_vote atom if an invalid contestant is attempted",
          context do
       {:ok, orig_ballot} = Ballot.new(@test_voter, context[:show])
-      {:invalid_vote, ballot} = Ballot.vote(orig_ballot, "Movie of the Year", "Jumanji")
+      {:invalid_vote, ballot} = Ballot.vote(orig_ballot, "Record of the Year", "Yung Nudy")
+      assert ballot == orig_ballot
+      refute ballot.votes["Movie of the Year"]
+    end
+
+    test "returns the original ballot with an invalid_vote atom if an invalid category is attempted",
+         context do
+      {:ok, orig_ballot} = Ballot.new(@test_voter, context[:show])
+      {:invalid_vote, ballot} = Ballot.vote(orig_ballot, "Movie of the Year", "Billie Eillish")
       assert ballot == orig_ballot
       refute ballot.votes["Movie of the Year"]
     end

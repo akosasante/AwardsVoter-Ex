@@ -1,6 +1,8 @@
 defmodule AwardsVoter.Ballot do
   alias __MODULE__
   alias AwardsVoter.{Vote, Show, Category}
+  
+  require Logger
 
   defstruct [:voter, :votes]
   @type votemap :: %{required(String.t()) => Vote.t()}
@@ -17,11 +19,23 @@ defmodule AwardsVoter.Ballot do
     Ballot.new(voter, show.categories)
   end
 
-  @spec vote(Ballot.t(), String.t(), String.t()) :: {atom(), Ballot.t()} | {:error, String.t()}
+  @spec vote(Ballot.t(), String.t(), String.t()) :: {:ok | :invalid_vote, Ballot.t()}
   def vote(ballot, category_name, contestant_name) do
-    case Vote.vote(ballot.votes[category_name], contestant_name) do
-      {:ok, vote} -> update_ballot_with_vote!(ballot, vote)
-      _ -> {:invalid_vote, ballot}
+    with {:get_category, %Vote{} = category_vote_entry} <- {:get_category, ballot.votes[category_name]},
+         {:do_vote, {:ok, vote}} <- {:do_vote, Vote.vote(category_vote_entry, contestant_name)},
+         {:update_ballot, {:ok, updated_ballot}} <- {:update_ballot, update_ballot_with_vote(ballot, vote)} 
+    do
+      {:ok, updated_ballot}
+    else
+      {:get_category, nil} ->
+        Logger.error("Category (#{category_name}) does not exist in ballot")
+        {:invalid_vote, ballot}
+      {:do_vote, _} ->
+        Logger.error("Invalid or nil argument passed to Vote.vote/2")
+        {:invalid_vote, ballot}
+      {:update_ballot, e} ->
+        Logger.error("Error raised when trying to update ballot: #{inspect e}")
+        {:invalid_vote, ballot}
     end
   end
 
@@ -36,13 +50,13 @@ defmodule AwardsVoter.Ballot do
     %{ballot | votes: Map.new(votes, fn {:ok, vote} -> {vote.category.name, vote} end)}
   end
 
-  @spec update_ballot_with_vote!(Ballot.t(), Vote.t()) :: {:ok, Ballot.t()} | {:error, term()}
-  defp update_ballot_with_vote!(ballot, vote) do
+  @spec update_ballot_with_vote(Ballot.t(), Vote.t()) :: {:ok, Ballot.t()} | {:error, term()}
+  defp update_ballot_with_vote(ballot, vote) do
     try do
       {:ok, %{ballot | votes: Map.update!(ballot.votes, vote.category.name, fn _ -> vote end)}}
     rescue
-      KeyError -> {:invalid_category, ballot}
-      e -> {:error, inspect(e)}
+      e -> {:error, e}
     end
   end
 end
+  
