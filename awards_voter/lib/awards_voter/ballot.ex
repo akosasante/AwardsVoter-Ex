@@ -7,6 +7,14 @@ defmodule AwardsVoter.Ballot do
   defstruct [:voter, :votes]
   @type votemap :: %{required(String.t()) => Vote.t()}
   @type t :: %__MODULE__{voter: String.t(), votes: votemap | nil}
+  
+  @spec new(String.t(), nil) :: {:error, :invalid_nil_show_or_category}
+  def new(_voter, nil) do
+    {:error, :invalid_nil_show_or_category}
+  end
+  def new(nil, _show_or_category) do
+    {:error, :invalid_nil_show_or_category}
+  end
 
   @spec new(String.t(), nonempty_list(Category.t())) :: {:ok, %Ballot{votes: votemap}}
   def new(voter, [_ | _] = categories) do
@@ -14,7 +22,7 @@ defmodule AwardsVoter.Ballot do
     {:ok, ballot}
   end
 
-  @spec new(String.t(), Show.t()) :: {:ok, Ballot.t()}
+  @spec new(String.t(), %Show{categories: nonempty_list(Category.t())}) :: {:ok, Ballot.t()}
   def new(voter, show) do
     Ballot.new(voter, show.categories)
   end
