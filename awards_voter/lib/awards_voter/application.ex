@@ -11,11 +11,9 @@ defmodule AwardsVoter.Application do
     
     children = [
       {Registry, keys: :unique, name: Registry.Voter},
-      AwardsVoter.VoterSupervisor
+      AwardsVoter.VoterSupervisor,
+      AwardsVoter.ShowManager
     ]
-
-    # Set up an DETS table to store voter ballots
-#    :dets.open_file(get_voter_ballots_table_name(), [])
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -26,9 +24,6 @@ defmodule AwardsVoter.Application do
   
   def stop(state) do
     Logger.info("Application shutting down: #{inspect state}")
-#    :ok = :dets.close(get_voter_ballots_table_name())
     :ok
   end
-  
-#  defp get_voter_ballots_table_name(), do: Application.get_env(:awards_voter, :voter_ballots_table)
 end

@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Voter do
-  use GenServer, restart: :transient
+  use GenServer, restart: :transient # Only restart if it terminates abnormally. we may want to remove this and keep the default of always restarting :permanent
 
   alias AwardsVoter.{BallotState, Show, Ballot}
   
@@ -12,7 +12,7 @@ defmodule AwardsVoter.Voter do
   defmodule VoterState do
     defstruct [:ballot_state, :show, :ballot, :score]
   end
-
+# TODO: Maybe have spec on at least the client API?
   def via_tuple(name), do: {:via, Registry, {Registry.Voter, name}}
 
   # Client API
@@ -49,7 +49,7 @@ defmodule AwardsVoter.Voter do
   end
 
   # Server Callbacks
-  def init({voter_name, show}, close_dets_after \\ Mix.env() == "test") do
+  def init({voter_name, show}, close_dets_after \\ Mix.env() == :test) do
     # Set up an DETS table to store voter ballots
     :dets.open_file(@voter_ballot_table, [])
     send(self(), {:set_state, voter_name, show})
@@ -102,6 +102,7 @@ defmodule AwardsVoter.Voter do
       |> reply_success
     else
       :error -> reply_error(state, :state_error)
+      {:error, reason} -> reply_error(state, reason)
     end
   end
 
@@ -179,7 +180,6 @@ defmodule AwardsVoter.Voter do
   def terminate(reason, _state) do
     Logger.info("Terminating Voter GenServer due to: #{inspect reason}")
     :dets.close(@voter_ballot_table)
-    :ok
   end
   
   # Private Methods

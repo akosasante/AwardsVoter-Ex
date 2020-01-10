@@ -52,7 +52,7 @@ defmodule AwardsVoter.VoterTest do
       
       :dets.insert(@voter_ballot_table, {"Tester", state})
 
-      assert {:reply, :ok, ^state, _timeout} = Voter.handle_call({:get_ballot}, :pid, %Voter.VoterState{})
+      assert {:reply, :ok, ^state, _timeout} = Voter.handle_call({:get_ballot}, :pid, %Voter.VoterState{ballot: ballot})
     end
     
     test "handle_call :reset_show, from allowed state" do
