@@ -6,7 +6,8 @@
 import Config
 
 config :awards_voter,
-  voter_ballots_table: :voter_ballots
+  voter_ballots_table: :voter_ballots,
+  show_table: :shows
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

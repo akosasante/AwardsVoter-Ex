@@ -5,4 +5,5 @@ config :logger,
   level: :warn
 
 config :awards_voter,
-  voter_ballots_table: :test_voter_ballots
+  voter_ballots_table: :test_voter_ballots,
+  show_table: :test_show_table
