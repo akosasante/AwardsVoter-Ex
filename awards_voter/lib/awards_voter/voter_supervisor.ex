@@ -2,6 +2,8 @@ defmodule AwardsVoter.VoterSupervisor do
   use DynamicSupervisor
 
   alias AwardsVoter.{Voter, Show, Voter}
+  
+  require Logger
 
   # Public Module API
   @spec start_link(term()) :: Supervisor.on_start()
@@ -19,7 +21,7 @@ defmodule AwardsVoter.VoterSupervisor do
         {:already_started, game}
 
       e ->
-        IO.puts("Unexpected error when adding new voter: #{inspect(e)}")
+        Logger.error("Unexpected error when adding new voter: #{inspect(e)}")
         raise e
     end
   end

@@ -1,15 +1,18 @@
 defmodule AwardsVoter.Voter do
-  use GenServer, restart: :transient
+  use GenServer, restart: :transient # Only restart if it terminates abnormally. we may want to remove this and keep the default of always restarting :permanent
 
   alias AwardsVoter.{BallotState, Show, Ballot}
+  
+  require Logger
 
   # kill process after 1 day of inactivity
   @timeout 24 * 60 * 60 * 1000
+  @voter_ballot_table Application.get_env(:awards_voter, :voter_ballots_table)
 
   defmodule VoterState do
     defstruct [:ballot_state, :show, :ballot, :score]
   end
-
+# TODO: Maybe have spec on at least the client API?
   def via_tuple(name), do: {:via, Registry, {Registry.Voter, name}}
 
   # Client API
@@ -17,52 +20,72 @@ defmodule AwardsVoter.Voter do
     GenServer.start_link(__MODULE__, {voter_name, show}, name: via_tuple(voter_name))
   end
   
+  @spec get_ballot(GenServer.server()) :: :ok
   def get_ballot(voter) do
     GenServer.call(voter, {:get_ballot})
   end
 
+  @spec reset_show(GenServer.server(), Show.t()) :: :ok
   def reset_show(voter, %Show{} = show) do
     GenServer.call(voter, {:reset_show, show})
   end
 
+  @spec reset_ballot(GenServer.server(), String.t()) :: :ok
   def reset_ballot(voter, voter_name) do
     GenServer.call(voter, {:reset_ballot, voter_name})
   end
 
+  @spec vote(GenServer.server(), String.t(), String.t()) :: :ok
   def vote(voter, category, contestant) do
     GenServer.call(voter, {:vote, category, contestant})
   end
 
+  @spec submit_ballot(GenServer.server()) :: :ok
   def submit_ballot(voter) do
     GenServer.call(voter, {:submit_ballot})
   end
 
+  @spec end_show(GenServer.server()) :: :ok
   def end_show(voter) do
     GenServer.call(voter, {:end_show})
   end
 
+  @spec tally_ballot(GenServer.server()) :: :ok
   def tally_ballot(voter) do
     GenServer.call(voter, {:tally})
   end
 
   # Server Callbacks
-  def init({voter_name, show}) do
+  def init({voter_name, show}, close_dets_after \\ Mix.env() == :test) do
+    # Set up an DETS table to store voter ballots
+    {:ok, _name} = :dets.open_file(@voter_ballot_table, [])
     send(self(), {:set_state, voter_name, show})
 
-    case fresh_state(voter_name, show) do
-      :state_error ->
-        IO.puts("Encountered an invalid state change when setting initial state")
-        {:stop, :state_error}
+    return_value = case fresh_state(voter_name, show) do
+      {:error, reason} ->
+        Logger.error("Encountered an error setting initial state: #{inspect reason}")
+        {:stop, reason}
+      
 
       valid_state ->
         {:ok, valid_state}
     end
+      
+    if close_dets_after do
+      :dets.close(@voter_ballot_table)
+    end
+    
+    return_value
   end
   
   def handle_call({:get_ballot}, _from, state) do
-    case :dets.lookup(:voter_ballots, state.ballot.voter) do
-      [] -> reply_success(state, state)
-      [{_key, saved_state}] -> reply_success(state, saved_state)
+    case :dets.lookup(@voter_ballot_table, state.ballot.voter) do
+      [] ->
+        Logger.info "Nothing found"
+        reply_success(state)
+      [{_key, saved_state}] ->
+        Logger.info "Found something"
+        reply_success(saved_state)
     end
   end
   
@@ -71,7 +94,7 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> update_voter_show(show)
-      |> reply_success(:ok)
+      |> reply_success
     else
       :error -> reply_error(state, :state_error)
     end
@@ -83,9 +106,10 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> update_voter_ballot(ballot)
-      |> reply_success(:ok)
+      |> reply_success
     else
       :error -> reply_error(state, :state_error)
+      {:error, reason} -> reply_error(state, reason)
     end
   end
 
@@ -95,7 +119,7 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> update_voter_ballot(ballot)
-      |> reply_success(:ok)
+      |> reply_success
     else
       :error -> reply_error(state, :state_error)
       {:invalid_vote, _} -> reply_error(state, :invalid_vote)
@@ -106,7 +130,7 @@ defmodule AwardsVoter.Voter do
     with {:ok, ballot_state} <- BallotState.check(state.ballot_state, :submit) do
       state
       |> update_ballot_state(ballot_state)
-      |> reply_success(:ok)
+      |> reply_success
     else
       :error -> reply_error(state, :state_error)
     end
@@ -116,7 +140,7 @@ defmodule AwardsVoter.Voter do
     with {:ok, ballot_state} <- BallotState.check(state.ballot_state, :end_show) do
       state
       |> update_ballot_state(ballot_state)
-      |> reply_success(:ok)
+      |> reply_success
     else
       :error -> reply_error(state, :state_error)
     end
@@ -128,7 +152,7 @@ defmodule AwardsVoter.Voter do
       state
       |> update_ballot_state(ballot_state)
       |> update_ballot_score(score)
-      |> reply_success(:ok)
+      |> reply_success
     else
       :error -> reply_error(state, :state_error)
     end
@@ -136,18 +160,18 @@ defmodule AwardsVoter.Voter do
 
   def handle_info({:set_state, voter_name, show}, _state) do
     voter_state =
-      case :dets.lookup(:voter_ballots, voter_name) do
+      case :dets.lookup(@voter_ballot_table, voter_name) do
         [] -> fresh_state(voter_name, show)
         [{_key, state}] -> state
       end
 
     case voter_state do
       :state_error ->
-        IO.puts("Encountered an invalid state change when setting initial state")
+        Logger.info("Encountered an invalid state change when setting initial state")
         {:stop, :state_error, %VoterState{}}
 
       valid_state ->
-        :dets.insert(:voter_ballots, {voter_name, valid_state})
+        :dets.insert(@voter_ballot_table, {voter_name, valid_state})
         {:noreply, valid_state, @timeout}
     end
   end
@@ -160,13 +184,11 @@ defmodule AwardsVoter.Voter do
     {:noreply, state}
   end
 
-  def terminate({:shutdown, :timeout}, state) do
-    :dets.delete(:voter_ballots, state.ballot.voter)
-    :ok
+  def terminate(reason, _state) do
+    Logger.info("Terminating Voter GenServer due to: #{inspect reason}")
+    :dets.close(@voter_ballot_table)
   end
-
-  def terminate(_reason, _state), do: :ok
-
+  
   # Private Methods
 
   defp update_ballot_state(voter_state, %BallotState{} = ballot_state),
@@ -180,12 +202,14 @@ defmodule AwardsVoter.Voter do
 
   defp reply_error(voter_state, reply_atom), do: {:reply, reply_atom, voter_state, @timeout}
 
-  defp reply_success(voter_state, reply_atom) do
-    :dets.insert(:voter_ballots, {voter_state.ballot.voter, voter_state})
+  defp reply_success(voter_state, reply_atom \\ :ok) do
+    :dets.insert(@voter_ballot_table, {voter_state.ballot.voter, voter_state})
     {:reply, reply_atom, voter_state, @timeout}
   end
 
-  defp fresh_state(voter_name, show) do
+  
+  defp  fresh_state(voter_name, show) do
+    Logger.info("Getting fresh state")
     with {:ok, ballot_state} <- BallotState.new(),
          {:ok, ballot_state} <- BallotState.check(ballot_state, :set_show),
          {:ok, ballot_state} <- BallotState.check(ballot_state, :set_ballot),
@@ -195,7 +219,8 @@ defmodule AwardsVoter.Voter do
       |> update_voter_show(show)
       |> update_voter_ballot(ballot)
     else
-      :error -> :state_error
+      :error -> {:error, :state_error}
+      other_error -> {:error, other_error}
     end
   end
 end

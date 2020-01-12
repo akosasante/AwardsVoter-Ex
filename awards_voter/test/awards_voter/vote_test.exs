@@ -49,12 +49,24 @@ defmodule AwardsVoter.VoteTest do
       contestant: %Contestant{name: "Billie Eillish"}
     }
 
+    empty_category = %Vote{
+      category: nil,
+      contestant: nil
+    }
+
+    empty_category_with_contestant = %Vote{
+      category: nil,
+      contestant: %Contestant{name: "Billie Eillish"}
+    }
+
     [
       empty_vote: empty_vote,
       losing_vote: losing_vote,
       winning_vote: winning_vote,
       empty_vote_with_winner: empty_vote_with_winner,
-      early_vote: early_vote
+      early_vote: early_vote,
+      empty_category: empty_category,
+      empty_category_with_contestant: empty_category_with_contestant
     ]
   end
 
@@ -65,6 +77,8 @@ defmodule AwardsVoter.VoteTest do
       refute Vote.is_winning_vote?(context[:empty_vote_with_winner])
       refute Vote.is_winning_vote?(context[:early_vote])
       refute Vote.is_winning_vote?(context[:losing_vote])
+      refute Vote.is_winning_vote?(context[:empty_category])
+      refute Vote.is_winning_vote?(context[:empty_category_with_contestant])
     end
 
     test "returns true if vote contestant matches category winner", context do
