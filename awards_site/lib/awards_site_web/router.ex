@@ -19,8 +19,12 @@ defmodule AwardsSiteWeb.Router do
     get "/", PageController, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", AwardsSiteWeb do
-  #   pipe_through :api
-  # end
+   scope "/admin", AwardsSiteWeb do
+     pipe_through :browser
+     
+     get "/shows", AdminController, :index # List all available award shows
+     get "/shows/:id", AdminController, :show # Details of a particular award show
+     put "/shows/:id", AdminController, :upsert # Update or create a particular award show
+     delete "/shows/:id", AdminController, :delete # Delete the data for a particular award show
+   end
 end
