@@ -30,9 +30,13 @@ defmodule AwardsVoter.ShowManager do
   
   # SERVER
   
-  def init(_args) do
+  def init(_args, close_dets_after \\ Mix.env() == :test) do
     Logger.info("Starting ShowManager and opening #{@show_table}")
-    :dets.open_file(@show_table, [])
+    {:ok, _name} = :dets.open_file(@show_table, [])
+    if close_dets_after do
+      :dets.close(@show_table)
+    end
+    {:ok, @show_table}
   end
   
   def handle_call({:lookup, key}, _from, state) do
