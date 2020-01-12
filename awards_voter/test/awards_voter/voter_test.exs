@@ -12,7 +12,7 @@ defmodule AwardsVoter.VoterTest do
   
   setup :setup_dets_file
   
-  describe "Voter server callbacks (handle_call)" do
+  describe "Voter server callbacks" do
     test "Voter.init, should call itself to setup state, and return the new valid state" do
       categories = [
         %Category{name: "Best Do-er"},

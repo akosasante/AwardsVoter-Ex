@@ -51,7 +51,7 @@ defmodule AwardsVoter.Voter do
   # Server Callbacks
   def init({voter_name, show}, close_dets_after \\ Mix.env() == :test) do
     # Set up an DETS table to store voter ballots
-    :dets.open_file(@voter_ballot_table, [])
+    {:ok, _name} = :dets.open_file(@voter_ballot_table, [])
     send(self(), {:set_state, voter_name, show})
 
     return_value = case fresh_state(voter_name, show) do
