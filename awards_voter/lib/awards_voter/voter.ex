@@ -20,30 +20,37 @@ defmodule AwardsVoter.Voter do
     GenServer.start_link(__MODULE__, {voter_name, show}, name: via_tuple(voter_name))
   end
   
+  @spec get_ballot(GenServer.server()) :: :ok
   def get_ballot(voter) do
     GenServer.call(voter, {:get_ballot})
   end
 
+  @spec reset_show(GenServer.server(), Show.t()) :: :ok
   def reset_show(voter, %Show{} = show) do
     GenServer.call(voter, {:reset_show, show})
   end
 
+  @spec reset_ballot(GenServer.server(), String.t()) :: :ok
   def reset_ballot(voter, voter_name) do
     GenServer.call(voter, {:reset_ballot, voter_name})
   end
 
+  @spec vote(GenServer.server(), String.t(), String.t()) :: :ok
   def vote(voter, category, contestant) do
     GenServer.call(voter, {:vote, category, contestant})
   end
 
+  @spec submit_ballot(GenServer.server()) :: :ok
   def submit_ballot(voter) do
     GenServer.call(voter, {:submit_ballot})
   end
 
+  @spec end_show(GenServer.server()) :: :ok
   def end_show(voter) do
     GenServer.call(voter, {:end_show})
   end
 
+  @spec tally_ballot(GenServer.server()) :: :ok
   def tally_ballot(voter) do
     GenServer.call(voter, {:tally})
   end
