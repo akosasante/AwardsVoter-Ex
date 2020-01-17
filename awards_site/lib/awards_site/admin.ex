@@ -2,11 +2,8 @@ defmodule AwardsSite.Admin do
   @moduledoc """
   The Admin context.
   """
-
-  import Ecto.Query, warn: false
-  alias AwardsSite.Repo
-
-  alias AwardsSite.Admin.Show
+  
+  alias AwardsSite.Show
 
   @doc """
   Returns the list of shows.
