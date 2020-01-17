@@ -4,6 +4,8 @@ defmodule AwardsSite.Admin do
   """
   
   alias AwardsSite.Show
+  alias AwardsSite.Category
+  alias Ecto.Changeset
 
   @doc """
   Returns the list of shows.
@@ -15,7 +17,32 @@ defmodule AwardsSite.Admin do
 
   """
   def list_shows do
-    raise "TODO"
+    [
+      %Show{id: 1, name: "2019 Grammy Awards", categories: [
+                                                 %Category{
+                                                   contestants: [],
+                                                   name: "Album of the Year",
+                                                   winner: nil
+                                                 },
+                                                 %Category{
+                                                   contestants: [],
+                                                   name: "Record of the Year",
+                                                   winner: nil
+                                                 },
+                                                 %Category{
+                                                   contestants: [],
+                                                   name: "Artist of the Year",
+                                                   winner: nil
+                                                 },
+                                                 %Category{
+                                                   contestants: [],
+                                                   name: "Songwriter of the Year",
+                                                   winner: nil
+                                                 }
+      ]},
+      %Show{id: 2, name: "2019 Screen Actors Guild Awards", categories: []},
+      %Show{id: 3, name: "2019 Academy Awards", categories: []}
+    ]
   end
 
   @doc """
@@ -29,7 +56,10 @@ defmodule AwardsSite.Admin do
       %Show{}
 
   """
-  def get_show!(id), do: raise "TODO"
+  def get_show!(id) do
+    id = String.to_integer(id)
+    Enum.find(list_shows(), fn show -> show.id == id end)
+  end
 
   @doc """
   Creates a show.
@@ -44,7 +74,14 @@ defmodule AwardsSite.Admin do
 
   """
   def create_show(attrs \\ %{}) do
-    raise "TODO"
+    cs = Show.changeset(%Show{}, attrs)
+    if cs.valid? do
+      show = Changeset.apply_changes(cs) |> Map.put(:id, 2)
+      {:ok, show}
+    else
+      cs = %{cs | action: :create}
+      {:errors, cs}
+    end
   end
 
   @doc """
@@ -89,6 +126,6 @@ defmodule AwardsSite.Admin do
 
   """
   def change_show(%Show{} = show) do
-    raise "TODO"
+    Show.changeset(show, %{})
   end
 end

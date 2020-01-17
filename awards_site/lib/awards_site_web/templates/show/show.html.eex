@@ -6,6 +6,11 @@
     <strong>Name:</strong>
     <%= @show.name %>
   </li>
+  <li>
+    <strong>Categories:</strong>
+    <%= list_of_keys(@show.categories, :name) %>
+  </li>
+  
 
 </ul>
 
