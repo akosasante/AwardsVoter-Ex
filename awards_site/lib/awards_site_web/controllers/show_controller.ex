@@ -21,7 +21,7 @@ defmodule AwardsSiteWeb.ShowController do
         |> put_flash(:info, "Show created successfully.")
         |> redirect(to: Routes.show_path(conn, :show, show))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
+      {:errors, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
   end

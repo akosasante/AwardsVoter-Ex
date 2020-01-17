@@ -13,6 +13,7 @@ defmodule AwardsSite.Show do
   def changeset(%Show{} = show, attrs) do
     show
     |> cast(attrs, [:name])
+    |> cast_embed(:categories)
     |> validate_required([:name])
   end
 end
