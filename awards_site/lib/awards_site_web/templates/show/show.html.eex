@@ -1,0 +1,13 @@
+<h1>Show Show</h1>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @show.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.show_path(@conn, :edit, @show) %></span>
+<span><%= link "Back", to: Routes.show_path(@conn, :index) %></span>
