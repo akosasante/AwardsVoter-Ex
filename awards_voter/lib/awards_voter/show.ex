@@ -50,7 +50,9 @@ defmodule AwardsVoter.Show do
         Logger.error("Due to #{inspect reason} failed to fetch all shows in DETS table")
         :error_fetching
       :"$end_of_table" -> {:ok, []}
-      shows -> {:ok, shows}
+      show_tuples ->
+        shows = Enum.map(show_tuples, fn {_name, show} -> show end)
+        {:ok, shows}
     end
   end
   
@@ -63,6 +65,17 @@ defmodule AwardsVoter.Show do
       :ok -> :ok
     end
   end
+  
+  def to_map(shows) when is_list(shows) do
+    shows
+    |> Enum.reject(fn show -> is_nil(show) end)
+    |> IO.inspect
+    |> Enum.map(fn show -> %{
+      name: show.name,
+      categories: Category.to_map(show.categories)} 
+    end)
+  end
+  def to_map(%Show{} = show), do: to_map([show])
 
   @spec insert_show_tuples(nonempty_list(Show.show_tuple()), boolean(), module()) :: {:ok, nonempty_list(Show.t())} | :error_saving
   defp insert_show_tuples(show_tuples, single?, show_manager_mod) do

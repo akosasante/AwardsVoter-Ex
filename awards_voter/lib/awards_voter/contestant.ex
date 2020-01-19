@@ -43,4 +43,19 @@ defmodule AwardsVoter.Contestant do
   def set_billboard_stats(%Contestant{} = contestant, billboard_stats) do
     {:ok, %{contestant | billboard_stats: billboard_stats}}
   end
+  
+  def to_map(contestants) when is_list(contestants) do
+    contestants
+    |> Enum.reject(fn contestant -> is_nil(contestant) end)
+    |> Enum.map(fn contestant -> %{
+      name: contestant.name,
+      description: contestant.description,
+      image_url: contestant.image_url,
+      youtube_url: contestant.youtube_url,
+      wiki_url: contestant.wiki_url,
+      spotify_url: contestant.spotify_url,
+      billboard_stats: contestant.billboard_stats} 
+    end)
+  end
+  def to_map(contestant), do: to_map([contestant])
 end

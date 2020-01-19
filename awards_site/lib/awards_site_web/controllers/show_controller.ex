@@ -5,8 +5,13 @@ defmodule AwardsSiteWeb.ShowController do
   alias AwardsSite.Show
 
   def index(conn, _params) do
-    shows = Admin.list_shows()
-    render(conn, "index.html", shows: shows)
+    case Admin.list_shows() do
+      shows -> render(conn, "index.html", shows: shows)
+      e -> 
+        conn
+        |> put_flash(:error, "Could't fetch shows due to #{inspect e}")
+        |> redirect(to: Routes.page_path(conn, :index))
+    end
   end
 
   def new(conn, _params) do

@@ -17,32 +17,17 @@ defmodule AwardsSite.Admin do
 
   """
   def list_shows do
-    [
-      %Show{id: 1, name: "2019 Grammy Awards", categories: [
-                                                 %Category{
-                                                   contestants: [],
-                                                   name: "Album of the Year",
-                                                   winner: nil
-                                                 },
-                                                 %Category{
-                                                   contestants: [],
-                                                   name: "Record of the Year",
-                                                   winner: nil
-                                                 },
-                                                 %Category{
-                                                   contestants: [],
-                                                   name: "Artist of the Year",
-                                                   winner: nil
-                                                 },
-                                                 %Category{
-                                                   contestants: [],
-                                                   name: "Songwriter of the Year",
-                                                   winner: nil
-                                                 }
-      ]},
-      %Show{id: 2, name: "2019 Screen Actors Guild Awards", categories: []},
-      %Show{id: 3, name: "2019 Academy Awards", categories: []}
-    ]
+    {:ok, all_shows} = AwardsVoter.Show.get_all_shows()
+    all_shows
+    |> AwardsVoter.Show.to_map()
+    |> Enum.map(fn srvr_show -> 
+      cs = Show.changeset(%Show{}, srvr_show)
+      if cs.valid? do
+        Changeset.apply_changes(cs)
+      else
+        cs
+      end
+    end)
   end
 
   @doc """

@@ -26,4 +26,16 @@ defmodule AwardsVoter.Category do
     end)
     {:ok, %Category{name: name, contestants: struct_contestants, winner: winner, description: description}}
   end
+  
+  def to_map(categories) when is_list(categories) do
+    categories
+    |> Enum.reject(fn category -> is_nil(category) end)
+    |> Enum.map(fn category -> %{
+      name: category.name, 
+      description: category.description, 
+      winner: Contestant.to_map(category.winner),
+      contestants: Enum.map(category.contestants, fn contestant -> Contestant.to_map(contestant) end)} 
+    end)
+  end
+  def to_map(%Category{} = category), do: to_map([category])
 end

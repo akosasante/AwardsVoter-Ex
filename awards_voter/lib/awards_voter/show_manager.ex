@@ -10,11 +10,11 @@ defmodule AwardsVoter.ShowManager do
   #CLIENT
   
   def start_link(_args) do
-    open_table(:pid)
+    open_table()
     GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
   end
   
-  @spec all() :: list(Show.t()) | {:error, term()} | :"$end_of_table"
+  @spec all() :: list({String.t(), Show.t()}) | {:error, term()} | :"$end_of_table"
   def all() do
     GenServer.call(__MODULE__, :get_all)
   end
@@ -38,16 +38,17 @@ defmodule AwardsVoter.ShowManager do
   
   def init(_args) do
     Logger.info("Starting ShowManager")
-    
-    Logger.info("Self iit: #{inspect self()}")
     {:ok, @show_table}
   end
   
   def handle_call(:get_all, _from, state) do
-    :dets.match_object(@show_table, :_)
+    Logger.debug "Handling :get_all call"
+    all = :dets.match_object(@show_table, :_)
+    {:reply, all, state}
   end
   
   def handle_call({:lookup, key}, _from, state) do
+    Logger.debug "Handling :lookup #{key} call"
     show = case :dets.lookup(@show_table, key) do
       [] -> :not_found
       [{_name, saved_show}] -> saved_show
@@ -57,20 +58,15 @@ defmodule AwardsVoter.ShowManager do
   end
   
   def handle_call({:insert, show_tuples}, _from, state) do
-    Logger.info "Handling :insert call"
+    Logger.debug "Handling :insert call"
     res = :dets.insert(@show_table, show_tuples)
     {:reply, res, state}
   end
   
   def handle_call({:delete, key}, _from, state) do
+    Logger.debug "Handling :delete #{key} call"
     res = :dets.delete(@show_table, key)
     {:reply, res, state}
-  end
-  
-  def handle_info(msg, state) do
-    IO.inspect(msg)
-    IO.inspect(state)
-    {:noreply, state}
   end
   
   def terminate(reason, _state) do
@@ -78,9 +74,12 @@ defmodule AwardsVoter.ShowManager do
     :dets.close(@show_table)
   end
   
-  defp open_table(pid, close_dets_after \\ Mix.env() == :test) do
-    {:ok, _name} = :dets.open_file(@show_table, [])
-    Logger.info("Self open_table: #{inspect self()} DETS: #{inspect :dets.info(@show_table, :owner)}, info: #{inspect :dets.info(@show_table, :owner)}")
+  defp open_table(close_dets_after \\ Mix.env() == :test) do
+    filepath = Path.absname("../awards_voter/shows", File.cwd!())
+    |> Path.expand
+    |> String.to_char_list()
+    {:ok, _name} = :dets.open_file(@show_table, [file: filepath])
+    Logger.info("Opened DETS table at #{@show_table}")
     if close_dets_after do
       :dets.close(@show_table)
     end
