@@ -1,5 +1,7 @@
 defmodule ShowImporter do
-  alias AwardsVoter.Show
+  alias AwardsVoter.{Show, ShowManager}
+  # Note: this script must be started in --no-start mode. Since we need the 
+  # supervision tree for the ShowManager start_link to match up with the calling script
   
   def parse_json(json_path) do
     parsed_show = File.read!(json_path)
@@ -10,9 +12,8 @@ defmodule ShowImporter do
   end
   
   def save(shows) do
-    :dets.open_file(:shows, [])
+    ShowManager.start_link(:ok)
     Show.save_or_update_shows(shows)
-#    |> IO.inspect
     :dets.close(:shows)
   end
 end
