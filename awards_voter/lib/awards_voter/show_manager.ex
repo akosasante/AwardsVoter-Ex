@@ -10,7 +10,13 @@ defmodule AwardsVoter.ShowManager do
   #CLIENT
   
   def start_link(_args) do
-    GenServer.start_link(__MODULE__, name: __MODULE__)
+    open_table(:pid)
+    GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
+  end
+  
+  @spec all() :: list(Show.t()) | {:error, term()} | :"$end_of_table"
+  def all() do
+    GenServer.call(__MODULE__, :get_all)
   end
   
   @spec get(String.t()) :: Show.t() | :not_found | {:error, term()}
@@ -30,13 +36,15 @@ defmodule AwardsVoter.ShowManager do
   
   # SERVER
   
-  def init(_args, close_dets_after \\ Mix.env() == :test) do
-    Logger.info("Starting ShowManager and opening #{@show_table}")
-    {:ok, _name} = :dets.open_file(@show_table, [])
-    if close_dets_after do
-      :dets.close(@show_table)
-    end
+  def init(_args) do
+    Logger.info("Starting ShowManager")
+    
+    Logger.info("Self iit: #{inspect self()}")
     {:ok, @show_table}
+  end
+  
+  def handle_call(:get_all, _from, state) do
+    :dets.match_object(@show_table, :_)
   end
   
   def handle_call({:lookup, key}, _from, state) do
@@ -49,6 +57,7 @@ defmodule AwardsVoter.ShowManager do
   end
   
   def handle_call({:insert, show_tuples}, _from, state) do
+    Logger.info "Handling :insert call"
     res = :dets.insert(@show_table, show_tuples)
     {:reply, res, state}
   end
@@ -58,8 +67,22 @@ defmodule AwardsVoter.ShowManager do
     {:reply, res, state}
   end
   
+  def handle_info(msg, state) do
+    IO.inspect(msg)
+    IO.inspect(state)
+    {:noreply, state}
+  end
+  
   def terminate(reason, _state) do
     Logger.info("Terminating ShowManager due to #{inspect reason}")
     :dets.close(@show_table)
+  end
+  
+  defp open_table(pid, close_dets_after \\ Mix.env() == :test) do
+    {:ok, _name} = :dets.open_file(@show_table, [])
+    Logger.info("Self open_table: #{inspect self()} DETS: #{inspect :dets.info(@show_table, :owner)}, info: #{inspect :dets.info(@show_table, :owner)}")
+    if close_dets_after do
+      :dets.close(@show_table)
+    end
   end
 end

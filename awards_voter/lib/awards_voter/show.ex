@@ -43,6 +43,17 @@ defmodule AwardsVoter.Show do
     end
   end
   
+  @spec get_all_shows(module()) :: {:ok, list(Show.t())} | :error_fetching
+  def get_all_shows(show_manager_mod \\ ShowManager) do
+    case show_manager_mod.all() do
+      {:error, reason} ->
+        Logger.error("Due to #{inspect reason} failed to fetch all shows in DETS table")
+        :error_fetching
+      :"$end_of_table" -> {:ok, []}
+      shows -> {:ok, shows}
+    end
+  end
+  
   @spec delete_show_entry(String.t(), module()) :: :ok | :error_deleting
   def delete_show_entry(name, show_manager_mod \\ ShowManager) do
     case show_manager_mod.delete(name) do
@@ -56,6 +67,7 @@ defmodule AwardsVoter.Show do
   @spec insert_show_tuples(nonempty_list(Show.show_tuple()), boolean(), module()) :: {:ok, nonempty_list(Show.t())} | :error_saving
   defp insert_show_tuples(show_tuples, single?, show_manager_mod) do
     shows = Enum.map(show_tuples, fn {_name, show} -> show end)
+    Logger.info "Saving #{Enum.count(shows)} show(s)"
     case show_manager_mod.put(show_tuples) do
       :ok ->
         if single? do
