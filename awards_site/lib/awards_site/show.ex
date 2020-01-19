@@ -5,17 +5,26 @@ defmodule AwardsSite.Show do
   alias AwardsSite.Category
 
   @derive {Phoenix.Param, key: :name}
-  
+  @primary_key false
+
   embedded_schema do
     field :name, :string
-    embeds_many :categories, AwardsVoter.Category
+    embeds_many :categories, Category
   end
 
   @doc false
-  def changeset(%Show{} = show, attrs) do
+  def changeset(show, attrs) do
+    IO.puts("in show changeset: #{inspect attrs}")
+
+    #    types = %{
+#      name: :string,
+#      categories: {:array, Category}
+#    } 
+        
     show
     |> cast(attrs, [:name])
-#    |> cast_embed(:categories)
     |> validate_required([:name])
+    |> IO.inspect
+    |> cast_embed(:categories)
   end
 end

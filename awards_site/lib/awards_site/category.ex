@@ -3,6 +3,8 @@ defmodule AwardsSite.Category do
   import Ecto.Changeset
   alias AwardsSite.{Category, Contestant}
 
+  @primary_key false
+
   embedded_schema do
     field :description, :string
     field :name, :string
@@ -11,10 +13,21 @@ defmodule AwardsSite.Category do
   end
 
   @doc false
-  def changeset(%Category{} = category, attrs) do
+  def changeset(category, attrs) do
+    IO.puts("in category changeset: #{inspect attrs}")
+#    types = %{
+#      name: :string,
+#      description: :string,
+#      winner: Contestant,
+#      contestants: Contestant
+#    }
+#    
+    
     category
     |> cast(attrs, [:name, :description])
-#    |> cast_embed([:contestants, :winner])
+    |> IO.inspect
+#    |> cast_embed(:contestants)
+#    |> cast_embed(:winner)
     |> validate_required([:name])
   end
 end

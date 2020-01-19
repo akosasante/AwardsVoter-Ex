@@ -34,7 +34,7 @@ defmodule AwardsVoter.Category do
       name: category.name, 
       description: category.description, 
       winner: Contestant.to_map(category.winner),
-      contestants: Enum.map(category.contestants, fn contestant -> Contestant.to_map(contestant) end)} 
+      contestants: Contestant.to_map(category.contestants)} 
     end)
   end
   def to_map(%Category{} = category), do: to_map([category])
