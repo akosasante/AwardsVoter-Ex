@@ -14,17 +14,9 @@ defmodule AwardsSite.Show do
 
   @doc false
   def changeset(show, attrs) do
-    IO.puts("in show changeset: #{inspect attrs}")
-
-    #    types = %{
-#      name: :string,
-#      categories: {:array, Category}
-#    } 
-        
     show
     |> cast(attrs, [:name])
     |> validate_required([:name])
-    |> IO.inspect
     |> cast_embed(:categories)
   end
 end

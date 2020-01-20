@@ -41,9 +41,8 @@ defmodule AwardsSite.Admin do
       %Show{}
 
   """
-  def get_show!(id) do
-    id = String.to_integer(id)
-    Enum.find(list_shows(), fn show -> show.id == id end)
+  def get_show!(name) do
+    {:ok, show} = AwardsVoter.Show.get_show_by_name(name)
   end
 
   @doc """

@@ -57,5 +57,6 @@ defmodule AwardsVoter.Contestant do
       billboard_stats: contestant.billboard_stats} 
     end)
   end
-  def to_map(contestant), do: to_map([contestant])
+  def to_map(nil), do: nil
+  def to_map(%Contestant{} = contestant), do: to_map([contestant])
 end

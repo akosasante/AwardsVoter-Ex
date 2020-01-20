@@ -14,20 +14,10 @@ defmodule AwardsSite.Category do
 
   @doc false
   def changeset(category, attrs) do
-    IO.puts("in category changeset: #{inspect attrs}")
-#    types = %{
-#      name: :string,
-#      description: :string,
-#      winner: Contestant,
-#      contestants: Contestant
-#    }
-#    
-    
     category
     |> cast(attrs, [:name, :description])
-    |> IO.inspect
-#    |> cast_embed(:contestants)
-#    |> cast_embed(:winner)
     |> validate_required([:name])
+    |> cast_embed(:contestants)
+    |> cast_embed(:winner)
   end
 end

@@ -17,21 +17,8 @@ defmodule AwardsSite.Contestant do
 
   @doc false
   def changeset(contestant, attrs) do
-    IO.puts("in contestant changeset: #{inspect contestant}")
-
-    #    types = %{
-#      name: :string,
-#      description: :string,
-#      image_url: :string,
-#      youtube_url: :string,
-#      spotify_url: :string,
-#      wiki_url: :string,
-#      billboard_stats: :string,
-#    }
-    
     contestant
     |> cast(attrs, [:name, :description, :image_url, :youtube_url, :spotify_url, :wiki_url, :billboard_stats])
-    |> IO.inspect
     |> validate_required([:name])
   end
 end

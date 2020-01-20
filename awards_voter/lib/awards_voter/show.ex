@@ -75,6 +75,7 @@ defmodule AwardsVoter.Show do
       categories: Category.to_map(show.categories)} 
     end)
   end
+  def to_map(nil), do: nil
   def to_map(%Show{} = show), do: to_map([show])
 
   @spec insert_show_tuples(nonempty_list(Show.show_tuple()), boolean(), module()) :: {:ok, nonempty_list(Show.t())} | :error_saving

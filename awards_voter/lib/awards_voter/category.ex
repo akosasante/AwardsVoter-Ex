@@ -37,5 +37,6 @@ defmodule AwardsVoter.Category do
       contestants: Contestant.to_map(category.contestants)} 
     end)
   end
+  def to_map(nil), do: nil
   def to_map(%Category{} = category), do: to_map([category])
 end
