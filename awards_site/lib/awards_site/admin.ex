@@ -66,11 +66,13 @@ defmodule AwardsSite.Admin do
   """
   def create_show(attrs \\ %{}) do
     cs = Show.changeset(%Show{}, attrs)
-    if cs.valid? do
-      show = Changeset.apply_changes(cs) |> Map.put(:id, 2)
-      {:ok, show}
+    with true <- cs.valid?,
+         %Show{} = site_show <- Changeset.apply_changes(cs),
+         {:ok, show} <- AwardsVoter.Show.new(site_show.name, site_show.categories),
+         {:ok, saved_show} <- AwardsVoter.Show.save_or_update_shows(show) do
+      {:ok, saved_show}
     else
-      cs = %{cs | action: :create}
+      _ -> cs = %{cs | action: :create}
       {:errors, cs}
     end
   end

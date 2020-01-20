@@ -8,7 +8,7 @@ defmodule AwardsSiteWeb.ShowController do
 
   def index(conn, _params) do
     case Admin.list_shows() do
-      [%Show{}] = shows -> render(conn, "index.html", shows: shows)
+      [%Show{} | _] = shows -> render(conn, "index.html", shows: shows)
       e ->
         Logger.error("Error during Admin.list_show: #{inspect e}")
         conn
@@ -27,7 +27,7 @@ defmodule AwardsSiteWeb.ShowController do
       {:ok, show} ->
         conn
         |> put_flash(:info, "Show created successfully.")
-        |> redirect(to: Routes.show_path(conn, :show, show))
+        |> redirect(to: Routes.show_path(conn, :show, show.name))
 
       {:errors, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
