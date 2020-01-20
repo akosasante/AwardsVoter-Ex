@@ -43,6 +43,13 @@ defmodule AwardsSite.Admin do
   """
   def get_show!(name) do
     {:ok, show} = AwardsVoter.Show.get_show_by_name(name)
+    show = AwardsVoter.Show.to_map(show) |> hd
+    cs = Show.changeset(%Show{}, show)
+    if cs.valid? do
+      Changeset.apply_changes(cs)
+    else
+      cs
+    end
   end
 
   @doc """

@@ -1,18 +1,16 @@
-<h1>Show Show</h1>
+<h1><%= @show.name %></h1>
 
+<h3>Categories:</h3>
 <ul>
-
-  <li>
-    <strong>Name:</strong>
-    <%= @show.name %>
-  </li>
-  <li>
-    <strong>Categories:</strong>
-    <%= list_of_keys(@show.categories, :name) %>
-  </li>
-  
-
+  <%= for category <- @show.categories do %>
+    <li><strong><%= category.name %></strong></li><p><%= category.description %></p>
+    <ul>
+      <%= for contestant <- category.contestants do %>
+        <li><%= contestant.name %> <%= if (category.winner == contestant) do %><span><strong>*</strong></span><% end %></li>
+      <% end %>
+    </ul>
+  <% end %>
 </ul>
 
-<span><%= link "Edit", to: Routes.show_path(@conn, :edit, @show) %></span>
+<span><%= link "Edit", to: Routes.show_path(@conn, :edit, @show.name) %></span>
 <span><%= link "Back", to: Routes.show_path(@conn, :index) %></span>

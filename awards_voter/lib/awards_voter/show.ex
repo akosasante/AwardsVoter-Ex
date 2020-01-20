@@ -69,7 +69,6 @@ defmodule AwardsVoter.Show do
   def to_map(shows) when is_list(shows) do
     shows
     |> Enum.reject(fn show -> is_nil(show) end)
-    |> IO.inspect
     |> Enum.map(fn show -> %{
       name: show.name,
       categories: Category.to_map(show.categories)} 

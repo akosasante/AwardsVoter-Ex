@@ -3,13 +3,16 @@ defmodule AwardsSiteWeb.ShowController do
 
   alias AwardsSite.Admin
   alias AwardsSite.Show
+  require Logger
+  
 
   def index(conn, _params) do
     case Admin.list_shows() do
-      shows -> render(conn, "index.html", shows: shows)
-      e -> 
+      [%Show{}] = shows -> render(conn, "index.html", shows: shows)
+      e ->
+        Logger.error("Error during Admin.list_show: #{inspect e}")
         conn
-        |> put_flash(:error, "Could't fetch shows due to #{inspect e}")
+        |> put_flash(:error, "Could't fetch shows")
         |> redirect(to: Routes.page_path(conn, :index))
     end
   end
@@ -31,9 +34,15 @@ defmodule AwardsSiteWeb.ShowController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    show = Admin.get_show!(id)
-    render(conn, "show.html", show: show)
+  def show(conn, %{"id" => name}) do
+    case Admin.get_show!(name) do
+      %Show{} = show -> render(conn, "show.html", show: show)
+      e ->
+        Logger.error("Error during Admin.get_show!: #{inspect e}")
+        conn
+        |> put_flash(:error, "Could't find show (#{name})")
+        |> redirect(to: Routes.page_path(conn, :index))
+    end
   end
 
   def edit(conn, %{"id" => id}) do
@@ -48,7 +57,7 @@ defmodule AwardsSiteWeb.ShowController do
     case Admin.update_show(show, show_params) do
       {:ok, show} ->
         conn
-        |> put_flash(:info, "Show updated successfully.")
+#        |> put_flash(:info, "Show updated successfully.")
         |> redirect(to: Routes.show_path(conn, :show, show))
 
       {:error, %Ecto.Changeset{} = changeset} ->
@@ -61,7 +70,7 @@ defmodule AwardsSiteWeb.ShowController do
     {:ok, _show} = Admin.delete_show(show)
 
     conn
-    |> put_flash(:info, "Show deleted successfully.")
+#    |> put_flash(:info, "Show deleted successfully.")
     |> redirect(to: Routes.show_path(conn, :index))
   end
 end

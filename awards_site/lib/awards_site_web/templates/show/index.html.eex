@@ -14,9 +14,9 @@
       <td><%= show.name %></td>
 
       <td>
-        <span><%= link "Show", to: Routes.show_path(@conn, :show, show) %></span>
-        <span><%= link "Edit", to: Routes.show_path(@conn, :edit, show) %></span>
-        <span><%= link "Delete", to: Routes.show_path(@conn, :delete, show), method: :delete, data: [confirm: "Are you sure?"] %></span>
+        <span><%= link "Show", to: Routes.show_path(@conn, :show, show.name) %></span>
+        <span><%= link "Edit", to: Routes.show_path(@conn, :edit, show.name) %></span>
+        <span><%= link "Delete", to: Routes.show_path(@conn, :delete, show.name), method: :delete, data: [confirm: "Are you sure?"] %></span>
       </td>
     </tr>
 <% end %>
