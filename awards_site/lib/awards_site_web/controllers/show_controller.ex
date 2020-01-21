@@ -65,12 +65,12 @@ defmodule AwardsSiteWeb.ShowController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    show = Admin.get_show!(id)
+  def delete(conn, %{"id" => name}) do
+    show = Admin.get_show!(name)
     {:ok, _show} = Admin.delete_show(show)
 
     conn
-#    |> put_flash(:info, "Show deleted successfully.")
+    |> put_flash(:info, "Show deleted successfully.")
     |> redirect(to: Routes.show_path(conn, :index))
   end
 end

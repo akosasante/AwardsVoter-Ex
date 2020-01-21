@@ -5,6 +5,7 @@ defmodule AwardsSite.Admin do
   
   alias AwardsSite.Show
   alias AwardsSite.Category
+  alias AwardsVoter.Show, as: DbShow
   alias Ecto.Changeset
 
   @doc """
@@ -106,7 +107,10 @@ defmodule AwardsSite.Admin do
 
   """
   def delete_show(%Show{} = show) do
-    raise "TODO"
+    case DbShow.delete_show_entry(show.name) do
+      :ok -> {:ok, show}
+      e -> {:error, e}
+    end
   end
 
   @doc """
@@ -115,7 +119,7 @@ defmodule AwardsSite.Admin do
   ## Examples
 
       iex> change_show(show)
-      %Todo{...}
+      %Show{...}
 
   """
   def change_show(%Show{} = show) do
