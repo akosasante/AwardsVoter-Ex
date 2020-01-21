@@ -19,7 +19,7 @@ defmodule AwardsSiteWeb.ShowController do
 
   def new(conn, _params) do
     changeset = Admin.change_show(%Show{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset, options: [])
   end
 
   def create(conn, %{"show" => show_params}) do
@@ -30,7 +30,7 @@ defmodule AwardsSiteWeb.ShowController do
         |> redirect(to: Routes.show_path(conn, :show, show.name))
 
       {:errors, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset, options: [])
     end
   end
 
@@ -45,23 +45,23 @@ defmodule AwardsSiteWeb.ShowController do
     end
   end
 
-  def edit(conn, %{"id" => id}) do
-    show = Admin.get_show!(id)
+  def edit(conn, %{"id" => name}) do
+    show = Admin.get_show!(name)
     changeset = Admin.change_show(show)
-    render(conn, "edit.html", show: show, changeset: changeset)
+    render(conn, "edit.html", show: show, changeset: changeset, options: [method: "put"])
   end
 
-  def update(conn, %{"id" => id, "show" => show_params}) do
-    show = Admin.get_show!(id)
+  def update(conn, %{"id" => name, "show" => show_params}) do
+    show = Admin.get_show!(name)
 
     case Admin.update_show(show, show_params) do
       {:ok, show} ->
         conn
-#        |> put_flash(:info, "Show updated successfully.")
-        |> redirect(to: Routes.show_path(conn, :show, show))
+        |> put_flash(:info, "Show updated successfully.")
+        |> redirect(to: Routes.show_path(conn, :show, show.name))
 
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", show: show, changeset: changeset)
+      {:errors, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", show: show, changeset: changeset, options: [method: "put"])
     end
   end
 

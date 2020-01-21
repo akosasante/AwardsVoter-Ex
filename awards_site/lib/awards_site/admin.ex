@@ -18,9 +18,9 @@ defmodule AwardsSite.Admin do
 
   """
   def list_shows do
-    {:ok, all_shows} = AwardsVoter.Show.get_all_shows()
+    {:ok, all_shows} = DbShow.get_all_shows()
     all_shows
-    |> AwardsVoter.Show.to_map()
+    |> DbShow.to_map()
     |> Enum.map(fn srvr_show -> 
       cs = Show.changeset(%Show{}, srvr_show)
       if cs.valid? do
@@ -43,8 +43,8 @@ defmodule AwardsSite.Admin do
 
   """
   def get_show!(name) do
-    {:ok, show} = AwardsVoter.Show.get_show_by_name(name)
-    show = AwardsVoter.Show.to_map(show) |> hd
+    {:ok, show} = DbShow.get_show_by_name(name)
+    show = DbShow.to_map(show) |> hd
     cs = Show.changeset(%Show{}, show)
     if cs.valid? do
       Changeset.apply_changes(cs)
@@ -62,19 +62,20 @@ defmodule AwardsSite.Admin do
       {:ok, %Show{}}
 
       iex> create_show(%{field: bad_value})
-      {:error, ...}
+      {:errors, ...}
 
   """
   def create_show(attrs \\ %{}) do
     cs = Show.changeset(%Show{}, attrs)
     with true <- cs.valid?,
          %Show{} = site_show <- Changeset.apply_changes(cs),
-         {:ok, show} <- AwardsVoter.Show.new(site_show.name, site_show.categories),
-         {:ok, saved_show} <- AwardsVoter.Show.save_or_update_shows(show) do
+         {:ok, show} <- DbShow.new(site_show.name, site_show.categories),
+         {:ok, saved_show} <- DbShow.save_or_update_shows(show)
+    do
       {:ok, saved_show}
     else
       _ -> cs = %{cs | action: :create}
-      {:errors, cs}
+           {:errors, cs}
     end
   end
 
@@ -90,8 +91,18 @@ defmodule AwardsSite.Admin do
       {:error, ...}
 
   """
-  def update_show(%Show{} = show, attrs) do
-    raise "TODO"
+  def update_show(%Show{} = orig_show, attrs) do
+    cs = Show.changeset(orig_show, attrs)
+    with true <- cs.valid?,
+         %Show{} = site_show <- Changeset.apply_changes(cs),
+         {:ok, show} <- DbShow.new(site_show.name, site_show.categories),
+         {:ok, saved_show} <- dets_show_update_helper(cs, show, orig_show)
+    do
+      {:ok, saved_show}
+    else
+      _ -> cs = %{cs | action: :update}
+           {:errors, cs}
+    end
   end
 
   @doc """
@@ -124,5 +135,15 @@ defmodule AwardsSite.Admin do
   """
   def change_show(%Show{} = show) do
     Show.changeset(show, %{})
+  end
+  
+  defp dets_show_update_helper(%Changeset{} = cs, %DbShow{} = show, %Show{} = original) do
+    case Changeset.get_change(cs, :name) do
+      nil -> DbShow.save_or_update_shows(show)
+      _updated_title -> case delete_show(original) do
+                         {:ok, deleted_show} -> DbShow.save_or_update_shows(show)
+                         e -> e
+                       end
+    end
   end
 end
