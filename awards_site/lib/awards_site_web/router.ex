@@ -22,5 +22,6 @@ defmodule AwardsSiteWeb.Router do
    scope "/admin", AwardsSiteWeb do
      pipe_through :browser
      resources "/shows", ShowController
+     resources "/categories", CategoryController
   end
 end

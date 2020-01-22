@@ -44,7 +44,7 @@ defmodule AwardsVoter.Contestant do
     {:ok, %{contestant | billboard_stats: billboard_stats}}
   end
   
-  def to_map(contestants) when is_list(contestants) do
+  def to_maps(contestants) when is_list(contestants) do
     contestants
     |> Enum.reject(fn contestant -> is_nil(contestant) end)
     |> Enum.map(fn contestant -> %{
@@ -57,6 +57,6 @@ defmodule AwardsVoter.Contestant do
       billboard_stats: contestant.billboard_stats} 
     end)
   end
-  def to_map(nil), do: nil
-  def to_map(%Contestant{} = contestant), do: to_map([contestant])
+  def to_maps(nil), do: nil
+  def to_maps(%Contestant{} = contestant), do: to_maps([contestant])
 end

@@ -3,12 +3,11 @@
 <h3>Categories:</h3>
 <ul>
   <%= for category <- @show.categories do %>
-    <li><strong><%= category.name %></strong></li><p><%= category.description %></p>
-    <ul>
-      <%= for contestant <- category.contestants do %>
-        <li><%= contestant.name %> <%= if (category.winner == contestant) do %><span><strong>*</strong></span><% end %></li>
-      <% end %>
-    </ul>
+    <li>
+    <strong><%= category.name %></strong>
+    <span> (<%= Enum.count(category.contestants) %> nominees)</span>
+    <span><%= link "Show", to: Routes.category_path(@conn, :show, category.name) %></span>
+    </li>
   <% end %>
 </ul>
 

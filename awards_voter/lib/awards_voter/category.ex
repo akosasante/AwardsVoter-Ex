@@ -27,16 +27,16 @@ defmodule AwardsVoter.Category do
     {:ok, %Category{name: name, contestants: struct_contestants, winner: winner, description: description}}
   end
   
-  def to_map(categories) when is_list(categories) do
+  def to_maps(categories) when is_list(categories) do
     categories
     |> Enum.reject(fn category -> is_nil(category) end)
     |> Enum.map(fn category -> %{
       name: category.name, 
       description: category.description, 
-      winner: Contestant.to_map(category.winner),
-      contestants: Contestant.to_map(category.contestants)} 
+      winner: Contestant.to_maps(category.winner),
+      contestants: Contestant.to_maps(category.contestants)} 
     end)
   end
-  def to_map(nil), do: nil
-  def to_map(%Category{} = category), do: to_map([category])
+  def to_maps(nil), do: nil
+  def to_maps(%Category{} = category), do: to_maps([category])
 end

@@ -1,15 +1,15 @@
-defmodule AwardsSite.Category do
+defmodule AwardsSite.CategoryModel do
   use Ecto.Schema
   import Ecto.Changeset
-  alias AwardsSite.{Category, Contestant}
+  alias AwardsSite.ContestantModel
 
   @primary_key false
 
   embedded_schema do
     field :description, :string
     field :name, :string
-    embeds_one :winner, Contestant
-    embeds_many :contestants, Contestant
+    embeds_one :winner, ContestantModel
+    embeds_many :contestants, ContestantModel
   end
 
   @doc false

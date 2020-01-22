@@ -1,7 +1,6 @@
-defmodule AwardsSite.Contestant do
+defmodule AwardsSite.ContestantModel do
   use Ecto.Schema
   import Ecto.Changeset
-  alias AwardsSite.Contestant
 
   @primary_key false
 

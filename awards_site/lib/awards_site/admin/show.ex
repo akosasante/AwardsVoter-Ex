@@ -1,10 +1,10 @@
-defmodule AwardsSite.Admin do
+defmodule AwardsSite.Admin.Show do
   @moduledoc """
-  The Admin context.
+  The Show context.
   """
   
-  alias AwardsSite.Show
-  alias AwardsSite.Category
+  alias AwardsSite.ShowModel
+  alias AwardsSite.CategoryModel
   alias AwardsVoter.Show, as: DbShow
   alias Ecto.Changeset
 
@@ -14,15 +14,15 @@ defmodule AwardsSite.Admin do
   ## Examples
 
       iex> list_shows()
-      [%Show{}, ...]
+      [%ShowModel{}, ...]
 
   """
   def list_shows do
     {:ok, all_shows} = DbShow.get_all_shows()
     all_shows
-    |> DbShow.to_map()
+    |> DbShow.to_maps()
     |> Enum.map(fn srvr_show -> 
-      cs = Show.changeset(%Show{}, srvr_show)
+      cs = ShowModel.changeset(%ShowModel{}, srvr_show)
       if cs.valid? do
         Changeset.apply_changes(cs)
       else
@@ -39,13 +39,13 @@ defmodule AwardsSite.Admin do
   ## Examples
 
       iex> get_show!(123)
-      %Show{}
+      %ShowModel{}
 
   """
   def get_show!(name) do
     {:ok, show} = DbShow.get_show_by_name(name)
-    show = DbShow.to_map(show) |> hd
-    cs = Show.changeset(%Show{}, show)
+    show = DbShow.to_maps(show) |> hd
+    cs = ShowModel.changeset(%ShowModel{}, show)
     if cs.valid? do
       Changeset.apply_changes(cs)
     else
@@ -59,16 +59,16 @@ defmodule AwardsSite.Admin do
   ## Examples
 
       iex> create_show(%{field: value})
-      {:ok, %Show{}}
+      {:ok, %ShowModel{}}
 
       iex> create_show(%{field: bad_value})
       {:errors, ...}
 
   """
   def create_show(attrs \\ %{}) do
-    cs = Show.changeset(%Show{}, attrs)
+    cs = ShowModel.changeset(%ShowModel{}, attrs)
     with true <- cs.valid?,
-         %Show{} = site_show <- Changeset.apply_changes(cs),
+         %ShowModel{} = site_show <- Changeset.apply_changes(cs),
          {:ok, show} <- DbShow.new(site_show.name, site_show.categories),
          {:ok, saved_show} <- DbShow.save_or_update_shows(show)
     do
@@ -85,16 +85,16 @@ defmodule AwardsSite.Admin do
   ## Examples
 
       iex> update_show(show, %{field: new_value})
-      {:ok, %Show{}}
+      {:ok, %ShowModel{}}
 
       iex> update_show(show, %{field: bad_value})
       {:error, ...}
 
   """
-  def update_show(%Show{} = orig_show, attrs) do
-    cs = Show.changeset(orig_show, attrs)
+  def update_show(%ShowModel{} = orig_show, attrs) do
+    cs = ShowModel.changeset(orig_show, attrs)
     with true <- cs.valid?,
-         %Show{} = site_show <- Changeset.apply_changes(cs),
+         %ShowModel{} = site_show <- Changeset.apply_changes(cs),
          {:ok, show} <- DbShow.new(site_show.name, site_show.categories),
          {:ok, saved_show} <- dets_show_update_helper(cs, show, orig_show)
     do
@@ -111,13 +111,13 @@ defmodule AwardsSite.Admin do
   ## Examples
 
       iex> delete_show(show)
-      {:ok, %Show{}}
+      {:ok, %ShowModel{}}
 
       iex> delete_show(show)
       {:error, ...}
 
   """
-  def delete_show(%Show{} = show) do
+  def delete_show(%ShowModel{} = show) do
     case DbShow.delete_show_entry(show.name) do
       :ok -> {:ok, show}
       e -> {:error, e}
@@ -130,14 +130,14 @@ defmodule AwardsSite.Admin do
   ## Examples
 
       iex> change_show(show)
-      %Show{...}
+      %ShowModel{...}
 
   """
-  def change_show(%Show{} = show) do
-    Show.changeset(show, %{})
+  def change_show(%ShowModel{} = show) do
+    ShowModel.changeset(show, %{})
   end
   
-  defp dets_show_update_helper(%Changeset{} = cs, %DbShow{} = show, %Show{} = original) do
+  defp dets_show_update_helper(%Changeset{} = cs, %DbShow{} = show, %ShowModel{} = original) do
     case Changeset.get_change(cs, :name) do
       nil -> DbShow.save_or_update_shows(show)
       _updated_title -> case delete_show(original) do

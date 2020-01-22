@@ -66,16 +66,16 @@ defmodule AwardsVoter.Show do
     end
   end
   
-  def to_map(shows) when is_list(shows) do
+  def to_maps(shows) when is_list(shows) do
     shows
     |> Enum.reject(fn show -> is_nil(show) end)
     |> Enum.map(fn show -> %{
       name: show.name,
-      categories: Category.to_map(show.categories)} 
+      categories: Category.to_maps(show.categories)} 
     end)
   end
-  def to_map(nil), do: nil
-  def to_map(%Show{} = show), do: to_map([show])
+  def to_maps(nil), do: nil
+  def to_maps(%Show{} = show), do: to_maps([show])
 
   @spec insert_show_tuples(nonempty_list(Show.show_tuple()), boolean(), module()) :: {:ok, nonempty_list(Show.t())} | :error_saving
   defp insert_show_tuples(show_tuples, single?, show_manager_mod) do
