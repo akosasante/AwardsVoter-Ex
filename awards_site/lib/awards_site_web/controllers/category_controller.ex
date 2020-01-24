@@ -1,17 +1,17 @@
 defmodule AwardsSiteWeb.CategoryController do
   use AwardsSiteWeb, :controller
 
-  alias AwardsSite.Admin.Category
-  alias AwardsSite.CategoryModel
+  alias AwardsSite.Admin.Categories
+  alias AwardsSite.Admin.Categories.Category
   
 
   def new(conn, _params) do
-    changeset = Category.change_category(%CategoryModel{})
+    changeset = Categories.change_category(%Category{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"category" => category_params}) do
-    case Category.create_category(category_params) do
+    case Categories.create_category(category_params) do
       {:ok, category} ->
         conn
         |> put_flash(:info, "Category created successfully.")
@@ -23,20 +23,20 @@ defmodule AwardsSiteWeb.CategoryController do
   end
 
   def show(conn, %{"id" => id}) do
-    category = Category.get_category!(id)
+    category = Categories.get_category!(id)
     render(conn, "show.html", category: category)
   end
 
   def edit(conn, %{"id" => id}) do
-    category = Category.get_category!(id)
-    changeset = Category.change_category(category)
+    category = Categories.get_category!(id)
+    changeset = Categories.change_category(category)
     render(conn, "edit.html", category: category, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "category" => category_params}) do
-    category = Category.get_category!(id)
+    category = Categories.get_category!(id)
 
-    case Category.update_category(category, category_params) do
+    case Categories.update_category(category, category_params) do
       {:ok, category} ->
         conn
         |> put_flash(:info, "Category updated successfully.")
@@ -48,8 +48,8 @@ defmodule AwardsSiteWeb.CategoryController do
   end
 
   def delete(conn, %{"id" => id}) do
-    category = Category.get_category!(id)
-    {:ok, _category} = Category.delete_category(category)
+    category = Categories.get_category!(id)
+    {:ok, _category} = Categories.delete_category(category)
 
     conn
     |> put_flash(:info, "Category deleted successfully.")

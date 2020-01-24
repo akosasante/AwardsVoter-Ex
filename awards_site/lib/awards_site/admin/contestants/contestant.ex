@@ -1,4 +1,4 @@
-defmodule AwardsSite.ContestantModel do
+defmodule AwardsSite.Admin.Contestants.Contestant do
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -1,14 +1,14 @@
-defmodule AwardsSite.ShowModel do
+defmodule AwardsSite.Admin.Shows.Show do
   use Ecto.Schema
   import Ecto.Changeset
-  alias AwardsSite.CategoryModel
+  alias AwardsSite.Admin.Categories.Category
 
   @derive {Phoenix.Param, key: :name}
   @primary_key false
 
   embedded_schema do
     field :name, :string
-    embeds_many :categories, CategoryModel
+    embeds_many :categories, Category
   end
 
   @doc false
