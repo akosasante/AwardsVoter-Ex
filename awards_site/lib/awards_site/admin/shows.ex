@@ -69,10 +69,10 @@ defmodule AwardsSite.Admin.Shows do
     cs = Show.changeset(%Show{}, attrs)
     with true <- cs.valid?,
          %Show{} = site_show <- Changeset.apply_changes(cs),
-         {:ok, show} <- DbShow.new(site_show.name, site_show.categories),
-         {:ok, saved_show} <- DbShow.save_or_update_shows(show)
+         {:ok, db_show} <- DbShow.new(site_show.name, site_show.categories),
+         {:ok, _saved_show} <- DbShow.save_or_update_shows(db_show)
     do
-      {:ok, saved_show}
+      {:ok, site_show}
     else
       _ -> cs = %{cs | action: :create}
            {:errors, cs}
@@ -98,12 +98,16 @@ defmodule AwardsSite.Admin.Shows do
          {:ok, show} <- DbShow.new(site_show.name, site_show.categories),
          {:ok, saved_show} <- dets_show_update_helper(cs, show, orig_show)
     do
-      {:ok, saved_show}
+      {:ok, site_show}
     else
       _ -> cs = %{cs | action: :update}
            {:errors, cs}
     end
   end
+  
+#  def save_show(%Show{} = show) do
+#    
+#  end
 
   @doc """
   Deletes a Show.
