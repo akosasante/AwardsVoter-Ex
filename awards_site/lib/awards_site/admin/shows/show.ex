@@ -19,5 +19,4 @@ defmodule AwardsSite.Admin.Shows.Show do
     |> cast_embed(:categories)
   end
   
-#  def update_categories_changes
 end

@@ -15,6 +15,8 @@ defmodule AwardsSite.Admin do
   
   def update_show(original_show, show_map), do: Shows.update_show(original_show, show_map)
   
+  def delete_show(show), do: Shows.delete_show(show)
+  
   def change_show(show), do: Shows.change_show(show)
   
   def add_category_to_show(show, category_map) do
@@ -37,5 +39,10 @@ defmodule AwardsSite.Admin do
       end)
       Shows.update_show(show, %{categories: updated_categories})
     end
+  end
+  
+  def delete_show_category(show, category) do
+    updated_category_list = Enum.filter(show.categories, fn %{name: name} -> name != category.name end)
+    Shows.update_show(show, %{categories: updated_category_list})
   end
 end
