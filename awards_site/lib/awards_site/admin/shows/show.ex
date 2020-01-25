@@ -8,7 +8,7 @@ defmodule AwardsSite.Admin.Shows.Show do
 
   embedded_schema do
     field :name, :string
-    embeds_many :categories, Category
+    embeds_many :categories, Category, on_replace: :delete
   end
 
   @doc false
@@ -18,4 +18,6 @@ defmodule AwardsSite.Admin.Shows.Show do
     |> validate_required([:name])
     |> cast_embed(:categories)
   end
+  
+#  def update_categories_changes
 end

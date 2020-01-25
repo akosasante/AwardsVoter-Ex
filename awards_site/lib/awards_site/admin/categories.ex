@@ -15,6 +15,16 @@ defmodule AwardsSite.Admin.Categories do
       {:errors, cs}
     end
   end
+  
+  def update_category(%Category{} = orig_category, attrs) do
+    cs = Category.changeset(orig_category, attrs)
+    if cs.valid? do
+      {:ok, Changeset.apply_changes(cs)}
+    else
+      cs = %{cs | action: :create}
+      {:errors, cs}
+    end
+  end
 
   def change_category(%Category{} = category) do
     Category.changeset(category, %{})

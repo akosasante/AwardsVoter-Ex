@@ -105,6 +105,10 @@ defmodule AwardsSite.Admin.Shows do
     end
   end
   
+#  def update_show_category(%Show{} = orig_show, updated_category_list) do
+#
+#  end
+  
 #  def save_show(%Show{} = show) do
 #    
 #  end

@@ -27,7 +27,15 @@ defmodule AwardsSite.Admin do
     end
   end
   
-  def update_show_category(show, category) do
-    
+  def update_show_category(show, old_category, new_category_map) do
+    name = old_category.name
+    with {:ok, updated_category} <- Categories.update_category(old_category, new_category_map) do
+      updated_categories = show.categories
+      |> Enum.map(fn 
+        %{name: ^name} -> Map.from_struct(updated_category)
+        non_matching_category -> Map.from_struct(non_matching_category)
+      end)
+      Shows.update_show(show, %{categories: updated_categories})
+    end
   end
 end
