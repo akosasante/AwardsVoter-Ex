@@ -16,6 +16,7 @@ defmodule AwardsSite.Admin.Contestants.Contestant do
 
   @doc false
   def changeset(contestant, attrs) do
+    IO.puts("\nCONTESTANT: #{inspect contestant} \nATTRS: #{inspect attrs}")
     contestant
     |> cast(attrs, [:name, :description, :image_url, :youtube_url, :spotify_url, :wiki_url, :billboard_stats])
     |> validate_required([:name])
