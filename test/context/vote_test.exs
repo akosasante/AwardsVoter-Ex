@@ -1,9 +1,10 @@
-defmodule AwardsVoter.Context.Voting.Votes.VoteTest do
+defmodule AwardsVoter.Context.Voting.VotesTest do
   use ExUnit.Case, async: true
 
   alias AwardsVoter.Context.Admin.Categories.Category
   alias AwardsVoter.Context.Admin.Contestants.Contestant
   alias AwardsVoter.Context.Voting.Votes.Vote
+  alias AwardsVoter.Context.Voting.Votes
 
   setup do
     winning_vote = %Vote{
@@ -72,23 +73,23 @@ defmodule AwardsVoter.Context.Voting.Votes.VoteTest do
     ]
   end
 
-  describe "Vote.is_winning_vote?/1" do
+  describe "Votes.is_winning_vote?/1" do
     test "returns false if vote contestant does not match category winner or either is nil",
          context do
-      refute Vote.is_winning_vote?(context[:empty_vote])
-      refute Vote.is_winning_vote?(context[:empty_vote_with_winner])
-      refute Vote.is_winning_vote?(context[:early_vote])
-      refute Vote.is_winning_vote?(context[:losing_vote])
-      refute Vote.is_winning_vote?(context[:empty_category])
-      refute Vote.is_winning_vote?(context[:empty_category_with_contestant])
+      refute Votes.is_winning_vote?(context[:empty_vote])
+      refute Votes.is_winning_vote?(context[:empty_vote_with_winner])
+      refute Votes.is_winning_vote?(context[:early_vote])
+      refute Votes.is_winning_vote?(context[:losing_vote])
+      refute Votes.is_winning_vote?(context[:empty_category])
+      refute Votes.is_winning_vote?(context[:empty_category_with_contestant])
     end
 
     test "returns true if vote contestant matches category winner", context do
-      assert Vote.is_winning_vote?(context[:winning_vote])
+      assert Votes.is_winning_vote?(context[:winning_vote])
     end
   end
 
-  describe "Vote.vote/2" do
+  describe "Votes.vote/2" do
     setup do
       contestants = [
         %Contestant{name: "Billie Eillish"},
@@ -108,17 +109,17 @@ defmodule AwardsVoter.Context.Voting.Votes.VoteTest do
 
     test "returns {:invalid_vote, original vote} if trying to vote for contestant that is not in the passed-in category",
          context do
-      {:invalid_vote, vote} = Vote.vote(context[:vote], "Cher")
+      {:invalid_vote, vote} = Votes.vote(context[:vote], "Cher")
       assert vote == context[:vote]
       refute vote.contestant
     end
 
     test "returns :error if vote is nil" do
-      assert :error == Vote.vote(nil, "Billie Eillish")
+      assert :error == Votes.vote(nil, "Billie Eillish")
     end
 
     test "returns {:ok, updated_vote} if vote was valid", context do
-      {:ok, vote} = Vote.vote(context[:vote], "Billie Eillish")
+      {:ok, vote} = Votes.vote(context[:vote], "Billie Eillish")
       refute vote == context[:vote]
       assert vote.contestant == %Contestant{name: "Billie Eillish"}
     end
