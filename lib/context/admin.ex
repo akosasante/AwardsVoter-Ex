@@ -21,8 +21,9 @@ defmodule AwardsVoter.Context.Admin do
 
   defdelegate change_show(show), to: Shows
 
-  def add_category_to_show(show, category_map) do
-    with {:ok, _category} <- Categories.create_category(category_map),
+  def add_category_to_show(show_name, category_map) do
+    with {:ok, show} <- Shows.get_show_by_name(show_name), 
+         {:ok, _category} <- Categories.create_category(category_map),
          updated_show <- put_in(show.categories, [category_map | show.categories]) do
       Shows.update_show(show, show_to_map(updated_show))
     else

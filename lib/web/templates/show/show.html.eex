@@ -12,4 +12,5 @@
       </li>
     <% end %>
   </ul>
+  <span><%= link "Add New Category", to: Routes.show_category_path(@conn, :new, @show.name) %></span>
 </section>

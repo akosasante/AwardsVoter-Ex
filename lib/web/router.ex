@@ -8,6 +8,14 @@ defmodule AwardsVoter.Web.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
+  
+  pipeline :admin do
+    plug :add_is_admin, true
+  end
+  
+  pipeline :public do
+    plug :add_is_admin, false
+  end
 
   pipeline :api do
     plug :accepts, ["json"]
@@ -15,9 +23,10 @@ defmodule AwardsVoter.Web.Router do
 
   scope "/admin", AwardsVoter.Web do
     pipe_through :browser
+    pipe_through :admin
 
     resources "/shows", ShowController, param: "name" do
-      resources "/categories", CategoryController, param: "name", only: [:show] do
+      resources "/categories", CategoryController, param: "name", only: [:show, :new, :create] do
         resources "/contestants", ContestantController, param: "name", only: [:show]
       end
     end
@@ -25,8 +34,14 @@ defmodule AwardsVoter.Web.Router do
   
   scope "/", AwardsVoter.Web do
     pipe_through :browser
+    pipe_through :public
 
     get "/", PageController, :index
   end
   
+  defp add_is_admin(conn, bool) when is_boolean(bool) do
+    assign(conn, :is_admin, bool)
+  end
+  
+  defp add_is_admin(conn, _bool), do: assign(conn, :is_admin, false)
 end

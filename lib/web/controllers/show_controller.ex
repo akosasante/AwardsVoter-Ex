@@ -8,7 +8,7 @@ defmodule AwardsVoter.Web.ShowController do
   
   def index(conn, _params) do
     case Shows.list_shows() do
-      {:ok, shows} -> render(conn, "index.html", shows: shows, is_admin: true)
+      {:ok, shows} -> render(conn, "index.html", shows: shows)
       e ->
         Logger.error("Error during Shows.list_show: #{inspect e}")
         conn
@@ -19,7 +19,7 @@ defmodule AwardsVoter.Web.ShowController do
 
   def new(conn, _params) do
     changeset = Shows.change_show(%Show{})
-    render(conn, "new.html", changeset: changeset, options: [], is_admin: true)
+    render(conn, "new.html", changeset: changeset, options: [])
   end
 
   def create(conn, %{"show" => show_params}) do
@@ -30,13 +30,13 @@ defmodule AwardsVoter.Web.ShowController do
         |> redirect(to: Routes.show_path(conn, :show, show_params["name"]))
 
       {:errors, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset, options: [], is_admin: true)
+        render(conn, "new.html", changeset: changeset, options: [])
     end
   end
 
   def show(conn, %{"name" => name}) do
     case Shows.get_show_by_name(name) do
-      {:ok, show} -> render(conn, "show.html", show: show, is_admin: true)
+      {:ok, show} -> render(conn, "show.html", show: show)
       e ->
         Logger.error("Error during Shows.get_show_by_name: #{inspect e}")
         conn
@@ -48,7 +48,7 @@ defmodule AwardsVoter.Web.ShowController do
   def edit(conn, %{"name" => name}) do
     show = Shows.get_show_by_name(name)
     changeset = Shows.change_show(show)
-    render(conn, "edit.html", show: show, changeset: changeset, options: [method: "put"], is_admin: true)
+    render(conn, "edit.html", show: show, changeset: changeset, options: [method: "put"])
   end
 
   def update(conn, %{"name" => name, "show" => show_params}) do
@@ -58,10 +58,10 @@ defmodule AwardsVoter.Web.ShowController do
       {:ok, show} ->
         conn
         |> put_flash(:info, "Show updated successfully.")
-        |> redirect(to: Routes.show_path(conn, :show, Shows.name))
+        |> redirect(to: Routes.show_path(conn, :show, show.name))
 
       {:errors, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", show: show, changeset: changeset, options: [method: "put"], is_admin: true)
+        render(conn, "edit.html", show: show, changeset: changeset, options: [method: "put"])
     end
   end
 
