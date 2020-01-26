@@ -13,14 +13,16 @@ defmodule AwardsVoter.Web.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/admin", AwardsVoter.Web do
+    pipe_through :browser
+
+    resources "/shows", ShowController, param: "name"
+  end
+  
   scope "/", AwardsVoter.Web do
     pipe_through :browser
 
     get "/", PageController, :index
   end
-
-  # Other scopes may use custom stacks.
-  # scope "/api", AwardsVoter.Web do
-  #   pipe_through :api
-  # end
+  
 end
