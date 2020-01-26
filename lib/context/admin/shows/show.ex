@@ -5,6 +5,7 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
   
   alias __MODULE__
   alias AwardsVoter.Context.Admin.Categories.Category
+  alias AwardsVoter.Context.Admin.Shows.ShowManager
 
   @derive {Phoenix.Param, key: :name}
   @primary_key false

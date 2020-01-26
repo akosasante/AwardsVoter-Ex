@@ -16,19 +16,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
       [%Show{}, ...]
 
   """
-  def list_shows do
-    {:ok, all_shows} = Show.get_all_shows()
-    all_shows
-#    |> DbShow.to_maps()
-    |> Enum.map(fn srvr_show ->
-      cs = Show.changeset(%Show{}, srvr_show)
-      if cs.valid? do
-        Changeset.apply_changes(cs)
-      else
-        cs
-      end
-    end)
-  end
+  def list_shows, do: Show.get_all_shows()
 
   @doc """
   Gets a single show.
