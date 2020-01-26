@@ -27,7 +27,7 @@ defmodule AwardsVoter.Web.ShowController do
       {:ok, show} ->
         conn
         |> put_flash(:info, "Show created successfully.")
-        |> redirect(to: Routes.show_path(conn, :show, Shows.name))
+        |> redirect(to: Routes.show_path(conn, :show, show_params["name"]))
 
       {:errors, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, options: [], is_admin: true)
