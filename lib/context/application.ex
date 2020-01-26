@@ -16,8 +16,8 @@ defmodule AwardsVoter.Application do
       AwardsVoter.Web.Endpoint,
       # Starts a worker by calling: AwardsVoter.Worker.start_link(arg)
       # {AwardsVoter.Worker, arg},
-#      {Registry, keys: :unique, name: Registry.Voter},
-      AwardsVoter.Context.Voting.Votes.Voter,
+      {Registry, keys: :unique, name: Registry.Voter},
+      AwardsVoter.Context.Voting.VoterSupervisor,
       AwardsVoter.Context.Admin.Shows.ShowManager
     ]
 
