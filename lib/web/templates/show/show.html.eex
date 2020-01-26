@@ -1,0 +1,15 @@
+<section class="container mx-auto my-2">
+  <h1 class="text-xl"><%= @show.name %></h1>
+  <h2 class="text-l">Categories:</h2>
+  <ul>
+    <%= for category <- @show.categories do %>
+      <li>
+      <strong><%= category.name %></strong>
+      <span> (<%= Enum.count(category.contestants) %> nominees)</span>
+      <span><%# link "See Details", to: Routes.category_path(@conn, :show, category.name) %></span>
+      <span><%# link "Edit", to: Routes.category_path(@conn, :show, category.name) %></span>
+      <span><%# link "Delete", to: Routes.category_path(@conn, :show, category.name) %></span>
+      </li>
+    <% end %>
+  </ul>
+</section>

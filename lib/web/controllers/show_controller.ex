@@ -36,12 +36,12 @@ defmodule AwardsVoter.Web.ShowController do
 
   def show(conn, %{"name" => name}) do
     case Shows.get_show_by_name(name) do
-      %Show{} = show -> render(conn, "Shows.html", show: show, is_admin: true)
+      {:ok, show} -> render(conn, "show.html", show: show, is_admin: true)
       e ->
-        Logger.error("Error during Shows.get_show!: #{inspect e}")
+        Logger.error("Error during Shows.get_show_by_name: #{inspect e}")
         conn
         |> put_flash(:error, "Could't find show (#{name})")
-        |> redirect(to: Routes.page_path(conn, :index))
+        |> redirect(to: Routes.show_path(conn, :index))
     end
   end
 

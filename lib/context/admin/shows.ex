@@ -29,16 +29,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
       %Show{}
 
   """
-  def get_show_by_name(name) do
-    {:ok, show} = Show.get_show_by_name(name)
-#    show = DbShow.to_maps(show) |> hd
-    cs = Show.changeset(%Show{}, show)
-    if cs.valid? do
-      Changeset.apply_changes(cs)
-    else
-      cs
-    end
-  end
+  def get_show_by_name(name), do: Show.get_show_by_name(name)
 
   @doc """
   Creates a show.
