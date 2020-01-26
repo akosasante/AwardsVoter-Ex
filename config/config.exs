@@ -5,16 +5,17 @@
 # is restricted to this project.
 
 # General application configuration
-use Mix.Config
+import Config
 
 config :awards_voter,
-  ecto_repos: [AwardsVoter.Repo]
+  voter_ballots_table: :voter_ballots,
+  show_table: :shows
 
 # Configures the endpoint
-config :awards_voter, AwardsVoterWeb.Endpoint,
+config :awards_voter, AwardsVoter.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "5uqqhOobVkWLOQONgCyv+vdXQDMcBI5E3nzU9cHU4KqvNXjff0ekqS0fwnXGawoo",
-  render_errors: [view: AwardsVoterWeb.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: AwardsVoter.Web.ErrorView, accepts: ~w(html json)],
   pubsub: [name: AwardsVoter.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
