@@ -8,7 +8,7 @@ defmodule AwardsVoter.Web.PageController do
 
   def index(conn, _params) do
     case Shows.list_shows() do
-      {:ok, shows} -> render(conn, "index.html", shows: shows)
+      {:ok, shows} -> render(conn, "index.html", shows: shows, is_admin: false)
       e ->
         Logger.error("Error during Shows.list_show: #{inspect e}")
         conn
