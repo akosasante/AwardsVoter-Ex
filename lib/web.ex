@@ -30,7 +30,7 @@ defmodule AwardsVoter.Web do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/awards_voter_web/templates",
+        root: "lib/web/templates",
         namespace: AwardsVoter.Web
 
       # Import convenience functions from controllers
