@@ -15,6 +15,9 @@ defmodule AwardsVoter.Context.Voting.Ballots.Ballot do
   def new(_voter, nil) do
     {:error, :invalid_nil_show_or_category}
   end
+  def new(_voter, []) do
+    {:error, :invalid_nil_show_or_category}
+  end
   def new(nil, _show_or_category) do
     {:error, :invalid_nil_show_or_category}
   end

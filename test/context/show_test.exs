@@ -15,16 +15,16 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
     }
   end
 
-  describe "Show.new/2" do
-    test "converts all of the passed in category Maps to %Category{} structs" do
-      categories = [
-        %Category{name: "Billie", description: "She's a bad guy"},
-        %{name: "Justin", description: "He's a bad guy too sometimes"}
-      ]
-
-      assert Show.new("The Test Show", categories) == {:ok, get_test_show()}
-    end
-  end
+#  describe "Show.new/2" do
+#    test "converts all of the passed in category Maps to %Category{} structs" do
+#      categories = [
+#        %Category{name: "Billie", description: "She's a bad guy"},
+#        %{name: "Justin", description: "He's a bad guy too sometimes"}
+#      ]
+#
+#      assert Show.new("The Test Show", categories) == {:ok, get_test_show()}
+#    end
+#  end
 
   describe "Show.save_or_update_shows/1/2" do
     setup do

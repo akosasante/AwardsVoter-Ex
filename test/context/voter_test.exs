@@ -289,7 +289,6 @@ defmodule AwardsVoter.Context.Voting.Votes.VoterTest do
   end
 
   defp make_contestants(contestant_list) do
-    Enum.map(contestant_list, fn contestant_name -> Contestant.new(contestant_name) end)
-    |> Enum.map(fn {:ok, contestant} -> contestant end)
+    Enum.map(contestant_list, fn contestant_name -> %Contestant{name: contestant_name} end)
   end
 end
