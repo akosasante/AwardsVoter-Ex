@@ -16,7 +16,9 @@ defmodule AwardsVoter.Web.Router do
   scope "/admin", AwardsVoter.Web do
     pipe_through :browser
 
-    resources "/shows", ShowController, param: "name"
+    resources "/shows", ShowController, param: "name" do
+      resources "/categories", CategoryController, param: "name", only: [:show]
+    end
   end
   
   scope "/", AwardsVoter.Web do
