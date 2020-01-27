@@ -8,7 +8,7 @@
       <span> (<%= Enum.count(category.contestants) %> nominees)</span>
       <span><%= link "See Details", to: Routes.show_category_path(@conn, :show, @show.name, category.name) %></span>
       <span><%# link "Edit", to: Routes.show_category_path(@conn, :show, category.name) %></span>
-      <span><%# link "Delete", to: Routes.show_category_path(@conn, :show, category.name) %></span>
+      <span><%= link "Delete", to: Routes.show_category_path(@conn, :delete, @show.name, category.name), method: :delete %></span>
       </li>
     <% end %>
   </ul>

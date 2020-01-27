@@ -45,9 +45,12 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
-  def delete_show_category(show, category) do
-    updated_category_list = Enum.filter(show.categories, fn %{name: name} -> name != category.name end)
-    Shows.update_show(show, %{categories: updated_category_list})
+  def delete_show_category(show_name, category_name) do
+    with {:ok, show} <- Shows.get_show_by_name(show_name),
+         updated_category_list <- Enum.filter(show.categories, fn %{name: name} -> name != category_name end)
+                                  |> Enum.map(&category_to_map/1) do
+      Shows.update_show(show, %{categories: updated_category_list})
+    end
   end
 
   def add_contestant_to_show_category(show_name, category_name, contestant_map) do
@@ -73,7 +76,6 @@ defmodule AwardsVoter.Context.Admin do
            %{name: ^category_name} -> category_to_map(updated_category)
            non_matching_category -> category_to_map(non_matching_category)
          end) do
-      IO.puts "DOONE"
       Shows.update_show(show, %{categories: updated_categories})
     end
   end
