@@ -71,4 +71,13 @@ defmodule AwardsVoter.Web.CategoryController do
         |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
     end
   end
+  
+  def delete(conn, %{"show_name" => show_name, "name" => name}) do
+    case Admin.delete_show_category(show_name, name) do
+      {:ok, _show} ->
+        conn
+        |> put_flash(:info, "Contestant deleted successfully.")
+        |> redirect(to: Routes.show_path(conn, :show, show_name))
+    end
+  end
 end
