@@ -7,7 +7,7 @@
       <strong><%= contestant.name %></strong>
       <span><%= link "See Details", to: Routes.show_category_contestant_path(@conn, :show, @show_name, @category.name, contestant.name) %></span>
       <span><%# link "Edit", to: Routes.show_category_path(@conn, :show, category.name) %></span>
-      <span><%# link "Delete", to: Routes.show_category_path(@conn, :show, category.name) %></span>
+      <span><%= link "Delete", to: Routes.show_category_contestant_path(@conn, :delete, @show_name, @category.name, contestant.name), method: :delete %></span>
       </li>
     <% end %>
   </ul>

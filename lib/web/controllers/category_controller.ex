@@ -10,7 +10,7 @@ defmodule AwardsVoter.Web.CategoryController do
   
   def show(conn, %{"show_name" => show_name, "name" => name}) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
-         category <- Enum.find(show.categories, fn cat -> cat.name == name end) do  # %Category{} = category <-
+         %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == name end) do
       render(conn, "show.html", category: category, show_name: show_name)
     else
       nil -> Logger.error("Couldn't find category (#{name}) on show (#{show_name})")

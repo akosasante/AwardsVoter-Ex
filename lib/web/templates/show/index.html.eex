@@ -6,7 +6,7 @@
       <div>
         <span><%= link "See Details", to: Routes.show_path(@conn, :show, show.name), class: "inline-block mx-2" %></span>
         <span><%= link "Edit", to: Routes.show_path(@conn, :edit, show.name), class: "inline-block mx-2" %></span>
-        <span><%= link "Delete", to: Routes.show_path(@conn, :delete, show.name), class: "inline-block mx-2" %></span>
+        <span><%= link "Delete", to: Routes.show_path(@conn, :delete, show.name, method: :delete), class: "inline-block mx-2" %></span>
       </div>
     </div>
   <% end %>

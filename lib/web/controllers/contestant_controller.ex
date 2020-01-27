@@ -3,6 +3,7 @@ defmodule AwardsVoter.Web.ContestantController do
 
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Admin.Shows
+  alias AwardsVoter.Context.Admin.Categories.Category
   alias AwardsVoter.Context.Admin.Contestants
   alias AwardsVoter.Context.Admin.Contestants.Contestant
 
@@ -10,8 +11,8 @@ defmodule AwardsVoter.Web.ContestantController do
   
   def show(conn, %{"show_name" => show_name, "category_name" => category_name, "name" => name}) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
-         category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),  # %Category{} = category <-
-         contestant <- Enum.find(category.contestants, fn cont -> cont.name == name end) do  # %Contestant{} = contestant <-
+         %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
+         %Contestant{} = contestant <- Enum.find(category.contestants, fn cont -> cont.name == name end) do
       render(conn, "show.html", contestant: contestant, show_name: show_name, category_name: category_name)
     else
       nil -> Logger.error("Couldn't find category (#{category_name}) or contestant (#{name}) on show (#{show_name})")
@@ -32,11 +33,20 @@ defmodule AwardsVoter.Web.ContestantController do
   
   def create(conn, %{"show_name" => show_name, "category_name" => category_name, "contestant" => contestant_params}) do
     case Admin.add_contestant_to_show_category(show_name, category_name, contestant_params) do
-      {:ok, show} -> 
+      {:ok, _show} -> 
         conn
         |> put_flash(:info, "Contestant added successfully")
         |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
       {:errors, %Ecto.Changeset{} = changeset} -> render(conn, "new.html", changeset: changeset, options: [])
+    end
+  end
+
+  def delete(conn, %{"show_name" => show_name, "category_name" => category_name, "name" => name}) do
+    case Admin.delete_contestant_from_show_category(show_name, category_name, name) do
+      {:ok, _show} -> 
+        conn 
+        |> put_flash(:info, "Contestant deleted successfully.") 
+        |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
     end
   end
 end
