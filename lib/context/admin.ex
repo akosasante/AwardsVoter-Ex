@@ -7,6 +7,7 @@ defmodule AwardsVoter.Context.Admin do
   alias AwardsVoter.Context.Admin.Categories
   alias AwardsVoter.Context.Admin.Categories.Category
   alias AwardsVoter.Context.Admin.Shows.Show
+  alias AwardsVoter.Context.Admin.Contestants
   alias AwardsVoter.Context.Admin.Contestants.Contestant
 
   defdelegate list_shows, to: Shows
@@ -49,7 +50,18 @@ defmodule AwardsVoter.Context.Admin do
     Shows.update_show(show, %{categories: updated_category_list})
   end
 
-  #  def add_contestant_to_show_category
+  def add_contestant_to_show_category(show_name, category_name, contestant_map) do
+    with {:ok, show} <- Shows.get_show_by_name(show_name),
+         %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
+         {:ok, _contestant} <- Contestants.create_contestant(contestant_map),
+         updated_category <- put_in(category.contestants, [contestant_map | category.contestants]),
+         updated_categories <- show.categories |> Enum.map(fn
+                                                    %{name: ^category_name} -> category_to_map(updated_category)
+                                                    non_matching_category -> category_to_map(non_matching_category)
+                                                  end) do
+      Shows.update_show(show, %{categories: updated_categories})
+    end
+  end
   #  def update_contestant_in_show_category
   #  def delete_contestant_from_show_category
   #  def set_winner_for_show_category

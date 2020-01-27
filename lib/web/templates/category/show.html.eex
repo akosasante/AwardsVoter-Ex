@@ -11,4 +11,6 @@
       </li>
     <% end %>
   </ul>
+  <span><%= link "Add New Contestant", to: Routes.show_category_contestant_path(@conn, :new, @show_name, @category.name) %></span>
+  <span><%= link "Back to Show", to: Routes.show_path(@conn, :show, @show_name) %></span>
 </section>

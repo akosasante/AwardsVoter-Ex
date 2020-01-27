@@ -13,4 +13,5 @@
     <% end %>
   </ul>
   <span><%= link "Add New Category", to: Routes.show_category_path(@conn, :new, @show.name) %></span>
+  <span><%= link "Back to All Shows", to: Routes.show_path(@conn, :index) %></span>
 </section>
