@@ -46,13 +46,13 @@ defmodule AwardsVoter.Web.ShowController do
   end
 
   def edit(conn, %{"name" => name}) do
-    show = Shows.get_show_by_name(name)
+    {:ok, show} = Shows.get_show_by_name(name)
     changeset = Shows.change_show(show)
     render(conn, "edit.html", show: show, changeset: changeset, options: [method: "put"])
   end
 
   def update(conn, %{"name" => name, "show" => show_params}) do
-    show = Shows.get_show_by_name(name)
+    {:ok, show} = Shows.get_show_by_name(name)
 
     case Shows.update_show(show, show_params) do
       {:ok, show} ->
