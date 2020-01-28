@@ -72,6 +72,24 @@ defmodule AwardsVoter.Web.CategoryController do
     end
   end
   
+  def edit(conn, %{"show_name" => show_name, "name" => name}) do
+    {:ok, show} = Shows.get_show_by_name(show_name)
+    category = Enum.find(show.categories, fn cat -> cat.name == name end)
+    changeset = Categories.change_category(category)
+    render(conn, "edit.html", show_name: show_name, category_name: name, changeset: changeset, options: [method: "put"])
+  end
+  
+  def update(conn, %{"show_name" => show_name, "name" => name, "category" => category_params}) do
+    case Admin.update_show_category(show_name, name, category_params) do
+      {:ok, show} ->
+        conn
+        |> put_flash(:info, "Category updated successfully")
+        |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_params["name"]))
+      {:errors, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", show_name: show_name, category_name: name, changeset: changeset, options: [method: "put"])
+    end
+  end
+  
   def delete(conn, %{"show_name" => show_name, "name" => name}) do
     case Admin.delete_show_category(show_name, name) do
       {:ok, _show} ->
