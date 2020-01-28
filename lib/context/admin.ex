@@ -33,12 +33,13 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
-  def update_show_category(show, old_category, new_category_map) do
-    name = old_category.name
-    with {:ok, updated_category} <- Categories.update_category(old_category, new_category_map) do
+  def update_show_category(show_name, category_name, new_category_map) do
+    with {:ok, show} <- Shows.get_show_by_name(show_name),
+         %Category{} = old_category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
+         {:ok, updated_category} <- Categories.update_category(old_category, new_category_map) do
       updated_categories = show.categories
                            |> Enum.map(fn
-        %{name: ^name} -> category_to_map(updated_category)
+        %{name: ^category_name} -> category_to_map(updated_category)
         non_matching_category -> category_to_map(non_matching_category)
       end)
       Shows.update_show(show, %{categories: updated_categories})

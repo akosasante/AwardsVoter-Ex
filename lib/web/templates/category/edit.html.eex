@@ -1,0 +1,5 @@
+<h1>Edit Category</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.show_category_path(@conn, :update, @show_name, @category_name)) %>
+
+<span><%= link "Back", to: Routes.show_path(@conn, :show, @show_name) %></span>

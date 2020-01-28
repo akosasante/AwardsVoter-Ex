@@ -26,7 +26,7 @@ defmodule AwardsVoter.Web.Router do
     pipe_through :admin
 
     resources "/shows", ShowController, param: "name" do
-      resources "/categories", CategoryController, param: "name", only: [:show, :new, :create, :delete] do
+      resources "/categories", CategoryController, param: "name", except: [:index] do
         resources "/contestants", ContestantController, param: "name", except: [:edit, :index, :update]
       end
     end

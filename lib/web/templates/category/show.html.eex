@@ -1,5 +1,6 @@
 <section class="container mx-auto my-2">
-  <h1 class="text-xl"><%= @category.name %></h1>
+  <h1 class="text-xl"><%= @category.name %> <span><%= link "Edit", to: Routes.show_category_path(@conn, :edit, @show_name, @category.name) %></span></h1>
+  <p><%= @category.description %></p>
   <h2 class="text-l">Contestants:</h2>
   <ul>
     <%= for contestant <- @category.contestants do %>
