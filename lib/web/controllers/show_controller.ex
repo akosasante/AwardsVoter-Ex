@@ -66,8 +66,8 @@ defmodule AwardsVoter.Web.ShowController do
   end
 
   def delete(conn, %{"name" => name}) do
-    show = Shows.get_show_by_name(name)
-    {:ok, _show} = Shows.delete_show(show)
+    {:ok, show} = Shows.get_show_by_name(name)
+    {:ok, _deleted_show} = Shows.delete_show(show)
 
     conn
     |> put_flash(:info, "Show deleted successfully.")
