@@ -10,24 +10,21 @@ defmodule AwardsVoter.Web.ContestantController do
   require Logger
   
   def show(conn, %{"show_name" => show_name, "category_name" => category_name, "name" => name}) do
-    with {:ok, show} <- Shows.get_show_by_name(show_name),
-         %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
-         %Contestant{} = contestant <- Enum.find(category.contestants, fn cont -> cont.name == name end) do
-      render(conn, "show.html", contestant: contestant, show_name: show_name, category_name: category_name)
-    else
-      nil -> Logger.error("Couldn't find category (#{category_name}) or contestant (#{name}) on show (#{show_name})")
-             conn
-             |> put_flash(:error, "Couldn't find category (#{category_name}) or contestant (#{name})")
-             |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
-      e -> Logger.error("Error during Shows.get_show_by_name: #{inspect e}")
-             conn
-             |> put_flash(:error, "Could't find show (#{show_name})")
-             |> redirect(to: Routes.show_path(conn, :index))
+    case Admin.get_contestant_from_show(show_name, category_name, name) do
+      {:ok, contestant} -> render(conn, "show.html", contestant: contestant, show_name: show_name, category_name: category_name)
+      category_not_found -> Logger.error("Couldn't find category (#{category_name}) on show (#{show_name})")
+                            conn
+                            |> put_flash(:error, "Couldn't find category (#{category_name})")
+                            |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
+      contestant_not_found -> Logger.error("Couldn't find contestant (#{name}) on show (#{show_name}), category (#{category_name})")
+                            conn
+                            |> put_flash(:error, "Couldn't find contestant (#{name})")
+                            |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
     end
   end
   
   def new(conn, %{"show_name" => show_name, "category_name" => category_name}) do
-    changeset = Contestants.change_category(%Contestant{})
+    changeset = Contestants.change_contestant(%Contestant{})
     render(conn, "new.html", changeset: changeset, options: [], show_name: show_name, category_name: category_name)
   end
   
@@ -38,6 +35,24 @@ defmodule AwardsVoter.Web.ContestantController do
         |> put_flash(:info, "Contestant added successfully")
         |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
       {:errors, %Ecto.Changeset{} = changeset} -> render(conn, "new.html", changeset: changeset, options: [])
+    end
+  end
+  
+  def edit(conn, %{"show_name" => show_name, "category_name" => category_name, "name" => name}) do
+    case Admin.get_contestant_from_show(show_name, category_name, name) do
+      {:ok, contestant} -> changeset = Contestants.change_contestant(contestant)
+                           render(conn, "edit.html", show_name: show_name, category_name: category_name, contestant_name: name, changeset: changeset, options: [method: "put"])
+    end
+  end
+  
+  def update(conn, %{"show_name" => show_name, "category_name" => category_name, "name" => name, "contestant" => contestant_params}) do
+    case Admin.update_contestant_in_show_category(show_name, category_name, name, contestant_params) do
+      {:ok, _show} ->
+        conn
+        |> put_flash(:info, "Contestant updated successfully")
+        |> redirect(to: Routes.show_category_contestant_path(conn, :show, show_name, category_name, contestant_params["name"]))
+      {:errors, %Ecto.Changeset{} = changeset} ->
+        render(conn, "edit.html", show_name: show_name, category_name: category_name, contestant_name: name, changeset: changeset, options: [method: "put"])
     end
   end
 

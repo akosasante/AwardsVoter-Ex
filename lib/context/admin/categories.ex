@@ -21,7 +21,7 @@ defmodule AwardsVoter.Context.Admin.Categories do
     if cs.valid? do
       {:ok, Changeset.apply_changes(cs)}
     else
-      cs = %{cs | action: :create}
+      cs = %{cs | action: :update}
       {:errors, cs}
     end
   end

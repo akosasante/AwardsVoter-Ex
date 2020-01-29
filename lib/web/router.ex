@@ -27,7 +27,7 @@ defmodule AwardsVoter.Web.Router do
 
     resources "/shows", ShowController, param: "name" do
       resources "/categories", CategoryController, param: "name", except: [:index] do
-        resources "/contestants", ContestantController, param: "name", except: [:edit, :index, :update]
+        resources "/contestants", ContestantController, param: "name", except: [:index]
       end
     end
   end

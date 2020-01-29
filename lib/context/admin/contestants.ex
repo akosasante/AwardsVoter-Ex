@@ -15,8 +15,18 @@ defmodule AwardsVoter.Context.Admin.Contestants do
       {:errors, cs}
     end
   end
+  
+  def update_contestant(%Contestant{} = orig_contestant, attrs) do
+    cs = Contestant.changeset(orig_contestant, attrs)
+    if cs.valid? do
+      {:ok, Changeset.apply_changes(cs)}
+    else
+      cs = %{cs | action: :update}
+      {:errors, cs}
+    end
+  end
 
-  def change_category(%Contestant{} = contestant) do
+  def change_contestant(%Contestant{} = contestant) do
     Contestant.changeset(contestant, %{})
   end
 end

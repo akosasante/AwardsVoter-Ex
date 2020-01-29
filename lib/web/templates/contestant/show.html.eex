@@ -15,7 +15,7 @@
     <% if @contestant.billboard_stats do %>
       <p><strong>Billboard Stats: </strong><%= @contestant.billboard_stats %></p>
     <% end %>
-    <span><%# link "Edit", to: Routes.show_contestant_path(@conn, :show, contestant.name) %></span>
+    <span><%= link "Edit", to: Routes.show_category_contestant_path(@conn, :edit, @show_name, @category_name, @contestant.name) %></span>
     <span><%= link "Delete", to: Routes.show_category_contestant_path(@conn, :delete, @show_name, @category_name, @contestant.name), method: :delete %></span>
     <span><%= link "Back to Category", to: Routes.show_category_path(@conn, :show, @show_name, @category_name) %></span>
   </div>

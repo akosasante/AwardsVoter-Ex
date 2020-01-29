@@ -9,18 +9,16 @@ defmodule AwardsVoter.Web.CategoryController do
   require Logger
   
   def show(conn, %{"show_name" => show_name, "name" => name}) do
-    with {:ok, show} <- Shows.get_show_by_name(show_name),
-         %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == name end) do
-      render(conn, "show.html", category: category, show_name: show_name)
-    else
-      nil -> Logger.error("Couldn't find category (#{name}) on show (#{show_name})")
-             conn 
-             |> put_flash(:error, "Couldn't find category (#{name})") 
-             |> redirect(to: Routes.show_path(conn, :index))
+    case Admin.get_category_from_show(show_name, name) do
+      {:ok, category} -> render(conn, "show.html", category: category, show_name: show_name)
+      :category_not_found -> Logger.error("Couldn't find category (#{name}) on show (#{show_name})")
+                             conn 
+                             |> put_flash(:error, "Couldn't find category (#{name})")
+                             |> redirect(to: Routes.show_path(conn, :index))
       e -> Logger.error("Error during Shows.get_show_by_name: #{inspect e}")
-             conn
-             |> put_flash(:error, "Could't find show (#{show_name})")
-             |> redirect(to: Routes.show_path(conn, :index))
+           conn
+           |> put_flash(:error, "Could't find show (#{show_name})")
+           |> redirect(to: Routes.show_path(conn, :index))
     end
   end
   
@@ -40,15 +38,15 @@ defmodule AwardsVoter.Web.CategoryController do
   end
   
   def edit(conn, %{"show_name" => show_name, "name" => name}) do
-    {:ok, show} = Shows.get_show_by_name(show_name)
-    category = Enum.find(show.categories, fn cat -> cat.name == name end)
-    changeset = Categories.change_category(category)
-    render(conn, "edit.html", show_name: show_name, category_name: name, changeset: changeset, options: [method: "put"])
+    case Admin.get_category_from_show(show_name, name) do
+      {:ok, category} -> changeset = Categories.change_category(category)
+                         render(conn, "edit.html", show_name: show_name, category_name: name, changeset: changeset, options: [method: "put"])
+    end
   end
   
   def update(conn, %{"show_name" => show_name, "name" => name, "category" => category_params}) do
     case Admin.update_show_category(show_name, name, category_params) do
-      {:ok, show} ->
+      {:ok, _show} ->
         conn
         |> put_flash(:info, "Category updated successfully")
         |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_params["name"]))
