@@ -3,8 +3,8 @@ defmodule AwardsVoter.Web.BallotController do
   
   require Logger
   
-  def new do
-    
+  def new(conn, %{"show_name" => show_name}) do
+    render(conn, "new.html", show_name: show_name)
   end
   
   def continue do

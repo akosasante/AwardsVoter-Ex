@@ -1,0 +1,8 @@
+<%= form_for @conn, Routes.ballot_path(@conn, :create, @show_name), fn f -> %>
+  <%= label f, :username %>
+  <%= text_input f, :username %>
+  
+  <div>
+    <%= submit "Save" %>
+  </div>
+<% end %>
