@@ -2,7 +2,6 @@ defmodule AwardsVoter.Web.CategoryController do
   use AwardsVoter.Web, :controller
 
   alias AwardsVoter.Context.Admin
-  alias AwardsVoter.Context.Admin.Shows
   alias AwardsVoter.Context.Admin.Categories
   alias AwardsVoter.Context.Admin.Categories.Category
 
@@ -29,7 +28,7 @@ defmodule AwardsVoter.Web.CategoryController do
   
   def create(conn, %{"category" => category_params, "show_name" => show_name}) do
     case Admin.add_category_to_show(show_name, category_params) do
-      {:ok, show} -> 
+      {:ok, _show} -> 
         conn
         |> put_flash(:info, "Category added successfully")
         |> redirect(to: Routes.show_path(conn, :show, show_name))
@@ -61,6 +60,15 @@ defmodule AwardsVoter.Web.CategoryController do
         conn
         |> put_flash(:info, "Contestant deleted successfully.")
         |> redirect(to: Routes.show_path(conn, :show, show_name))
+    end
+  end
+  
+  def set_winner(conn, %{"show_name" => show_name, "category_name" => category_name, "contestant_name" => winner}) do
+    case Admin.set_winner_for_show_category(show_name, category_name, winner) do
+      {:ok, _show} ->
+        conn
+        |> put_flash(:info, "Category updated successfully")
+        |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
     end
   end
 end

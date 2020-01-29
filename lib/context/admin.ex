@@ -120,7 +120,22 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
   
-  #  def set_winner_for_show_category
+  def set_winner_for_show_category(show_name, category_name, winner_name) do
+    with {:ok, show} <- Shows.get_show_by_name(show_name),
+         %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
+         {:contestant, %Contestant{} = winner} <- {:contestant, Enum.find(category.contestants, fn cont -> cont.name == winner_name end)},
+         updated_category = %{category | winner: winner},
+         updated_categories <- show.categories |> Enum.map(fn
+           %{name: ^category_name} -> category_to_map(updated_category)
+           non_matching_category -> category_to_map(non_matching_category)
+         end) do
+      IO.puts "HERE"
+      Shows.update_show(show, %{categories: updated_categories})
+    else
+      {:contestant, nil} -> :invalid_winner
+      e -> e
+    end
+  end
 
   def contestant_to_map(%Contestant{} = contestant), do: Map.from_struct(contestant)
   def contestant_to_map(%{} = contestant), do: contestant

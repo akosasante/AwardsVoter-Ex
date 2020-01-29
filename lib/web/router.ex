@@ -30,6 +30,7 @@ defmodule AwardsVoter.Web.Router do
         resources "/contestants", ContestantController, param: "name", except: [:index]
       end
     end
+    put "/shows/:show_name/categories/:category_name/set_winner/:contestant_name", CategoryController, :set_winner
   end
   
   scope "/", AwardsVoter.Web do
