@@ -38,6 +38,13 @@ defmodule AwardsVoter.Web.Router do
     pipe_through :public
 
     get "/", PageController, :index
+    
+    get "/ballot/:show_name/new", BallotController, :new
+    get "/ballot/:show_name/continue", BallotController, :continue
+    post "/ballot/:show_name", BallotController, :create
+    get "/ballot/:show_name/:voter_name", BallotController, :show
+    get "/ballot/:show_name/:voter_name/edit", BallotController, :edit
+    put "/ballot/:show_name/:voter_name", BallotController, :update
   end
   
   defp add_is_admin(conn, bool) when is_boolean(bool) do
