@@ -75,7 +75,7 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowManager do
   end
 
   defp open_table(close_dets_after \\ Mix.env() == :test) do
-    filepath = Path.absname("../awards_voter/shows", File.cwd!())
+    filepath = Path.absname("./shows", File.cwd!())
                |> Path.expand
                |> String.to_charlist()
     {:ok, _name} = :dets.open_file(@show_table, [file: filepath])
