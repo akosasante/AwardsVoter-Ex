@@ -1,0 +1,20 @@
+<section class="container mx-auto my-2">
+  <h1 class="text-xl"><%= @category.name %> <span><%= link "Edit", to: Routes.show_category_path(@conn, :edit, @show_name, @category.name) %></span></h1>
+  <p><%= @category.description %></p>
+  <%= if @category.winner do %><h2 class="text-l">Winner: <span><%= @category.winner.name %></span></h2><% end %>
+  <h2 class="text-l">Contestants:</h2>
+  <ul>
+    <%= for contestant <- @category.contestants do %>
+      <li>
+      <strong><%= contestant.name %></strong>
+      <span><%= link "See Details", to: Routes.show_category_contestant_path(@conn, :show, @show_name, @category.name, contestant.name) %></span>
+      <span><%= link "Edit", to: Routes.show_category_contestant_path(@conn, :edit, @show_name, @category.name, contestant.name) %></span>
+      <span><%= link "Set as winner", to: Routes.category_path(@conn, :set_winner, @show_name, @category.name, contestant.name), method: :put %></span>
+      <span><%= link "Delete", to: Routes.show_category_contestant_path(@conn, :delete, @show_name, @category.name, contestant.name), method: :delete %></span>
+      </li>
+    <% end %>
+  </ul>
+  <span><%= link "Add New Contestant", to: Routes.show_category_contestant_path(@conn, :new, @show_name, @category.name) %></span>
+  <span><%= link "Delete Category", to: Routes.show_category_path(@conn, :delete, @show_name, @category.name), method: :delete %></span>
+  <span><%= link "Back to Show", to: Routes.show_path(@conn, :show, @show_name) %></span>
+</section>

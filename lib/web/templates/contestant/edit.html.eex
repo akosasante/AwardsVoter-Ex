@@ -1,0 +1,5 @@
+<h1>Edit Contestant</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.show_category_contestant_path(@conn, :update, @show_name, @category_name, @contestant_name)) %>
+
+<span><%= link "Back", to: Routes.show_category_path(@conn, :show, @show_name, @category_name) %></span>

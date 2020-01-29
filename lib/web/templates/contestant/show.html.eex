@@ -1,0 +1,22 @@
+<section class="container mx-auto my-2">
+  <h1 class="text-xl"><%= @contestant.name %></h1>
+  <div>
+    <p><%= @contestant.description %></p>
+    <div class="bg-gray-400">
+      <img src="<%= @contestant.image_url %>" alt="<%= @contestant.name %>_image" class="object-contain h-48 w-full"/>
+    </div>
+    <%= if @contestant.youtube_url do %>
+      <iframe class="mx-auto" width="560" height="315" src="<%= @contestant.youtube_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <% end %>
+    <%= if @contestant.spotify_url do %>
+      <iframe src="<%= @contestant.spotify_url %>" %> width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <% end %>
+    <p><%= link "Wiki Page", to: @contestant.wiki_url %></p>
+    <% if @contestant.billboard_stats do %>
+      <p><strong>Billboard Stats: </strong><%= @contestant.billboard_stats %></p>
+    <% end %>
+    <span><%= link "Edit", to: Routes.show_category_contestant_path(@conn, :edit, @show_name, @category_name, @contestant.name) %></span>
+    <span><%= link "Delete", to: Routes.show_category_contestant_path(@conn, :delete, @show_name, @category_name, @contestant.name), method: :delete %></span>
+    <span><%= link "Back to Category", to: Routes.show_category_path(@conn, :show, @show_name, @category_name) %></span>
+  </div>
+</section>
