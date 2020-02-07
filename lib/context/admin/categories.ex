@@ -5,7 +5,10 @@ defmodule AwardsVoter.Context.Admin.Categories do
 
   alias AwardsVoter.Context.Admin.Categories.Category
   alias Ecto.Changeset
+  
+  @type change_result {:ok, Category.t()} | {:errors, Changeset.t()}
 
+  @spec create_category(map()) :: change_result
   def create_category(attrs \\ %{}) do
     cs = Category.changeset(%Category{}, attrs)
     if cs.valid? do
@@ -16,6 +19,7 @@ defmodule AwardsVoter.Context.Admin.Categories do
     end
   end
 
+  @spec update_category(Category.t(), map()) :: change_result
   def update_category(%Category{} = orig_category, attrs) do
     cs = Category.changeset(orig_category, attrs)
     if cs.valid? do
@@ -26,6 +30,7 @@ defmodule AwardsVoter.Context.Admin.Categories do
     end
   end
 
+  @spec change_category(Categor.t()) :: Changeset.t()
   def change_category(%Category{} = category) do
     Category.changeset(category, %{})
   end

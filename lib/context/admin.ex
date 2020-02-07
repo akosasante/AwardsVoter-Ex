@@ -10,18 +10,64 @@ defmodule AwardsVoter.Context.Admin do
   alias AwardsVoter.Context.Admin.Contestants
   alias AwardsVoter.Context.Admin.Contestants.Contestant
 
+  @doc """
+  Returns the list of shows.
+
+  ## Examples
+
+      iex> list_shows()
+      {:ok, [%Show{}, ...]}
+
+  """
   defdelegate list_shows, to: Shows
 
   defdelegate get_show_by_name(name), to: Shows
 
+  @doc """
+  Creates a show.
+
+  ## Examples
+
+      iex> create_show(%{field: value})
+      {:ok, %Show{}}
+
+      iex> create_show(%{field: bad_value})
+      {:errors, ...}
+
+  """
   defdelegate create_show(show_map), to: Shows
 
+  @doc """
+  Updates a show.
+
+  ## Examples
+
+      iex> update_show(show, %{field: new_value})
+      {:ok, %Show{}}
+
+      iex> update_show(show, %{field: bad_value})
+      {:errors, ...}
+
+  """
   defdelegate update_show(original_show, show_map), to: Shows
 
+  @doc """
+  Deletes a Show.
+
+  ## Examples
+
+      iex> delete_show(show)
+      {:ok, %Show{}}
+
+      iex> delete_show(show)
+      {:errors, ...}
+
+  """
   defdelegate delete_show(show), to: Shows
 
   defdelegate change_show(show), to: Shows
   
+  @spec get_category_from_show(String.t(), String.t()) :: {:ok, Category.t()} | :category_not_found | term()
   def get_category_from_show(show_name, category_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end) do
@@ -32,6 +78,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
+  @spec add_category_to_show(String.t(), map()) :: Shows.show_change_result() | :failed_to_add
   def add_category_to_show(show_name, category_map) do
     with {:ok, show} <- Shows.get_show_by_name(show_name), 
          {:ok, _category} <- Categories.create_category(category_map),
@@ -43,6 +90,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
+  @spec update_show_category(String.t(), String.t(), map()) :: Shows.show_change_result()
   def update_show_category(show_name, category_name, new_category_map) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = old_category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
@@ -56,6 +104,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
+  @spec delete_show_category(String.t(), String.t()) :: Shows.show_change_result()
   def delete_show_category(show_name, category_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          updated_category_list <- Enum.filter(show.categories, fn %{name: name} -> name != category_name end)
@@ -64,6 +113,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
+  @spec get_contestant_from_show(String.t(), String.t(), String.t()) :: {:ok, Contestant.t()} | :category_not_found | :contestant_not_found | term()
   def get_contestant_from_show(show_name, category_name, name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          {:category, %Category{} = category} <- {:category, Enum.find(show.categories, fn cat -> cat.name == category_name end)},
@@ -76,6 +126,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
+  @spec add_contestant_to_show_category(String.t(), String.t(), map()) :: Shows.show_change_result()
   def add_contestant_to_show_category(show_name, category_name, contestant_map) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
@@ -89,6 +140,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
   
+  @spec update_contestant_in_show_category(String.t(), String.t(), String.t(), map()) :: Shows.show_change_result()
   def update_contestant_in_show_category(show_name, category_name, contestant_name, new_contestant_map) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
@@ -108,6 +160,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
   
+  @spec delete_contestant_from_show_category(String.t(), String.t(), String.t()) :: Shows.show_change_result()
   def delete_contestant_from_show_category(show_name, category_name, contestant_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
@@ -120,6 +173,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
   
+  @spec set_winner_for_show_category(String.t(), String.t(), String.t()) :: Shows.show_change_result() | :invalid_winner | term()
   def set_winner_for_show_category(show_name, category_name, winner_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
@@ -129,7 +183,6 @@ defmodule AwardsVoter.Context.Admin do
            %{name: ^category_name} -> category_to_map(updated_category)
            non_matching_category -> category_to_map(non_matching_category)
          end) do
-      IO.puts "HERE"
       Shows.update_show(show, %{categories: updated_categories})
     else
       {:contestant, nil} -> :invalid_winner
@@ -137,10 +190,12 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
+  @spec contestant_to_map(Contestant.t() | map() | nil) :: map()
   def contestant_to_map(%Contestant{} = contestant), do: Map.from_struct(contestant)
   def contestant_to_map(%{} = contestant), do: contestant
   def contestant_to_map(nil), do: nil
 
+  @spec category_to_map(Category.t() | map() | nil) :: map()
   def category_to_map(%Category{} = category) do
     category_map = Map.from_struct(category)
     %{category_map | winner: contestant_to_map(category.winner), contestants: Enum.map(category.contestants, &contestant_to_map/1)}
@@ -148,6 +203,7 @@ defmodule AwardsVoter.Context.Admin do
   def category_to_map(%{} = category), do: category
   def category_to_map(nil), do: nil
 
+  @spec show_to_map(Show.t() | map() | nil) :: map()
   def show_to_map(%Show{} = show) do
     show_map = Map.from_struct(show)
     %{show_map | categories: Enum.map(show.categories, &show_to_map/1)}

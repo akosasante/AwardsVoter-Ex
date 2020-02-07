@@ -4,45 +4,17 @@ defmodule AwardsVoter.Context.Admin.Shows do
   """
 
   alias AwardsVoter.Context.Admin.Shows.Show
-#  alias AwardsVoter.Context.Admin.Categories.Category
   alias Ecto.Changeset
 
-  @doc """
-  Returns the list of shows.
-
-  ## Examples
-
-      iex> list_shows()
-      [%Show{}, ...]
-
-  """
+  @type show_change_result {:ok, Show.t()} | {:errors, Changeset.t()}
+  
+  @spec list_shows :: {:ok, list(Show.t())} | :error_fetching
   def list_shows, do: Show.get_all_shows()
 
-  @doc """
-  Gets a single show.
-
-  Raises if the Show does not exist.
-
-  ## Examples
-
-      iex> get_show_by_name("Oscars")
-      %Show{}
-
-  """
+  @spec get_show_by_name(String.t()) :: {:ok, Show.t()} | :not_found | :error_finding
   def get_show_by_name(name), do: Show.get_show_by_name(name)
 
-  @doc """
-  Creates a show.
-
-  ## Examples
-
-      iex> create_show(%{field: value})
-      {:ok, %Show{}}
-
-      iex> create_show(%{field: bad_value})
-      {:errors, ...}
-
-  """
+  @spec create_show(map()) :: show_change_result
   def create_show(attrs \\ %{}) do
     cs = Show.changeset(%Show{}, attrs)
     with true <- cs.valid?,
@@ -55,19 +27,8 @@ defmodule AwardsVoter.Context.Admin.Shows do
            {:errors, cs}
     end
   end
-
-  @doc """
-  Updates a show.
-
-  ## Examples
-
-      iex> update_show(show, %{field: new_value})
-      {:ok, %Show{}}
-
-      iex> update_show(show, %{field: bad_value})
-      {:error, ...}
-
-  """
+  
+  @spec update_show(Show.t(), map()) :: show_change_result
   def update_show(%Show{} = orig_show, attrs) do
     cs = Show.changeset(orig_show, attrs)
     with true <- cs.valid?,
@@ -81,18 +42,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
     end
   end
 
-  @doc """
-  Deletes a Show.
-
-  ## Examples
-
-      iex> delete_show(show)
-      {:ok, %Show{}}
-
-      iex> delete_show(show)
-      {:error, ...}
-
-  """
+  @spec delete_show(Show.t()) :: show_change_result
   def delete_show(%Show{} = show) do
     case Show.delete_show_entry(show.name) do
       :ok -> {:ok, show}
@@ -100,15 +50,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
     end
   end
 
-  @doc """
-  Returns a data structure for tracking show changes.
-
-  ## Examples
-
-      iex> change_show(show)
-      %Show{...}
-
-  """
+  @spec change_show(Show.t()) :: Changeset.t()
   def change_show(%Show{} = show) do
     Show.changeset(show, %{})
   end
