@@ -57,12 +57,12 @@ defmodule AwardsVoter.Context.Voting.Ballots do
     update_ballot(ballot, %{votes: updated_votes})
   end
   
-  @spec get_possible_votes_from_show_or_categories(%Show{categories: list(Category.t())}) :: list(Ballot.votemap())
+  @spec get_possible_votes_from_show_or_categories(%Show{categories: list(Category.t())}) :: list(Vote.t())
   def get_possible_votes_from_show_or_categories(%Show{} = show) do
     get_possible_votes_from_show_or_categories(show.categories)
   end
   
-  @spec get_possible_votes_from_show_or_categories(list(Category.t())) :: list(Ballot.votemap())
+  @spec get_possible_votes_from_show_or_categories(list(Category.t())) :: list(Vote.t())
   def get_possible_votes_from_show_or_categories([%Category{} | _] = categories) do
     Enum.map(categories, fn category ->
       {:ok, vote} = Votes.create_vote(%{category: category})

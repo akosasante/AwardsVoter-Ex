@@ -7,7 +7,7 @@ defmodule AwardsVoter.Context.Admin.Contestants.Contestant do
   @primary_key false
 
   @type t :: %__MODULE__{
-               name: String.t(),
+               name: String.t() | nil,
                description: String.t() | nil,
                image_url: String.t() | nil,
                youtube_url: String.t() | nil,

@@ -13,8 +13,7 @@ defmodule AwardsVoter.Context.Voting.Ballots.Ballot do
   
   @primary_key false
 
-  @type votemap :: %{required(String.t()) => Vote.t()}
-  @type t :: %__MODULE__{voter: String.t(), votes: votemap | nil}
+  @type t :: %__MODULE__{voter: String.t() | nil, votes: list(Vote.t())}
   
   embedded_schema do
     field :voter, :string

@@ -8,10 +8,10 @@ defmodule AwardsVoter.Context.Admin.Categories.Category do
   @primary_key false
 
   @type t :: %__MODULE__{
-               name: String.t(),
-               contestants: nonempty_list(Contestant.t()),
-               winner: Contestant.t(),
-               description: String.t()
+               name: String.t() | nil,
+               contestants: list(Contestant.t()),
+               winner: Contestant.t() | nil,
+               description: String.t() | nil
              }
 
   embedded_schema do

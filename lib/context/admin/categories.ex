@@ -30,7 +30,7 @@ defmodule AwardsVoter.Context.Admin.Categories do
     end
   end
 
-  @spec change_category(Categor.t()) :: Changeset.t()
+  @spec change_category(Category.t()) :: Changeset.t()
   def change_category(%Category{} = category) do
     Category.changeset(category, %{})
   end

@@ -12,11 +12,11 @@ defmodule AwardsVoter.Web.ContestantController do
   def show(conn, %{"show_name" => show_name, "category_name" => category_name, "name" => name}) do
     case Admin.get_contestant_from_show(show_name, category_name, name) do
       {:ok, contestant} -> render(conn, "show.html", contestant: contestant, show_name: show_name, category_name: category_name)
-      category_not_found -> Logger.error("Couldn't find category (#{category_name}) on show (#{show_name})")
+      :category_not_found -> Logger.error("Couldn't find category (#{category_name}) on show (#{show_name})")
                             conn
                             |> put_flash(:error, "Couldn't find category (#{category_name})")
                             |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
-      contestant_not_found -> Logger.error("Couldn't find contestant (#{name}) on show (#{show_name}), category (#{category_name})")
+      :contestant_not_found -> Logger.error("Couldn't find contestant (#{name}) on show (#{show_name}), category (#{category_name})")
                             conn
                             |> put_flash(:error, "Couldn't find contestant (#{name})")
                             |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))

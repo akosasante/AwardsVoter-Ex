@@ -8,7 +8,7 @@ defmodule AwardsVoter.Context.Voting.Votes.Vote do
   alias AwardsVoter.Context.Admin.Contestants.Contestant
   
   @primary_key false
-  @type t :: %__MODULE__{category: Category.t(), contestant: Contestant.t()}
+  @type t :: %__MODULE__{category: Category.t() | nil, contestant: Contestant.t() | nil}
 
   embedded_schema do
     embeds_one :category, Category

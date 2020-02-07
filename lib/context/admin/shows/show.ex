@@ -10,7 +10,7 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
   @derive {Phoenix.Param, key: :name}
   @primary_key false
 
-  @type t :: %__MODULE__{name: String.t(), categories: nonempty_list(Category.t())}
+  @type t :: %__MODULE__{name: String.t() | nil, categories: list(Category.t())}
   @type show_tuple :: {String.t(), Show.t()}
 
   embedded_schema do
