@@ -18,7 +18,7 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
     embeds_many :categories, Category, on_replace: :delete
   end
 
-  @spec changeset(Show.t(), map()) 
+  @spec changeset(Show.t(), map())  :: Ecto.Changeset.t()
   def changeset(show, attrs) do
     show
     |> cast(attrs, [:name])

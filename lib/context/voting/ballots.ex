@@ -6,7 +6,7 @@ defmodule AwardsVoter.Context.Voting.Ballots do
   alias AwardsVoter.Context.Admin.Categories.Category
   alias Ecto.Changeset
   
-  @type change_result {:ok, Ballot.t()} | {:errors, Changeset.t()}
+  @type change_result :: {:ok, Ballot.t()} | {:errors, Changeset.t()}
 
   @spec create_ballot(map()) :: change_result
   def create_ballot(attrs \\ %{}) do

@@ -6,7 +6,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
   alias AwardsVoter.Context.Admin.Shows.Show
   alias Ecto.Changeset
 
-  @type show_change_result {:ok, Show.t()} | {:errors, Changeset.t()}
+  @type change_result :: {:ok, Show.t()} | {:errors, Changeset.t()}
   
   @spec list_shows :: {:ok, list(Show.t())} | :error_fetching
   def list_shows, do: Show.get_all_shows()
@@ -14,7 +14,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
   @spec get_show_by_name(String.t()) :: {:ok, Show.t()} | :not_found | :error_finding
   def get_show_by_name(name), do: Show.get_show_by_name(name)
 
-  @spec create_show(map()) :: show_change_result
+  @spec create_show(map()) :: change_result
   def create_show(attrs \\ %{}) do
     cs = Show.changeset(%Show{}, attrs)
     with true <- cs.valid?,
@@ -28,7 +28,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
     end
   end
   
-  @spec update_show(Show.t(), map()) :: show_change_result
+  @spec update_show(Show.t(), map()) :: change_result
   def update_show(%Show{} = orig_show, attrs) do
     cs = Show.changeset(orig_show, attrs)
     with true <- cs.valid?,
@@ -42,7 +42,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
     end
   end
 
-  @spec delete_show(Show.t()) :: show_change_result
+  @spec delete_show(Show.t()) :: change_result
   def delete_show(%Show{} = show) do
     case Show.delete_show_entry(show.name) do
       :ok -> {:ok, show}

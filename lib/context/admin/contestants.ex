@@ -6,7 +6,7 @@ defmodule AwardsVoter.Context.Admin.Contestants do
   alias AwardsVoter.Context.Admin.Contestants.Contestant
   alias Ecto.Changeset
   
-  @type change_result {:ok, Contestant.t()} | {:errors, Changeset.t()}
+  @type change_result :: {:ok, Contestant.t()} | {:errors, Changeset.t()}
 
   @spec create_contestant(map()) :: change_result
   def create_contestant(attrs \\ %{}) do

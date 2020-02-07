@@ -78,7 +78,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
-  @spec add_category_to_show(String.t(), map()) :: Shows.show_change_result() | :failed_to_add
+  @spec add_category_to_show(String.t(), map()) :: Shows.change_result() | :failed_to_add
   def add_category_to_show(show_name, category_map) do
     with {:ok, show} <- Shows.get_show_by_name(show_name), 
          {:ok, _category} <- Categories.create_category(category_map),
@@ -90,7 +90,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
-  @spec update_show_category(String.t(), String.t(), map()) :: Shows.show_change_result()
+  @spec update_show_category(String.t(), String.t(), map()) :: Shows.change_result()
   def update_show_category(show_name, category_name, new_category_map) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = old_category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
@@ -104,7 +104,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
-  @spec delete_show_category(String.t(), String.t()) :: Shows.show_change_result()
+  @spec delete_show_category(String.t(), String.t()) :: Shows.change_result()
   def delete_show_category(show_name, category_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          updated_category_list <- Enum.filter(show.categories, fn %{name: name} -> name != category_name end)
@@ -126,7 +126,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
-  @spec add_contestant_to_show_category(String.t(), String.t(), map()) :: Shows.show_change_result()
+  @spec add_contestant_to_show_category(String.t(), String.t(), map()) :: Shows.change_result()
   def add_contestant_to_show_category(show_name, category_name, contestant_map) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
@@ -140,7 +140,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
   
-  @spec update_contestant_in_show_category(String.t(), String.t(), String.t(), map()) :: Shows.show_change_result()
+  @spec update_contestant_in_show_category(String.t(), String.t(), String.t(), map()) :: Shows.change_result()
   def update_contestant_in_show_category(show_name, category_name, contestant_name, new_contestant_map) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
@@ -160,7 +160,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
   
-  @spec delete_contestant_from_show_category(String.t(), String.t(), String.t()) :: Shows.show_change_result()
+  @spec delete_contestant_from_show_category(String.t(), String.t(), String.t()) :: Shows.change_result()
   def delete_contestant_from_show_category(show_name, category_name, contestant_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
@@ -173,7 +173,7 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
   
-  @spec set_winner_for_show_category(String.t(), String.t(), String.t()) :: Shows.show_change_result() | :invalid_winner | term()
+  @spec set_winner_for_show_category(String.t(), String.t(), String.t()) :: Shows.change_result() | :invalid_winner | term()
   def set_winner_for_show_category(show_name, category_name, winner_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),

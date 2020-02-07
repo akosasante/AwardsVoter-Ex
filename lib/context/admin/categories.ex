@@ -6,7 +6,7 @@ defmodule AwardsVoter.Context.Admin.Categories do
   alias AwardsVoter.Context.Admin.Categories.Category
   alias Ecto.Changeset
   
-  @type change_result {:ok, Category.t()} | {:errors, Changeset.t()}
+  @type change_result :: {:ok, Category.t()} | {:errors, Changeset.t()}
 
   @spec create_category(map()) :: change_result
   def create_category(attrs \\ %{}) do
