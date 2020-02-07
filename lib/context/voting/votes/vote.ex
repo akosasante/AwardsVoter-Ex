@@ -3,6 +3,7 @@ defmodule AwardsVoter.Context.Voting.Votes.Vote do
   import Ecto.Changeset
   
   alias __MODULE__
+  alias Ecto.Changeset
   alias AwardsVoter.Context.Admin.Categories.Category
   alias AwardsVoter.Context.Admin.Contestants.Contestant
   
@@ -23,8 +24,19 @@ defmodule AwardsVoter.Context.Voting.Votes.Vote do
   def changeset(vote, attrs) do
     vote
     |> cast(attrs, []) #TODO: Confirm if we need to cast first before doing the embeds
-    |> validate_required([:category, :contestant])
-    |> cast_embed(:category)
-    |> cast_embed(:contestant)
+    |> put_category()
+    |> put_contestant()
+    |> validate_required([:category])
   end
+  
+  defp put_category(%Changeset{params: %{"category" => category}} = cs) do
+    put_embed(cs, :category, category)
+  end
+  defp put_category(cs), do: cs
+
+
+  defp put_contestant(%Changeset{params: %{"contestant" => contestant}} = cs) do
+    put_embed(cs, :contestant, contestant)
+  end
+  defp put_contestant(cs), do: cs
 end

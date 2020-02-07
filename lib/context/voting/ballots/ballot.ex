@@ -1,37 +1,40 @@
 defmodule AwardsVoter.Context.Voting.Ballots.Ballot do
+  use Ecto.Schema
+  import Ecto.Changeset
+  
   alias __MODULE__
+  alias Ecto.Changeset
   alias AwardsVoter.Context.Admin.Shows.Show
   alias AwardsVoter.Context.Admin.Categories.Category
   alias AwardsVoter.Context.Voting.Votes.Vote
   alias AwardsVoter.Context.Voting.Votes
 
   require Logger
+  
+  @primary_key false
 
-  defstruct [:voter, :votes]
   @type votemap :: %{required(String.t()) => Vote.t()}
   @type t :: %__MODULE__{voter: String.t(), votes: votemap | nil}
+  
+  embedded_schema do
+    field :voter, :string
+    embeds_many :votes, Vote
+  end
+  
+  @spec changeset(Ballot.t(), map()) :: Ecto.Changeset.t()
+  def changeset(ballot, attrs) do
+    ballot
+    |> cast(attrs, [:voter])
+    |> put_votes()
+    |> validate_required([:voter])
+  end
+  
+  defp put_votes(%Changeset{params: %{"votes" => votes}} = cs) do
+    put_embed(cs, :votes, votes)
+  end
+  defp put_votes(cs), do: cs
 
-  @spec new(String.t(), nil) :: {:error, :invalid_nil_show_or_category}
-  def new(_voter, nil) do
-    {:error, :invalid_nil_show_or_category}
-  end
-  def new(_voter, []) do
-    {:error, :invalid_nil_show_or_category}
-  end
-  def new(nil, _show_or_category) do
-    {:error, :invalid_nil_show_or_category}
-  end
-
-  @spec new(String.t(), nonempty_list(Category.t())) :: {:ok, %Ballot{votes: votemap}}
-  def new(voter, [_ | _] = categories) do
-    ballot = init_ballot_with_empty_votes(%Ballot{voter: voter}, categories)
-    {:ok, ballot}
-  end
-
-  @spec new(String.t(), %Show{categories: nonempty_list(Category.t())}) :: {:ok, Ballot.t()}
-  def new(voter, show) do
-    Ballot.new(voter, show.categories)
-  end
+  
 
   @spec vote(Ballot.t(), String.t(), String.t()) :: {:ok | :invalid_vote, Ballot.t()}
   def vote(ballot, category_name, contestant_name) do
@@ -57,13 +60,7 @@ defmodule AwardsVoter.Context.Voting.Ballots.Ballot do
   def score(ballot) do
     {:ok, Enum.count(ballot.votes, fn {_category_name, vote} -> Votes.is_winning_vote?(vote) end)}
   end
-
-  @spec init_ballot_with_empty_votes(Ballot.t(), nonempty_list(Category.t())) :: %Ballot{votes: votemap}
-  def init_ballot_with_empty_votes(ballot, categories) do
-    votes = Enum.map(categories, fn category -> Vote.new(category) end)
-    %{ballot | votes: Map.new(votes, fn {:ok, vote} -> {vote.category.name, vote} end)}
-  end
-
+  
   @spec update_ballot_with_vote(Ballot.t(), Vote.t()) :: {:ok, Ballot.t()} | {:error, term()}
   defp update_ballot_with_vote(ballot, vote) do
     try do

@@ -11,7 +11,7 @@ defmodule AwardsVoter.Web.BallotController do
     
   end
   
-  def create do
+  def create(conn, %{"username" => username}) do
     
   end
   

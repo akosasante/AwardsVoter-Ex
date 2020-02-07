@@ -210,7 +210,7 @@ defmodule AwardsVoter.Context.Voting.Votes.Voter do
   end
 
 
-  defp  fresh_state(voter_name, show) do
+  defp   fresh_state(voter_name, show) do
     Logger.info("Getting fresh state")
     with {:ok, ballot_state} <- BallotState.new(),
          {:ok, ballot_state} <- BallotState.check(ballot_state, :set_show),
