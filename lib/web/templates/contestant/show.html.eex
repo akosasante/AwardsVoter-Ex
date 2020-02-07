@@ -11,7 +11,9 @@
     <%= if @contestant.spotify_url do %>
       <iframe src="<%= @contestant.spotify_url %>" %> width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
     <% end %>
-    <p><%= link "Wiki Page", to: @contestant.wiki_url %></p>
+    <%= if @contestant.wiki_url do %>
+      <p><%= link "Wiki Page", to: @contestant.wiki_url %></p>
+    <% end %>
     <% if @contestant.billboard_stats do %>
       <p><strong>Billboard Stats: </strong><%= @contestant.billboard_stats %></p>
     <% end %>

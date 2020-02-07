@@ -2,7 +2,6 @@ defmodule AwardsVoter.Web.CategoryController do
   use AwardsVoter.Web, :controller
 
   alias AwardsVoter.Context.Admin
-  alias AwardsVoter.Context.Admin.Categories
   alias AwardsVoter.Context.Admin.Categories.Category
 
   require Logger
@@ -22,7 +21,7 @@ defmodule AwardsVoter.Web.CategoryController do
   end
   
   def new(conn, %{"show_name" => show_name}) do
-    changeset = Categories.change_category(%Category{})
+    changeset = Admin.change_category(%Category{})
     render(conn, "new.html", changeset: changeset, options: [], show_name: show_name)
   end
   
@@ -38,7 +37,7 @@ defmodule AwardsVoter.Web.CategoryController do
   
   def edit(conn, %{"show_name" => show_name, "name" => name}) do
     case Admin.get_category_from_show(show_name, name) do
-      {:ok, category} -> changeset = Categories.change_category(category)
+      {:ok, category} -> changeset = Admin.change_category(category)
                          render(conn, "edit.html", show_name: show_name, category_name: name, changeset: changeset, options: [method: "put"])
     end
   end

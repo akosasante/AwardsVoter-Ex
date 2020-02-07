@@ -31,6 +31,10 @@ defmodule AwardsVoter.Context.Admin do
 
   defdelegate change_show(show), to: Shows
   
+  defdelegate change_category(category), to: Categories
+  
+  defdelegate change_contestant(contestant), to: Contestants
+  
   @spec get_category_from_show(String.t(), String.t()) :: {:ok, Category.t()} | :category_not_found | term()
   def get_category_from_show(show_name, category_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),

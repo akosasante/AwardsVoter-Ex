@@ -2,9 +2,7 @@ defmodule AwardsVoter.Web.ContestantController do
   use AwardsVoter.Web, :controller
 
   alias AwardsVoter.Context.Admin
-  alias AwardsVoter.Context.Admin.Shows
   alias AwardsVoter.Context.Admin.Categories.Category
-  alias AwardsVoter.Context.Admin.Contestants
   alias AwardsVoter.Context.Admin.Contestants.Contestant
 
   require Logger
@@ -24,7 +22,7 @@ defmodule AwardsVoter.Web.ContestantController do
   end
   
   def new(conn, %{"show_name" => show_name, "category_name" => category_name}) do
-    changeset = Contestants.change_contestant(%Contestant{})
+    changeset = Admin.change_contestant(%Contestant{})
     render(conn, "new.html", changeset: changeset, options: [], show_name: show_name, category_name: category_name)
   end
   
@@ -40,7 +38,7 @@ defmodule AwardsVoter.Web.ContestantController do
   
   def edit(conn, %{"show_name" => show_name, "category_name" => category_name, "name" => name}) do
     case Admin.get_contestant_from_show(show_name, category_name, name) do
-      {:ok, contestant} -> changeset = Contestants.change_contestant(contestant)
+      {:ok, contestant} -> changeset = Admin.change_contestant(contestant)
                            render(conn, "edit.html", show_name: show_name, category_name: category_name, contestant_name: name, changeset: changeset, options: [method: "put"])
     end
   end
