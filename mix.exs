@@ -5,7 +5,7 @@ defmodule AwardsVoter.MixProject do
     [
       app: :awards_voter,
       version: "0.1.0",
-      elixir: "~> 1.5",
+      elixir: "~> 1.9",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -41,8 +41,7 @@ defmodule AwardsVoter.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
-      {:pbkdf2_elixir, "~> 1.0"}
+      {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false}
     ]
   end
 
