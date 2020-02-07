@@ -7,14 +7,7 @@ defmodule AwardsVoter.Web.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-  end
-  
-  pipeline :admin do
-    plug :add_is_admin, true
-  end
-  
-  pipeline :public do
-    plug :add_is_admin, false
+    plug :put_is_admin
   end
 
   pipeline :api do
@@ -23,7 +16,6 @@ defmodule AwardsVoter.Web.Router do
 
   scope "/admin", AwardsVoter.Web do
     pipe_through :browser
-    pipe_through :admin
 
     resources "/shows", ShowController, param: "name" do
       resources "/categories", CategoryController, param: "name", except: [:index] do
@@ -35,7 +27,6 @@ defmodule AwardsVoter.Web.Router do
   
   scope "/", AwardsVoter.Web do
     pipe_through :browser
-    pipe_through :public
 
     get "/", PageController, :index
     
@@ -47,9 +38,12 @@ defmodule AwardsVoter.Web.Router do
     put "/ballot/:show_name/:voter_name", BallotController, :update
   end
   
-  defp add_is_admin(conn, bool) when is_boolean(bool) do
-    assign(conn, :is_admin, bool)
+  defp put_is_admin(conn, _opts) do
+    is_admin_path = Enum.find(conn.path_info, fn x -> x == "admin" end)
+    if is_admin_path do
+      assign(conn, :is_admin, true)
+    else
+      assign(conn, :is_admin, false)
+    end
   end
-  
-  defp add_is_admin(conn, _bool), do: assign(conn, :is_admin, false)
 end
