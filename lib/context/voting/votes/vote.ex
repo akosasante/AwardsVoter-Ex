@@ -15,11 +15,6 @@ defmodule AwardsVoter.Context.Voting.Votes.Vote do
     embeds_one :contestant, Contestant
   end
 
-  @spec new(Category.t(), Contestant.t() | nil) :: {:ok, Vote.t()}
-  def new(category, contestant \\ nil) do
-    {:ok, %Vote{category: category, contestant: contestant}}
-  end # TODO: Make it so ballot.ex doesn't need this
-
   @spec changeset(Vote.t(), map()) :: Ecto.Changeset.t()
   def changeset(vote, attrs) do
     vote

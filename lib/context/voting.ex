@@ -46,4 +46,9 @@ defmodule AwardsVoter.Context.Voting do
   def is_winning_vote?(vote) do
     vote.contestant.name == vote.category.winner.name
   end
+
+  @spec score(Ballot.t()) :: {:ok, non_neg_integer()}
+  def score(ballot) do
+    {:ok, Enum.count(ballot.votes, &is_winning_vote?/1)}
+  end
 end

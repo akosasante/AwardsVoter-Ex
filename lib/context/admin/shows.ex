@@ -47,7 +47,6 @@ defmodule AwardsVoter.Context.Admin.Shows do
     cs = Show.changeset(%Show{}, attrs)
     with true <- cs.valid?,
          %Show{} = site_show <- Changeset.apply_changes(cs),
-#         {:ok, db_show} <- DbShow.new(site_show.name, site_show.categories),
          {:ok, saved_show} <- Show.save_or_update_shows(site_show)
       do
       {:ok, saved_show}

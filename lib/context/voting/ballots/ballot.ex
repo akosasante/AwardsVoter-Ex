@@ -33,13 +33,4 @@ defmodule AwardsVoter.Context.Voting.Ballots.Ballot do
     put_embed(cs, :votes, votes)
   end
   defp put_votes(cs), do: cs
-
-  
-
-
-
-  @spec score(Ballot.t()) :: {:ok, non_neg_integer()}
-  def score(ballot) do
-    {:ok, Enum.count(ballot.votes, fn {_category_name, vote} -> Votes.is_winning_vote?(vote) end)}
-  end
 end

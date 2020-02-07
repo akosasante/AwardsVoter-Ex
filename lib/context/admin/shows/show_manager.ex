@@ -48,7 +48,7 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowManager do
   end
 
   def handle_call({:lookup, key}, _from, state) do
-    Logger.debug "Handling :lookup #{key} call"
+    Logger.debug "Handling :lookup #{inspect key} call"
     show = case :dets.lookup(@show_table, key) do
       [] -> :not_found
       [{_name, saved_show}] -> saved_show

@@ -51,12 +51,22 @@ defmodule AwardsVoter.Context.Voting.Ballots do
     Enum.find(ballot.votes, fn vote -> vote.category.name == category_name end)
   end
 
-  @spec update_ballot_with_vote(Ballot.t(), Vote.t()) :: Ballot.t()
+  @spec update_ballot_with_vote(Ballot.t(), Vote.t()) :: {:ok, Ballot.t()}
   def update_ballot_with_vote(ballot, vote) do
     category = vote.category
     updated_votes = Enum.map(ballot.votes, fn 
       %Vote{category: ^category} -> vote
       unchanged_vote -> unchanged_vote
+    end)
+    update_ballot(ballot, %{votes: updated_votes})
+  end
+  
+  def update_ballot_with_winners(ballot, categories) do
+    updated_votes = Enum.map(ballot.votes, fn vote ->
+      case Enum.find(categories, fn c -> c.name == vote.category.name end) do
+        %Category{} = category -> Map.put(vote, :category, category)
+        _ -> vote
+      end
     end)
     update_ballot(ballot, %{votes: updated_votes})
   end
