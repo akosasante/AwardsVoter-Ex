@@ -22,47 +22,11 @@ defmodule AwardsVoter.Context.Admin do
   defdelegate list_shows, to: Shows
 
   defdelegate get_show_by_name(name), to: Shows
-
-  @doc """
-  Creates a show.
-
-  ## Examples
-
-      iex> create_show(%{field: value})
-      {:ok, %Show{}}
-
-      iex> create_show(%{field: bad_value})
-      {:errors, ...}
-
-  """
+  
   defdelegate create_show(show_map), to: Shows
-
-  @doc """
-  Updates a show.
-
-  ## Examples
-
-      iex> update_show(show, %{field: new_value})
-      {:ok, %Show{}}
-
-      iex> update_show(show, %{field: bad_value})
-      {:errors, ...}
-
-  """
+  
   defdelegate update_show(original_show, show_map), to: Shows
-
-  @doc """
-  Deletes a Show.
-
-  ## Examples
-
-      iex> delete_show(show)
-      {:ok, %Show{}}
-
-      iex> delete_show(show)
-      {:errors, ...}
-
-  """
+  
   defdelegate delete_show(show), to: Shows
 
   defdelegate change_show(show), to: Shows

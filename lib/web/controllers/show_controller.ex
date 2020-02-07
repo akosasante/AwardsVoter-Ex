@@ -1,16 +1,16 @@
 defmodule AwardsVoter.Web.ShowController do
   use AwardsVoter.Web, :controller
   
-  alias AwardsVoter.Context.Admin.Shows
+  alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Admin.Shows.Show
   
   require Logger
   
   def index(conn, _params) do
-    case Shows.list_shows() do
+    case Admin.list_shows() do
       {:ok, shows} -> render(conn, "index.html", shows: shows)
       e ->
-        Logger.error("Error during Shows.list_show: #{inspect e}")
+        Logger.error("Error during Admin.list_show: #{inspect e}")
         conn
         |> put_flash(:error, "Could't fetch shows")
         |> redirect(to: Routes.show_path(conn, :index))
@@ -18,16 +18,16 @@ defmodule AwardsVoter.Web.ShowController do
   end
 
   def new(conn, _params) do
-    changeset = Shows.change_show(%Show{})
+    changeset = Admin.change_show(%Show{})
     render(conn, "new.html", changeset: changeset, options: [])
   end
 
   def create(conn, %{"show" => show_params}) do
-    case Shows.create_show(show_params) do
+    case Admin.create_show(show_params) do
       {:ok, show} ->
         conn
         |> put_flash(:info, "Show created successfully.")
-        |> redirect(to: Routes.show_path(conn, :show, show_params["name"]))
+        |> redirect(to: Routes.show_path(conn, :show, show.name))
 
       {:errors, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset, options: [])
@@ -35,10 +35,10 @@ defmodule AwardsVoter.Web.ShowController do
   end
 
   def show(conn, %{"name" => name}) do
-    case Shows.get_show_by_name(name) do
+    case Admin.get_show_by_name(name) do
       {:ok, show} -> render(conn, "show.html", show: show)
       e ->
-        Logger.error("Error during Shows.get_show_by_name: #{inspect e}")
+        Logger.error("Error during Admin.get_show_by_name: #{inspect e}")
         conn
         |> put_flash(:error, "Could't find show (#{name})")
         |> redirect(to: Routes.show_path(conn, :index))
@@ -46,15 +46,15 @@ defmodule AwardsVoter.Web.ShowController do
   end
 
   def edit(conn, %{"name" => name}) do
-    {:ok, show} = Shows.get_show_by_name(name)
-    changeset = Shows.change_show(show)
+    {:ok, show} = Admin.get_show_by_name(name)
+    changeset = Admin.change_show(show)
     render(conn, "edit.html", show: show, changeset: changeset, options: [method: "put"])
   end
 
   def update(conn, %{"name" => name, "show" => show_params}) do
-    {:ok, show} = Shows.get_show_by_name(name)
+    {:ok, show} = Admin.get_show_by_name(name)
 
-    case Shows.update_show(show, show_params) do
+    case Admin.update_show(show, show_params) do
       {:ok, show} ->
         conn
         |> put_flash(:info, "Show updated successfully.")
@@ -66,8 +66,8 @@ defmodule AwardsVoter.Web.ShowController do
   end
 
   def delete(conn, %{"name" => name}) do
-    {:ok, show} = Shows.get_show_by_name(name)
-    {:ok, _deleted_show} = Shows.delete_show(show)
+    {:ok, show} = Admin.get_show_by_name(name)
+    {:ok, _deleted_show} = Admin.delete_show(show)
 
     conn
     |> put_flash(:info, "Show deleted successfully.")
