@@ -9,6 +9,7 @@ defmodule AwardsVoter.Context.Admin do
   alias AwardsVoter.Context.Admin.Shows.Show
   alias AwardsVoter.Context.Admin.Contestants
   alias AwardsVoter.Context.Admin.Contestants.Contestant
+  alias AwardsVoter.Context.Voting
 
   @doc """
   Returns the list of shows.
@@ -151,7 +152,9 @@ defmodule AwardsVoter.Context.Admin do
            %{name: ^category_name} -> category_to_map(updated_category)
            non_matching_category -> category_to_map(non_matching_category)
          end) do
-      Shows.update_show(show, %{categories: updated_categories})
+      res = Shows.update_show(show, %{categories: updated_categories})
+      Voting.update_ballots_for_show(show)
+      res
     else
       {:contestant, nil} -> :invalid_winner
       e -> e

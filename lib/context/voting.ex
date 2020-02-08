@@ -90,4 +90,15 @@ defmodule AwardsVoter.Context.Voting do
       {ballot.voter, score}
     end)
   end
+  
+  def update_ballots_for_show(show) do
+    show.name
+    |> Ballots.list_ballots_for_show()
+    |> Enum.map(fn ballot -> Ballots.update_ballot_with_winners(ballot, show.categories) end)
+    |> Enum.each(fn
+      {:ok, updated_ballot} -> save_ballot(updated_ballot, show.name)
+      {:errors, e} -> Logger.error("Unable to update ballot: #{inspect e}")
+    end)
+    :ok
+  end
 end
