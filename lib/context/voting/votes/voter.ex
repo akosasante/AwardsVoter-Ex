@@ -30,6 +30,16 @@ defmodule AwardsVoter.Context.Voting.Votes.Voter do
   def get_ballot_by_voter_and_show(voter, show) do
     GenServer.call(__MODULE__, {:get_ballot, voter, show})
   end
+  
+  def list_ballots_for_voter(voter) do
+    GenServer.call(__MODULE__, {:list_voter_ballots, voter})
+  end
+  
+  def list_ballots_for_show(show) do
+    GenServer.call(__MODULE__, {:list_show_ballots, show})
+  end
+  
+  ###############################################
 
   @spec reset_show(GenServer.server(), Show.t()) :: :ok
   def reset_show(voter, %Show{} = show) do
@@ -99,7 +109,22 @@ defmodule AwardsVoter.Context.Voting.Votes.Voter do
     end
     {:reply, ballot, state}
   end
+  
+  def handle_call({:list_voter_ballots, voter}, _from, state) do
+    Logger.debug "Handling :list_voter_ballots for #{inspect voter} call"
+    res = :dets.match_object(@voter_ballot_table, {{:_, voter}, :_})
+    matching_ballots = Enum.map(res, fn {{_show, _voter}, ballot} -> ballot end)
+    {:reply, matching_ballots, state}
+  end
+  
+  def handle_call({:list_show_ballots, show}, _from, state) do
+    Logger.debug "Handling :list_show_ballots for #{inspect show} call"
+    res = :dets.match_object(@voter_ballot_table, {{show, :_}, :_})
+    matching_ballots = Enum.map(res, fn {{_show, _voter}, ballot} -> ballot end)
+    {:reply, matching_ballots, state}
+  end
 
+  ###########################
   def handle_call({:reset_show, show}, _from, state) do
     with {:ok, ballot_state} <- BallotState.check(state.ballot_state, :set_show) do
       state

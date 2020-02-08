@@ -81,4 +81,13 @@ defmodule AwardsVoter.Context.Voting do
   def score(ballot) do
     {:ok, Enum.count(ballot.votes, &is_winning_vote?/1)}
   end
+  
+  def get_scores_for_show(show_name) do
+    show_name
+    |> Ballots.list_ballots_for_show()
+    |> Enum.map(fn ballot -> 
+      {:ok, score} = score(ballot) 
+      {ballot.voter, score}
+    end)
+  end
 end

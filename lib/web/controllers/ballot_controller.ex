@@ -54,7 +54,6 @@ defmodule AwardsVoter.Web.BallotController do
   def edit(conn, %{"show_name" => show_name, "voter_name" => voter_name}) do
     case Voting.get_ballot_for(voter_name, show_name) do
       {:ok, ballot} -> 
-      IO.inspect(ballot)
         changeset = Voting.change_ballot(ballot)
         render(conn, "edit.html", changeset: changeset, show_name: show_name, options: [method: "put"])
       e ->
@@ -69,7 +68,7 @@ defmodule AwardsVoter.Web.BallotController do
     case Voting.get_ballot_for(voter_name, show_name) do
       {:ok, ballot} -> 
         {:ok, updated_ballot} = Voting.multi_vote(ballot, vote_map)
-        {:ok, saved_ballot} = Voting.save_ballot(updated_ballot)
+        {:ok, saved_ballot} = Voting.save_ballot(updated_ballot, show_name)
         redirect(conn, to: Routes.ballot_path(conn, :show, show_name, voter_name))
       e -> 
         Logger.error("Error during updating ballot #{inspect e}")
@@ -80,6 +79,7 @@ defmodule AwardsVoter.Web.BallotController do
   end
   
   def scoreboard(conn, %{"show_name" => show_name}) do
-    {:ok, scores} = Voting.get_scores_for_show(show_name)
+    scores = Voting.get_scores_for_show(show_name)
+    render(conn, "scoreboard.html", scores: scores, show_name: show_name)
   end
 end

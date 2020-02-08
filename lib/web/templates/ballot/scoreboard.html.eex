@@ -1,0 +1,19 @@
+<h1><%= @show_name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Total Correct Answers</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <%= for {username, score} <- @scores do %>
+      <tr>
+        <td><%= username %></td>
+        <td><%= score %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

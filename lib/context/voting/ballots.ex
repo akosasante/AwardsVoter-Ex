@@ -2,11 +2,14 @@ defmodule AwardsVoter.Context.Voting.Ballots do
   alias AwardsVoter.Context.Voting.Ballots.Ballot
   alias AwardsVoter.Context.Voting.Votes
   alias AwardsVoter.Context.Voting.Votes.Vote
+  alias AwardsVoter.Context.Voting.Votes.Voter
   alias AwardsVoter.Context.Admin.Shows.Show
   alias AwardsVoter.Context.Admin.Categories.Category
   alias Ecto.Changeset
   
   @type change_result :: {:ok, Ballot.t()} | {:errors, Changeset.t()}
+  
+  defdelegate list_ballots_for_show(show_name), to: Voter
 
   @spec create_ballot(map()) :: change_result()
   def create_ballot(attrs \\ %{}) do
@@ -82,6 +85,8 @@ defmodule AwardsVoter.Context.Voting.Ballots do
       vote
     end)
   end
+  
+  def get_possible_votes_from_show_or_categories([]), do: []
   
   @spec get_vote_by_category(Ballot.t(), String.t()) :: Vote.t() | nil
   def get_vote_by_category(ballot, category_name) do
