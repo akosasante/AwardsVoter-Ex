@@ -26,7 +26,7 @@ defmodule AwardsVoter.Web.BallotController do
   
   def show(conn, %{"show_name" => show_name, "voter_name" => voter_name}) do
     case Voting.get_ballot_for(voter_name) do
-      {:ok, ballot} -> render(conn, "show.html", ballot: ballot)
+      {:ok, ballot} -> render(conn, "show.html", ballot: ballot, show_name: show_name)
       e ->
         Logger.error("Error during Voting.get_ballot_for(#{inspect e})")
         conn
@@ -35,11 +35,29 @@ defmodule AwardsVoter.Web.BallotController do
     end
   end
   
-  def edit do
-    
+  def edit(conn, %{"show_name" => show_name, "voter_name" => voter_name}) do
+    case Voting.get_ballot_for(voter_name) do
+      {:ok, ballot} -> 
+        changeset = Voting.change_ballot(ballot)
+        render(conn, "edit.html", changeset: changeset, show_name: show_name, options: [method: "put"])
+      e ->
+        Logger.error("Error during Voting.get_ballot_for(#{inspect e})")
+        conn
+        |> put_flash(:error, "Error getting ballot")
+        |> redirect(to: Routes.page_path(conn, :index))
+    end
   end
   
-  def update do
-    
+  def update(conn, %{"ballot" => vote_map, "voter_name" => voter_name, "show_name" => show_name}) do
+    case Voting.get_ballot_for(voter_name) do
+      {:ok, ballot} -> 
+        {:ok, updated_ballot} = Voting.multi_vote(ballot, vote_map)
+        {:ok, saved_ballot} = Voting.save_ballot(updated_ballot)
+        render(conn, "show.html", ballot: ballot, show_name: show_name)
+      e -> 
+        Logger.error("Error during update #{inspect e}")
+        render(conn, "index.html")
+    end
+    :ok
   end
 end

@@ -30,10 +30,9 @@ defmodule AwardsVoter.Context.Voting do
     end
   end
   
-  def get_ballot_for(username) do
-    Ballots.get_ballot_by_username(username)
-  end
-
+  def get_ballot_for(username), do: Ballots.get_ballot_by_username(username)
+  defdelegate save_ballot(ballot), to: Ballots
+  
   @spec vote(Ballot.t(), String.t(), String.t()) :: {:ok | :invalid_vote, Ballot.t()}
   def vote(ballot, category_name, contestant_name) do
     with {:get_category_vote, %Vote{} = category_vote_entry} <- {:get_category_vote, Ballots.get_vote_by_category(ballot, category_name)},
@@ -63,6 +62,12 @@ defmodule AwardsVoter.Context.Voting do
       nil -> {:invalid_vote, vote}
       cont -> {:ok, %{vote | contestant: cont}}
     end
+  end
+  
+  def multi_vote(ballot, vote_map) do
+    Enum.reduce(vote_map, {:ok, ballot}, fn {category, contestant}, {:ok, updated_ballot} ->
+      vote(updated_ballot, category, contestant)
+    end)
   end
 
   @spec is_winning_vote?(Vote.t()) :: boolean()
