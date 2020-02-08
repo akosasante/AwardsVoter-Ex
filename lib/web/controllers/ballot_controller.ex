@@ -53,11 +53,12 @@ defmodule AwardsVoter.Web.BallotController do
       {:ok, ballot} -> 
         {:ok, updated_ballot} = Voting.multi_vote(ballot, vote_map)
         {:ok, saved_ballot} = Voting.save_ballot(updated_ballot)
-        render(conn, "show.html", ballot: ballot, show_name: show_name)
+        redirect(conn, to: Routes.ballot_path(conn, :show, show_name, voter_name))
       e -> 
-        Logger.error("Error during update #{inspect e}")
-        render(conn, "index.html")
+        Logger.error("Error during updating ballot #{inspect e}")
+        conn
+        |> put_flash(:error, "Something went wrong when saving your ballot :(")
+        |> redirect(to: Routes.ballot_path(conn, :index))
     end
-    :ok
   end
 end
