@@ -31,4 +31,4 @@ test_categories = category_names \
                   end)
 {:ok, test_show} = Shows.create_show(%{name: "My Grammys 2019", categories: test_categories |> Enum.map(&Admin.category_to_map/1)})
 
-{:ok, test_ballot} = Ballots.create_ballot_from_show_or_catgories("KwasiVotesXYZ", test_show)
+{:ok, test_ballot} = Ballots.create_ballot_from_show_or_categories("KwasiVotesXYZ", test_show)

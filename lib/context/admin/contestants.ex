@@ -8,7 +8,7 @@ defmodule AwardsVoter.Context.Admin.Contestants do
   
   @type change_result :: {:ok, Contestant.t()} | {:errors, Changeset.t()}
 
-  @spec create_contestant(map()) :: change_result
+  @spec create_contestant(map()) :: change_result()
   def create_contestant(attrs \\ %{}) do
     cs = Contestant.changeset(%Contestant{}, attrs)
     if cs.valid? do
@@ -19,7 +19,7 @@ defmodule AwardsVoter.Context.Admin.Contestants do
     end
   end
   
-  @spec update_contestant(Contestant.t(), map()) :: change_result
+  @spec update_contestant(Contestant.t(), map()) :: change_result()
   def update_contestant(%Contestant{} = orig_contestant, attrs) do
     cs = Contestant.changeset(orig_contestant, attrs)
     if cs.valid? do

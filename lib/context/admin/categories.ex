@@ -8,7 +8,7 @@ defmodule AwardsVoter.Context.Admin.Categories do
   
   @type change_result :: {:ok, Category.t()} | {:errors, Changeset.t()}
 
-  @spec create_category(map()) :: change_result
+  @spec create_category(map()) :: change_result()
   def create_category(attrs \\ %{}) do
     cs = Category.changeset(%Category{}, attrs)
     if cs.valid? do
@@ -19,7 +19,7 @@ defmodule AwardsVoter.Context.Admin.Categories do
     end
   end
 
-  @spec update_category(Category.t(), map()) :: change_result
+  @spec update_category(Category.t(), map()) :: change_result()
   def update_category(%Category{} = orig_category, attrs) do
     cs = Category.changeset(orig_category, attrs)
     if cs.valid? do

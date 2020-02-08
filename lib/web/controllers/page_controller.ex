@@ -1,6 +1,8 @@
 defmodule AwardsVoter.Web.PageController do
   use AwardsVoter.Web, :controller
   
+  alias AwardsVoter.Context.Admin
+  
   require Logger
 
   def index(conn, _params) do
