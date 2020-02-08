@@ -15,16 +15,21 @@ defmodule AwardsVoter.Context.Voting.Votes.Voter do
     defstruct [:ballot_state, :show, :ballot, :score]
   end
   # TODO: Maybe have spec on at least the client API?
-  def via_tuple(name), do: {:via, Registry, {Registry.Voter, name}}
+#  def via_tuple(name), do: {:via, Registry, {Registry.Voter, name}}
 
   # Client API
-  def start_link([voter_name, show]) do
-    GenServer.start_link(__MODULE__, {voter_name, show}, name: via_tuple(voter_name))
+  def start_link(_args) do
+    open_table()
+    GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
+  end
+  
+  def start_new_ballot(ballot) do
+    GenServer.call(__MODULE__, {:new_ballot, ballot})
   end
 
   @spec get_ballot(GenServer.server()) :: :ok
   def get_ballot(voter) do
-    GenServer.call(voter, {:get_ballot})
+    GenServer.call(__MODULE__, {:get_ballot, voter})
   end
 
   @spec reset_show(GenServer.server(), Show.t()) :: :ok
@@ -58,37 +63,42 @@ defmodule AwardsVoter.Context.Voting.Votes.Voter do
   end
 
   # Server Callbacks
-  def init({voter_name, show}, close_dets_after \\ Mix.env() == :test) do
+  def init(_args) do
     # Set up an DETS table to store voter ballots
-    {:ok, _name} = :dets.open_file(@voter_ballot_table, [])
-    send(self(), {:set_state, voter_name, show})
+#    {:ok, _name} = :dets.open_file(@voter_ballot_table, [])
+#    send(self(), {:set_state, voter_name, show})
+#
+#    return_value = case fresh_state(voter_name, show) do
+#      {:error, reason} ->
+#        Logger.error("Encountered an error setting initial state: #{inspect reason}")
+#        {:stop, reason}
+#
+#
+#      valid_state ->
+#        {:ok, valid_state}
+#    end
+#
+#    if close_dets_after do
+#      :dets.close(@voter_ballot_table)
+#    end
 
-    return_value = case fresh_state(voter_name, show) do
-      {:error, reason} ->
-        Logger.error("Encountered an error setting initial state: #{inspect reason}")
-        {:stop, reason}
-
-
-      valid_state ->
-        {:ok, valid_state}
-    end
-
-    if close_dets_after do
-      :dets.close(@voter_ballot_table)
-    end
-
-    return_value
+    Logger.info("Starting Voter Server")
+    {:ok, @voter_ballot_table}
+  end
+  
+  def handle_call({:new_ballot, ballot}, _from, state) do
+    Logger.debug "Handling :new_ballot call"
+    res = :dets.insert(@voter_ballot_table, {ballot.voter, ballot})
+    {:reply, res, state}
   end
 
-  def handle_call({:get_ballot}, _from, state) do
-    case :dets.lookup(@voter_ballot_table, state.ballot.voter) do
-      [] ->
-        Logger.info "Nothing found"
-        reply_success(state)
-      [{_key, saved_state}] ->
-        Logger.info "Found something"
-        reply_success(saved_state)
+  def handle_call({:get_ballot, voter}, _from, state) do
+    Logger.debug "Handling :get_ballot #{inspect voter} call"
+    ballot = case :dets.lookup(@voter_ballot_table, voter) do
+      [] -> :not_found
+      [{_key, saved_ballot}] -> saved_ballot
     end
+    {:reply, ballot, state}
   end
 
   def handle_call({:reset_show, show}, _from, state) do
@@ -223,6 +233,17 @@ defmodule AwardsVoter.Context.Voting.Votes.Voter do
     else
       :error -> {:error, :state_error}
       other_error -> {:error, other_error}
+    end
+  end
+  
+  defp open_table(close_dets_after \\ Mix.env() == :test) do
+    filepath = Path.absname("./ballots", File.cwd!())
+               |> Path.expand()
+               |> String.to_charlist()
+    {:ok, _name} = :dets.open_file(@voter_ballot_table, [file: filepath])
+    Logger.info("Opened DETS table at #{@voter_ballot_table}")
+    if close_dets_after do
+      :dets.close(@voter_ballot_table)
     end
   end
 end

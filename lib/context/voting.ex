@@ -1,5 +1,6 @@
 defmodule AwardsVoter.Context.Voting do
   alias __MODULE__
+  alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Voting.Votes
   alias AwardsVoter.Context.Voting.Ballots
   alias AwardsVoter.Context.Voting.Ballots.Ballot
@@ -7,6 +8,31 @@ defmodule AwardsVoter.Context.Voting do
   alias AwardsVoter.Context.Admin.Categories.Category
   
   require Logger
+
+  defdelegate change_ballot(ballot), to: Ballots
+  
+  @spec create_new_ballot(String.t(), Show.t()) :: Ballots.change_result() | :error
+  def create_new_ballot(username, show_name) do
+    with {:show, {:ok, show}} <- {:show, Admin.get_show_by_name(show_name)},
+         {:ballot, {:ok, ballot}} <- {:ballot, Ballots.create_ballot_from_show_or_categories(username, show)},
+         {:saved_ballot, {:ok, saved_ballot}} <- {:saved_ballot, Ballots.save_ballot(ballot)} do
+      {:ok, saved_ballot}
+    else
+      {:show, e} -> 
+        Logger.error("Error getting show (#{inspect show_name}, #{inspect e}")
+        :error
+      {:ballot, e} -> 
+        Logger.error("Error creating ballot: #{inspect e}")
+        :error
+      {:saved_ballot, e} ->
+        Logger.error("Error saving ballot: #{inspect e}")
+        :error
+    end
+  end
+  
+  def get_ballot_for(username) do
+    Ballots.get_ballot_by_username(username)
+  end
 
   @spec vote(Ballot.t(), String.t(), String.t()) :: {:ok | :invalid_vote, Ballot.t()}
   def vote(ballot, category_name, contestant_name) do

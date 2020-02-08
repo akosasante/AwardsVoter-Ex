@@ -4,7 +4,7 @@ defmodule AwardsVoter.Context.Voting.Votes do
 
   @type change_result :: {:ok, Vote.t()} | {:errors, Changeset.t()}
   
-  @spec create_vote(map()) :: change_result
+  @spec create_vote(map()) :: change_result()
   def create_vote(attrs \\ %{}) do
     cs = Vote.changeset(%Vote{}, attrs)
     if cs.valid? do

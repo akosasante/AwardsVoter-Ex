@@ -8,24 +8,28 @@ defmodule AwardsVoter.Context.Voting.Ballots do
   
   @type change_result :: {:ok, Ballot.t()} | {:errors, Changeset.t()}
 
-  @spec create_ballot(map()) :: change_result
+  @spec create_ballot(map()) :: change_result()
   def create_ballot(attrs \\ %{}) do
     cs = Ballot.changeset(%Ballot{}, attrs)
-    if cs.valid? do
-      {:ok, Changeset.apply_changes(cs)}
+    with true <- cs.valid?,
+         %Ballot{} = ballot <- Changeset.apply_changes(cs),
+         {:ok, saved_ballot} <- Ballot.save_ballot(ballot) do
+      {:ok, saved_ballot}
     else
-      cs = %{cs | action: :create}
-      {:errors, cs}
+      false -> 
+        cs = %{cs | action: :create}
+        {:errors, cs}
+      
     end
   end
 
-  @spec create_ballot_from_show_or_catgories(String.t(), %Show{} | list(%Category{})) :: change_result
-  def create_ballot_from_show_or_catgories(voter, show_or_categories) do
+  @spec create_ballot_from_show_or_categories(String.t(), %Show{} | list(%Category{})) :: change_result()
+  def create_ballot_from_show_or_categories(voter, show_or_categories) do
     votes = get_possible_votes_from_show_or_categories(show_or_categories)
     create_ballot(%{voter: voter, votes: votes})
   end
   
-  @spec update_ballot(Ballot.t(), map()) :: change_result
+  @spec update_ballot(Ballot.t(), map()) :: change_result()
   def update_ballot(%Ballot{} = orig_ballot, attrs) do
     cs = Ballot.changeset(orig_ballot, attrs)
     if cs.valid? do
@@ -36,7 +40,7 @@ defmodule AwardsVoter.Context.Voting.Ballots do
     end
   end
 
-  @spec update_ballot_with_vote(Ballot.t(), Vote.t()) :: change_result
+  @spec update_ballot_with_vote(Ballot.t(), Vote.t()) :: change_result()
   def update_ballot_with_vote(ballot, vote) do
     category = vote.category
     updated_votes = Enum.map(ballot.votes, fn
@@ -46,7 +50,7 @@ defmodule AwardsVoter.Context.Voting.Ballots do
     update_ballot(ballot, %{votes: updated_votes})
   end
 
-  @spec update_ballot_with_winners(Ballot.t(), list(Category.t())) :: change_result
+  @spec update_ballot_with_winners(Ballot.t(), list(Category.t())) :: change_result()
   def update_ballot_with_winners(ballot, categories) do
     updated_votes = Enum.map(ballot.votes, fn vote ->
       case Enum.find(categories, fn c -> c.name == vote.category.name end) do
@@ -55,6 +59,19 @@ defmodule AwardsVoter.Context.Voting.Ballots do
       end
     end)
     update_ballot(ballot, %{votes: updated_votes})
+  end
+  
+  @spec change_ballot(Ballot.t()) :: Changeset.t()
+  def change_ballot(%Ballot{} = ballot) do
+    Ballot.changeset(ballot, %{})
+  end
+  
+  def save_ballot(%Ballot{} = ballot) do
+    Ballot.save_ballot(ballot)
+  end
+  
+  def get_ballot_by_username(username) do
+    Ballot.get_ballot_by_voter(username)
   end
   
   @spec get_possible_votes_from_show_or_categories(%Show{categories: list(Category.t())}) :: list(Vote.t())

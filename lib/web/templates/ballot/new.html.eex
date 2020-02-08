@@ -1,4 +1,5 @@
-<%= form_for @conn, Routes.ballot_path(@conn, :create, @show_name), fn f -> %>
+<h1>New Ballot for <%= @show_name %></h1>
+<%= form_for @changeset, Routes.ballot_path(@conn, :create, @show_name), fn f -> %>
   <%= label f, :username %>
   <%= text_input f, :username %>
   
