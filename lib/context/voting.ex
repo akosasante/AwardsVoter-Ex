@@ -10,14 +10,14 @@ defmodule AwardsVoter.Context.Voting do
   require Logger
 
   defdelegate change_ballot(ballot), to: Ballots
-  defdelegate save_ballot(ballot), to: Ballots
+  defdelegate save_ballot(ballot, show_name), to: Ballots
   def get_ballot_for(username), do: Ballots.get_ballot_by_username(username)
   
   @spec create_new_ballot(String.t(), Show.t()) :: Ballots.change_result() | :error
   def create_new_ballot(username, show_name) do
     with {:show, {:ok, show}} <- {:show, Admin.get_show_by_name(show_name)},
          {:ballot, {:ok, ballot}} <- {:ballot, Ballots.create_ballot_from_show_or_categories(username, show)},
-         {:saved_ballot, {:ok, saved_ballot}} <- {:saved_ballot, Ballots.save_ballot(ballot)} do
+         {:saved_ballot, {:ok, saved_ballot}} <- {:saved_ballot, Ballots.save_ballot(ballot, show_name)} do
       {:ok, saved_ballot}
     else
       {:show, e} -> 

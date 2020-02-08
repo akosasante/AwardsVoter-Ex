@@ -12,9 +12,8 @@ defmodule AwardsVoter.Context.Voting.Ballots do
   def create_ballot(attrs \\ %{}) do
     cs = Ballot.changeset(%Ballot{}, attrs)
     with true <- cs.valid?,
-         %Ballot{} = ballot <- Changeset.apply_changes(cs),
-         {:ok, saved_ballot} <- Ballot.save_ballot(ballot) do
-      {:ok, saved_ballot}
+         %Ballot{} = ballot <- Changeset.apply_changes(cs) do
+      {:ok, ballot}
     else
       false -> 
         cs = %{cs | action: :create}

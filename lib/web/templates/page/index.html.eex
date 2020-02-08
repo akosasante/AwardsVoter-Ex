@@ -6,7 +6,7 @@
       <div>
         <span><%= link "Start Ballot", to: Routes.ballot_path(@conn, :new, show.name), class: "inline-block mx-2" %></span>
         <span><%= link "Continue Existing Ballot", to: Routes.ballot_path(@conn, :continue, show.name), class: "inline-block mx-2" %></span>
-        <span><%= link "See Scoreboard", to: "/", class: "inline-block mx-2" %></span>
+        <span><%= link "See Scoreboard", to: Routes.ballot_path(@conn, :scoreboard, show.name), class: "inline-block mx-2" %></span>
       </div>
     </div>
   <% end %>

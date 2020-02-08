@@ -79,6 +79,6 @@ defmodule AwardsVoter.Web.BallotController do
   end
   
   def scoreboard(conn, %{"show_name" => show_name}) do
-    
+    {:ok, scores} = Voting.get_scores_for_show(show_name)
   end
 end
