@@ -10,6 +10,8 @@ defmodule AwardsVoter.Context.Voting do
   require Logger
 
   defdelegate change_ballot(ballot), to: Ballots
+  defdelegate save_ballot(ballot), to: Ballots
+  def get_ballot_for(username), do: Ballots.get_ballot_by_username(username)
   
   @spec create_new_ballot(String.t(), Show.t()) :: Ballots.change_result() | :error
   def create_new_ballot(username, show_name) do
@@ -29,9 +31,6 @@ defmodule AwardsVoter.Context.Voting do
         :error
     end
   end
-  
-  def get_ballot_for(username), do: Ballots.get_ballot_by_username(username)
-  defdelegate save_ballot(ballot), to: Ballots
   
   @spec vote(Ballot.t(), String.t(), String.t()) :: {:ok | :invalid_vote, Ballot.t()}
   def vote(ballot, category_name, contestant_name) do

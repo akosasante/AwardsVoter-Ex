@@ -1,0 +1,9 @@
+<h1>Continue existing ballot for <%= @show_name %></h1>
+<%= form_for @changeset, Routes.ballot_path(@conn, :validate_continue, @show_name), fn f -> %>
+  <%= label f, :username %>
+  <%= text_input f, :username %>
+  
+  <div>
+    <%= submit "Continue" %>
+  </div>
+<% end %>

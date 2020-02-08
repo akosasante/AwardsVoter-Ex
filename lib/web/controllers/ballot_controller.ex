@@ -11,8 +11,24 @@ defmodule AwardsVoter.Web.BallotController do
     render(conn, "new.html", changeset: changeset, options: [], show_name: show_name)
   end
   
-  def continue do
-    
+  def continue(conn, %{"show_name" => show_name}) do
+    changeset = Voting.change_ballot(%Ballot{})
+    render(conn, "continue.html", changeset: changeset, options: [], show_name: show_name)
+  end
+  
+  def validate_continue(conn, %{"show_name" => show_name, "ballot" => %{"username" => username}}) do
+    case Voting.get_ballot_for(username) do
+      {:ok, ballot} -> redirect(conn, to: Routes.ballot_path(conn, :edit, show_name, username))
+      :not_found -> 
+        conn
+        |> put_flash(:error, "Username not found, please try again.")
+        |> redirect(to: Routes.ballot_path(conn, :continue, show_name))
+      e -> 
+        Logger.error("Could not validate continue_ballot step: #{inspect e}")
+        conn
+        |> put_flash(:error, "Something went wrong when attempting to fetch ballot")
+        |> redirect(to: Routes.page_path(conn, :index))
+    end
   end
   
   def create(conn, %{"ballot" => %{"username" => username}, "show_name" => show_name}) do
@@ -60,5 +76,9 @@ defmodule AwardsVoter.Web.BallotController do
         |> put_flash(:error, "Something went wrong when saving your ballot :(")
         |> redirect(to: Routes.ballot_path(conn, :index))
     end
+  end
+  
+  def scoreboard(conn, %{"show_name" => show_name}) do
+    
   end
 end
