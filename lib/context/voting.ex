@@ -16,16 +16,16 @@ defmodule AwardsVoter.Context.Voting do
   @spec create_new_ballot(String.t(), Show.t()) :: Ballots.change_result() | :error
   def create_new_ballot(username, show_name) do
     with {:show, {:ok, show}} <- {:show, Admin.get_show_by_name(show_name)},
-         {:ballot, {:ok, ballot}} <- {:ballot, Ballots.create_ballot_from_show_or_categories(username, show)},
+         {:create_ballot, {:ok, ballot}} <- {:create_ballot, Ballots.create_ballot_from_show_or_categories(username, show)},
          {:saved_ballot, {:ok, saved_ballot}} <- {:saved_ballot, Ballots.save_ballot(ballot, show_name)} do
       {:ok, saved_ballot}
     else
       {:show, e} -> 
         Logger.error("Error getting show (#{inspect show_name}, #{inspect e}")
         :error
-      {:ballot, e} -> 
+      {:create_ballot, e} -> 
         Logger.error("Error creating ballot: #{inspect e}")
-        :error
+        e
       {:saved_ballot, e} ->
         Logger.error("Error saving ballot: #{inspect e}")
         :error

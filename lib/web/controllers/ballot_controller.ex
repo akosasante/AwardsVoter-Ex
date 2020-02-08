@@ -32,11 +32,18 @@ defmodule AwardsVoter.Web.BallotController do
   end
   
   def create(conn, %{"ballot" => %{"username" => username}, "show_name" => show_name}) do
-    case Voting.create_new_ballot(username, show_name) do
-      {:ok, ballot} ->
+    with {:get_ballot, :not_found} <- {:get_ballot, Voting.get_ballot_for(username, show_name)},
+         {:create_ballot, {:ok, ballot}} <- {:create_ballot, Voting.create_new_ballot(username, show_name)} do
+      conn
+      |> redirect(to: Routes.ballot_path(conn, :edit, show_name, username))
+    else
+      {:get_ballot, ballot} -> 
         conn
-        |> redirect(to: Routes.ballot_path(conn, :edit, show_name, username))
-      {:errors, %Ecto.Changeset{} = changeset} -> render(conn, "new.html", changeset: changeset, options: [])
+        |> put_flash(:error, "That username is already in use for this show")
+        |> redirect(to: Routes.ballot_path(conn, :new, show_name))
+      {:create_ballot, {:errors, %Ecto.Changeset{} = changeset}} -> render(conn, "new.html", changeset: changeset, show_name: show_name, options: [])
+      e -> Logger.error(inspect e)
+           redirect(conn, to: Routes.ballot_path(conn, :new, show_name))
     end
   end
   
