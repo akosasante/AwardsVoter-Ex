@@ -52,7 +52,9 @@ defmodule AwardsVoter.Context.Admin do
     with {:ok, show} <- Shows.get_show_by_name(show_name), 
          {:ok, _category} <- Categories.create_category(category_map),
          updated_show <- put_in(show.categories, [category_map | show.categories]) do
-      Shows.update_show(show, show_to_map(updated_show))
+      res = Shows.update_show(show, show_to_map(updated_show))
+      Voting.update_ballots_for_show(show)
+      res
     else
       {:errors, cs} -> {:errors, cs}
       _ -> :failed_to_add
@@ -69,7 +71,7 @@ defmodule AwardsVoter.Context.Admin do
         %{name: ^category_name} -> category_to_map(updated_category)
         non_matching_category -> category_to_map(non_matching_category)
       end)
-      Shows.update_show(show, %{categories: updated_categories})
+      update_show_and_ballots(show, updated_categories)
     end
   end
 
@@ -78,7 +80,7 @@ defmodule AwardsVoter.Context.Admin do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          updated_category_list <- Enum.filter(show.categories, fn %{name: name} -> name != category_name end)
                                   |> Enum.map(&category_to_map/1) do
-      Shows.update_show(show, %{categories: updated_category_list})
+      update_show_and_ballots(show, updated_category_list)
     end
   end
 
@@ -105,7 +107,7 @@ defmodule AwardsVoter.Context.Admin do
                                                     %{name: ^category_name} -> category_to_map(updated_category)
                                                     non_matching_category -> category_to_map(non_matching_category)
                                                   end) do
-      Shows.update_show(show, %{categories: updated_categories})
+      update_show_and_ballots(show, updated_categories)
     end
   end
   
@@ -125,7 +127,7 @@ defmodule AwardsVoter.Context.Admin do
            %{name: ^category_name} = category -> category_to_map(%{category | contestants: updated_contestants})
            non_matching_category -> category_to_map(non_matching_category)
          end) do
-      Shows.update_show(show, %{categories: updated_categories})
+      update_show_and_ballots(show, updated_categories)
     end
   end
   
@@ -133,12 +135,12 @@ defmodule AwardsVoter.Context.Admin do
   def delete_contestant_from_show_category(show_name, category_name, contestant_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
-         updated_category = %{category | contestants: Enum.filter(category.contestants, fn con -> con.name != contestant_name end)},
+         updated_category <- update_category_after_contestant_delete(show, category, contestant_name),
          updated_categories <- show.categories |> Enum.map(fn
            %{name: ^category_name} -> category_to_map(updated_category)
            non_matching_category -> category_to_map(non_matching_category)
          end) do
-      Shows.update_show(show, %{categories: updated_categories})
+      update_show_and_ballots(show, updated_categories)
     end
   end
   
@@ -152,9 +154,7 @@ defmodule AwardsVoter.Context.Admin do
            %{name: ^category_name} -> category_to_map(updated_category)
            non_matching_category -> category_to_map(non_matching_category)
          end) do
-      res = Shows.update_show(show, %{categories: updated_categories})
-      Voting.update_ballots_for_show(show)
-      res
+      update_show_and_ballots(show, updated_categories)
     else
       {:contestant, nil} -> :invalid_winner
       e -> e
@@ -181,4 +181,19 @@ defmodule AwardsVoter.Context.Admin do
   end
   def show_to_map(%{} = show), do: show
   def show_to_map(nil), do: nil
+  
+  defp update_show_and_ballots(show, updated_categories) do
+    {:ok, show} = res = Shows.update_show(show, %{categories: updated_categories})
+    Voting.update_ballots_for_show(show)
+    res
+  end
+
+  defp update_category_after_contestant_delete(show, category, contestant_name) do
+    updated_category = %{category | contestants: Enum.filter(category.contestants, fn con -> con.name != contestant_name end)}
+    updated_category = cond do
+      is_nil(category.winner) -> updated_category
+      category.winner.name == contestant_name -> %{ updated_category | winner: nil }
+      true -> updated_category
+    end
+  end
 end
