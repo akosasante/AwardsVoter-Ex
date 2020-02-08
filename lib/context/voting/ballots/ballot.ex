@@ -29,8 +29,8 @@ defmodule AwardsVoter.Context.Voting.Ballots.Ballot do
     |> validate_required([:voter])
   end
   
-  def save_ballot(ballot, voter_mod \\ Voter) do
-    case voter_mod.start_new_ballot(ballot) do
+  def save_ballot(ballot, show_name, voter_mod \\ Voter) do
+    case voter_mod.save_ballot(ballot, show_name) do
       :ok -> {:ok, ballot}
       {:error, e} ->
         Logger.error("Due to #{inspect e} failed to save ballot #{inspect ballot}")
@@ -38,11 +38,11 @@ defmodule AwardsVoter.Context.Voting.Ballots.Ballot do
     end
   end
   
-  def get_ballot_by_voter(voter_name, voter_mod \\ Voter) do
-    case voter_mod.get_ballot(voter_name) do
+  def get_ballot_by_voter_and_show(voter_name, show_name, voter_mod \\ Voter) do
+    case voter_mod.get_ballot_by_voter_and_show(voter_name, show_name) do
       :not_found -> :not_found
       {:error, reason} ->
-        Logger.error("Due to #{inspect reason} failed to lookup ballot for #{inspect voter_name}")
+        Logger.error("Due to #{inspect reason} failed to lookup ballot for #{inspect voter_name} and #{inspect voter_name}")
         :error_finding
       show -> {:ok, show}
     end

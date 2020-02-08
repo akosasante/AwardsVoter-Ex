@@ -11,7 +11,7 @@ defmodule AwardsVoter.Context.Voting do
 
   defdelegate change_ballot(ballot), to: Ballots
   defdelegate save_ballot(ballot, show_name), to: Ballots
-  def get_ballot_for(username), do: Ballots.get_ballot_by_username(username)
+  def get_ballot_for(username, show_name), do: Ballots.get_ballot_by_username_and_show(username, show_name)
   
   @spec create_new_ballot(String.t(), Show.t()) :: Ballots.change_result() | :error
   def create_new_ballot(username, show_name) do

@@ -11,14 +11,11 @@ defmodule AwardsVoter.Context.Voting.Ballots do
   @spec create_ballot(map()) :: change_result()
   def create_ballot(attrs \\ %{}) do
     cs = Ballot.changeset(%Ballot{}, attrs)
-    with true <- cs.valid?,
-         %Ballot{} = ballot <- Changeset.apply_changes(cs) do
-      {:ok, ballot}
+    if cs.valid? do
+      {:ok, Changeset.apply_changes(cs)}
     else
-      false -> 
-        cs = %{cs | action: :create}
-        {:errors, cs}
-      
+      cs = %{cs | action: :create}
+      {:errors, cs}
     end
   end
 
@@ -65,12 +62,12 @@ defmodule AwardsVoter.Context.Voting.Ballots do
     Ballot.changeset(ballot, %{})
   end
   
-  def save_ballot(%Ballot{} = ballot) do
-    Ballot.save_ballot(ballot)
+  def save_ballot(%Ballot{} = ballot, show_name) do
+    Ballot.save_ballot(ballot, show_name)
   end
   
-  def get_ballot_by_username(username) do
-    Ballot.get_ballot_by_voter(username)
+  def get_ballot_by_username_and_show(username, show_name) do
+    Ballot.get_ballot_by_voter_and_show(username, show_name)
   end
   
   @spec get_possible_votes_from_show_or_categories(%Show{categories: list(Category.t())}) :: list(Vote.t())

@@ -6,7 +6,7 @@ defmodule AwardsVoter.Web.BallotView do
       <%= for contestant <- vote.category.contestants do %>
         <%= label do %>
         <span><%= contestant.name %></span>
-        <%= radio_button form, String.to_atom(vote.category.name), contestant.name, checked: contestant.name == Map.get(vote.contestant, :name) %>
+        <%= radio_button form, String.to_atom(vote.category.name), contestant.name, checked: contestant.name == get_in(vote.contestant, [:name]) %>
       <% end %>
       <% end %>
     """

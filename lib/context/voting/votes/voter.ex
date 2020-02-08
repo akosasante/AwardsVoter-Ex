@@ -23,13 +23,12 @@ defmodule AwardsVoter.Context.Voting.Votes.Voter do
     GenServer.start_link(__MODULE__, :ok, name: __MODULE__)
   end
   
-  def start_new_ballot(ballot) do
-    GenServer.call(__MODULE__, {:new_ballot, ballot})
+  def save_ballot(ballot, show_name) do
+    GenServer.call(__MODULE__, {:upsert_ballot, ballot, show_name})
   end
 
-  @spec get_ballot(GenServer.server()) :: :ok
-  def get_ballot(voter) do
-    GenServer.call(__MODULE__, {:get_ballot, voter})
+  def get_ballot_by_voter_and_show(voter, show) do
+    GenServer.call(__MODULE__, {:get_ballot, voter, show})
   end
 
   @spec reset_show(GenServer.server(), Show.t()) :: :ok
@@ -86,15 +85,15 @@ defmodule AwardsVoter.Context.Voting.Votes.Voter do
     {:ok, @voter_ballot_table}
   end
   
-  def handle_call({:new_ballot, ballot}, _from, state) do
-    Logger.debug "Handling :new_ballot call"
-    res = :dets.insert(@voter_ballot_table, {ballot.voter, ballot})
+  def handle_call({:upsert_ballot, ballot, show_name}, _from, state) do
+    Logger.debug "Handling :upsert_ballot {#{show_name}_#{ballot.voter}} call"
+    res = :dets.insert(@voter_ballot_table, {{show_name, ballot.voter}, ballot})
     {:reply, res, state}
   end
 
-  def handle_call({:get_ballot, voter}, _from, state) do
-    Logger.debug "Handling :get_ballot #{inspect voter} call"
-    ballot = case :dets.lookup(@voter_ballot_table, voter) do
+  def handle_call({:get_ballot, voter, show}, _from, state) do
+    Logger.debug "Handling :get_ballot #{inspect voter}/#{inspect show} call"
+    ballot = case :dets.lookup(@voter_ballot_table, {show, voter}) do
       [] -> :not_found
       [{_key, saved_ballot}] -> saved_ballot
     end

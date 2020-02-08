@@ -17,7 +17,7 @@ defmodule AwardsVoter.Web.BallotController do
   end
   
   def validate_continue(conn, %{"show_name" => show_name, "ballot" => %{"username" => username}}) do
-    case Voting.get_ballot_for(username) do
+    case Voting.get_ballot_for(username, show_name) do
       {:ok, ballot} -> redirect(conn, to: Routes.ballot_path(conn, :edit, show_name, username))
       :not_found -> 
         conn
@@ -35,13 +35,13 @@ defmodule AwardsVoter.Web.BallotController do
     case Voting.create_new_ballot(username, show_name) do
       {:ok, ballot} ->
         conn
-        |> redirect(to: Routes.ballot_path(conn, :show, show_name, username))
+        |> redirect(to: Routes.ballot_path(conn, :edit, show_name, username))
       {:errors, %Ecto.Changeset{} = changeset} -> render(conn, "new.html", changeset: changeset, options: [])
     end
   end
   
   def show(conn, %{"show_name" => show_name, "voter_name" => voter_name}) do
-    case Voting.get_ballot_for(voter_name) do
+    case Voting.get_ballot_for(voter_name, show_name) do
       {:ok, ballot} -> render(conn, "show.html", ballot: ballot, show_name: show_name)
       e ->
         Logger.error("Error during Voting.get_ballot_for(#{inspect e})")
@@ -52,8 +52,9 @@ defmodule AwardsVoter.Web.BallotController do
   end
   
   def edit(conn, %{"show_name" => show_name, "voter_name" => voter_name}) do
-    case Voting.get_ballot_for(voter_name) do
+    case Voting.get_ballot_for(voter_name, show_name) do
       {:ok, ballot} -> 
+      IO.inspect(ballot)
         changeset = Voting.change_ballot(ballot)
         render(conn, "edit.html", changeset: changeset, show_name: show_name, options: [method: "put"])
       e ->
@@ -65,7 +66,7 @@ defmodule AwardsVoter.Web.BallotController do
   end
   
   def update(conn, %{"ballot" => vote_map, "voter_name" => voter_name, "show_name" => show_name}) do
-    case Voting.get_ballot_for(voter_name) do
+    case Voting.get_ballot_for(voter_name, show_name) do
       {:ok, ballot} -> 
         {:ok, updated_ballot} = Voting.multi_vote(ballot, vote_map)
         {:ok, saved_ballot} = Voting.save_ballot(updated_ballot)
