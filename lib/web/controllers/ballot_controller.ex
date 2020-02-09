@@ -82,7 +82,7 @@ defmodule AwardsVoter.Web.BallotController do
         Logger.error("Error during updating ballot #{inspect e}")
         conn
         |> put_flash(:error, "Something went wrong when saving your ballot :(")
-        |> redirect(to: Routes.ballot_path(conn, :index))
+        |> redirect(to: Routes.ballot_path(conn, :edit, show_name, voter_name))
     end
   end
   
