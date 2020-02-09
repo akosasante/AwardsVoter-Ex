@@ -2,7 +2,7 @@ defmodule AwardsVoter.Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", AwardsVoter.Web.RoomChannel
+  channel "ballots:*", AwardsVoter.Web.BallotChannel
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After

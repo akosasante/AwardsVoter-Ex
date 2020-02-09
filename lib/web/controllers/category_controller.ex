@@ -57,7 +57,7 @@ defmodule AwardsVoter.Web.CategoryController do
     case Admin.delete_show_category(show_name, name) do
       {:ok, _show} ->
         conn
-        |> put_flash(:info, "Contestant deleted successfully.")
+        |> put_flash(:info, "Category deleted successfully.")
         |> redirect(to: Routes.show_path(conn, :show, show_name))
     end
   end
@@ -65,6 +65,7 @@ defmodule AwardsVoter.Web.CategoryController do
   def set_winner(conn, %{"show_name" => show_name, "category_name" => category_name, "contestant_name" => winner}) do
     case Admin.set_winner_for_show_category(show_name, category_name, winner) do
       {:ok, _show} ->
+        AwardsVoter.Web.Endpoint.broadcast!("ballots:#{URI.encode(show_name)}", "update_scores", %{})
         conn
         |> put_flash(:info, "Category updated successfully")
         |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
