@@ -1,0 +1,5 @@
+<h1>Adding New Contestant</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.show_category_contestant_path(@conn, :create, @show_name, @category_name)) %>
+
+<span><%= link "Back", to: Routes.show_category_path(@conn, :show, @show_name, @category_name) %></span>
