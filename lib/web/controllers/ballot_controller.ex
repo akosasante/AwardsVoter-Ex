@@ -3,6 +3,7 @@ defmodule AwardsVoter.Web.BallotController do
   
   alias AwardsVoter.Context.Voting
   alias AwardsVoter.Context.Voting.Ballots.Ballot
+  alias Phoenix.LiveView
   
   require Logger
   
@@ -86,7 +87,6 @@ defmodule AwardsVoter.Web.BallotController do
   end
   
   def scoreboard(conn, %{"show_name" => show_name}) do
-    scores = Voting.get_scores_for_show(show_name)
-    render(conn, "scoreboard.html", scores: scores, show_name: show_name)
+    live_render(conn, AwardsVoter.Web.ScoreboardView, session: %{"show_name" => show_name})
   end
 end

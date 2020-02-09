@@ -43,7 +43,9 @@ defmodule AwardsVoter.MixProject do
       {:jason, "~> 1.1"},
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 0.5", only: [:dev], runtime: false}
+      {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
+      {:phoenix_live_view, "~> 0.5.1"},
+      {:floki, ">= 0.0.0", only: :test}
     ]
   end
 

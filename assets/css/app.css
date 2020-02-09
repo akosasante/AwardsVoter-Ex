@@ -49,4 +49,5 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+@import "../../deps/phoenix_live_view/assets/css/live_view.css"
 
