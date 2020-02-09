@@ -67,6 +67,9 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
+config :awards_voter,
+  environment: :dev
+
 # Configure your database
 #config :awards_voter, AwardsVoter.Repo,
 #  username: "postgres",

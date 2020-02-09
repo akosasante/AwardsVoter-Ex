@@ -17,6 +17,9 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+config :awards_voter,
+       environment: :prod
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

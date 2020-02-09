@@ -74,7 +74,7 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowManager do
     :dets.close(@show_table)
   end
 
-  defp open_table(close_dets_after \\ Mix.env() == :test) do
+  defp open_table(close_dets_after \\ Application.get_env(:awards_voter, :environment) == :test) do
     filepath = Path.absname("../awards_voter/shows", File.cwd!())
                |> Path.expand
                |> String.to_charlist()

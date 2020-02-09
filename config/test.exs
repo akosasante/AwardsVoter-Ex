@@ -11,7 +11,8 @@ config :logger, level: :warn
 
 config :awards_voter,
    voter_ballots_table: :test_voter_ballots,
-   show_table: :test_show_table
+   show_table: :test_show_table,
+   environment: :test
 
 # Configure your database
 #config :awards_voter, AwardsVoter.Repo,
