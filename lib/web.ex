@@ -23,6 +23,7 @@ defmodule AwardsVoter.Web do
 
       import Plug.Conn
       import AwardsVoter.Web.Gettext
+      import Phoenix.LiveView.Controller
       alias AwardsVoter.Web.Router.Helpers, as: Routes
     end
   end
@@ -41,6 +42,7 @@ defmodule AwardsVoter.Web do
 
       import AwardsVoter.Web.ErrorHelpers
       import AwardsVoter.Web.Gettext
+      import Phoenix.LiveView.Helpers
       alias AwardsVoter.Web.Router.Helpers, as: Routes
     end
   end
@@ -50,6 +52,7 @@ defmodule AwardsVoter.Web do
       use Phoenix.Router
       import Plug.Conn
       import Phoenix.Controller
+      import Phoenix.LiveView.Router
     end
   end
 
