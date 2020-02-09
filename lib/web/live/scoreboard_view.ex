@@ -4,16 +4,14 @@ defmodule AwardsVoter.Web.ScoreboardView do
   alias AwardsVoter.Context.Voting
   
   def render(assigns) do
-    ~L"""
-    <div><%= inspect @scores %></div>
-    """
+    AwardsVoter.Web.BallotView.render("scoreboard.html", assigns)
   end
   
   def mount(session, socket) do
     show_name = session["show_name"]
     if connected?(socket), do: AwardsVoter.Web.Endpoint.subscribe("ballots:#{URI.encode(show_name)}")
     scores = Voting.get_scores_for_show(show_name)
-    {:ok, assign(socket, scores: scores)}
+    {:ok, assign(socket, scores: scores, show_name: show_name)}
   end
   
   def handle_info(%{event: "update_scores", topic: "ballots:" <> show_name} = chanel, socket) do
