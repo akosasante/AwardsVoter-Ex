@@ -17,7 +17,12 @@ jobs:
       - name: Build elixir files
         run: |
           touch config/releases.exs
-          `echo -e "import Config\nconfig :awards_voter, AwardsVoter.Web.Endpoint,\n  secret_key_base: \"${{ secrets.KEYBASE }}\",\n  server: true" > config/releases.exs`
+          cat <<EOT >> config/releases.exs
+          import Config
+          config :awards_voter, AwardsVoter.Web.Endpoint,
+            secret_key_base: "6WNujy3wMK3h4/FYg48O6Lix4DradBttn+TlDWNavbtA26SnO34jWqNuQ3X2YL61",
+            server: true
+          EOT
           cat config/releases.exs
           mix local.rebar --force
           mix local.hex --force
