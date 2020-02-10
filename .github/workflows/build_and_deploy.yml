@@ -16,6 +16,9 @@ jobs:
           node-version: '11.x'
       - name: Build elixir files
         run: |
+          mkdir config
+          touch config/releases.exs
+          echo -e "import Config\nconfig :awards_voter, AwardsVoter.Web.Endpoint,\n  secret_key_base: \"${{ secrets.KEYBASE }}\",\n  server: true" >> config/releases.exs
           mix local.rebar --force
           mix local.hex --force
           mix deps.get
