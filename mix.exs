@@ -46,7 +46,8 @@ defmodule AwardsVoter.MixProject do
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:phoenix_live_view, "~> 0.5.1"},
       {:floki, ">= 0.0.0", only: :test},
-      {:logster, "~> 1.0"}
+      {:logster, "~> 1.0"},
+      {:logger_file_backend, "~> 0.0.10"}
     ]
   end
 

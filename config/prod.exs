@@ -14,8 +14,17 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
   url: [host: "138.197.175.237"],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
-# Do not print debug messages in production
-config :logger, level: :info
+# Log to file in production
+config :logger,
+       backends: [{LoggerFileBackend, :error_log}]
+config :logger,
+       backends: [{LoggerFileBackend, :info_log}]
+config :logger, :info_log,
+       path: "/var/log/awards_predictor/info.log",
+       level: :info
+config :logger, :error_log,
+       path: "/var/log/awards_predictor/error.log",
+       level: :error
 
 config :awards_voter,
        environment: :prod
