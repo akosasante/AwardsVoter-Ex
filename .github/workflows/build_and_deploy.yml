@@ -30,9 +30,8 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           source: "_build/prod/**"
-          target: "~/Apps/awards_predictor"
+          target: "/opt/Apps/awards_predictor"
           
