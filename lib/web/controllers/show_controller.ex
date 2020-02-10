@@ -33,6 +33,31 @@ defmodule AwardsVoter.Web.ShowController do
         render(conn, "new.html", changeset: changeset, options: [])
     end
   end
+  
+  def create_json(conn, %{"show" => show_upload}) do
+    try do
+      parsed_show = File.read!(show_upload.path)
+      |> Jason.decode!(keys: :atoms)
+      case Admin.create_show(parsed_show) do
+        {:ok, show} ->
+          conn
+          |> put_flash(:info, "Show created successfully.")
+          |> redirect(to: Routes.show_path(conn, :show, show.name))
+  
+        {:errors, %Ecto.Changeset{} = changeset} ->
+          Logger.error("Errors with changeset: #{inspect changeset.errors}")
+          conn
+          |> put_flash(:error, "Could not create show")
+          |> redirect(to: Routes.show_path(conn, :index))
+      end
+    catch
+      e -> 
+        Logger.error("Error reading/parsing show json: #{inspect e}")
+        conn
+        |> put_flash(:error, "Could not create show")
+        |> redirect(to: Routes.show_path(conn, :index))
+    end
+  end
 
   def show(conn, %{"name" => name}) do
     case Admin.get_show_by_name(name) do

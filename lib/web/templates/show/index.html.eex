@@ -11,4 +11,13 @@
     </div>
   <% end %>
   <span><%= link "Add New Show", to: Routes.show_path(@conn, :new) %></span>
+  <div>
+    <%= form_for @conn, Routes.show_path(@conn, :create_json), [multipart: true], fn f -> %>
+      <div>
+        <label for="show_upload">Upload new show as JSON</label>
+        <%= file_input f, :show, accepts: ".json" %>
+      </div>
+      <div><button type="submit">Submit</button></div>
+    <% end %>
+  </div>
 </section>

@@ -23,6 +23,7 @@ defmodule AwardsVoter.Web.Router do
         resources "/contestants", ContestantController, param: "name", except: [:index]
       end
     end
+    post "/shows/show_json", ShowController, :create_json
     put "/shows/:show_name/categories/:category_name/set_winner/:contestant_name", CategoryController, :set_winner
   end
   
