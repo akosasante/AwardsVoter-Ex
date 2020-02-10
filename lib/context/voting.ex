@@ -1,7 +1,5 @@
 defmodule AwardsVoter.Context.Voting do
-  alias __MODULE__
   alias AwardsVoter.Context.Admin
-  alias AwardsVoter.Context.Voting.Votes
   alias AwardsVoter.Context.Voting.Ballots
   alias AwardsVoter.Context.Voting.Ballots.Ballot
   alias AwardsVoter.Context.Voting.Votes.Vote

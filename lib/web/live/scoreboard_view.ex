@@ -17,7 +17,7 @@ defmodule AwardsVoter.Web.ScoreboardView do
     {:ok, assign(socket, scores: scores, show_name: show_name)}
   end
   
-  def handle_info(%{event: "update_scores", topic: "ballots:" <> show_name} = chanel, socket) do
+  def handle_info(%{event: "update_scores", topic: "ballots:" <> show_name} = _channel, socket) do
     Logger.debug("Handling update_scores broadcast for: #{show_name}")
     show_name = URI.decode(show_name)
     scores = Voting.get_scores_for_show(show_name)

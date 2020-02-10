@@ -3,7 +3,6 @@ defmodule AwardsVoter.Web.BallotController do
   
   alias AwardsVoter.Context.Voting
   alias AwardsVoter.Context.Voting.Ballots.Ballot
-  alias Phoenix.LiveView
   
   require Logger
   
@@ -19,7 +18,9 @@ defmodule AwardsVoter.Web.BallotController do
   
   def validate_continue(conn, %{"show_name" => show_name, "ballot" => %{"username" => username}}) do
     case Voting.get_ballot_for(username, show_name) do
-      {:ok, ballot} -> redirect(conn, to: Routes.ballot_path(conn, :edit, show_name, username))
+      {:ok, ballot} -> 
+        changeset = Voting.change_ballot(ballot)
+        render(conn, "edit.html", changeset: changeset, show_name: show_name, options: [method: "put"])
       :not_found -> 
         conn
         |> put_flash(:error, "Username not found, please try again.")
@@ -34,11 +35,11 @@ defmodule AwardsVoter.Web.BallotController do
   
   def create(conn, %{"ballot" => %{"username" => username}, "show_name" => show_name}) do
     with {:get_ballot, :not_found} <- {:get_ballot, Voting.get_ballot_for(username, show_name)},
-         {:create_ballot, {:ok, ballot}} <- {:create_ballot, Voting.create_new_ballot(username, show_name)} do
-      conn
-      |> redirect(to: Routes.ballot_path(conn, :edit, show_name, username))
+         {:create_ballot, {:ok, new_ballot}} <- {:create_ballot, Voting.create_new_ballot(username, show_name)} do
+      changeset = Voting.change_ballot(new_ballot)
+      render(conn, "edit.html", changeset: changeset, show_name: show_name, options: [method: "put"])
     else
-      {:get_ballot, ballot} -> 
+      {:get_ballot, _ballot} -> 
         conn
         |> put_flash(:error, "That username is already in use for this show")
         |> redirect(to: Routes.ballot_path(conn, :new, show_name))
@@ -77,7 +78,7 @@ defmodule AwardsVoter.Web.BallotController do
       {:ok, ballot} -> 
         {:ok, updated_ballot} = Voting.multi_vote(ballot, vote_map)
         {:ok, saved_ballot} = Voting.save_ballot(updated_ballot, show_name)
-        redirect(conn, to: Routes.ballot_path(conn, :show, show_name, voter_name))
+        render(conn, "show.html", ballot: saved_ballot, show_name: show_name)
       e -> 
         Logger.error("Error during updating ballot #{inspect e}")
         conn

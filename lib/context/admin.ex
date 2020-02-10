@@ -135,7 +135,7 @@ defmodule AwardsVoter.Context.Admin do
   def delete_contestant_from_show_category(show_name, category_name, contestant_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
-         updated_category <- update_category_after_contestant_delete(show, category, contestant_name),
+         updated_category <- update_category_after_contestant_delete(category, contestant_name),
          updated_categories <- show.categories |> Enum.map(fn
            %{name: ^category_name} -> category_to_map(updated_category)
            non_matching_category -> category_to_map(non_matching_category)
@@ -188,9 +188,9 @@ defmodule AwardsVoter.Context.Admin do
     res
   end
 
-  defp update_category_after_contestant_delete(show, category, contestant_name) do
+  defp update_category_after_contestant_delete(category, contestant_name) do
     updated_category = %{category | contestants: Enum.filter(category.contestants, fn con -> con.name != contestant_name end)}
-    updated_category = cond do
+    cond do
       is_nil(category.winner) -> updated_category
       category.winner.name == contestant_name -> %{ updated_category | winner: nil }
       true -> updated_category

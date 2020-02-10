@@ -4,10 +4,7 @@ defmodule AwardsVoter.Context.Voting.Ballots.Ballot do
   
   alias __MODULE__
   alias Ecto.Changeset
-  alias AwardsVoter.Context.Admin.Shows.Show
-  alias AwardsVoter.Context.Admin.Categories.Category
   alias AwardsVoter.Context.Voting.Votes.Vote
-  alias AwardsVoter.Context.Voting.Votes
   alias AwardsVoter.Context.Voting.Votes.Voter
 
   require Logger
