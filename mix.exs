@@ -45,7 +45,8 @@ defmodule AwardsVoter.MixProject do
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
       {:phoenix_live_view, "~> 0.5.1"},
-      {:floki, ">= 0.0.0", only: :test}
+      {:floki, ">= 0.0.0", only: :test},
+      {:logster, "~> 1.0"}
     ]
   end
 
