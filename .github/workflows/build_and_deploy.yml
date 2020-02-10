@@ -31,6 +31,15 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
+          overwrite: true
           source: "_build/prod/**"
           target: "/opt/Apps/awards_predictor"
-          
+      - name: Start the app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /opt/Apps/awards_predictor
+            _build/prod/rel/awards_voter/bin/awards_voter start
