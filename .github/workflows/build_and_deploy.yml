@@ -31,7 +31,7 @@ jobs:
           npm run deploy --prefix ./assets
           mix deps.get --only prod
           MIX_ENV=prod mix compile
-          mix phx.digestx
+          mix phx.digest
           MIX_ENV=prod mix release
       - name: Stop the app
         uses: appleboy/ssh-action@master
