@@ -31,8 +31,18 @@ jobs:
           npm run deploy --prefix ./assets
           mix deps.get --only prod
           MIX_ENV=prod mix compile
-          mix phx.digest
+          mix phx.digestx
           MIX_ENV=prod mix release
+      - name: Stop the app
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          script: |
+            cd /opt/Apps/awards_predictor
+            _build/prod/rel/awards_voter/bin/awards_voter stop
+            _build/prod/rel/awards_voter/erts-10.5.2/bin/epmd -kill
       - name: Copy files to DO
         uses: appleboy/scp-action@master
         with:
@@ -50,4 +60,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd /opt/Apps/awards_predictor
-            _build/prod/rel/awards_voter/bin/awards_voter start
+            _build/prod/rel/awards_voter/bin/awards_voter daemon
