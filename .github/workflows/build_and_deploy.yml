@@ -40,10 +40,10 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
-            cd /opt/Apps/awards_predictor
-            _build/prod/rel/awards_voter/bin/awards_voter stop
-            sleep 10
-            _build/prod/rel/awards_voter/erts-10.5.2/bin/epmd -kill
+            #cd /opt/Apps/awards_predictor
+            #_build/prod/rel/awards_voter/bin/awards_voter stop
+            #sleep 10
+            #_build/prod/rel/awards_voter/erts-10.5.2/bin/epmd -kill
       - name: Copy files to DO
         uses: appleboy/scp-action@master
         with:
