@@ -8,8 +8,8 @@ defmodule AwardsVoter.Context.Admin.Shows do
 
   @type change_result :: {:ok, Show.t()} | {:errors, Changeset.t()}
   
-  @spec list_shows(module()) :: {:ok, list(Show.t())} | :error_fetching
-  def list_shows(show_manager), do: Show.get_all_shows(show_manager)
+  @spec list_shows :: {:ok, list(Show.t())} | :error_fetching
+  def list_shows, do: Show.get_all_shows()
 
   @spec get_show_by_name(String.t()) :: {:ok, Show.t()} | :not_found | :error_finding
   def get_show_by_name(name), do: Show.get_show_by_name(name)

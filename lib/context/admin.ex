@@ -20,7 +20,7 @@ defmodule AwardsVoter.Context.Admin do
       {:ok, [%Show{}, ...]}
 
   """
-  defdelegate list_shows(show_manager), to: Shows
+  defdelegate list_shows, to: Shows
 
   defdelegate get_show_by_name(name), to: Shows
   
@@ -177,7 +177,7 @@ defmodule AwardsVoter.Context.Admin do
   @spec show_to_map(Show.t() | map() | nil) :: map()
   def show_to_map(%Show{} = show) do
     show_map = Map.from_struct(show)
-    %{show_map | categories: Enum.map(show.categories, &show_to_map/1)}
+    %{show_map | categories: Enum.map(show.categories, &category_to_map/1)}
   end
   def show_to_map(%{} = show), do: show
   def show_to_map(nil), do: nil

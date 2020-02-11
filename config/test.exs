@@ -12,9 +12,7 @@ config :logger, level: :warn
 config :awards_voter,
    voter_ballots_table: :test_voter_ballots,
    show_table: :test_show_table,
-   environment: :test,
-   show_manager: AwardsVoter.Web.MockShowManager,
-   vote_manager: AwardsVoter.Web.MockVoteManager
+   environment: :test
 
 # Configure your database
 #config :awards_voter, AwardsVoter.Repo,

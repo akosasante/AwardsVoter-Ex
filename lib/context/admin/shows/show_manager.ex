@@ -75,7 +75,8 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowManager do
   end
 
   defp open_table(close_dets_after \\ Application.get_env(:awards_voter, :environment) == :test) do
-    filepath = Path.absname("./shows", File.cwd!())
+    file_name = Atom.to_string(@show_table)
+    filepath = Path.absname(file_name, File.cwd!())
                |> Path.expand
                |> String.to_charlist()
     {:ok, _name} = :dets.open_file(@show_table, [file: filepath])

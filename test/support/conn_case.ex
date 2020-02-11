@@ -14,12 +14,14 @@ defmodule AwardsVoter.Web.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  @show_table Application.get_env(:awards_voter, :show_table)
 
   using do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       alias AwardsVoter.Web.Router.Helpers, as: Routes
+      import AwardsVoter.TestFixtures
 
       # The default endpoint for testing
       @endpoint AwardsVoter.Web.Endpoint
@@ -28,5 +30,17 @@ defmodule AwardsVoter.Web.ConnCase do
 
   setup do
     {:ok, conn: Phoenix.ConnTest.build_conn()}
+  end
+
+  setup context do
+    if context[:do_show_setup] do
+      :dets.open_file(@show_table, [])
+      on_exit(fn ->
+        :dets.open_file(@show_table, [])
+        :dets.delete_all_objects(@show_table)
+        :dets.close(@show_table)
+      end)
+    end
+    :ok
   end
 end
