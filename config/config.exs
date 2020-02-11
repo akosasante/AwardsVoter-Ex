@@ -10,7 +10,9 @@ import Config
 config :awards_voter,
   voter_ballots_table: :voter_ballots,
   show_table: :shows,
-  environment: :prod
+  environment: :prod,
+  show_manager: AwardsVoter.Context.Admin.Shows.ShowManager,
+  vote_manager: AwardsVoter.Context.Voting.Votes.Voter
 
 # Configures the endpoint
 config :awards_voter, AwardsVoter.Web.Endpoint,

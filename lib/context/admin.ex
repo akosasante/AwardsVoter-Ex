@@ -20,7 +20,7 @@ defmodule AwardsVoter.Context.Admin do
       {:ok, [%Show{}, ...]}
 
   """
-  defdelegate list_shows, to: Shows
+  defdelegate list_shows(show_manager), to: Shows
 
   defdelegate get_show_by_name(name), to: Shows
   
