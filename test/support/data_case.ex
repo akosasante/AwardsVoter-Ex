@@ -13,11 +13,34 @@ defmodule AwardsVoter.DataCase do
 #  """
 #
   use ExUnit.CaseTemplate
-
+  @show_table Application.get_env(:awards_voter, :show_table)
+  @ballots_table Application.get_env(:awards_voter, :voter_ballots_table)
+  
   using do
     quote do
       import AwardsVoter.TestFixtures
     end
+  end
+
+  setup context do
+    if context[:do_show_setup] do
+      :dets.open_file(@show_table, [])
+      on_exit(fn ->
+        :dets.open_file(@show_table, [])
+        :dets.delete_all_objects(@show_table)
+        :dets.close(@show_table)
+      end)
+    end
+
+    if context[:do_ballots_setup] do
+      :dets.open_file(@ballots_table, [])
+      on_exit(fn ->
+        :dets.open_file(@ballots_table, [])
+        :dets.delete_all_objects(@ballots_table)
+        :dets.close(@ballots_table)
+      end)
+    end
+    :ok
   end
 #
 #  setup tags do
