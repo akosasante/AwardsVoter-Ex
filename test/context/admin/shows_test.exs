@@ -4,8 +4,6 @@ defmodule AwardsVoter.Context.Admin.ShowTest do
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Admin.Shows
   
-  @moduletag :do_show_setup
-
   describe "Shows.create_show/2" do
     test "calls save_or_update_shows method if changeset is valid" do
       defmodule ShowModuleCreateValid do
