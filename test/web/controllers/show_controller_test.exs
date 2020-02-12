@@ -2,6 +2,7 @@ defmodule AwardsVoter.Web.ShowControllerTest do
   use AwardsVoter.Web.ConnCase, async: true
   
   alias AwardsVoter.Context.Admin
+  alias AwardsVoter.Context.Admin.Shows.Show
   
   @show1_name "Test Show 1"
   @show2_name "Test Show 2"
@@ -103,5 +104,23 @@ defmodule AwardsVoter.Web.ShowControllerTest do
 
     assert redirected_to(delete_conn) == Routes.show_path(delete_conn, :index)
     assert redirected_to(get(conn, Routes.show_path(conn, :show, @show1_name))) == Routes.show_path(delete_conn, :index)
+  end
+  
+  test "POST :create_json creates a new show from json", %{conn: conn} do
+    upload = %Plug.Upload{path: "test/support/test_show.json", filename: "example.json"}
+    show_name = "62nd Grammy Awards"
+    parsed_show = File.read!(upload.path) |> Jason.decode!(keys: :atoms)
+    expected_show = Show.changeset(%Show{}, parsed_show) |> Ecto.Changeset.apply_changes()
+    show_name_uri = URI.encode(show_name)
+
+    create_conn = post(conn, Routes.show_path(conn, :create_json), show: upload)
+
+    assert %{name: ^show_name_uri} = redirected_params(create_conn)
+    assert redirected_to(create_conn) == Routes.show_path(create_conn, :show, show_name)
+
+    conn = get(conn, Routes.show_path(conn, :show, show_name))
+
+    assert html_response(conn, 200) =~ show_name
+    assert Admin.get_show_by_name(show_name) == {:ok, expected_show}
   end
 end
