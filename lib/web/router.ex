@@ -24,7 +24,7 @@ defmodule AwardsVoter.Web.Router do
       end
     end
     post "/shows/show_json", ShowController, :create_json
-    put "/shows/:show_name/categories/:category_name/set_winner/:contestant_name", CategoryController, :set_winner
+    put "/shows/:show_name/categories/:category_name/set_winner/:contestant_name", CategoryController, :set_winner, as: :show_category
   end
   
   scope "/", AwardsVoter.Web do

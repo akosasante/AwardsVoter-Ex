@@ -41,7 +41,7 @@ defmodule AwardsVoter.Web.ShowControllerTest do
     refute conn.resp_body =~ @show1_name
   end
   
-  test "GET :show shows details for selected show", %{conn: conn} do
+  test "GET :show displays details for selected show", %{conn: conn} do
     {:ok, _show} = saved_test_show(@show1_name)
     
     conn = get(conn, Routes.show_path(conn, :show, @show1_name))

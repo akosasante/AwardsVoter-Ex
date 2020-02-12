@@ -10,16 +10,25 @@ defmodule AwardsVoter.TestFixtures do
       name: name,
       categories: [
         %Category{
-          name: "Test Category 1",
+          name: "Test Category",
+          description: "This is simply a test category.",
+          winner: %Contestant{name: "Test Contestant 1"},
           contestants: [
             %Contestant{name: "Test Contestant 1"},
-            %Contestant{name: "Test Contestant 2"}
-          ]},
+            %Contestant{name: "Test Contestant 2"},
+            %Contestant{name: "Test Contestant 3"},
+            %Contestant{name: "Test Contestant 4"}
+          ]
+        },
         %Category{name: "Test Category 2"},
         %Category{name: "Test Category 3"},
         %Category{name: "Test Category 4"}
       ]
     }
+  end
+  
+  def test_category() do
+    test_show().categories |> Enum.at(0)
   end
   
   def saved_test_show(name \\ "Test Show") do
