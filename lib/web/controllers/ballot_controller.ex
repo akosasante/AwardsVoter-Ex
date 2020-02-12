@@ -41,7 +41,7 @@ defmodule AwardsVoter.Web.BallotController do
     else
       {:get_ballot, _ballot} -> 
         conn
-        |> put_flash(:error, "That username is already in use for this show")
+        |> put_flash(:error, "That username is already in use for this show. Enter username below to start a new ballot.")
         |> redirect(to: Routes.ballot_path(conn, :new, show_name))
       {:create_ballot, {:errors, %Ecto.Changeset{} = changeset}} -> render(conn, "new.html", changeset: changeset, show_name: show_name, options: [])
       e -> Logger.error(inspect e)

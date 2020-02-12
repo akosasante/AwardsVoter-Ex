@@ -5,8 +5,9 @@ defmodule AwardsVoter.Web.CategoryControllerTest do
 
   @moduletag :do_show_setup
 
-  defp category_count() do
-    Enum.count(test_show().categories)
+  defp category_count(show_name) do
+    {:ok, show} = Admin.get_show_by_name(show_name)
+    Enum.count(show.categories)
   end
   
 
@@ -64,13 +65,13 @@ defmodule AwardsVoter.Web.CategoryControllerTest do
 
   test "POST :create does not create category, renders errors on invalid", %{conn: conn} do
     {:ok, show} = saved_test_show()
-    count_before = category_count()
+    count_before = category_count(show.name)
     invalid_attrs = %{description: "check", name: nil}
 
     conn = post(conn, Routes.show_category_path(conn, :create, show.name), category: invalid_attrs)
 
     assert html_response(conn, 200) =~ "check the errors"
-    assert category_count() == count_before
+    assert category_count(show.name) == count_before
   end
 
   @tag :do_ballots_setup
