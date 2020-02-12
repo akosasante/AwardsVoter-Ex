@@ -30,6 +30,15 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowManagerTest do
   setup :setup_dets_file
 
   describe "Show Manager callbacks" do
+    test "handle_call :get_all should return all the shows in the table" do
+      show2_title = "Test Show #2"
+      show = test_show()
+      show2 = test_show(show2_title)
+      show_tuples = [{show.name, show}, {show2.name, show2}]
+      :dets.insert(@show_table, show_tuples)
+
+      assert {:reply, ^show_tuples, _state} = ShowManager.handle_call(:get_all, :pid, :show_table)
+    end
     test "handle_call {:lookup, key} should return :not_found if show not found in table" do
       assert {:reply, :not_found, _state} = ShowManager.handle_call({:lookup, test_show().name}, :pid, :show_table)
     end
