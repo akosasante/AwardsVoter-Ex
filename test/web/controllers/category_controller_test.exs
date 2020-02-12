@@ -29,7 +29,7 @@ defmodule AwardsVoter.Web.CategoryControllerTest do
     refute conn.resp_body =~ test_category().name
   end
 
-  test "GET :show displays details for selected category, redirects if not foound", %{conn: conn} do
+  test "GET :show displays details for selected category, redirects if not found", %{conn: conn} do
     {:ok, show} = saved_test_show()
     category = test_category()
 
@@ -118,13 +118,18 @@ defmodule AwardsVoter.Web.CategoryControllerTest do
   end
 
   @tag :do_ballots_setup
-  test "PUT :set_winner updates the winner of the category", %{conn: conn} do
+  test "PUT :set_winner updates the winner of the category and sends a broadcast", %{conn: conn} do
     {:ok, show} = saved_test_show()
+    channel_name = "ballots:#{URI.encode(show.name)}"
+    AwardsVoter.Web.Endpoint.subscribe(channel_name)
     category = test_category()
     new_winner = category.contestants |> Enum.at(1)
     updated_category = %{category | winner: new_winner}
 
     update_conn = put(conn, Routes.show_category_path(conn, :set_winner, show.name, category.name, new_winner.name))
+
+    assert_receive %Phoenix.Socket.Broadcast{event: "winner_updated", payload: %{}, topic: channel_name}
+    AwardsVoter.Web.Endpoint.unsubscribe(channel_name)
 
     assert redirected_to(update_conn) == Routes.show_category_path(update_conn, :show, show.name, category.name)
 

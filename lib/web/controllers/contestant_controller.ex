@@ -32,7 +32,8 @@ defmodule AwardsVoter.Web.ContestantController do
         conn
         |> put_flash(:info, "Contestant added successfully")
         |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))
-      {:errors, %Ecto.Changeset{} = changeset} -> render(conn, "new.html", changeset: changeset, options: [])
+      {:errors, %Ecto.Changeset{} = changeset} -> 
+        render(conn, "new.html", show_name: show_name, category_name: category_name, changeset: changeset, options: [])
     end
   end
   

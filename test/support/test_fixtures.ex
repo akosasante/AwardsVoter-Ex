@@ -28,7 +28,11 @@ defmodule AwardsVoter.TestFixtures do
   end
   
   def test_category() do
-    test_show().categories |> Enum.at(0)
+    test_show().categories |> hd
+  end
+  
+  def test_contestant() do
+    test_show().categories |> hd |> Map.get(:contestants) |> hd
   end
   
   def saved_test_show(name \\ "Test Show") do
