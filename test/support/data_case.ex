@@ -1,4 +1,4 @@
-#defmodule AwardsVoter.DataCase do
+defmodule AwardsVoter.DataCase do
 #  @moduledoc """
 #  This module defines the setup for tests requiring
 #  access to the application's data layer.
@@ -12,18 +12,13 @@
 #  of the test unless the test case is marked as async.
 #  """
 #
-#  use ExUnit.CaseTemplate
-#
-#  using do
-#    quote do
-#      alias AwardsVoter.Repo
-#
-#      import Ecto
-#      import Ecto.Changeset
-#      import Ecto.Query
-#      import AwardsVoter.DataCase
-#    end
-#  end
+  use ExUnit.CaseTemplate
+
+  using do
+    quote do
+      import AwardsVoter.TestFixtures
+    end
+  end
 #
 #  setup tags do
 #    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
@@ -50,4 +45,4 @@
 #      end)
 #    end)
 #  end
-#end
+end

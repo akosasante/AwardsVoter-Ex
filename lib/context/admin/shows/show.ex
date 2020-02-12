@@ -27,7 +27,7 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
   end
 
   @spec save_or_update_shows([Show.t()] | Show.t(), module()) :: {:ok, [Show.t()]} | :error_saving
-  def save_or_update_shows(show_or_shows,  show_manager_mod \\ ShowManager)
+  def save_or_update_shows(show_or_shows, show_manager_mod \\ ShowManager)
 
   def save_or_update_shows(shows, show_manager_mod) when is_list(shows) do
     show_tuples = Enum.map(shows, &({Map.get(&1, :name), &1}))
