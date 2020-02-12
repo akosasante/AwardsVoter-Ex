@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Web.ShowControllerTest do
-  use AwardsVoter.Web.ConnCase, async: true
+  use AwardsVoter.Web.ConnCase
   
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Admin.Shows.Show

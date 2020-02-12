@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Web.ContestantControllerTest do
-  use AwardsVoter.Web.ConnCase, async: true
+  use AwardsVoter.Web.ConnCase
 
   alias AwardsVoter.Context.Admin
 

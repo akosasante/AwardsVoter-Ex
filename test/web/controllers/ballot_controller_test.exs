@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Web.BallotControllerTest do
-  use AwardsVoter.Web.ConnCase, async: true
+  use AwardsVoter.Web.ConnCase
 
   import Phoenix.LiveViewTest
 
