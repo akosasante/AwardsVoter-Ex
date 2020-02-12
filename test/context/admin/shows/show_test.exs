@@ -137,22 +137,4 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
       assert :ok = Show.delete_show_entry(test_show().name, DeleteShowManager)
     end
   end
-#  describe "Show.delete_show_entry/1/2" do
-#    test "should return :ok if the show was successfully deleted from table" do
-#      defmodule MockShowManager do
-#        def delete(_name) do
-#          :ok
-#        end
-#      end
-#      assert :ok = Show.delete_show_entry("The Test Show", MockShowManager)
-#    end
-#    test "should return :error_deleting if there was no show by that name in table" do
-#      defmodule MockShowManager do
-#        def delete(_name) do
-#          {:error, "failed for some reason"}
-#        end
-#      end
-#      assert :error_deleting = Show.delete_show_entry("The Test Show", MockShowManager)
-#    end
-#  end
 end
