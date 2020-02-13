@@ -36,6 +36,8 @@ defmodule AwardsVoter.Context.Admin do
   
   defdelegate change_contestant(contestant), to: Contestants
   
+  ### Category Methods
+  
   @spec get_category_from_show(String.t(), String.t()) :: {:ok, Category.t()} | :category_not_found | term()
   def get_category_from_show(show_name, category_name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
@@ -84,6 +86,8 @@ defmodule AwardsVoter.Context.Admin do
     end
   end
 
+  #### Contestant Methods
+  
   @spec get_contestant_from_show(String.t(), String.t(), String.t()) :: {:ok, Contestant.t()} | :category_not_found | :contestant_not_found | term()
   def get_contestant_from_show(show_name, category_name, name) do
     with {:ok, show} <- Shows.get_show_by_name(show_name),
@@ -160,6 +164,8 @@ defmodule AwardsVoter.Context.Admin do
       e -> e
     end
   end
+  
+  ### Struct To Map
 
   @spec contestant_to_map(Contestant.t() | map() | nil) :: map()
   def contestant_to_map(%Contestant{} = contestant), do: Map.from_struct(contestant)
@@ -182,10 +188,15 @@ defmodule AwardsVoter.Context.Admin do
   def show_to_map(%{} = show), do: show
   def show_to_map(nil), do: nil
   
-  defp update_show_and_ballots(show, updated_categories) do
-    {:ok, show} = res = Shows.update_show(show, %{categories: updated_categories})
-    Voting.update_ballots_for_show(show)
-    res
+  ###############################################
+  
+  defp update_show_and_ballots(orig_show, updated_categories) do
+    show_mod = Application.get_env(:awards_voter, :show_mod, Shows)
+    voting_mod = Application.get_env(:awards_voter, :vtoer_mod, Voting)
+    
+    {:ok, show} = show_mod.update_show(orig_show, %{categories: updated_categories})
+    voting_mod.update_ballots_for_show(show)
+    {:ok, show}
   end
 
   defp update_category_after_contestant_delete(category, contestant_name) do
