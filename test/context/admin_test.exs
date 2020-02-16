@@ -3,15 +3,42 @@ defmodule AwardsVoter.Context.AdminTest do
 
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Admin.Shows.Show
+  alias AwardsVoter.Context.Admin.Categories
   alias AwardsVoter.Context.Admin.Categories.Category
   alias AwardsVoter.Context.Admin.Contestants.Contestant
   
   defmodule MockShows do
+    def get_show_by_name(show_name) do
+      send(self(), :get_show)
+      assert show_name == test_show().name
+      {:ok, test_show()}
+    end
     def update_show(show, attrs) do
       assert %Show{} = show
-      assert %{categories: _} = attrs
+      assert %{categories: [%{} | _]} = attrs
+      categories = Enum.map(attrs.categories, fn cat -> 
+                                 Category.changeset(%Category{}, cat)
+                                 |> Ecto.Changeset.apply_changes() end)
+      show = %{show | categories: categories}
       send(self(), :update_show)
       {:ok, show}
+    end
+  end
+
+  defmodule MockShowsAddCategory do
+    def get_show_by_name(show_name) do
+      send(self(), :get_show)
+      assert show_name == test_show().name
+      {:ok, %{test_show() | categories: []}}
+    end
+    def update_show(show, attrs), do: MockShows.update_show(show, attrs)
+  end
+  
+  defmodule MockInvalidShows do
+    def get_show_by_name(show_name) do
+      send(self(), :get_show)
+      assert show_name != test_show().name
+      :not_found
     end
   end
   
@@ -23,7 +50,7 @@ defmodule AwardsVoter.Context.AdminTest do
   end
   
   setup do
-    Application.put_env(:awards_voter, :show_mod, MockShow)
+    Application.put_env(:awards_voter, :show_mod, MockShows)
     Application.put_env(:awards_voter, :voter_mod, MockVoter)
     :ok
   end
@@ -190,28 +217,131 @@ defmodule AwardsVoter.Context.AdminTest do
   end
   
   describe "get_category_from_show/2" do
-    test "returns success tuple upon fetching category"
-    test "returns :show_not_found if show name is invalid"
-    test "returns :category_not_found if category name is invalid"
+    test "returns success tuple upon fetching category" do
+      res = Admin.get_category_from_show(test_show().name, test_category().name)
+      
+      assert {:ok, test_category()} == res
+      assert_received :get_show
+    end
+    
+    test "returns :show_not_found if show name is invalid" do
+      Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
+      res = Admin.get_category_from_show("Invalid Show", test_category().name)
+      
+      assert :show_not_found == res
+      assert_received :get_show
+    end
+    
+    test "returns :category_not_found if category name is invalid" do
+      res = Admin.get_category_from_show(test_show().name, "Invalid Category")
+      
+      assert :category_not_found == res
+      assert_received :get_show
+    end
   end
   
   describe "add_category_to_show/2" do
-    test "returns success tuple upon adding category and saves result to both tables"
-    test "returns changeset with errors if category params are invalid"
-    test "returns :show_not_found if show name is invalid"
+    test "returns success tuple upon adding category and saves result to both tables" do
+      Application.put_env(:awards_voter, :show_mod, MockShowsAddCategory)
+      category_map = test_category() |> Admin.category_to_map()
+      expected_show = %{test_show() | categories: [test_category()]}
+      res = Admin.add_category_to_show(test_show().name, category_map)
+      
+      assert {:ok, expected_show} == res
+      assert_received :get_show
+      assert_received :update_show
+      assert_received :update_ballots
+    end
+    
+    test "returns changeset with errors if category params are invalid" do
+      res = Admin.add_category_to_show(test_show().name, %{name: nil, description: test_category().description})
+      
+      assert {:errors, cs} = res
+      refute cs.valid?
+      assert cs.errors
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :show_not_found if show name is invalid" do
+      Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
+      category_map = test_category() |> Admin.category_to_map()
+      res = Admin.add_category_to_show("Invalid Show", category_map)      
+      
+      assert :show_not_found == res
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
   end
   
   describe "update_show_category/3" do
-    test "returns success tuple upon updating category and saves result to both tables"
-    test "returns changeset with errors if category params are invalid"
-    test "returns :show_not_found if show name is invalid"
-    test "returns :category_not_found if category name is invalid"
+    test "returns success tuple upon updating category and saves result to both tables" do
+      expected_category = %{test_category() | description: "updated description"}
+      category_map = expected_category |> Admin.category_to_map()
+      assert {:ok, show} = Admin.update_show_category(test_show().name, test_category().name, category_map)
+      
+      res_category = show.categories |> hd
+      assert res_category == expected_category
+      assert_received :get_show
+      assert_received :update_show
+      assert_received :update_ballots
+    end
+    
+    test "returns changeset with errors if category params are invalid" do
+      res = Admin.update_show_category(test_show().name, test_category().name, %{name: nil, description: test_category().description})
+      
+      assert {:errors, cs} = res
+      refute cs.valid?
+      assert cs.errors
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :show_not_found if show name is invalid" do
+      Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
+      category_map = test_category() |> Admin.category_to_map()
+      res = Admin.update_show_category("Invalid Show", test_category().name, category_map)
+
+      assert :show_not_found == res
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :category_not_found if category name is invalid" do
+      category_map = test_category() |> Admin.category_to_map()
+      res = Admin.update_show_category(test_show().name, "Invalid Category", category_map)
+      assert :category_not_found == res
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
   end
   
   describe "delete_show_category/2" do
-    test "returns success tuple upon deleting category from show and saves result to both tables"
-    test "returns :show_not_found if show name is invalid"
-    test "returns :category_not_found if category name is invalid"
+    test "returns success tuple upon deleting category from show and saves result to both tables" do
+      {:ok, show} = Admin.delete_show_category(test_show().name, test_category().name)
+      
+      assert Enum.count(show.categories) < Enum.count(test_show().categories)
+      assert Enum.filter(show.categories, fn cat -> cat.name == test_category().name end) |> Enum.empty?
+      assert_received :get_show
+      assert_received :update_show
+      assert_received :update_ballots
+    end
+    
+    test "returns :show_not_found if show name is invalid" do
+      Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
+      res = Admin.delete_show_category("Invalid Show", test_category().name)
+      assert res == :show_not_found
+    end
+    
+    test "returns :category_not_found if category name is invalid" do
+      res = Admin.delete_show_category(test_show().name, "Invalid Category")
+      assert res == :category_not_found
+    end
   end
 
   describe "get_contestant_from_show/3" do
