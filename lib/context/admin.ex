@@ -183,8 +183,8 @@ defmodule AwardsVoter.Context.Admin do
   
   @spec set_winner_for_show_category(String.t(), String.t(), String.t()) :: Shows.change_result() | :invalid_winner | term()
   def set_winner_for_show_category(show_name, category_name, winner_name) do
-    with {:ok, show} <- Shows.get_show_by_name(show_name),
-         %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
+    with {:show, {:ok, show}} <- {:show, show_mod().get_show_by_name(show_name)},
+         {:category, %Category{} = category} <- {:category, Enum.find(show.categories, fn cat -> cat.name == category_name end)},
          {:contestant, %Contestant{} = winner} <- {:contestant,
            Enum.find(category.contestants, fn cont -> cont.name == winner_name end)},
          updated_category = %{category | winner: winner},
@@ -194,6 +194,8 @@ defmodule AwardsVoter.Context.Admin do
          end) do
       update_show_and_ballots(show, updated_categories)
     else
+      {:show, _e} -> :show_not_found
+      {:category, nil} -> :category_not_found
       {:contestant, nil} -> :invalid_winner
       e -> e
     end

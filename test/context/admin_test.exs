@@ -539,7 +539,45 @@ defmodule AwardsVoter.Context.AdminTest do
   end
   
   describe "set_winner_for_show_category/3" do
-    test "returns success tuple and sets winner successfully"
-    test "returns :invalid_winner if contestant_name not found"
+    test "returns success tuple and sets winner successfully" do
+      new_winner = Enum.at(test_category().contestants, 2)
+      {:ok, show} = Admin.set_winner_for_show_category(test_show().name, test_category().name, new_winner.name)
+      
+      returned_category = show.categories |> hd
+      assert returned_category.winner == new_winner
+      assert_received :get_show
+      assert_received :update_show
+      assert_received :update_ballots
+    end
+    
+    test "returns :show_not_found if passed an invalid show" do
+      Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
+      new_winner = Enum.at(test_category().contestants, 2)
+      res = Admin.set_winner_for_show_category("Invalid Show", test_category().name, new_winner.name)
+
+      assert res == :show_not_found
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :category_not_found if passed an invalid category" do
+      new_winner = Enum.at(test_category().contestants, 2)
+      res = Admin.set_winner_for_show_category(test_show().name, "Invalid Category", new_winner.name)
+
+      assert res == :category_not_found
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :invalid_winner if contestant_name not found" do
+      res = Admin.set_winner_for_show_category(test_show().name, test_category().name, "Invalid Contestant")
+
+      assert res == :invalid_winner
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
   end
 end
