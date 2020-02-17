@@ -33,6 +33,16 @@ defmodule AwardsVoter.Context.AdminTest do
     end
     def update_show(show, attrs), do: MockShows.update_show(show, attrs)
   end
+
+  defmodule MockShowsAddContestant do
+    def get_show_by_name(show_name) do
+      send(self(), :get_show)
+      assert show_name == test_show().name
+      category = %{test_category() | contestants: []}
+      {:ok, %{test_show() | categories: [category]}}
+    end
+    def update_show(show, attrs), do: MockShows.update_show(show, attrs)
+  end
   
   defmodule MockInvalidShows do
     def get_show_by_name(show_name) do
@@ -314,6 +324,7 @@ defmodule AwardsVoter.Context.AdminTest do
     test "returns :category_not_found if category name is invalid" do
       category_map = test_category() |> Admin.category_to_map()
       res = Admin.update_show_category(test_show().name, "Invalid Category", category_map)
+      
       assert :category_not_found == res
       assert_received :get_show
       refute_received :update_show
@@ -335,47 +346,200 @@ defmodule AwardsVoter.Context.AdminTest do
     test "returns :show_not_found if show name is invalid" do
       Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
       res = Admin.delete_show_category("Invalid Show", test_category().name)
+      
       assert res == :show_not_found
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
     end
     
     test "returns :category_not_found if category name is invalid" do
       res = Admin.delete_show_category(test_show().name, "Invalid Category")
+      
       assert res == :category_not_found
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
     end
   end
 
   describe "get_contestant_from_show/3" do
-    test "returns success tuple upon fetching contestant"
-    test "returns :show_not_found if show name is invalid"
-    test "returns :category_not_found if category name invalid"
-    test "returns :contestant_not_found if contestant name invalid"
+    test "returns success tuple upon fetching contestant" do
+      {:ok, contestant} = Admin.get_contestant_from_show(test_show().name, test_category().name, test_contestant().name)
+      
+      assert contestant == test_contestant()
+      assert_received :get_show
+    end
+    
+    test "returns :show_not_found if show name is invalid" do
+      Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
+      res = Admin.get_contestant_from_show("Invalid Show", test_category().name, test_contestant().name)
+      
+      assert res == :show_not_found
+      assert_received :get_show
+    end
+    
+    test "returns :category_not_found if category name invalid" do
+      res = Admin.get_contestant_from_show(test_show().name, "Invalid Category", test_contestant().name)
+      
+      assert res == :category_not_found
+      assert_received :get_show
+    end
+    
+    test "returns :contestant_not_found if contestant name invalid" do
+      res = Admin.get_contestant_from_show(test_show().name, test_category().name, "Invalid Contestant")
+      
+      assert res == :contestant_not_found
+      assert_received :get_show
+    end
   end
   
   describe "add_contestant_to_show_category/3" do
-    test "returns success tuple upon adding contestant and saves result to show and ballot tables"
-    test "returns changeset with errors if contestant params are invalid"
-    test "returns :show_not_found if show name is invalid"
-    test "returns :category_not_found if category name invalid"
+    test "returns success tuple upon adding contestant and saves result to show and ballot tables" do
+      Application.put_env(:awards_voter, :show_mod, MockShowsAddContestant)
+      contestant_map = test_contestant() |> Admin.contestant_to_map()
+      expected_category = %{test_category() | contestants: [test_contestant()]}
+      expected_show = %{test_show() | categories: [expected_category]}
+      res = Admin.add_contestant_to_show_category(test_show().name, test_category().name, contestant_map)
+      
+      assert {:ok, expected_show} == res
+      assert_received :get_show
+      assert_received :update_show
+      assert_received :update_ballots
+    end
+    
+    test "returns changeset with errors if contestant params are invalid" do
+      res = Admin.add_contestant_to_show_category(test_show().name, test_category().name, %{name: nil})
+      
+      assert {:errors, cs} = res
+      refute cs.valid?
+      assert cs.errors
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :show_not_found if show name is invalid" do
+      Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
+      contestant_map = test_contestant() |> Admin.contestant_to_map()
+      res = Admin.add_contestant_to_show_category("Invalid Show", test_category().name, contestant_map)
+
+      assert :show_not_found == res
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :category_not_found if category name invalid" do
+      contestant_map = test_contestant() |> Admin.contestant_to_map()
+      res = Admin.add_contestant_to_show_category(test_show().name, "Invalid Category", contestant_map)
+
+      assert :category_not_found == res
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
   end
   
   describe "update_contestant_in_show_category/4" do
-    test "returns success tuple upon updating contestant and saves result to show and ballot tables"
-    test "returns changeset with errors if contestant params are invalid"
-    test "returns :show_not_found if show name is invalid"
-    test "returns :category_not_found if category name invalid"
+    test "returns success tuple upon updating contestant and saves result to show and ballot tables" do
+      expected_contestant = %{test_contestant() | image_url: "example.gif"}
+      contestant_map = expected_contestant |> Admin.contestant_to_map()
+      assert {:ok, show} = Admin.update_contestant_in_show_category(test_show().name, test_category().name, test_contestant().name, contestant_map)
+      
+      res_contestant = show.categories |> hd |> Map.get(:contestants) |> hd
+      assert res_contestant == expected_contestant
+      assert_received :get_show
+      assert_received :update_show
+      assert_received :update_ballots
+    end
+    
+    test "returns changeset with errors if contestant params are invalid" do
+      res = Admin.update_contestant_in_show_category(test_show().name, test_category().name, test_contestant().name, %{name: nil})
+
+      assert {:errors, cs} = res
+      refute cs.valid?
+      assert cs.errors
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :show_not_found if show name is invalid" do
+      Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
+      contestant_map = test_contestant() |> Admin.contestant_to_map()
+      res = Admin.update_contestant_in_show_category("Invalid Show", test_category().name, test_contestant().name, contestant_map)
+
+      assert :show_not_found == res
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :category_not_found if category name invalid" do
+      contestant_map = test_contestant() |> Admin.contestant_to_map()
+      res = Admin.update_contestant_in_show_category(test_show().name, "Invalid Category", test_contestant().name, contestant_map)
+
+      assert :category_not_found == res
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :contestant_not_found if contestant name invalid" do
+      contestant_map = test_contestant() |> Admin.contestant_to_map()
+      res = Admin.update_contestant_in_show_category(test_show().name, test_category().name, "Invalid Contestant", contestant_map)
+
+      assert :contestant_not_found == res
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
   end
   
   describe "delete_contestant_from_show_category/3" do
-    test "returns success tuple upon deleting contestant from category and saves result to show and ballot tables"
-    test "returns :show_not_found if show name is invalid"
-    test "returns :category_not_found if category name invalid"
-    test "returns :contestant_not_found if contestant name invalid"
+    test "returns success tuple upon deleting contestant from category and saves result to show and ballot tables" do
+      {:ok, show} = Admin.delete_contestant_from_show_category(test_show().name, test_category().name, test_contestant().name)
+      category = Enum.find(show.categories, fn cat -> cat.name == test_category().name end)
+      
+      assert Enum.count(category.contestants) < Enum.count(test_category().contestants)
+      assert Enum.filter(category.contestants, fn cont -> cont.name == test_contestant().name end) |> Enum.empty?
+      assert_received :get_show
+      assert_received :update_show
+      assert_received :update_ballots
+    end
+    
+    test "returns :show_not_found if show name is invalid" do
+      Application.put_env(:awards_voter, :show_mod, MockInvalidShows)
+      res = Admin.delete_contestant_from_show_category("Invalid Show", test_category().name, test_contestant().name)
+      
+      assert res == :show_not_found
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :category_not_found if category name invalid" do
+      res = Admin.delete_contestant_from_show_category(test_show().name, "Invalid Category", test_contestant().name)
+      
+      assert res == :category_not_found
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
+    
+    test "returns :contestant_not_found if contestant name invalid" do
+      res = Admin.delete_contestant_from_show_category(test_show().name, test_category().name, "Invalid Contestant")
+      
+      assert res == :contestant_not_found
+      assert_received :get_show
+      refute_received :update_show
+      refute_received :update_ballots
+    end
   end
   
   describe "set_winner_for_show_category/3" do
     test "returns success tuple and sets winner successfully"
     test "returns :invalid_winner if contestant_name not found"
   end
-  
-  
 end

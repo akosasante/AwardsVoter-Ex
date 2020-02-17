@@ -103,12 +103,13 @@ defmodule AwardsVoter.Context.Admin do
   
   @spec get_contestant_from_show(String.t(), String.t(), String.t()) :: {:ok, Contestant.t()} | :category_not_found | :contestant_not_found | term()
   def get_contestant_from_show(show_name, category_name, name) do
-    with {:ok, show} <- Shows.get_show_by_name(show_name),
+    with {:show, {:ok, show}} <- {:show, show_mod().get_show_by_name(show_name)},
          {:category, %Category{} = category} <- {:category, Enum.find(show.categories, fn cat -> cat.name == category_name end)},
          {:contestant, %Contestant{} = contestant} <- 
            {:contestant, Enum.find(category.contestants, fn cont -> cont.name == name end)} do
       {:ok, contestant}
     else
+      {:show, _e} -> :show_not_found
       {:category, nil} -> :category_not_found
       {:contestant, nil} -> :contestant_not_found
       e -> e
@@ -117,7 +118,7 @@ defmodule AwardsVoter.Context.Admin do
 
   @spec add_contestant_to_show_category(String.t(), String.t(), map()) :: Shows.change_result()
   def add_contestant_to_show_category(show_name, category_name, contestant_map) do
-    with {:ok, show} <- Shows.get_show_by_name(show_name),
+    with {:show, {:ok, show}} <- {:show, show_mod().get_show_by_name(show_name)},
          %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
          {:ok, _contestant} <- Contestants.create_contestant(contestant_map),
          updated_category <- put_in(category.contestants, [contestant_map | category.contestants]),
@@ -126,14 +127,18 @@ defmodule AwardsVoter.Context.Admin do
                                                     non_matching_category -> category_to_map(non_matching_category)
                                                   end) do
       update_show_and_ballots(show, updated_categories)
+    else
+      {:show, _e} -> :show_not_found
+      nil -> :category_not_found
+      e -> e
     end
   end
   
   @spec update_contestant_in_show_category(String.t(), String.t(), String.t(), map()) :: Shows.change_result()
   def update_contestant_in_show_category(show_name, category_name, contestant_name, new_contestant_map) do
-    with {:ok, show} <- Shows.get_show_by_name(show_name),
-         %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
-         %Contestant{} = old_contestant <- Enum.find(category.contestants, fn cont -> cont.name == contestant_name end),
+    with {:show, {:ok, show}} <- {:show, show_mod().get_show_by_name(show_name)},
+         {:category, %Category{} = category} <- {:category, Enum.find(show.categories, fn cat -> cat.name == category_name end)},
+         {:contestant, %Contestant{} = old_contestant} <- {:contestant, Enum.find(category.contestants, fn cont -> cont.name == contestant_name end)},
          {:ok, updated_contestant} <- Contestants.update_contestant(old_contestant, new_contestant_map),
          updated_contestants <- category.contestants
                                 |> Enum.map(fn
@@ -146,19 +151,33 @@ defmodule AwardsVoter.Context.Admin do
            non_matching_category -> category_to_map(non_matching_category)
          end) do
       update_show_and_ballots(show, updated_categories)
+    else
+      {:show, _e} -> :show_not_found
+      {:category, nil} -> :category_not_found
+      {:contestant, nil} -> :contestant_not_found
+      e -> e
     end
   end
   
   @spec delete_contestant_from_show_category(String.t(), String.t(), String.t()) :: Shows.change_result()
   def delete_contestant_from_show_category(show_name, category_name, contestant_name) do
-    with {:ok, show} <- Shows.get_show_by_name(show_name),
-         %Category{} = category <- Enum.find(show.categories, fn cat -> cat.name == category_name end),
+    with {:show, {:ok, show}} <- {:show, show_mod().get_show_by_name(show_name)},
+         {:category, %Category{} = category} <- {:category, Enum.find(show.categories, fn cat -> cat.name == category_name end)},
          updated_category <- update_category_after_contestant_delete(category, contestant_name),
          updated_categories <- show.categories |> Enum.map(fn
            %{name: ^category_name} -> category_to_map(updated_category)
            non_matching_category -> category_to_map(non_matching_category)
          end) do
-      update_show_and_ballots(show, updated_categories)
+      count_before = Enum.count(category.contestants)
+      if count_before == Enum.count(updated_category.contestants) do
+        :contestant_not_found
+      else
+        update_show_and_ballots(show, updated_categories)
+      end
+    else
+      {:show, _e} -> :show_not_found
+      {:category, nil} -> :category_not_found
+      e -> e
     end
   end
   
