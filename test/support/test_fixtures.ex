@@ -133,7 +133,12 @@ defmodule AwardsVoter.TestFixtures do
     }
   end
 
-  def pick_votes(ballot, num \\ 1) do
+  @doc """
+    Used for testing ballot_controller. Returns a map for the selected votes, in the same format as would be passed into
+    the controller by the ballot form. eg: %{"Test Category": "Selected Contestant"}
+    Also returns the expected updated_ballot that should be persisted when these votes are saved.
+  """
+  def pick_votes_for_controller(ballot, num \\ 1) do
       taken_votes = Enum.take(ballot.votes, num)
       vote_map = Enum.map(taken_votes, fn vote -> {vote.category.name, vote.category.contestants |> hd |> Map.get(:name)} end) |> Map.new
       updated_ballot = %{ballot | votes: Enum.map(ballot.votes, fn vote ->
