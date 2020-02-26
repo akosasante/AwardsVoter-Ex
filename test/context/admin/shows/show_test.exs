@@ -32,7 +32,8 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
     test "should return changeset if params are valid" do
       show = test_show() |> Admin.show_to_map()
       changeset = Show.changeset(%Show{}, show)
-      %Ecto.Changeset{} = changeset
+      
+      assert %Ecto.Changeset{} = changeset
       assert changeset.valid?
     end
   end

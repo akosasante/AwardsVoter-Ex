@@ -39,9 +39,9 @@ defmodule AwardsVoter.Context.Voting.Ballots.Ballot do
     case voter_mod.get_ballot_by_voter_and_show(voter_name, show_name) do
       :not_found -> :not_found
       {:error, reason} ->
-        Logger.error("Due to #{inspect reason} failed to lookup ballot for #{inspect voter_name} and #{inspect voter_name}")
+        Logger.error("Due to #{inspect reason} failed to lookup ballot for #{inspect voter_name} and #{inspect show_name}")
         :error_finding
-      show -> {:ok, show}
+      ballot -> {:ok, ballot}
     end
   end
   
