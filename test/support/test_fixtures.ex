@@ -1,5 +1,5 @@
 defmodule AwardsVoter.TestFixtures do
-  
+
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Voting
   alias AwardsVoter.Context.Voting.Ballots.Ballot
@@ -7,7 +7,7 @@ defmodule AwardsVoter.TestFixtures do
   alias AwardsVoter.Context.Admin.Shows.Show
   alias AwardsVoter.Context.Admin.Categories.Category
   alias AwardsVoter.Context.Admin.Contestants.Contestant
-  
+
   def test_show(name \\ "Test Show") do
     %Show{
       name: name,
@@ -29,21 +29,21 @@ defmodule AwardsVoter.TestFixtures do
       ]
     }
   end
-  
+
   def test_category() do
     test_show().categories |> hd
   end
-  
+
   def test_contestant() do
     test_show().categories |> hd |> Map.get(:contestants) |> hd
   end
-  
+
   def saved_test_show(name \\ "Test Show") do
     test_show(name)
     |> Admin.show_to_map()
     |> Admin.create_show()
   end
-  
+
   def test_ballot(username \\ "tester") do
     %Ballot{
       voter: username,
@@ -133,6 +133,10 @@ defmodule AwardsVoter.TestFixtures do
     }
   end
 
+  def test_vote() do
+    Map.get(test_ballot(), :votes) |> hd
+  end
+
   @doc """
     Used for testing ballot_controller. Returns a map for the selected votes, in the same format as would be passed into
     the controller by the ballot form. eg: %{"Test Category": "Selected Contestant"}
@@ -149,7 +153,7 @@ defmodule AwardsVoter.TestFixtures do
         end)}
       {vote_map, updated_ballot}
   end
-  
+
   def saved_test_ballot(show_name \\ "Test Show", username \\ "tester") do
     Voting.create_new_ballot(username, show_name)
   end
