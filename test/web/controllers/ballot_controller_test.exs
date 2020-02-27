@@ -92,7 +92,7 @@ defmodule AwardsVoter.Web.BallotControllerTest do
   test "PUT :update updates user ballot and redirects", %{conn: conn} do
     {:ok, show} = saved_test_show()
     {:ok, ballot} = saved_test_ballot()
-    {vote_map, updated_ballot} = pick_votes_for_controller(ballot)
+    {vote_map, updated_ballot} = update_ballot_votes(ballot)
     
 
     conn = put(conn, Routes.ballot_path(conn, :update, show.name, ballot.voter), ballot: vote_map)
@@ -122,7 +122,7 @@ defmodule AwardsVoter.Web.BallotControllerTest do
   test "GET :scoreboard will update with scores", %{conn: conn} do
     {:ok, show} = saved_test_show()
     {:ok, ballot} = saved_test_ballot()
-    {vote_map, _updated_ballot} = pick_votes_for_controller(ballot)
+    {vote_map, _updated_ballot} = update_ballot_votes(ballot)
 
     {:ok, view, _html} = live(conn, Routes.ballot_path(conn, :scoreboard, show.name))
     
