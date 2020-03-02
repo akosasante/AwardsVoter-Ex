@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Context.VotingTest do
-  use AwardsVoter.DataCase, async: false
+  use AwardsVoter.DataCase
 
   import ExUnit.CaptureLog
 

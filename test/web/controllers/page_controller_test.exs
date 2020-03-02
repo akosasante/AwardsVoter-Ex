@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Web.PageControllerTest do
-  use AwardsVoter.Web.ConnCase, async: true
+  use AwardsVoter.Web.ConnCase
 
   @tag :do_show_setup
   test "GET / should not show admin interface elements", %{conn: conn} do

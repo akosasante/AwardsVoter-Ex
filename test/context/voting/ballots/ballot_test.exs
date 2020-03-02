@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Context.Voting.Ballots.BallotTest do
-  use AwardsVoter.DataCase, async: true
+  use AwardsVoter.DataCase
 
   alias AwardsVoter.Context.Voting.Ballots.Ballot
 
