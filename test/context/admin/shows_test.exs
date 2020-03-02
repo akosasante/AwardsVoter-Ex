@@ -7,7 +7,7 @@ defmodule AwardsVoter.Context.Admin.ShowTest do
   describe "Shows.create_show/2" do
     test "calls save_or_update_shows method if changeset is valid" do
       defmodule ShowModuleCreateValid do
-        def put(show_tuples), do: :ok
+        def put(_show_tuples), do: :ok
       end
       Application.put_env(:awards_voter, :show_manager_mod, ShowModuleCreateValid)
       show_map = test_show() |> Admin.show_to_map()
@@ -28,7 +28,7 @@ defmodule AwardsVoter.Context.Admin.ShowTest do
   describe "Shows.update_show/3" do
     test "calls only save_or_update_shows method if name has not been changed" do
       defmodule ShowModuleUpdateExceptName do
-        def put(show_tuple), do: :ok
+        def put(_show_tuple), do: :ok
       end
       Application.put_env(:awards_voter, :show_manager_mod, ShowModuleUpdateExceptName)
       updated_show = test_show() |> Map.update!(:categories, fn _ -> [] end)
@@ -41,7 +41,7 @@ defmodule AwardsVoter.Context.Admin.ShowTest do
 
     test "call delete then save_or_update if name has been changed" do
       defmodule ShowModuleUpdateNameChange do
-        def put(show_tuple), do: :ok
+        def put(_show_tuple), do: :ok
 
         def delete(show_name) do
           assert ^show_name = test_show().name

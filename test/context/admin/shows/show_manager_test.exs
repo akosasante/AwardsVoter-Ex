@@ -2,12 +2,11 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowManagerTest do
   use AwardsVoter.DataCase
 
   alias  AwardsVoter.Context.Admin.Categories.Category
-  alias  AwardsVoter.Context.Admin.Shows.Show
   alias  AwardsVoter.Context.Admin.Shows.ShowManager
 
   @show_table Application.get_env(:awards_voter, :show_table)
   @moduletag :do_show_setup
-  
+
   describe "Show Manager callbacks" do
     test "handle_call :get_all should return all the shows in the table" do
       show2_title = "Test Show #2"
