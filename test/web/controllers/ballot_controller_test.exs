@@ -81,7 +81,7 @@ defmodule AwardsVoter.Web.BallotControllerTest do
     {:ok, ballot} = saved_test_ballot()
     count_before = total_ballot_count(show.name)
     show_name_uri = URI.encode(show.name)
-    
+
     create_conn = post(conn, Routes.ballot_path(conn, :create, show.name), ballot: %{"username" => ballot.voter})
 
     assert %{show_name: ^show_name_uri} = redirected_params(create_conn)
@@ -93,7 +93,7 @@ defmodule AwardsVoter.Web.BallotControllerTest do
     {:ok, show} = saved_test_show()
     {:ok, ballot} = saved_test_ballot()
     {vote_map, updated_ballot} = update_ballot_votes(ballot)
-    
+
 
     conn = put(conn, Routes.ballot_path(conn, :update, show.name, ballot.voter), ballot: vote_map)
 
@@ -102,10 +102,10 @@ defmodule AwardsVoter.Web.BallotControllerTest do
       assert conn.resp_body =~ vote.category.name
       if vote.contestant, do: assert conn.resp_body =~ vote.contestant.name
     end
-    
+
     assert Voting.get_ballot_for(ballot.voter, show.name) == {:ok, updated_ballot}
   end
-  
+
   test "GET :scoreboard will initially render just the show name", %{conn: conn} do
     {:ok, show} = saved_test_show()
     {:ok, ballot} = saved_test_ballot()
@@ -125,7 +125,7 @@ defmodule AwardsVoter.Web.BallotControllerTest do
     {vote_map, _updated_ballot} = update_ballot_votes(ballot)
 
     {:ok, view, _html} = live(conn, Routes.ballot_path(conn, :scoreboard, show.name))
-    
+
     _conn = put(conn, Routes.ballot_path(conn, :update, show.name, ballot.voter), ballot: vote_map)
 
     send(view.pid, %{event: "winner_updated", topic: "ballots:" <> show.name})

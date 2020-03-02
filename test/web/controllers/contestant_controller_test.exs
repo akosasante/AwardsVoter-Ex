@@ -40,7 +40,7 @@ defmodule AwardsVoter.Web.ContestantControllerTest do
     conn = get(conn, Routes.show_category_contestant_path(conn, :show, show.name, category.name, contestant.name))
 
     assert html_response(conn, 200) =~ contestant.name
-    
+
     not_found_conn = get(conn, Routes.show_category_contestant_path(conn, :show, show.name, category.name, "Fake Name"))
     assert redirected_to(not_found_conn) == Routes.show_category_path(conn, :show, show.name, category.name)
   end
@@ -58,7 +58,7 @@ defmodule AwardsVoter.Web.ContestantControllerTest do
 
     assert %{show_name: ^show_name_uri, name: ^category_uri} = redirected_params(create_conn)
     assert redirected_to(create_conn) == Routes.show_category_path(conn, :show, show.name, category.name)
- 
+
     conn = get(conn, Routes.show_category_contestant_path(conn, :show, show.name, category.name, contestant_name))
 
     assert html_response(conn, 200) =~ contestant_name

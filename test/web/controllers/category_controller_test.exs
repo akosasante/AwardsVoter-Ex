@@ -9,7 +9,7 @@ defmodule AwardsVoter.Web.CategoryControllerTest do
     {:ok, show} = Admin.get_show_by_name(show_name)
     Enum.count(show.categories)
   end
-  
+
 
   test "GET :edit renders form", %{conn: conn} do
     {:ok, show} = saved_test_show()
@@ -23,7 +23,7 @@ defmodule AwardsVoter.Web.CategoryControllerTest do
 
   test "GET :new renders blank form", %{conn: conn} do
     {:ok, show} = saved_test_show()
-    
+
     conn = get(conn, Routes.show_category_path(conn, :new, show.name))
 
     assert html_response(conn, 200) =~ "Adding New Category"
@@ -40,7 +40,7 @@ defmodule AwardsVoter.Web.CategoryControllerTest do
     for contestant <- category.contestants do
       assert conn.resp_body =~ contestant.name
     end
-    
+
     not_found_conn = get(conn, Routes.show_category_path(conn, :show, show.name, "Fake Name"))
     assert redirected_to(not_found_conn) == Routes.show_path(conn, :show, show.name)
   end
@@ -77,13 +77,13 @@ defmodule AwardsVoter.Web.CategoryControllerTest do
   @tag :do_ballots_setup
   test "PUT :update updates user category and redirects", %{conn: conn} do
     {:ok, show} = saved_test_show()
-    
+
     updated_name = "Test Updated Name"
     updated_category = %{test_category() | name: updated_name}
     update_attrs = updated_category |> Admin.category_to_map()
     category_name_uri = URI.encode(updated_name)
     show_name_uri = URI.encode(show.name)
-    
+
     update_conn = put(conn, Routes.show_category_path(conn, :update, show.name, test_category().name), category: update_attrs)
 
     assert %{name: ^category_name_uri, show_name: ^show_name_uri} = redirected_params(update_conn)

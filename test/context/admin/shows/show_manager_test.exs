@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Context.Admin.Shows.ShowManagerTest do
-  use AwardsVoter.DataCase
+  use AwardsVoter.DataCase, async: true
 
   alias  AwardsVoter.Context.Admin.Categories.Category
   alias  AwardsVoter.Context.Admin.Shows.ShowManager
