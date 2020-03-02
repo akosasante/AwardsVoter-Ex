@@ -7,7 +7,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
   alias Ecto.Changeset
 
   @type change_result :: {:ok, Show.t()} | {:errors, Changeset.t()}
-  
+
   @spec list_shows :: {:ok, list(Show.t())} | :error_fetching
   def list_shows, do: Show.get_all_shows()
 
@@ -15,11 +15,11 @@ defmodule AwardsVoter.Context.Admin.Shows do
   def get_show_by_name(name), do: Show.get_show_by_name(name)
 
   @spec create_show(map()) :: change_result()
-  def create_show(attrs \\ %{}, show_mod \\ Show) do
+  def create_show(attrs \\ %{}) do
     cs = Show.changeset(%Show{}, attrs)
     with true <- cs.valid?,
          %Show{} = site_show <- Changeset.apply_changes(cs),
-         {:ok, saved_show} <- show_mod.save_or_update_shows(site_show)
+         {:ok, saved_show} <- Show.save_or_update_shows(site_show)
       do
       {:ok, saved_show}
     else
@@ -27,13 +27,13 @@ defmodule AwardsVoter.Context.Admin.Shows do
            {:errors, cs}
     end
   end
-  
+
   @spec update_show(Show.t(), map()) :: change_result()
-  def update_show(%Show{} = orig_show, attrs, show_mod \\ Show) do
+  def update_show(%Show{} = orig_show, attrs) do
     cs = Show.changeset(orig_show, attrs)
     with true <- cs.valid?,
          %Show{} = site_show <- Changeset.apply_changes(cs),
-         {:ok, saved_show} <- dets_show_update_helper(cs, site_show, orig_show, show_mod)
+         {:ok, saved_show} <- dets_show_update_helper(cs, site_show, orig_show)
       do
       {:ok, saved_show}
     else
@@ -43,8 +43,8 @@ defmodule AwardsVoter.Context.Admin.Shows do
   end
 
   @spec delete_show(Show.t()) :: change_result()
-  def delete_show(%Show{} = show, show_mod \\ Show) do
-    case show_mod.delete_show_entry(show.name) do
+  def delete_show(%Show{} = show) do
+    case Show.delete_show_entry(show.name) do
       :ok -> {:ok, show}
       e -> {:error, e}
     end
@@ -55,11 +55,11 @@ defmodule AwardsVoter.Context.Admin.Shows do
     Show.changeset(show, %{})
   end
 
-  defp dets_show_update_helper(%Changeset{} = cs, %Show{} = show, %Show{} = original, show_mod) do
+  defp dets_show_update_helper(%Changeset{} = cs, %Show{} = show, %Show{} = original) do
     case Changeset.get_change(cs, :name) do
-      nil -> show_mod.save_or_update_shows(show)
-      _updated_title -> case delete_show(original, show_mod) do
-                          {:ok, _deleted_show} -> show_mod.save_or_update_shows(show)
+      nil -> Show.save_or_update_shows(show)
+      _updated_title -> case delete_show(original) do
+                          {:ok, _deleted_show} -> Show.save_or_update_shows(show)
                           e -> e
                         end
     end
