@@ -2,7 +2,7 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
   use Ecto.Schema
   import Ecto.Changeset
   require Logger
-  
+
   alias __MODULE__
   alias AwardsVoter.Context.Admin.Categories.Category
   alias AwardsVoter.Context.Admin.Shows.ShowManager
@@ -38,9 +38,9 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
     insert_show_tuples([{show.name, show}], true, show_manager_mod)
   end
 
-  @spec get_show_by_name(String.t(), module()) :: {:ok, Show.t()} | :not_found | :error_finding
-  def get_show_by_name(name, show_manager_mod \\ ShowManager) do
-    case show_manager_mod.get(name) do
+#  @spec get_show_by_name(String.t(), module()) :: {:ok, Show.t()} | :not_found | :error_finding
+  def get_show_by_name(name) do
+    case show_manager_mod().get(name) do
       :not_found -> :not_found
       {:error, reason} ->
         Logger.error("Due to #{inspect reason} failed to lookup show #{name}")
@@ -88,4 +88,6 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
         :error_saving
     end
   end
+
+  defp show_manager_mod(), do: Application.get_env(:awards_voter, :show_manager_mod, ShowManager)
 end

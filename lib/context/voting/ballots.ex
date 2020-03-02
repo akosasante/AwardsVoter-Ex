@@ -9,7 +9,7 @@ defmodule AwardsVoter.Context.Voting.Ballots do
 
   @type change_result :: {:ok, Ballot.t()} | {:errors, Changeset.t()}
 
-  defdelegate list_ballots_for_show(show_name), to: Voter
+  def list_ballots_for_show(show_name), do: voter_mod().list_ballots_for_show(show_name)
 
   @spec create_ballot(map()) :: change_result()
   def create_ballot(attrs \\ %{}) do
@@ -93,4 +93,6 @@ defmodule AwardsVoter.Context.Voting.Ballots do
   def get_vote_by_category(ballot, category_name) do
     Enum.find(ballot.votes, fn vote -> vote.category.name == category_name end)
   end
+
+  defp voter_mod(), do: Application.get_env(:awards_voter, :voter_mod, Voter)
 end
