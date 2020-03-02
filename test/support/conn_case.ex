@@ -30,6 +30,8 @@ defmodule AwardsVoter.Web.ConnCase do
   end
 
   setup do
+    Application.put_env(:awards_voter, :show_manager_mod, AwardsVoter.Context.Admin.Shows.ShowManager)
+    Application.put_env(:awards_voter, :voter_mod, AwardsVoter.Context.Voting.Votes.Voter)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 
@@ -42,7 +44,7 @@ defmodule AwardsVoter.Web.ConnCase do
         :dets.close(@show_table)
       end)
     end
-    
+
     if context[:do_ballots_setup] do
       :dets.open_file(@ballots_table, [])
       on_exit(fn ->

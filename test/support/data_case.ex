@@ -15,7 +15,7 @@ defmodule AwardsVoter.DataCase do
   use ExUnit.CaseTemplate
   @show_table Application.get_env(:awards_voter, :show_table)
   @ballots_table Application.get_env(:awards_voter, :voter_ballots_table)
-  
+
   using do
     quote do
       import AwardsVoter.TestFixtures
