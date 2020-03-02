@@ -14,14 +14,14 @@ defmodule AwardsVoter.Web.ShowViewTest do
 
     test "show.html", %{conn: conn, show: show} do
       content = render_to_string(AwardsVoter.Web.ShowView, "show.html", conn: conn, show: show)
-      
+
       for category <- show.categories do
         assert content =~ category.name
         assert content =~ "/admin/shows/#{URI.encode(show.name)}/categories/#{URI.encode(category.name)}"
       end
 
       assert content =~ show.name
-      assert content =~ "[ 2 nominee(s) ]"
+      assert content =~ "[ 4 nominee(s) ]"
       assert content =~ "See Details"
       assert content =~ "Edit"
       assert content =~ "Delete"
@@ -70,7 +70,7 @@ defmodule AwardsVoter.Web.ShowViewTest do
       assert content =~ "Add New Show"
       assert content =~ "Upload new show as JSON"
       assert content =~ "Submit"
-      
+
       for show_instance <- shows do
         assert content =~ show_instance.name
         assert content =~ "\"/admin/shows/#{URI.encode(show_instance.name)}\">See Details"
