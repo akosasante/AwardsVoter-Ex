@@ -14,7 +14,7 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
       show = %{show | categories: [invalid_category]} |> Admin.show_to_map()
       changeset = Show.changeset(%Show{}, show)
       errors = Ecto.Changeset.traverse_errors(changeset, fn {msg, _opts} -> msg end)
-      
+
       assert errors == %{categories: [%{name: ["can't be blank"]}]}
       refute changeset.valid?
     end
@@ -28,11 +28,11 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
       assert errors == %{name: ["can't be blank"]}
       refute changeset.valid?
     end
-    
+
     test "should return changeset if params are valid" do
       show = test_show() |> Admin.show_to_map()
       changeset = Show.changeset(%Show{}, show)
-      
+
       assert %Ecto.Changeset{} = changeset
       assert changeset.valid?
     end
@@ -45,15 +45,17 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
         :ok
       end
     end
-    
+
     test "should pass in tuples to show manager" do
+      Application.put_env(:awards_voter, :show_manager_mod, PutShowManager)
       show = test_show()
-      assert {:ok, ^show} = Show.save_or_update_shows(show, PutShowManager)
+      assert {:ok, ^show} = Show.save_or_update_shows(show)
     end
-    
+
     test "should handle and return list of shows correctly" do
+      Application.put_env(:awards_voter, :show_manager_mod, PutShowManager)
       show = test_show()
-      assert {:ok, [^show]} = Show.save_or_update_shows([show], PutShowManager)
+      assert {:ok, [^show]} = Show.save_or_update_shows([show])
     end
   end
 
@@ -64,8 +66,9 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
           test_show()
         end
       end
+      Application.put_env(:awards_voter, :show_manager_mod, GetShowManager)
       show = test_show()
-      assert {:ok, ^show} = Show.get_show_by_name(show, GetShowManager)
+      assert {:ok, ^show} = Show.get_show_by_name(show)
     end
 
     test "should return :not_found if now show found" do
@@ -74,18 +77,20 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
           :not_found
         end
       end
+      Application.put_env(:awards_voter, :show_manager_mod, GetShowManager)
       show = test_show()
-      assert :not_found = Show.get_show_by_name(show.name, GetShowManager)
+      assert :not_found = Show.get_show_by_name(show.name)
     end
-    
+
     test "should return :error_finding if error returned" do
       defmodule GetShowManager do
         def get(_name) do
           {:error, :reason}
         end
       end
+      Application.put_env(:awards_voter, :show_manager_mod, GetShowManager)
       show = test_show()
-      assert :error_finding = Show.get_show_by_name(show.name, GetShowManager)
+      assert :error_finding = Show.get_show_by_name(show.name)
     end
   end
 
@@ -96,26 +101,29 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
           :"$end_of_table"
         end
       end
-      assert {:ok, []} = Show.get_all_shows(GetAllShowManager)
+      Application.put_env(:awards_voter, :show_manager_mod, GetAllShowManager)
+      assert {:ok, []} = Show.get_all_shows()
     end
-    
+
     test "should return show list if fetched successfully" do
       defmodule GetAllShowManager do
         def all() do
           [{test_show().name, test_show()}]
         end
       end
+      Application.put_env(:awards_voter, :show_manager_mod, GetAllShowManager)
       show = test_show()
-      assert {:ok, [^show]} = Show.get_all_shows(GetAllShowManager)
+      assert {:ok, [^show]} = Show.get_all_shows()
     end
-    
+
     test "should return :error_fetching if error returned" do
       defmodule GetAllShowManager do
         def all() do
           {:error, :reason}
         end
       end
-      assert :error_fetching = Show.get_all_shows(GetAllShowManager)
+      Application.put_env(:awards_voter, :show_manager_mod, GetAllShowManager)
+      assert :error_fetching = Show.get_all_shows()
     end
   end
 
@@ -126,16 +134,18 @@ defmodule AwardsVoter.Context.Admin.Shows.ShowTest do
           {:error, :reason}
         end
       end
-      assert :error_deleting = Show.delete_show_entry(test_show().name, DeleteShowManager)
+      Application.put_env(:awards_voter, :show_manager_mod, DeleteShowManager)
+      assert :error_deleting = Show.delete_show_entry(test_show().name)
     end
-    
+
     test "should return :ok if successfully deleted" do
       defmodule DeleteShowManager do
         def delete(_name) do
           :ok
         end
       end
-      assert :ok = Show.delete_show_entry(test_show().name, DeleteShowManager)
+      Application.put_env(:awards_voter, :show_manager_mod, DeleteShowManager)
+      assert :ok = Show.delete_show_entry(test_show().name)
     end
   end
 end

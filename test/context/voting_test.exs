@@ -198,6 +198,7 @@ defmodule AwardsVoter.Context.VotingTest do
       for _ <- 1..2 do
         assert_received :save_ballot
       end
+      refute_received :save_ballot
     end
 
     test "logs any errors for failed saves but still return successfully" do

@@ -26,19 +26,17 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
     |> cast_embed(:categories)
   end
 
-  @spec save_or_update_shows([Show.t()] | Show.t(), module()) :: {:ok, [Show.t()]} | :error_saving
-  def save_or_update_shows(show_or_shows, show_manager_mod \\ ShowManager)
-
-  def save_or_update_shows(shows, show_manager_mod) when is_list(shows) do
+  @spec save_or_update_shows([Show.t()] | Show.t()) :: {:ok, [Show.t()]} | :error_saving
+  def save_or_update_shows(shows) when is_list(shows) do
     show_tuples = Enum.map(shows, &({Map.get(&1, :name), &1}))
-    insert_show_tuples(show_tuples, false, show_manager_mod)
+    insert_show_tuples(show_tuples, false, show_manager_mod())
   end
 
-  def save_or_update_shows(show, show_manager_mod) do
-    insert_show_tuples([{show.name, show}], true, show_manager_mod)
+  def save_or_update_shows(show) do
+    insert_show_tuples([{show.name, show}], true, show_manager_mod())
   end
 
-#  @spec get_show_by_name(String.t(), module()) :: {:ok, Show.t()} | :not_found | :error_finding
+  @spec get_show_by_name(String.t()) :: {:ok, Show.t()} | :not_found | :error_finding
   def get_show_by_name(name) do
     case show_manager_mod().get(name) do
       :not_found -> :not_found
@@ -49,9 +47,9 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
     end
   end
 
-  @spec get_all_shows(module()) :: {:ok, list(Show.t())} | :error_fetching
-  def get_all_shows(show_manager_mod \\ ShowManager) do
-    case show_manager_mod.all() do
+  @spec get_all_shows() :: {:ok, list(Show.t())} | :error_fetching
+  def get_all_shows() do
+    case show_manager_mod().all() do
       {:error, reason} ->
         Logger.error("Due to #{inspect reason} failed to fetch all shows in DETS table")
         :error_fetching
@@ -62,9 +60,9 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
     end
   end
 
-  @spec delete_show_entry(String.t(), module()) :: :ok | :error_deleting
-  def delete_show_entry(name, show_manager_mod \\ ShowManager) do
-    case show_manager_mod.delete(name) do
+  @spec delete_show_entry(String.t()) :: :ok | :error_deleting
+  def delete_show_entry(name) do
+    case show_manager_mod().delete(name) do
       {:error, reason} ->
         Logger.error("Due to #{inspect reason} failed to delete show #{name}")
         :error_deleting
@@ -76,7 +74,7 @@ defmodule AwardsVoter.Context.Admin.Shows.Show do
   defp insert_show_tuples(show_tuples, single?, show_manager_mod) do
     shows = Enum.map(show_tuples, fn {_name, show} -> show end)
     Logger.info "Saving #{Enum.count(shows)} show(s)"
-    case show_manager_mod.put(show_tuples) do
+    case show_manager_mod().put(show_tuples) do
       :ok ->
         if single? do
           {:ok, shows |> hd}
