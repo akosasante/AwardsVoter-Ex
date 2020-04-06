@@ -1,14 +1,14 @@
 defmodule AwardsVoter.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :awards_voter
-  
-  @session_options store: :cookie, 
+
+  @session_options store: :cookie,
                    key: "_awards_voter_key",
                    signing_salt: "Mz8oIy73"
 
   socket "/socket", AwardsVoter.Web.UserSocket,
-    websocket: true,
-    longpoll: false
-  
+         websocket: true,
+         longpoll: false
+
   socket "/live", Phoenix.LiveView.Socket,
          websocket: [connect_info: [session: @session_options]]
 
@@ -17,13 +17,13 @@ defmodule AwardsVoter.Web.Endpoint do
   # You should set gzip to true if you are running phx.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/",
-    from: :awards_voter,
-    gzip: false,
-    only: ~w(css fonts images js favicon.ico robots.txt)
+       at: "/",
+       from: :awards_voter,
+       gzip: false,
+       only: ~w(css fonts images js favicon.ico robots.txt)
 
-  # Code reloading can be explicitly enabled under the
-  # :code_reloader configuration of your endpoint.
+         # Code reloading can be explicitly enabled under the
+         # :code_reloader configuration of your endpoint.
   if code_reloading? do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
@@ -31,12 +31,12 @@ defmodule AwardsVoter.Web.Endpoint do
   end
 
   plug Plug.RequestId
-  plug Plug.Logger
+  plug Logster.Plugs.Logger
 
   plug Plug.Parsers,
-    parsers: [:urlencoded, :multipart, :json],
-    pass: ["*/*"],
-    json_decoder: Phoenix.json_library()
+       parsers: [:urlencoded, :multipart, :json],
+       pass: ["*/*"],
+       json_decoder: Phoenix.json_library()
 
   plug Plug.MethodOverride
   plug Plug.Head

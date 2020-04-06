@@ -23,14 +23,15 @@ defmodule AwardsVoter.Web.Router do
         resources "/contestants", ContestantController, param: "name", except: [:index]
       end
     end
-    put "/shows/:show_name/categories/:category_name/set_winner/:contestant_name", CategoryController, :set_winner
+    post "/shows/show_json", ShowController, :create_json
+    put "/shows/:show_name/categories/:category_name/set_winner/:contestant_name", CategoryController, :set_winner, as: :show_category
   end
-  
+
   scope "/", AwardsVoter.Web do
     pipe_through :browser
 
     get "/", PageController, :index
-    
+
     get "/ballot/:show_name/new", BallotController, :new
     get "/ballot/:show_name/continue", BallotController, :continue
     post "/ballot/:show_name/validate_continue", BallotController, :validate_continue
@@ -40,7 +41,7 @@ defmodule AwardsVoter.Web.Router do
     get "/ballot/:show_name/:voter_name/edit", BallotController, :edit
     put "/ballot/:show_name/:voter_name", BallotController, :update
   end
-  
+
   defp put_is_admin(conn, _opts) do
     is_admin_path = Enum.find(conn.path_info, fn x -> x == "admin" end)
     if is_admin_path do

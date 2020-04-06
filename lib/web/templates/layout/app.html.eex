@@ -4,14 +4,14 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Awards Show Voter</title>
+    <title>Awards Show Predictor</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
     <header>
       <nav class="flex items-center justify-between flex-wrap bg-blue-900 p-6">
         <div class="flex items-center flex-shrink-0 text-yellow-500 mr-6">
-          <%= link "Award Show Voter", to: Routes.page_path(@conn, :index), class: "font-semibold text-xl tracking-tight" %>
+          <%= link "Award Show Predictor", to: Routes.page_path(@conn, :index), class: "font-semibold text-xl tracking-tight" %>
           <%= if @is_admin do %>
             <span>&nbsp</span>
             <%= link "[Admin]", to: Routes.show_path(@conn, :index), class: "font-semibold text-xl tracking-tight uppercase" %>
