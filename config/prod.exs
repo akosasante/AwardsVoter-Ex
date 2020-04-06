@@ -29,6 +29,9 @@ config :logger, :error_log,
 config :awards_voter,
        environment: :prod
 
+config :awards_voter,
+       environment: :prod
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
