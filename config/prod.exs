@@ -11,7 +11,7 @@ import Config
 # before starting your production server.
 config :awards_voter, AwardsVoter.Web.Endpoint,
   http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "138.197.175.237"],
+  url: [host: "awards.akosua.xyz"],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Log to file in production
