@@ -7,7 +7,7 @@ defmodule AwardsVoter.Context.Admin.Shows do
   alias Ecto.Changeset
 
   @type change_result :: {:ok, Show.t()} | {:errors, Changeset.t()}
-  
+
   @spec list_shows :: {:ok, list(Show.t())} | :error_fetching
   def list_shows, do: Show.get_all_shows()
 
@@ -27,9 +27,9 @@ defmodule AwardsVoter.Context.Admin.Shows do
            {:errors, cs}
     end
   end
-  
+
   @spec update_show(Show.t(), map()) :: change_result()
-                                        def update_show(%Show{} = orig_show, attrs) do
+  def update_show(%Show{} = orig_show, attrs) do
     cs = Show.changeset(orig_show, attrs)
     with true <- cs.valid?,
          %Show{} = site_show <- Changeset.apply_changes(cs),

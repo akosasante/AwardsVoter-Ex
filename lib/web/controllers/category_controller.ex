@@ -12,7 +12,7 @@ defmodule AwardsVoter.Web.CategoryController do
       :category_not_found -> Logger.error("Couldn't find category (#{name}) on show (#{show_name})")
                              conn 
                              |> put_flash(:error, "Couldn't find category (#{name})")
-                             |> redirect(to: Routes.show_path(conn, :index))
+                             |> redirect(to: Routes.show_path(conn, :show, show_name))
       e -> Logger.error("Error during Shows.get_show_by_name: #{inspect e}")
            conn
            |> put_flash(:error, "Could't find show (#{show_name})")
@@ -31,7 +31,7 @@ defmodule AwardsVoter.Web.CategoryController do
         conn
         |> put_flash(:info, "Category added successfully")
         |> redirect(to: Routes.show_path(conn, :show, show_name))
-      {:errors, %Ecto.Changeset{} = changeset} -> render(conn, "new.html", changeset: changeset, options: [])
+      {:errors, %Ecto.Changeset{} = changeset} -> render(conn, "new.html", changeset: changeset, show_name: show_name, options: [])
     end
   end
   
@@ -65,7 +65,7 @@ defmodule AwardsVoter.Web.CategoryController do
   def set_winner(conn, %{"show_name" => show_name, "category_name" => category_name, "contestant_name" => winner}) do
     case Admin.set_winner_for_show_category(show_name, category_name, winner) do
       {:ok, _show} ->
-        AwardsVoter.Web.Endpoint.broadcast!("ballots:#{URI.encode(show_name)}", "update_scores", %{})
+        AwardsVoter.Web.Endpoint.broadcast!("ballots:#{URI.encode(show_name)}", "winner_updated", %{})
         conn
         |> put_flash(:info, "Category updated successfully")
         |> redirect(to: Routes.show_category_path(conn, :show, show_name, category_name))

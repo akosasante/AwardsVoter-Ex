@@ -10,7 +10,7 @@
   <%= for vote <- @changeset.data.votes do %>
     <div class="bg-gray-400 max-w-lg rounded overflow-hidden shadow-md mx-auto my-2 p-2">
       <h2><%= vote.category.name %></h2>
-      <%= if vote.category.description do %> <p>vote.category.description</p> <% end%>
+      <%= if vote.category.description do %> <p><%= vote.category.description %></p> <% end%>
       <%= render_vote_options(f, vote) %>
     </div>
   <% end %>

@@ -1,37 +1,36 @@
 defmodule AwardsVoter.Context.Voting do
-  alias __MODULE__
   alias AwardsVoter.Context.Admin
-  alias AwardsVoter.Context.Voting.Votes
   alias AwardsVoter.Context.Voting.Ballots
   alias AwardsVoter.Context.Voting.Ballots.Ballot
   alias AwardsVoter.Context.Voting.Votes.Vote
   alias AwardsVoter.Context.Admin.Categories.Category
-  
+
   require Logger
 
   defdelegate change_ballot(ballot), to: Ballots
   defdelegate save_ballot(ballot, show_name), to: Ballots
+  defdelegate list_ballots_for_show(show_name), to: Ballots
   def get_ballot_for(username, show_name), do: Ballots.get_ballot_by_username_and_show(username, show_name)
-  
-  @spec create_new_ballot(String.t(), Show.t()) :: Ballots.change_result() | :error
+
+  @spec create_new_ballot(String.t(), Show.t()) :: Ballots.change_result() | {:error, term()}
   def create_new_ballot(username, show_name) do
     with {:show, {:ok, show}} <- {:show, Admin.get_show_by_name(show_name)},
          {:create_ballot, {:ok, ballot}} <- {:create_ballot, Ballots.create_ballot_from_show_or_categories(username, show)},
          {:saved_ballot, {:ok, saved_ballot}} <- {:saved_ballot, Ballots.save_ballot(ballot, show_name)} do
       {:ok, saved_ballot}
     else
-      {:show, e} -> 
+      {:show, e} ->
         Logger.error("Error getting show (#{inspect show_name}, #{inspect e}")
-        :error
-      {:create_ballot, e} -> 
+        {:error, :show_not_found}
+      {:create_ballot, e} ->
         Logger.error("Error creating ballot: #{inspect e}")
         e
       {:saved_ballot, e} ->
         Logger.error("Error saving ballot: #{inspect e}")
-        :error
+        {:error, :ballot_not_saved}
     end
   end
-  
+
   @spec vote(Ballot.t(), String.t(), String.t()) :: {:ok | :invalid_vote, Ballot.t()}
   def vote(ballot, category_name, contestant_name) do
     with {:get_category_vote, %Vote{} = category_vote_entry} <- {:get_category_vote, Ballots.get_vote_by_category(ballot, category_name)},
@@ -62,10 +61,13 @@ defmodule AwardsVoter.Context.Voting do
       cont -> {:ok, %{vote | contestant: cont}}
     end
   end
-  
+
   def multi_vote(ballot, vote_map) do
-    Enum.reduce(vote_map, {:ok, ballot}, fn {category, contestant}, {:ok, updated_ballot} ->
-      vote(updated_ballot, category, contestant)
+    Enum.reduce_while(vote_map, {:ok, ballot}, fn {category, contestant}, {:ok, updated_ballot} ->
+      case vote(updated_ballot, category, contestant) do
+        {:ok, ballot} = res -> {:cont, res}
+        e -> {:halt, e}
+      end
     end)
   end
 
@@ -81,24 +83,28 @@ defmodule AwardsVoter.Context.Voting do
   def score(ballot) do
     {:ok, Enum.count(ballot.votes, &is_winning_vote?/1)}
   end
-  
+
+  @spec get_scores_for_show(String.t()) :: list({String.t(), non_neg_integer()})
   def get_scores_for_show(show_name) do
     show_name
-    |> Ballots.list_ballots_for_show()
-    |> Enum.map(fn ballot -> 
-      {:ok, score} = score(ballot) 
+    |> list_ballots_for_show()
+    |> Enum.map(fn ballot ->
+      {:ok, score} = score(ballot)
       {ballot.voter, score}
     end)
   end
-  
+
+  @spec update_ballots_for_show(Show.t()) :: :ok
   def update_ballots_for_show(show) do
     show.name
-    |> Ballots.list_ballots_for_show()
-    |> Enum.map(fn ballot -> Ballots.update_ballot_with_winners(ballot, show.categories) end)
+    |> list_ballots_for_show()
+    |> Enum.map(fn ballot -> Ballots.update_ballot_categories(ballot, show.categories) end)
     |> Enum.each(fn
-      {:ok, updated_ballot} -> save_ballot(updated_ballot, show.name)
+      {:ok, updated_ballot} -> case save_ballot(updated_ballot, show.name) do
+        {:ok, saved_ballot} = res -> res
+        e -> Logger.error("Unable to update ballot: #{inspect e}")
+      end
       {:errors, e} -> Logger.error("Unable to update ballot: #{inspect e}")
     end)
-    :ok
   end
 end

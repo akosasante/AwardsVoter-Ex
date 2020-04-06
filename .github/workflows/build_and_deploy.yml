@@ -20,7 +20,7 @@ jobs:
           cat <<EOT >> config/releases.exs
           import Config
           config :awards_voter, AwardsVoter.Web.Endpoint,
-            secret_key_base: "6WNujy3wMK3h4/FYg48O6Lix4DradBttn+TlDWNavbtA26SnO34jWqNuQ3X2YL61",
+            secret_key_base: "${{ secrets.KEYBASE }}",
             server: true
           EOT
           cat config/releases.exs
@@ -60,5 +60,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           script: |
+            export ERL_EPMD_ADDRESS=127.0.0.1
             cd /opt/Apps/awards_predictor
             _build/prod/rel/awards_voter/bin/awards_voter daemon

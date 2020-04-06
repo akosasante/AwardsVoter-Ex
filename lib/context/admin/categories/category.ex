@@ -17,7 +17,7 @@ defmodule AwardsVoter.Context.Admin.Categories.Category do
   embedded_schema do
     field :description, :string
     field :name, :string
-    embeds_one :winner, Contestant
+    embeds_one :winner, Contestant, on_replace: :delete
     embeds_many :contestants, Contestant, on_replace: :delete
   end
 

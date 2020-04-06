@@ -1,6 +1,6 @@
 defmodule AwardsVoter.Web.BallotViewTest do
   use AwardsVoter.Web.ConnCase, async: true
-  
+
   import Phoenix.View
   import Phoenix.HTML, only: [safe_to_string: 1]
 
@@ -10,7 +10,7 @@ defmodule AwardsVoter.Web.BallotViewTest do
   alias AwardsVoter.Context.Voting.Votes.Vote
   alias AwardsVoter.Context.Voting
   alias AwardsVoter.Context.Voting.Ballots.Ballot
-  
+
   describe "render_vote_options/2" do
     setup do
       vote = %Vote{
@@ -27,7 +27,7 @@ defmodule AwardsVoter.Web.BallotViewTest do
       }
       {:ok, vote: vote}
     end
-    
+
     test "with a voted contestant set", %{vote: vote} do
       res = BallotView.render_vote_options(:form, vote) |> safe_to_string()
 
@@ -36,7 +36,7 @@ defmodule AwardsVoter.Web.BallotViewTest do
         assert res =~ "<input id=\"form_Test Category_Test_Contestant_#{num}\" name=\"form[Test Category]\" type=\"radio\" value=\"Test Contestant #{num}\">"
       end
     end
-    
+
     test "with no contestant vote set", %{vote: vote} do
       vote = %{vote | contestant: nil}
       res = BallotView.render_vote_options(:form, vote) |> safe_to_string()
@@ -47,7 +47,7 @@ defmodule AwardsVoter.Web.BallotViewTest do
       end
     end
   end
-  
+
   describe "renders templates correctly: " do
     setup do
       ballot = %Ballot{
@@ -75,22 +75,22 @@ defmodule AwardsVoter.Web.BallotViewTest do
       }
       {:ok, ballot: ballot}
     end
-    
+
     test "new.html", %{conn: conn} do
       changeset = Voting.change_ballot(%Ballot{})
       show_name = "Test Show"
       content = render_to_string(AwardsVoter.Web.BallotView, "new.html", conn: conn, show_name: show_name, changeset: changeset)
 
-      assert content =~ "New Ballot for Test Show"
+      assert content =~ "New ballot for Test Show"
       assert content =~ "<button type=\"submit\">Save</button>"
       assert content =~ "<label for=\"ballot_username\">Username</label><input id=\"ballot_username\" name=\"ballot[username]\" type=\"text\">"
     end
-    
+
     test "continue.html", %{conn: conn} do
       changeset = Voting.change_ballot(%Ballot{})
       show_name = "Test Show"
       content = render_to_string(AwardsVoter.Web.BallotView, "continue.html", conn: conn, show_name: show_name, changeset: changeset)
-      
+
       assert content =~ "Continue existing ballot for Test Show"
       assert content =~ "<button type=\"submit\">Continue</button>"
       assert content =~ "<label for=\"ballot_username\">Username</label><input id=\"ballot_username\" name=\"ballot[username]\" type=\"text\">"
