@@ -17,7 +17,7 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "5uqqhOobVkWLOQONgCyv+vdXQDMcBI5E3nzU9cHU4KqvNXjff0ekqS0fwnXGawoo",
   render_errors: [view: AwardsVoter.Web.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: AwardsVoter.PubSub, adapter: Phoenix.PubSub.PG2],
+  pubsub_server: AwardsVoter.PubSub,
   live_view: [
     signing_salt: "j58+1hoiHwGgzvTUeI+rtaOG2rP1Sv8u"
   ]
@@ -31,7 +31,7 @@ config :logger, :console,
 config :phoenix, :json_library, Jason
 
 
-config :logster, 
+config :logster,
        filter_parameters: ["password", "secret", "token"], # Parameters to redact
        allowed_headers: ["x-forwarded-from"] # explicitly tell logster to log these headers
 

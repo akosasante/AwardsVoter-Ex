@@ -34,8 +34,8 @@ defmodule AwardsVoter.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.4.0"},
-      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix, "~> 1.5"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
@@ -44,7 +44,7 @@ defmodule AwardsVoter.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:credo, "~> 1.1.0", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 0.5", only: [:dev], runtime: false},
-      {:phoenix_live_view, "~> 0.5.1"},
+      {:phoenix_live_view, "~> 0.14.4"},
       {:floki, ">= 0.0.0", only: :test},
       {:logster, "~> 1.0"},
       {:logger_file_backend, "~> 0.0.10"}

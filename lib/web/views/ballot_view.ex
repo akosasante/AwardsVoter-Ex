@@ -8,9 +8,9 @@ defmodule AwardsVoter.Web.BallotView do
     end
     ~E"""
       <%= for contestant <- vote.category.contestants do %>
-        <%= label do %>
-        <span><%= contestant.name %></span>
+        <%= label style: 'display: block', class: 'm-2' do %>
         <%= radio_button form, String.to_atom(vote.category.name), contestant.name, checked: contestant.name == contestant_name %>
+        <span><%= contestant.name %></span>
       <% end %>
       <% end %>
     """

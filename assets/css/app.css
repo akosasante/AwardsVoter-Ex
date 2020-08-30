@@ -6,12 +6,12 @@
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
  */
-@import "tailwindcss/base"
+@tailwind base
 
 /**
  * This injects any component classes registered by plugins.
  */
-@import "tailwindcss/components"
+@tailwind components
 
 /**
  * Here you would add any of your custom component classes; stuff that you'd
@@ -33,7 +33,7 @@
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
  */
-@import "tailwindcss/utilities"
+@tailwind utilities
 
 /**
  * Here you would add any custom utilities you need that don't come out of the
@@ -49,5 +49,13 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
-@import "../../deps/phoenix_live_view/assets/css/live_view.css"
+/*@import "../../deps/phoenix_live_view/assets/css/live_view.css"*/
+
+details:hover
+  cursor: pointer
+
+
+label:hover
+  cursor: pointer
+
 

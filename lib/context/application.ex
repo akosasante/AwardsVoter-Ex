@@ -4,7 +4,7 @@ defmodule AwardsVoter.Application do
   @moduledoc false
 
   use Application
-  
+
   require Logger
 
   def start(_type, _args) do
@@ -13,12 +13,13 @@ defmodule AwardsVoter.Application do
       # Start the Ecto repository
 #      AwardsVoter.Repo,
       # Start the endpoint when the application starts
+      {Phoenix.PubSub, [name: AwardsVoter.PubSub, adapter: Phoenix.PubSub.PG2]},
       AwardsVoter.Web.Endpoint,
       # Starts a worker by calling: AwardsVoter.Worker.start_link(arg)
       # {AwardsVoter.Worker, arg},
 #      {Registry, keys: :unique, name: Registry.Voter},
       AwardsVoter.Context.Voting.Votes.Voter,
-      AwardsVoter.Context.Admin.Shows.ShowManager
+      AwardsVoter.Context.Admin.Shows.ShowManager,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

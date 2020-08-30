@@ -15,8 +15,24 @@ import "phoenix_html"
 //
 // Local files can be imported directly using relative paths, for example:
 // import socket from "./socket"
-import liveSocket from "./live_socket";
+// import liveSocket from "./live_socket";
+import LiveSocket from "phoenix_live_view"
+import {Socket} from "phoenix"
+import {InitModal} from "./init_modal"
+let Hooks = {}
+Hooks.InitModal = InitModal
 
+let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
+let liveSocket = new LiveSocket("/live", Socket, {
+    hooks: Hooks,
+    params: {_csrf_token: csrfToken}
+    // dom: {
+    //     onBeforeElUpdated(from, to){
+    //         if(from.__x){ window.Alpine.clone(from.__x, to) }
+    //     }
+    // }
+})
+liveSocket.connect()
 // document.addEventListener('DOMContentLoaded', (event) => {
 //   // Finally, connect to the socket:
 //   let path = window.location.pathname.split("/").reverse()
@@ -33,7 +49,7 @@ import liveSocket from "./live_socket";
 //       channel.push("get_scores", {show_name: showName})
 //         .receive("ok", res => console.log(res))
 //     });
-//    
+//
 //     channel.join()
 //       .receive("ok", resp => { console.log("Joined successfully", resp) })
 //       .receive("error", resp => { console.log("Unable to join", resp) });
