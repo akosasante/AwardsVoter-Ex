@@ -12,7 +12,8 @@ import Config
 config :awards_voter, AwardsVoter.Web.Endpoint,
   http: [:inet6, port: System.get_env("PORT") || 4000],
   url: [host: "awards.akosua.xyz"],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: ["//awards.akosua.xyz"]
 
 # Log to file in production
 config :logger,
