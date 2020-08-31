@@ -12,23 +12,23 @@ defmodule AwardsVoter.Web.ShowViewTest do
       {:ok, show: show}
     end
 
-    test "show.html", %{conn: conn, show: show} do
-      content = render_to_string(AwardsVoter.Web.ShowView, "show.html", conn: conn, show: show)
-
-      for category <- show.categories do
-        assert content =~ category.name
-        assert content =~ "/admin/shows/#{URI.encode(show.name)}/categories/#{URI.encode(category.name)}"
-      end
-
-      assert content =~ show.name
-      assert content =~ "[ 4 nominee(s) ]"
-      assert content =~ "See Details"
-      assert content =~ "Edit"
-      assert content =~ "Delete"
-      assert content =~ "Add New Category"
-      assert content =~ "Delete Show"
-      assert content =~ "Back to All Shows"
-    end
+#    test "show.html", %{conn: conn, show: show} do
+#      content = render_to_string(AwardsVoter.Web.ShowView, "show.html", conn: conn, show: show)
+#
+#      for category <- show.categories do
+#        assert content =~ category.name
+#        assert content =~ "/admin/shows/#{URI.encode(show.name)}/categories/#{URI.encode(category.name)}"
+#      end
+#
+#      assert content =~ show.name
+#      assert content =~ "[ 4 nominee(s) ]"
+#      assert content =~ "See Details"
+#      assert content =~ "Edit"
+#      assert content =~ "Delete"
+#      assert content =~ "Add New Category"
+#      assert content =~ "Delete Show"
+#      assert content =~ "Back to All Shows"
+#    end
 
     test "form.html", %{conn: conn, show: show} do
       changeset = Admin.change_show(show)
