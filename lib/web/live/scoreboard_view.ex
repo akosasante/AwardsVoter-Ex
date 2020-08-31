@@ -10,7 +10,9 @@ defmodule AwardsVoter.Web.ScoreboardView do
     AwardsVoter.Web.BallotView.render("scoreboard.html", assigns)
   end
 
-  def mount(session, socket) do
+  @impl true
+  def mount(params, session, socket) do
+    Logger.debug(inspect {params, session, socket})
     show_name = session["show_name"]
     Logger.info("Mounting scoreboard for: #{show_name}")
     if connected?(socket), do: AwardsVoter.Web.Endpoint.subscribe("ballots:#{URI.encode(show_name)}")
@@ -18,6 +20,7 @@ defmodule AwardsVoter.Web.ScoreboardView do
     {:ok, assign(socket, scores: scores, show_name: show_name)}
   end
 
+  @impl true
   def handle_info(%{event: "winner_updated", topic: "ballots:" <> show_name} = _channel, socket) do
     Logger.info("Handling winner_updated broadcast for: #{show_name}")
     show_name = URI.decode(show_name)
