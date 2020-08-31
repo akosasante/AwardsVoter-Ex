@@ -96,21 +96,21 @@ defmodule AwardsVoter.Web.BallotViewTest do
       assert content =~ "<label for=\"ballot_username\">Username</label><input id=\"ballot_username\" name=\"ballot[username]\" type=\"text\">"
     end
 
-    test "edit.html", %{conn: conn, ballot: ballot} do
-      changeset = Voting.change_ballot(ballot)
-      show_name = "Test Show"
-      content = render_to_string(AwardsVoter.Web.BallotView, "edit.html", conn: conn,
-        show_name: show_name, changeset: changeset, options: [method: "put"])
-
-      assert content =~ ballot.voter
-      assert content =~ show_name
-      assert content =~ "<input name=\"_method\" type=\"hidden\" value=\"put\">"
-      assert content =~ "/ballot/#{URI.encode(show_name)}/#{URI.encode(ballot.voter)}"
-      for num <- 1..2 do
-        assert content =~ "<h2>Test Category #{num}</h2>"
-        assert content =~ "<label>\n    <span>Test Contestant #{num}</span>"
-      end
-    end
+#    test "edit.html", %{conn: conn, ballot: ballot} do
+#      changeset = Voting.change_ballot(ballot)
+#      show_name = "Test Show"
+#      content = render_to_string(AwardsVoter.Web.BallotView, "edit.html", conn: conn,
+#        show_name: show_name, changeset: changeset, options: [method: "put"])
+#
+#      assert content =~ ballot.voter
+#      assert content =~ show_name
+#      assert content =~ "<input name=\"_method\" type=\"hidden\" value=\"put\">"
+#      assert content =~ "/ballot/#{URI.encode(show_name)}/#{URI.encode(ballot.voter)}"
+#      for num <- 1..2 do
+#        assert content =~ "<h2>Test Category #{num}</h2>"
+#        assert content =~ "<label>\n    <span>Test Contestant #{num}</span>"
+#      end
+#    end
 
     test "show.html", %{conn: conn, ballot: ballot} do
       show_name = "Test Show"

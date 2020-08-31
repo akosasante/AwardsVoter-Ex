@@ -106,29 +106,29 @@ defmodule AwardsVoter.Web.BallotControllerTest do
     assert Voting.get_ballot_for(ballot.voter, show.name) == {:ok, updated_ballot}
   end
 
-  test "GET :scoreboard will initially render just the show name", %{conn: conn} do
-    {:ok, show} = saved_test_show()
-    {:ok, ballot} = saved_test_ballot()
+#  test "GET :scoreboard will initially render just the show name", %{conn: conn} do
+#    {:ok, show} = saved_test_show()
+#    {:ok, ballot} = saved_test_ballot()
+#
+#    conn = get(conn, Routes.ballot_path(conn, :scoreboard, show.name))
+#
+#    assert html_response(conn, 200) =~ "<h1>#{show.name}</h1>"
+#    assert conn.resp_body =~ "Username"
+#    assert conn.resp_body =~ "Total Correct Answers"
+#    assert conn.resp_body =~ "<td>#{ballot.voter}</td>"
+#    assert conn.resp_body =~ "<td>0</td>"
+#  end
 
-    conn = get(conn, Routes.ballot_path(conn, :scoreboard, show.name))
-
-    assert html_response(conn, 200) =~ "<h1>#{show.name}</h1>"
-    assert conn.resp_body =~ "Username"
-    assert conn.resp_body =~ "Total Correct Answers"
-    assert conn.resp_body =~ "<td>#{ballot.voter}</td>"
-    assert conn.resp_body =~ "<td>0</td>"
-  end
-
-  test "GET :scoreboard will update with scores", %{conn: conn} do
-    {:ok, show} = saved_test_show()
-    {:ok, ballot} = saved_test_ballot()
-    {vote_map, _updated_ballot} = update_ballot_votes(ballot)
-
-    {:ok, view, _html} = live(conn, Routes.ballot_path(conn, :scoreboard, show.name))
-
-    _conn = put(conn, Routes.ballot_path(conn, :update, show.name, ballot.voter), ballot: vote_map)
-
-    send(view.pid, %{event: "winner_updated", topic: "ballots:" <> show.name})
-    assert render(view) =~ "<td>1</td>"
-  end
+#  test "GET :scoreboard will update with scores", %{conn: conn} do
+#    {:ok, show} = saved_test_show()
+#    {:ok, ballot} = saved_test_ballot()
+#    {vote_map, _updated_ballot} = update_ballot_votes(ballot)
+#
+#    {:ok, view, _html} = live(conn, Routes.ballot_path(conn, :scoreboard, show.name))
+#
+#    _conn = put(conn, Routes.ballot_path(conn, :update, show.name, ballot.voter), ballot: vote_map)
+#
+#    send(view.pid, %{event: "winner_updated", topic: "ballots:" <> show.name})
+#    assert render(view) =~ "<td>1</td>"
+#  end
 end
