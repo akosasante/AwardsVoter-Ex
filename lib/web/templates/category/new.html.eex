@@ -1,5 +1,0 @@
-<h1>Adding New Category</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.show_category_path(@conn, :create, @show_name)) %>
-
-<span><%= link "Back", to: Routes.show_path(@conn, :index) %></span>
