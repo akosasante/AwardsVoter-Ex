@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # Configure your database
 #
@@ -20,3 +20,5 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :awards_voter, environment: :test
