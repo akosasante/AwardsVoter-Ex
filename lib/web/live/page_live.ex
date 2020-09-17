@@ -1,5 +1,5 @@
-defmodule AwardsVoterWeb.PageLive do
-  use AwardsVoterWeb, :live_view
+defmodule AwardsVoter.Web.PageLive do
+  use AwardsVoter.Web, :live_view
 
   @impl true
   def mount(_params, _session, socket) do
@@ -26,7 +26,7 @@ defmodule AwardsVoterWeb.PageLive do
   end
 
   defp search(query) do
-    if not AwardsVoterWeb.Endpoint.config(:code_reloader) do
+    if not AwardsVoter.Web.Endpoint.config(:code_reloader) do
       raise "action disabled when not in development"
     end
 

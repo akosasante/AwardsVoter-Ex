@@ -1,4 +1,4 @@
-defmodule AwardsVoterWeb.Endpoint do
+defmodule AwardsVoter.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :awards_voter
 
   # The session will be stored in the cookie and signed,
@@ -10,7 +10,7 @@ defmodule AwardsVoterWeb.Endpoint do
     signing_salt: "r8b+lKCW"
   ]
 
-  socket "/socket", AwardsVoterWeb.UserSocket,
+  socket "/socket", AwardsVoter.Web.UserSocket,
     websocket: true,
     longpoll: false
 
@@ -50,5 +50,5 @@ defmodule AwardsVoterWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug AwardsVoterWeb.Router
+  plug AwardsVoter.Web.Router
 end

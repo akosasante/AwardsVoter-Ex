@@ -1,4 +1,4 @@
-defmodule AwardsVoter do
+defmodule AwardsVoter.Context do
   @moduledoc """
   AwardsVoter keeps the contexts that define your domain
   and business logic.

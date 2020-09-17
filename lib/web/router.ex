@@ -1,11 +1,11 @@
-defmodule AwardsVoterWeb.Router do
-  use AwardsVoterWeb, :router
+defmodule AwardsVoter.Web.Router do
+  use AwardsVoter.Web, :router
 
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {AwardsVoterWeb.LayoutView, :root}
+    plug :put_root_layout, {AwardsVoter.Web.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -14,14 +14,14 @@ defmodule AwardsVoterWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", AwardsVoterWeb do
+  scope "/", AwardsVoter.Web do
     pipe_through :browser
 
     live "/", PageLive, :index
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", AwardsVoterWeb do
+  # scope "/api", AwardsVoter.Web do
   #   pipe_through :api
   # end
 
@@ -37,7 +37,7 @@ defmodule AwardsVoterWeb.Router do
 
     scope "/" do
       pipe_through :browser
-      live_dashboard "/dashboard", metrics: AwardsVoterWeb.Telemetry
+      live_dashboard "/dashboard", metrics: AwardsVoter.Web.Telemetry
     end
   end
 end

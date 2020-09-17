@@ -1,5 +1,5 @@
-defmodule AwardsVoterWeb.ErrorView do
-  use AwardsVoterWeb, :view
+defmodule AwardsVoter.Web.ErrorView do
+  use AwardsVoter.Web, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

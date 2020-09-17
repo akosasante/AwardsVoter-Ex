@@ -7,14 +7,14 @@
 # General application configuration
 use Mix.Config
 
-config :awards_voter,
-  ecto_repos: [AwardsVoter.Repo]
+#config :awards_voter,
+#  ecto_repos: [AwardsVoter.Repo]
 
 # Configures the endpoint
-config :awards_voter, AwardsVoterWeb.Endpoint,
+config :awards_voter, AwardsVoter.Web.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "9zLooVgBIf0vBCxPsL9zjVleVnI9o5PTr3g8DGPZQHfhqpxaRCgm7u5vbvaiWh1O",
-  render_errors: [view: AwardsVoterWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [view: AwardsVoter.Web.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: AwardsVoter.PubSub,
   live_view: [signing_salt: "n04BFKW8"]
 

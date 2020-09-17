@@ -1,5 +1,5 @@
-defmodule AwardsVoterWeb.PageLiveTest do
-  use AwardsVoterWeb.ConnCase
+defmodule AwardsVoter.Web.PageLiveTest do
+  use AwardsVoter.Web.ConnCase
 
   import Phoenix.LiveViewTest
 

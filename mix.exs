@@ -19,7 +19,7 @@ defmodule AwardsVoter.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {AwardsVoter.Application, []},
+      mod: {AwardsVoter.Context.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -59,10 +59,8 @@ defmodule AwardsVoter.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
-      "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      setup: ["deps.get", "cmd npm install --prefix assets"],
+      test: ["test"]
     ]
   end
 end

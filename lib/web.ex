@@ -1,12 +1,12 @@
-defmodule AwardsVoterWeb do
+defmodule AwardsVoter.Web do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use AwardsVoterWeb, :controller
-      use AwardsVoterWeb, :view
+      use AwardsVoter.Web, :controller
+      use AwardsVoter.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,19 @@ defmodule AwardsVoterWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: AwardsVoterWeb
+      use Phoenix.Controller, namespace: AwardsVoter.Web
 
       import Plug.Conn
-      import AwardsVoterWeb.Gettext
-      alias AwardsVoterWeb.Router.Helpers, as: Routes
+      import AwardsVoter.Web.Gettext
+      alias AwardsVoter.Web.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/awards_voter_web/templates",
-        namespace: AwardsVoterWeb
+        root: "lib/web/templates",
+        namespace: AwardsVoter.Web
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -45,7 +45,7 @@ defmodule AwardsVoterWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {AwardsVoterWeb.LayoutView, "live.html"}
+        layout: {AwardsVoter.Web.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -72,7 +72,7 @@ defmodule AwardsVoterWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import AwardsVoterWeb.Gettext
+      import AwardsVoter.Web.Gettext
     end
   end
 
@@ -87,9 +87,9 @@ defmodule AwardsVoterWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import AwardsVoterWeb.ErrorHelpers
-      import AwardsVoterWeb.Gettext
-      alias AwardsVoterWeb.Router.Helpers, as: Routes
+      import AwardsVoter.Web.ErrorHelpers
+      import AwardsVoter.Web.Gettext
+      alias AwardsVoter.Web.Router.Helpers, as: Routes
     end
   end
 

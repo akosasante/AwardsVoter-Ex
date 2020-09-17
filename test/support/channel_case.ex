@@ -1,4 +1,4 @@
-defmodule AwardsVoterWeb.ChannelCase do
+defmodule AwardsVoter.Web.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule AwardsVoterWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use AwardsVoterWeb.ChannelCase, async: true`, although
+  by setting `use AwardsVoter.Web.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,19 +21,19 @@ defmodule AwardsVoterWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import AwardsVoterWeb.ChannelCase
+      import AwardsVoter.Web.ChannelCase
 
       # The default endpoint for testing
-      @endpoint AwardsVoterWeb.Endpoint
+      @endpoint AwardsVoter.Web.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(AwardsVoter.Repo, {:shared, self()})
-    end
+#    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
+#
+#    unless tags[:async] do
+#      Ecto.Adapters.SQL.Sandbox.mode(AwardsVoter.Repo, {:shared, self()})
+#    end
 
     :ok
   end
