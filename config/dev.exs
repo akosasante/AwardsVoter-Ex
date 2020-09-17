@@ -64,7 +64,7 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-      ~r"priv/gettext/.*(po)$",
+#      ~r"priv/gettext/.*(po)$",
       ~r"lib/web/(live|views)/.*(ex)$",
       ~r"lib/web/templates/.*(eex)$"
     ]
