@@ -511,7 +511,7 @@
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Andre_Braugher_2011_%28cropped%29.jpg"
         },
         {
-          "name": "Sterling K. Brown as Reggie on The Marvelous Mrs. Maisel (Prime Video)",
+          "name": "Sterling K. Brown as Reggie on The Marvelous Mrs. Maisel (Amazon Prime Video)",
           "description": "Nominated for \"Panty Pose\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Sterling_K._Brown",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Sterling_K._Brown_by_Gage_Skidmore.jpg"
@@ -529,7 +529,7 @@
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Dan_Levy_2012.png"
         },
         {
-          "name": "Tony Shalhoub as Abe Weissman on The Marvelous Mrs. Maisel (Prime Video)",
+          "name": "Tony Shalhoub as Abe Weissman on The Marvelous Mrs. Maisel (Amazon Prime Video)",
           "description": "Nominated for \"Marvelous Radio\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Tony_Shalhoub",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/TonyShalhoub2018.png"
@@ -547,7 +547,7 @@
       "description": "Rhea Perlman and Doris Roberts have the most wins (4). Rhea Perlman and Loretta Swift have the most nominations (10). The previous winner was Alex Borstein for The Marvelous Mrs. Maisel.",
       "contestants": [
         {
-          "name": "Alex Borstein as Susie Myerson on The Marvelous Mrs. Maisel (Prime Video)",
+          "name": "Alex Borstein as Susie Myerson on The Marvelous Mrs. Maisel (Amazon Prime Video)",
           "description": "Nominated for \"Marvelous Radio\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Alex_Borstein",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Alex_Borstein_by_Gage_Skidmore_4_%28retouched%29.jpg"
@@ -565,7 +565,7 @@
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Betty_Gilpin_by_Gage_Skidmore.jpg"
         },
         {
-          "name": "Marin Hinkle as Rose Weissman on The Marvelous Mrs. Maisel (Prime Video)",
+          "name": "Marin Hinkle as Rose Weissman on The Marvelous Mrs. Maisel (Amazon Prime Video)",
           "description": "Nominated for \"A Jewish Girl Walks Into the Apollo...\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Marin_Hinkle",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/MarinHinkleHWOFSept2011.jpg"
@@ -785,50 +785,51 @@
           "description": "Nominated for \"Betty\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Tracey_Ullman",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Tracy_Ullman_by_John_Mathew_Smith.jpg"
-        }]
+        }
+      ]
     },
     {
       "name": "Outstanding Director for a Comedy Series",
       "description": "CBS is the network with the most wins (15). James Burrows has the most wins (5, 2 consecutively) and nominations (25). The previous winner was Harry Bradbeer for 'Episode 1' from Fleabag.",
       "contestants": [
         {
-          "name": "Matt Shakman for The Great",
+          "name": "Matt Shakman for The Great (Hulu)",
           "description": "Nominated for \"The Great\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Matt_Shakman",
           "image_url": ""
         },
         {
-          "name": "Amy Sherman-Palladino (Prime for The Marvelous Mrs. Maisel",
+          "name": "Amy Sherman-Palladino for The Marvelous Mrs. Maisel (Amazon Prime Video)",
           "description": "Nominated for \"It's Comedy or Cabbage\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Amy_Sherman-Palladino",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Amy_Sherman-Palladino.jpg"
         },
         {
-          "name": "Daniel Palladino (Prime for The Marvelous Mrs. Maisel",
+          "name": "Daniel Palladino for The Marvelous Mrs. Maisel (Amazon Prime Video)",
           "description": "Nominated for \"Marvelous Radio\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Daniel_Palladino",
           "image_url": ""
         },
         {
-          "name": "Gail Mancuso for Modern Family",
+          "name": "Gail Mancuso for Modern Family (ABC)",
           "description": "Nominated for \"Finale, Part 2\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Finale_(Modern_Family)",
           "image_url": ""
         },
         {
-          "name": "Ramy Youssef for Ramy",
+          "name": "Ramy Youssef for Ramy (Hulu)",
           "description": "Nominated for \"Miakhalifa.mov\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Ramy_Youssef",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Ramy_Youssef_Cropped_%28cropped%29.png"
         },
         {
-          "name": "Andrew Cividino and Dan Levy (Pop for Schitt's Creek",
+          "name": "Andrew Cividino and Dan Levy for Schitt's Creek (Pop TV)",
           "description": "Nominated for \"Happy Ending\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Andrew_Cividino",
           "image_url": ""
         },
         {
-          "name": "James Burrows for Will & Grace",
+          "name": "James Burrows for Will & Grace (NBC)",
           "description": "Nominated for \"We Love Lucy\".",
           "wiki_url": "https://en.wikipedia.org/wiki/James_Burrows",
           "image_url": ""
@@ -840,49 +841,49 @@
       "description": "NBC is the network with the most wins (21). Paul Bogart has the most wins (3). George Schaefer has the most nominations (10). The previous winner was Jason Bateman for 'Reparations' from Ozark.",
       "contestants": [
         {
-          "name": "Benjamin Caron for The Crown",
+          "name": "Benjamin Caron for The Crown (Netflix)",
           "description": "Nominated for \"Aberfan\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Benjamin_Caron",
           "image_url": ""
         },
         {
-          "name": "Jessica Hobbs for The Crown",
+          "name": "Jessica Hobbs for The Crown (Netflix)",
           "description": "Nominated for \"Cri de Coeur\".",
           "wiki_url": "",
           "image_url": ""
         },
         {
-          "name": "Lesli Linka Glatter for Homeland",
+          "name": "Lesli Linka Glatter for Homeland (Showtime)",
           "description": "Nominated for \"Prisoners of War\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Prisoners_of_War_(Homeland)",
           "image_url": ""
         },
         {
-          "name": "Mimi Leder (Apple for The Morning Show",
+          "name": "Mimi Leder for The Morning Show (Apple TV+)",
           "description": "Nominated for \"The Interview\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Mimi_Leder",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Mimi_Leder_at_the_75th_Annual_Peabody_Awards_for_The_Leftovers.jpg"
         },
         {
-          "name": "Alik Sakharov for Ozark",
+          "name": "Alik Sakharov for Ozark (Netflix)",
           "description": "Nominated for \"Fire Pink\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Alik_Sakharov",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Sakharov_image.jpg"
         },
         {
-          "name": "Ben Semanoff for Ozark",
+          "name": "Ben Semanoff for Ozark (Netflix)",
           "description": "Nominated for \"Su Casa Es Mi Casa\".",
           "wiki_url": "",
           "image_url": ""
         },
         {
-          "name": "Andrij Parekh for Succession",
+          "name": "Andrij Parekh for Succession (HBO)",
           "description": "Nominated for \"Hunting\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Andrij_Parekh",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Andrij_Parekh.jpg"
         },
         {
-          "name": "Mark Mylod for Succession",
+          "name": "Mark Mylod for Succession (HBO)",
           "description": "Nominated for \"This Is Not for Tears\".",
           "wiki_url": "https://en.wikipedia.org/wiki/This_Is_Not_for_Tears",
           "image_url": ""
@@ -894,13 +895,13 @@
       "description": "HBO is the network with the most wins (15). John Frankenheimer has the most wins (4). Lamont Johnson and Joseph Sargent have the most nominations (9). The previous winner was Johan Renck for Chernobyl.",
       "contestants": [
         {
-          "name": "Lynn Shelton for Little Fires Everywhere",
+          "name": "Lynn Shelton for Little Fires Everywhere (Hulu)",
           "description": "Nominated for \"Find a Way\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Lynn_Shelton",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Lynn_Shelton.jpg"
         },
         {
-          "name": "Lenny Abrahamson for Normal People",
+          "name": "Lenny Abrahamson for Normal People (Hulu)",
           "description": "Nominated for \"Episode 5\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Lenny_Abrahamson",
           "image_url": ""
@@ -912,19 +913,19 @@
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/SchraderMaria39Fenzl.jpeg"
         },
         {
-          "name": "Nicole Kassell for Watchmen",
+          "name": "Nicole Kassell for Watchmen (HBO)",
           "description": "Nominated for \"It's Summer and We're Running Out of Ice\".",
           "wiki_url": "https://en.wikipedia.org/wiki/It%27s_Summer_and_We%27re_Running_Out_of_Ice",
           "image_url": ""
         },
         {
-          "name": "Steph Green for Watchmen",
+          "name": "Steph Green for Watchmen (HBO)",
           "description": "Nominated for \"Little Fear of Lightning\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Little_Fear_of_Lightning",
           "image_url": ""
         },
         {
-          "name": "Stephen Williams for Watchmen",
+          "name": "Stephen Williams for Watchmen (HBO)",
           "description": "Nominated for \"This Extraordinary Being\".",
           "wiki_url": "https://en.wikipedia.org/wiki/This_Extraordinary_Being",
           "image_url": ""
@@ -935,43 +936,43 @@
       "description": "It recognizes writing excellence in regular comedic series, most of which can generally be described as situation comedies. It was first presented in 1955 as Outstanding Written Comedy Material. CBS is the network with the most wins (22). David Lloyd has the most nominations (9). The previous winner was Phoebe Waller-Bridge for 'Episode 1' from Fleabag.",
       "contestants": [
         {
-          "name": "The Good Place  Written by Michael Schur (NBC)",
+          "name": "Michael Schur for The Good Place (NBC)",
           "description": "Nominated for \"Whenever You're Ready\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Whenever_You%27re_Ready_(The_Good_Place)",
           "image_url": ""
         },
         {
-          "name": "The Great  Written by Tony McNamara (Hulu)",
+          "name": "Tony McNamara for The Great (Hulu)",
           "description": "Nominated for \"The Great\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Tony_McNamara_(writer)",
           "image_url": ""
         },
         {
-          "name": "Schitt's Creek  Written by Dan Levy (Pop TV)",
+          "name": "Dan Levy for Schitt's Creek (Pop TV)",
           "description": "Nominated for \"Happy Ending\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Dan_Levy_(Canadian_actor)",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Dan_Levy_2012.png"
         },
         {
-          "name": "Schitt's Creek  Written by David West Read (Pop TV)",
+          "name": "David West Read for Schitt's Creek (Pop TV)",
           "description": "Nominated for \"The Presidential Suite\".",
           "wiki_url": "",
           "image_url": ""
         },
         {
-          "name": "What We Do in the Shadows  Written by Sam Johnson and Chris Marcil (FX)",
+          "name": "Sam Johnson and Chris Marcil for What We Do in the Shadows (FX)",
           "description": "Nominated for \"Collaboration\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Sam_Johnson_and_Chris_Marcil",
           "image_url": ""
         },
         {
-          "name": "What We Do in the Shadows  Written by Paul Simms (FX)",
+          "name": "Paul Simms for What We Do in the Shadows (FX)",
           "description": "Nominated for \"Ghosts\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Paul_Simms",
           "image_url": ""
         },
         {
-          "name": "What We Do in the Shadows  Written by Stefani Robinson (FX)",
+          "name": "Stefani Robinson for What We Do in the Shadows (FX)",
           "description": "Nominated for \"On the Run\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Stefani_Robinson",
           "image_url": ""
@@ -983,43 +984,43 @@
       "description": "It was first awarded at the 7th Primetime Emmy Awards ceremony, held in 1955 and it is given in honor of a writer or writers who produced an outstanding story or screenplay for an episode of a television drama series during the primetime network season. Undergoing several name changes, the award received its current title at the 48th Primetime Emmy Awards in 1996. CBS is the network with the most wins (23). Rod Sterling has the most wins (6). Steven Bocho has the most nominations (19). The previous winner was Jesse Armstrong for 'Nobody Is Ever Missing' from Succession.",
       "contestants": [
         {
-          "name": "Better Call Saul  Written by Thomas Schnauz (AMC)",
+          "name": "Thomas Schnauz for Better Call Saul (AMC)",
           "description": "Nominated for \"Bad Choice Road\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Bad_Choice_Road",
           "image_url": ""
         },
         {
-          "name": "Better Call Saul  Written by Gordon Smith (AMC)",
+          "name": "Gordon Smith for Better Call Saul (AMC)",
           "description": "Nominated for \"Bagman\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Bagman_(Better_Call_Saul)",
           "image_url": ""
         },
         {
-          "name": "The Crown  Written by Peter Morgan (Netflix)",
+          "name": "Peter Morgan for The Crown (Netflix)",
           "description": "Nominated for \"Aberfan\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Peter_Morgan",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Peter_Morgan_2010.jpg"
         },
         {
-          "name": "Ozark  Written by Chris Mundy (Netflix)",
+          "name": "Chris Mundy for Ozark (Netflix)",
           "description": "Nominated for \"All In\".",
           "wiki_url": "",
           "image_url": ""
         },
         {
-          "name": "Ozark  Written by John Shiban (Netflix)",
+          "name": "John Shiban for Ozark (Netflix)",
           "description": "Nominated for \"Boss Fight\".",
           "wiki_url": "https://en.wikipedia.org/wiki/John_Shiban",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/John_Shiban_by_Gage_Skidmore.jpg"
         },
         {
-          "name": "Ozark  Written by Miki Johnson (Netflix)",
+          "name": "Miki Johnson for Ozark (Netflix)",
           "description": "Nominated for \"Fire Pink\".",
           "wiki_url": "",
           "image_url": ""
         },
         {
-          "name": "Succession  Written by Jesse Armstrong (HBO)",
+          "name": "Jesse Armstrong for Succession (HBO)",
           "description": "Nominated for \"This Is Not for Tears\".",
           "wiki_url": "https://en.wikipedia.org/wiki/This_Is_Not_for_Tears",
           "image_url": ""
@@ -1031,33 +1032,36 @@
       "description": "HBO is the network with the most wins (15). The previous winner was Craig Mazin for Chernobyl.",
       "contestants": [
         {
-          "name": "Mrs. America  Written by Tanya Barfield (FX)",
+          "name": "Tanya Barfield for Mrs. America (FX)",
           "description": "Nominated for \"Shirley\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Tanya_Barfield",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Tanya_Barfield.jpg"
         },
         {
-          "name": "Normal People  Written by Sally Rooney and Alice Birch (Hulu)",
+          "name": "Sally Rooney and Alice Birch for Normal People (Hulu)",
           "description": "Nominated for \"Episode 3\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Sally_Rooney",
           "image_url": ""
         },
         {
-          "name": "Unbelievable  Written by Susannah Grant, Michael Chabon and Ayelet Waldman (Netflix)",
+          "name": "Susannah Grant, Michael Chabon and Ayelet Waldman for Unbelievable (Netflix)",
           "description": "Nominated for \"Episode 1\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Susannah_Grant",
           "image_url": ""
         },
         {
-          "name": "Unorthodox  Written by Anna Winger (Netflix)",
+          "name": "Anna Winger for Unorthodox (Netflix)",
           "description": "Nominated for \"Part 1\".",
           "wiki_url": "https://en.wikipedia.org/wiki/Anna_Winger",
           "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Anna_Winger_-_Creator_Deutschland83_%28cropped%29.jpg"
         },
         {
-          "name": "Watchmen  Written by Damon Lindelof and Cord Jefferson (HBO)",
-          "description": "Nominated for \"This Extraordinary Being\".", "wiki_url": "https://en.wikipedia.org/wiki/This_Extraordinary_Being", "image_url": ""
-        }]
+          "name": "Damon Lindelof and Cord Jefferson for Watchmen (HBO)",
+          "description": "Nominated for \"This Extraordinary Being\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/This_Extraordinary_Being",
+          "image_url": ""
+        }
+      ]
     }
   ]
 }
