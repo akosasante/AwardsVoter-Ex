@@ -16,7 +16,7 @@
           <p><%= vote.category.description %></p>
         </details>
       <% end%>
-      <%= render_vote_options(f, vote) %>
+      <%= render_vote_options(f, vote, fn contestant_name -> link("[View Details]", to: Routes.show_category_contestant_path(@conn, :show, @show_name, vote.category.name, contestant_name, public: true)) end) %>
     </div>
   <% end %>
 
