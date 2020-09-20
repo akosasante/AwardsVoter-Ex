@@ -11,7 +11,7 @@ defmodule AwardsVoter.Web.BallotView do
         <%= label style: 'display: block', class: 'm-2' do %>
         <%= radio_button form, String.to_atom(vote.category.name), contestant.name, checked: contestant.name == contestant_name %>
         <span><%= contestant.name %></span>
-        <span class="mx-5 underline"><%= linker.(contestant.name) %></span>
+        <span class="mx-5 underline text-grey hover:text-grey-dark"><%= linker.(contestant.name) %></span>
       <% end %>
       <% end %>
     """

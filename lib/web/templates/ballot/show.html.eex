@@ -1,1 +1,4 @@
-<%= inspect @ballot %>
+<article class="prose">
+  <h2>Ballot Saved!</h2>
+  <p>See live-updating scoreboard <%= link("here", to: Routes.ballot_path(@conn, :scoreboard, @show_name)) %></p>
+</article>
