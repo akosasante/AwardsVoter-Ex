@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-#config :awards_voter,
+# config :awards_voter,
 #  ecto_repos: [AwardsVoter.Repo]
 
 # Configures the endpoint

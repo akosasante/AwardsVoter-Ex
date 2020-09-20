@@ -1,7 +1,7 @@
 import Config
 
 # Configure your database
-#config :awards_voter, AwardsVoter.Repo,
+# config :awards_voter, AwardsVoter.Repo,
 #  username: "postgres",
 #  password: "postgres",
 #  database: "awards_voter_dev",
@@ -17,10 +17,10 @@ import Config
 # with webpack to recompile .js and .css sources.
 config :awards_voter, AwardsVoter.Web.Endpoint,
   https: [
-   port: 4001,
-   cipher_suite: :strong,
-   keyfile: "priv/cert/selfsigned_key.pem",
-   certfile: "priv/cert/selfsigned.pem"
+    port: 4001,
+    cipher_suite: :strong,
+    keyfile: "priv/cert/selfsigned_key.pem",
+    certfile: "priv/cert/selfsigned.pem"
   ],
   debug_errors: true,
   code_reloader: true,
@@ -64,7 +64,7 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
-#      ~r"priv/gettext/.*(po)$",
+      #      ~r"priv/gettext/.*(po)$",
       ~r"lib/web/(live|views)/.*(ex)$",
       ~r"lib/web/templates/.*(eex)$"
     ]

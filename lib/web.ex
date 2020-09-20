@@ -22,7 +22,7 @@ defmodule AwardsVoter.Web do
       use Phoenix.Controller, namespace: AwardsVoter.Web
 
       import Plug.Conn
-#      import AwardsVoter.Web.Gettext
+      #      import AwardsVoter.Web.Gettext
       alias AwardsVoter.Web.Router.Helpers, as: Routes
     end
   end
@@ -72,7 +72,7 @@ defmodule AwardsVoter.Web do
   def channel do
     quote do
       use Phoenix.Channel
-#      import AwardsVoter.Web.Gettext
+      #      import AwardsVoter.Web.Gettext
     end
   end
 
@@ -88,7 +88,7 @@ defmodule AwardsVoter.Web do
       import Phoenix.View
 
       import AwardsVoter.Web.ErrorHelpers
-#      import AwardsVoter.Web.Gettext
+      #      import AwardsVoter.Web.Gettext
       alias AwardsVoter.Web.Router.Helpers, as: Routes
     end
   end

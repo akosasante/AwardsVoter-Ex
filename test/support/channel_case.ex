@@ -29,11 +29,11 @@ defmodule AwardsVoter.Web.ChannelCase do
   end
 
   setup tags do
-#    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
-#
-#    unless tags[:async] do
-#      Ecto.Adapters.SQL.Sandbox.mode(AwardsVoter.Repo, {:shared, self()})
-#    end
+    #    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
+    #
+    #    unless tags[:async] do
+    #      Ecto.Adapters.SQL.Sandbox.mode(AwardsVoter.Repo, {:shared, self()})
+    #    end
 
     :ok
   end

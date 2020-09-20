@@ -8,7 +8,7 @@ defmodule AwardsVoter.Context.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-#      AwardsVoter.Repo,
+      #      AwardsVoter.Repo,
       # Start the Telemetry supervisor
       AwardsVoter.Web.Telemetry,
       # Start the PubSub system

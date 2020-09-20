@@ -32,7 +32,7 @@ defmodule AwardsVoter.Web.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-#    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :awards_voter
+    #    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :awards_voter
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,

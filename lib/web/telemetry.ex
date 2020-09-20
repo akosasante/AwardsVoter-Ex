@@ -1,4 +1,8 @@
 defmodule AwardsVoter.Web.Telemetry do
+  @moduledoc """
+    Handles metrics and other telemetry for the application
+  """
+
   use Supervisor
   import Telemetry.Metrics
 
@@ -31,11 +35,11 @@ defmodule AwardsVoter.Web.Telemetry do
       ),
 
       # Database Metrics
-#      summary("awards_voter.repo.query.total_time", unit: {:native, :millisecond}),
-#      summary("awards_voter.repo.query.decode_time", unit: {:native, :millisecond}),
-#      summary("awards_voter.repo.query.query_time", unit: {:native, :millisecond}),
-#      summary("awards_voter.repo.query.queue_time", unit: {:native, :millisecond}),
-#      summary("awards_voter.repo.query.idle_time", unit: {:native, :millisecond}),
+      #      summary("awards_voter.repo.query.total_time", unit: {:native, :millisecond}),
+      #      summary("awards_voter.repo.query.decode_time", unit: {:native, :millisecond}),
+      #      summary("awards_voter.repo.query.query_time", unit: {:native, :millisecond}),
+      #      summary("awards_voter.repo.query.queue_time", unit: {:native, :millisecond}),
+      #      summary("awards_voter.repo.query.idle_time", unit: {:native, :millisecond}),
 
       # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),

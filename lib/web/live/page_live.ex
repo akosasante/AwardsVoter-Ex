@@ -1,4 +1,5 @@
 defmodule AwardsVoter.Web.PageLive do
+  @moduledoc false
   use AwardsVoter.Web, :live_view
 
   @impl true

@@ -18,7 +18,7 @@ defmodule AwardsVoter.DataCase do
 
   using do
     quote do
-#      alias AwardsVoter.Repo
+      #      alias AwardsVoter.Repo
 
       import Ecto
       import Ecto.Changeset
@@ -28,11 +28,11 @@ defmodule AwardsVoter.DataCase do
   end
 
   setup tags do
-#    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
+    #    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
 
-#    unless tags[:async] do
-#      Ecto.Adapters.SQL.Sandbox.mode(AwardsVoter.Repo, {:shared, self()})
-#    end
+    #    unless tags[:async] do
+    #      Ecto.Adapters.SQL.Sandbox.mode(AwardsVoter.Repo, {:shared, self()})
+    #    end
 
     :ok
   end
