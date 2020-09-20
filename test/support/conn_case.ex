@@ -31,7 +31,7 @@ defmodule AwardsVoter.Web.ConnCase do
     end
   end
 
-  setup tags do
+  setup _tags do
     #    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
     #
     #    unless tags[:async] do

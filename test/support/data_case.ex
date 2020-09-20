@@ -24,10 +24,11 @@ defmodule AwardsVoter.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import AwardsVoter.DataCase
+      import AwardsVoter.Factory
     end
   end
 
-  setup tags do
+  setup _tags do
     #    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
 
     #    unless tags[:async] do
