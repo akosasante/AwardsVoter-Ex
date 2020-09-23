@@ -6,6 +6,7 @@ defmodule AwardsVoter.Factory do
 
   alias AwardsVoter.Context.Models.Contestant
   alias AwardsVoter.Context.Models.Category
+  alias AwardsVoter.Context.Models.Show
 
   def contestant_factory do
     %Contestant{
@@ -25,7 +26,7 @@ defmodule AwardsVoter.Factory do
     contestants = build_list(4, :contestant)
 
     category = %Category{
-      name: sequence(:category_name, &"Contestant##{&1}"),
+      name: sequence(:category_name, &"Category##{&1}"),
       description: "test category description. #{lorem_ipsum()}",
       contestants: contestants
     }
@@ -35,6 +36,17 @@ defmodule AwardsVoter.Factory do
     else
       category
     end
+  end
+
+  def show_factory do
+    categories = build_list(4, :category)
+
+    %Show{
+      name: sequence(:show_name, &"Show##{&1}"),
+      description: "test show description. #{lorem_ipsum()}",
+      air_datetime: "2020-09-23 22:36:58.737215Z",
+      categories: categories
+    }
   end
 
   defp lorem_ipsum(),
