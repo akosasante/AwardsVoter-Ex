@@ -1,0 +1,1136 @@
+{
+  "name": "2020 Billboard Music Awards",
+  "categories": [
+    {
+      "name": "Billboard Chart Achievement",
+      "contestants": [
+        {
+          "name": "Mariah Carey",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Mariah_Carey",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Mariah_Carey_WBLS_2018_Interview_2.jpg"
+        },
+        {
+          "name": "Luke Combs",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Luke_Combs",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Luke_Combs_interview.jpg"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Harry Styles",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Harry_Styles",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Harry_Styles_November_2014.jpg"
+        },
+        {
+          "name": "Taylor Swift",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Taylor_Swift",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/191125_Taylor_Swift_at_the_2019_American_Music_Awards_%28cropped%29.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Duo/Group",
+      "contestants": [
+        {
+          "name": "BTS",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/BTS",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/%E2%80%98LG_Q7_BTS_%EC%97%90%EB%94%94%EC%85%98%E2%80%99_%EC%98%88%EC%95%BD_%ED%8C%90%EB%A7%A4_%EC%8B%9C%EC%9E%91_%2842773472410%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Dan + Shay",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Dan_%2B_Shay",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Dan_%2B_Shay_in_2017.jpg"
+        },
+        {
+          "name": "Jonas Brothers",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jonas_Brothers",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/JonasBrothersSep10_5.jpg"
+        },
+        {
+          "name": "Maroon 5",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Maroon_5",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Maroon_5_performing_in_Sydney.jpg"
+        },
+        {
+          "name": "Panic! at the Disco",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Panic!_at_the_Disco",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Panic%21_At_the_Disco_%2843285362654%29.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Streaming Songs Artist",
+      "contestants": [
+        {
+          "name": "DaBaby",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/DaBaby",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/DaBaby_-_The_Know_Show.png"
+        },
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Travis Scott",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Travis_Scott",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Travis_Scott_-_Openair_Frauenfeld_2019_08.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Social Artist",
+      "contestants": [
+        {
+          "name": "BTS",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/BTS",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/%E2%80%98LG_Q7_BTS_%EC%97%90%EB%94%94%EC%85%98%E2%80%99_%EC%98%88%EC%95%BD_%ED%8C%90%EB%A7%A4_%EC%8B%9C%EC%9E%91_%2842773472410%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Exo",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Exo_(band)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Exo_monster_160618_suwon.png"
+        },
+        {
+          "name": "Got7",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Got7",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Got7_cheering_video_for_JYPE_16th_audition_01.jpg"
+        },
+        {
+          "name": "Ariana Grande",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Ariana_Grande",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Ariana_Grande_Grammys_Red_Carpet_2020.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top R&B Male Artist",
+      "contestants": [
+        {
+          "name": "Chris Brown",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Chris_Brown",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Chris_Brown_5%2C_2012.jpg"
+        },
+        {
+          "name": "Khalid",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Khalid-MTV_smiling.jpg"
+        },
+        {
+          "name": "The Weeknd",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Weeknd",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/FEQ_July_2018_The_Weeknd_%2844778856382%29_%28cropped%29.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Rap Artist",
+      "contestants": [
+        {
+          "name": "DaBaby",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/DaBaby",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/DaBaby_-_The_Know_Show.png"
+        },
+        {
+          "name": "Juice Wrld",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Juice_Wrld",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Juice_Wrld_Interview.png"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Roddy Ricch",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Roddy_Ricch",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Roddy_Ricch_2019.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Rap Tour",
+      "contestants": [
+        {
+          "name": "Drake",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Drake_(musician)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Travis Scott",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Travis_Scott",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Travis_Scott_-_Openair_Frauenfeld_2019_08.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Country Female Artist",
+      "contestants": [
+        {
+          "name": "Maren Morris",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Maren_Morris",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Maren_Morris_2019_by_Glenn_Francis.jpg"
+        },
+        {
+          "name": "Kacey Musgraves",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Kacey_Musgraves",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Kacey_Musgraves_2019_by_Glenn_Francis.jpg"
+        },
+        {
+          "name": "Carrie Underwood",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Carrie_Underwood",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/191125_Carrie_Underwood_at_the_2019_American_Music_Awards.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Rock Artist",
+      "contestants": [
+        {
+          "name": "Imagine Dragons",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Imagine_Dragons",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Imagine_Dragons%2C_Roundhouse%2C_London_%2835390234536%29.jpg"
+        },
+        {
+          "name": "Panic! at the Disco",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Panic!_at_the_Disco",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Panic%21_At_the_Disco_%2843285362654%29.jpg"
+        },
+        {
+          "name": "Tame Impala",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tame_Impala",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg"
+        },
+        {
+          "name": "Tool",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tool_(band)",
+          "image_url": "None"
+        },
+        {
+          "name": "Twenty One Pilots",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Twenty_One_Pilots",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Twenty_One_Pilots_Resorts_World_Arena%2C_Birmingham_2019.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Artist",
+      "contestants": [
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Jonas Brothers",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jonas_Brothers",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/JonasBrothersSep10_5.jpg"
+        },
+        {
+          "name": "Khalid",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Khalid-MTV_smiling.jpg"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Taylor Swift",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Taylor_Swift",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/191125_Taylor_Swift_at_the_2019_American_Music_Awards_%28cropped%29.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top New Artist",
+      "contestants": [
+        {
+          "name": "DaBaby",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/DaBaby",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/DaBaby_-_The_Know_Show.png"
+        },
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Lizzo",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lizzo",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/LizzoBrixt06Nov19-10_%2849216792848%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Roddy Ricch",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Roddy_Ricch",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Roddy_Ricch_2019.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Billboard Chart Achievement",
+      "contestants": [
+        {
+          "name": "Mariah Carey",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Mariah_Carey",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/93/Mariah_Carey_WBLS_2018_Interview_2.jpg"
+        },
+        {
+          "name": "Luke Combs",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Luke_Combs",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Luke_Combs_interview.jpg"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Harry Styles",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Harry_Styles",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Harry_Styles_November_2014.jpg"
+        },
+        {
+          "name": "Taylor Swift",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Taylor_Swift",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/191125_Taylor_Swift_at_the_2019_American_Music_Awards_%28cropped%29.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Male Artist",
+      "contestants": [
+        {
+          "name": "DaBaby",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/DaBaby",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/DaBaby_-_The_Know_Show.png"
+        },
+        {
+          "name": "Khalid",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Khalid-MTV_smiling.jpg"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Ed Sheeran",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Ed_Sheeran",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Ed_Sheeran-6886_%28cropped%29.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Female Artist",
+      "contestants": [
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Ariana Grande",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Ariana_Grande",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Ariana_Grande_Grammys_Red_Carpet_2020.png"
+        },
+        {
+          "name": "Halsey",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Halsey_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Halsey_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Lizzo",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lizzo",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/LizzoBrixt06Nov19-10_%2849216792848%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Taylor Swift",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Taylor_Swift",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/191125_Taylor_Swift_at_the_2019_American_Music_Awards_%28cropped%29.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Duo/Group",
+      "contestants": [
+        {
+          "name": "BTS",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/BTS",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/%E2%80%98LG_Q7_BTS_%EC%97%90%EB%94%94%EC%85%98%E2%80%99_%EC%98%88%EC%95%BD_%ED%8C%90%EB%A7%A4_%EC%8B%9C%EC%9E%91_%2842773472410%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Dan + Shay",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Dan_%2B_Shay",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Dan_%2B_Shay_in_2017.jpg"
+        },
+        {
+          "name": "Jonas Brothers",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jonas_Brothers",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/JonasBrothersSep10_5.jpg"
+        },
+        {
+          "name": "Maroon 5",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Maroon_5",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Maroon_5_performing_in_Sydney.jpg"
+        },
+        {
+          "name": "Panic! at the Disco",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Panic!_at_the_Disco",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Panic%21_At_the_Disco_%2843285362654%29.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Billboard 200 Artist",
+      "contestants": [
+        {
+          "name": "Drake",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Drake_(musician)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Khalid",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Khalid-MTV_smiling.jpg"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Taylor Swift",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Taylor_Swift",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/191125_Taylor_Swift_at_the_2019_American_Music_Awards_%28cropped%29.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Hot 100 Artist",
+      "contestants": [
+        {
+          "name": "DaBaby",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/DaBaby",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/DaBaby_-_The_Know_Show.png"
+        },
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Khalid",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Khalid-MTV_smiling.jpg"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Streaming Songs Artist",
+      "contestants": [
+        {
+          "name": "DaBaby",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/DaBaby",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/DaBaby_-_The_Know_Show.png"
+        },
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Travis Scott",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Travis_Scott",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Travis_Scott_-_Openair_Frauenfeld_2019_08.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Song Sales Artist",
+      "contestants": [
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Lizzo",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lizzo",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/LizzoBrixt06Nov19-10_%2849216792848%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Taylor Swift",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Taylor_Swift",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/191125_Taylor_Swift_at_the_2019_American_Music_Awards_%28cropped%29.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Radio Songs Artist",
+      "contestants": [
+        {
+          "name": "Jonas Brothers",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jonas_Brothers",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/JonasBrothersSep10_5.jpg"
+        },
+        {
+          "name": "Khalid",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Khalid-MTV_smiling.jpg"
+        },
+        {
+          "name": "Lizzo",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lizzo",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/LizzoBrixt06Nov19-10_%2849216792848%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Shawn Mendes",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Shawn_Mendes",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/191125_Shawn_Mendes_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Social Artist",
+      "contestants": [
+        {
+          "name": "BTS",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/BTS",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/%E2%80%98LG_Q7_BTS_%EC%97%90%EB%94%94%EC%85%98%E2%80%99_%EC%98%88%EC%95%BD_%ED%8C%90%EB%A7%A4_%EC%8B%9C%EC%9E%91_%2842773472410%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Billie Eilish",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billie_Eilish",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Billie_Eilish_2019_by_Glenn_Francis_%28cropped%29_2.jpg"
+        },
+        {
+          "name": "Exo",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Exo_(band)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/Exo_monster_160618_suwon.png"
+        },
+        {
+          "name": "Got7",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Got7",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Got7_cheering_video_for_JYPE_16th_audition_01.jpg"
+        },
+        {
+          "name": "Ariana Grande",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Ariana_Grande",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Ariana_Grande_Grammys_Red_Carpet_2020.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Touring Artist",
+      "contestants": [
+        {
+          "name": "Elton John",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Elton_John",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Elton_John_2011_Shankbone_2_%28cropped%29.JPG"
+        },
+        {
+          "name": "Metallica",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Metallica",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Metallica_Live_at_The_O2%2C_London%2C_England%2C_22_October_2017.jpg"
+        },
+        {
+          "name": "Pink",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Pink_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/50/P%21nk_-_V2017_Hylands_Park_Chelmsford_-_Saturday_19th_August_2017_PinkVFest190817-35_%2836356783410%29_%28cropped_2%29.jpg"
+        },
+        {
+          "name": "The Rolling Stones",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Rolling_Stones",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/10/The_Rolling_Stones_Summerfest_in_Milwaukee_-_2015.jpg"
+        },
+        {
+          "name": "Ed Sheeran",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Ed_Sheeran",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c1/Ed_Sheeran-6886_%28cropped%29.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top R&B Artist",
+      "contestants": [
+        {
+          "name": "Chris Brown",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Chris_Brown",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Chris_Brown_5%2C_2012.jpg"
+        },
+        {
+          "name": "Khalid",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Khalid-MTV_smiling.jpg"
+        },
+        {
+          "name": "Lizzo",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lizzo",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/LizzoBrixt06Nov19-10_%2849216792848%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Summer Walker",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Summer_Walker",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Summer_Walker_Toronto_Nov_2019.jpg"
+        },
+        {
+          "name": "The Weeknd",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Weeknd",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/FEQ_July_2018_The_Weeknd_%2844778856382%29_%28cropped%29.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top R&B Male Artist",
+      "contestants": [
+        {
+          "name": "Chris Brown",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Chris_Brown",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6a/Chris_Brown_5%2C_2012.jpg"
+        },
+        {
+          "name": "Khalid",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Khalid-MTV_smiling.jpg"
+        },
+        {
+          "name": "The Weeknd",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Weeknd",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/FEQ_July_2018_The_Weeknd_%2844778856382%29_%28cropped%29.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top R&B Female Artist",
+      "contestants": [
+        {
+          "name": "Beyoncé",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Beyonc%C3%A9",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/17/Beyonc%C3%A9_at_The_Lion_King_European_Premiere_2019.png"
+        },
+        {
+          "name": "Lizzo",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lizzo",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/LizzoBrixt06Nov19-10_%2849216792848%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Summer Walker",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Summer_Walker",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Summer_Walker_Toronto_Nov_2019.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top R&B Tour",
+      "contestants": [
+        {
+          "name": "B2K",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/B2K",
+          "image_url": "None"
+        },
+        {
+          "name": "Janet Jackson",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Janet_Jackson",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9c/JanetJacksonUnbreakableTourSanFran2015_%28cropped%29.jpg"
+        },
+        {
+          "name": "Khalid",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Khalid_(singer)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/df/Khalid-MTV_smiling.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Rap Artist",
+      "contestants": [
+        {
+          "name": "DaBaby",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/DaBaby",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/DaBaby_-_The_Know_Show.png"
+        },
+        {
+          "name": "Juice Wrld",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Juice_Wrld",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Juice_Wrld_Interview.png"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Roddy Ricch",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Roddy_Ricch",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/Roddy_Ricch_2019.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Rap Male Artist",
+      "contestants": [
+        {
+          "name": "DaBaby",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/DaBaby",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/DaBaby_-_The_Know_Show.png"
+        },
+        {
+          "name": "Lil Nas X",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lil_Nas_X",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/56/191125_Lil_Nas_X_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Rap Female Artist",
+      "contestants": [
+        {
+          "name": "Cardi B",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Cardi_B",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Cardi_B_-_Openair_Frauenfeld_2019_02.jpg"
+        },
+        {
+          "name": "City Girls",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/City_Girls",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/City_Girls_July_2018.png"
+        },
+        {
+          "name": "Megan Thee Stallion",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Megan_Thee_Stallion",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Megan_Thee_Stallion_2019_2.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Rap Tour",
+      "contestants": [
+        {
+          "name": "Drake",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Drake_(musician)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/15/Drake_at_The_Carter_Effect_2017_%2836818935200%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Post Malone",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Post_Malone",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/12/Post_Malone_at_the_2019_American_Music_Awards.png"
+        },
+        {
+          "name": "Travis Scott",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Travis_Scott",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/14/Travis_Scott_-_Openair_Frauenfeld_2019_08.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Country Artist",
+      "contestants": [
+        {
+          "name": "Kane Brown",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Kane_Brown",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Kane_Brown_at_Joint_Forces_Training_Base_in_2018.jpg"
+        },
+        {
+          "name": "Luke Combs",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Luke_Combs",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Luke_Combs_interview.jpg"
+        },
+        {
+          "name": "Dan + Shay",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Dan_%2B_Shay",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Dan_%2B_Shay_in_2017.jpg"
+        },
+        {
+          "name": "Maren Morris",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Maren_Morris",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Maren_Morris_2019_by_Glenn_Francis.jpg"
+        },
+        {
+          "name": "Thomas Rhett",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Thomas_Rhett",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Thomas_Rhett_2013.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Country Male Artist",
+      "contestants": [
+        {
+          "name": "Kane Brown",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Kane_Brown",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Kane_Brown_at_Joint_Forces_Training_Base_in_2018.jpg"
+        },
+        {
+          "name": "Luke Combs",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Luke_Combs",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Luke_Combs_interview.jpg"
+        },
+        {
+          "name": "Thomas Rhett",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Thomas_Rhett",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Thomas_Rhett_2013.jpg"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "name": "Top Country Female Artist",
+      "contestants": [
+        {
+          "name": "Maren Morris",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Maren_Morris",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/65/Maren_Morris_2019_by_Glenn_Francis.jpg"
+        },
+        {
+          "name": "Kacey Musgraves",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Kacey_Musgraves",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e1/Kacey_Musgraves_2019_by_Glenn_Francis.jpg"
+        },
+        {
+          "name": "Carrie Underwood",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Carrie_Underwood",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/191125_Carrie_Underwood_at_the_2019_American_Music_Awards.png"
+        }],
+      "description": ""
+    },
+    {
+      "name": "Top Country Duo/Group",
+      "contestants": [{
+        "name": "Dan + Shay",
+        "description": "",
+        "wiki_url": "https://en.wikipedia.org/wiki/Dan_%2B_Shay",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Dan_%2B_Shay_in_2017.jpg"
+      },
+        {
+          "name": "Florida Georgia Line",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Florida_Georgia_Line",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flagaline.jpg"
+        },
+        {
+          "name": "Old Dominion",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Old_Dominion_(band)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Old_Dominion.jpg"
+        }],
+      "description": ""
+    },
+    {
+      "name": "Top Country Tour",
+      "contestants": [{
+        "name": "Eric Church",
+        "description": "",
+        "wiki_url": "https://en.wikipedia.org/wiki/Eric_Church",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Eric_Church_2012_Cropped.jpg"
+      },
+        {
+          "name": "Florida Georgia Line",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Florida_Georgia_Line",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Flagaline.jpg"
+        },
+        {
+          "name": "George Strait",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/George_Strait",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/George_Strait_2014_1.jpg"
+        }],
+      "description": ""
+    },
+    {
+      "name": "Top Rock Artist",
+      "contestants": [{
+        "name": "Imagine Dragons",
+        "description": "",
+        "wiki_url": "https://en.wikipedia.org/wiki/Imagine_Dragons",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/04/Imagine_Dragons%2C_Roundhouse%2C_London_%2835390234536%29.jpg"
+      },
+        {
+          "name": "Panic! at the Disco",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Panic!_at_the_Disco",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b8/Panic%21_At_the_Disco_%2843285362654%29.jpg"
+        },
+        {
+          "name": "Tame Impala",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tame_Impala",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Tame_Impala_at_Flow_Festival_Helsinki_Aug_10_2019_-24.jpg"
+        },
+        {
+          "name": "Tool",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tool_(band)",
+          "image_url": "None"
+        },
+        {
+          "name": "Twenty One Pilots",
+          "description": "",
+          "wiki_url": "https://en.wikipedia.org/wiki/Twenty_One_Pilots",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Twenty_One_Pilots_Resorts_World_Arena%2C_Birmingham_2019.jpg"
+        }],
+      "description": ""
+    }]}
