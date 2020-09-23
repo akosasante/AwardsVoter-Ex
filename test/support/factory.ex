@@ -5,6 +5,7 @@ defmodule AwardsVoter.Factory do
   use ExMachina.Ecto
 
   alias AwardsVoter.Context.Models.Contestant
+  alias AwardsVoter.Context.Models.Category
 
   def contestant_factory do
     %Contestant{
@@ -17,6 +18,23 @@ defmodule AwardsVoter.Factory do
       wiki_url: "https://en.wikipedia.org/wiki/Curb_Your_Enthusiasm",
       billboard_stats: "Hot 100: 17/8, Hot Rock: 17/8"
     }
+  end
+
+  def category_factory(opts) do
+    has_winner = Map.get(opts, :has_winner, false)
+    contestants = build_list(4, :contestant)
+
+    category = %Category{
+      name: sequence(:category_name, &"Contestant##{&1}"),
+      description: "test category description. #{lorem_ipsum()}",
+      contestants: contestants
+    }
+
+    if has_winner do
+      struct!(category, winner: Enum.random(contestants))
+    else
+      category
+    end
   end
 
   defp lorem_ipsum(),
