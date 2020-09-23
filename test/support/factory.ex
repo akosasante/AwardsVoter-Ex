@@ -7,6 +7,7 @@ defmodule AwardsVoter.Factory do
   alias AwardsVoter.Context.Models.Contestant
   alias AwardsVoter.Context.Models.Category
   alias AwardsVoter.Context.Models.Show
+  alias AwardsVoter.Context.Models.Vote
 
   def contestant_factory do
     %Contestant{
@@ -46,6 +47,13 @@ defmodule AwardsVoter.Factory do
       description: "test show description. #{lorem_ipsum()}",
       air_datetime: "2020-09-23 22:36:58.737215Z",
       categories: categories
+    }
+  end
+
+  def vote_factory do
+    %Vote{
+      category: build(:category),
+      contestant: build(:contestant)
     }
   end
 
