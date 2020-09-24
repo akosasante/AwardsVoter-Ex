@@ -8,6 +8,7 @@ defmodule AwardsVoter.Factory do
   alias AwardsVoter.Context.Models.Category
   alias AwardsVoter.Context.Models.Show
   alias AwardsVoter.Context.Models.Vote
+  alias AwardsVoter.Context.Models.Ballot
 
   def contestant_factory do
     %Contestant{
@@ -54,6 +55,15 @@ defmodule AwardsVoter.Factory do
     %Vote{
       category: build(:category),
       contestant: build(:contestant)
+    }
+  end
+
+  def ballot_factory do
+    votes = build_list(5, :vote)
+
+    %Ballot{
+      voter: sequence(:ballot_voter, &"Ballot##{&1}"),
+      votes: votes
     }
   end
 
