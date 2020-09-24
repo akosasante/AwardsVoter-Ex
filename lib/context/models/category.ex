@@ -7,6 +7,7 @@ defmodule AwardsVoter.Context.Models.Category do
 
   alias __MODULE__
   alias AwardsVoter.Context.Models.Contestant
+  alias Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -16,6 +17,7 @@ defmodule AwardsVoter.Context.Models.Category do
           contestants: list(Contestant.t()),
           winner: Contestant.t() | nil
         }
+  @type change_result :: {:ok, Category.t()} | {:errors, Changeset.t()}
 
   embedded_schema do
     field :name, :string
@@ -31,5 +33,34 @@ defmodule AwardsVoter.Context.Models.Category do
     |> validate_required([:name])
     |> cast_embed(:winner)
     |> cast_embed(:contestants)
+  end
+
+  @spec to_changeset(Category.t()) :: Changeset.t()
+  def to_changeset(%Category{} = category) do
+    Category.changeset(category, %{})
+  end
+
+  @spec create(map()) :: change_result()
+  def create(attrs \\ %{}) do
+    cs = Category.changeset(%Category{}, attrs)
+
+    if cs.valid? do
+      {:ok, Changeset.apply_changes(cs)}
+    else
+      cs = %{cs | action: :create}
+      {:errors, cs}
+    end
+  end
+
+  @spec update(Category.t(), map()) :: change_result()
+  def update(%Category{} = orig_category, attrs) do
+    cs = Category.changeset(orig_category, attrs)
+
+    if cs.valid? do
+      {:ok, Changeset.apply_changes(cs)}
+    else
+      cs = %{cs | action: :update}
+      {:errors, cs}
+    end
   end
 end
