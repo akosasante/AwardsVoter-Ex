@@ -6,6 +6,9 @@ defmodule AwardsVoter.Context.Application do
   use Application
 
   def start(_type, _args) do
+    show_table_name = Application.get_env(:awards_voter, :show_table_name)
+    {:ok, _} = :dets.open_file(show_table_name, file: './#{}.dets')
+
     children = [
       # Start the Ecto repository
       #      AwardsVoter.Repo,
@@ -14,7 +17,8 @@ defmodule AwardsVoter.Context.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: AwardsVoter.PubSub},
       # Start the Endpoint (http/https)
-      AwardsVoter.Web.Endpoint
+      AwardsVoter.Web.Endpoint,
+      {AwardsVoter.Context.Tables.ShowTable, [table_name: show_table_name]}
       # Start a worker by calling: AwardsVoter.Worker.start_link(arg)
       # {AwardsVoter.Worker, arg}
     ]

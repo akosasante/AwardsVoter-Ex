@@ -7,8 +7,8 @@
 # General application configuration
 import Config
 
-# config :awards_voter,
-#  ecto_repos: [AwardsVoter.Repo]
+config :awards_voter,
+  show_table_name: :show
 
 # Configures the endpoint
 config :awards_voter, AwardsVoter.Web.Endpoint,

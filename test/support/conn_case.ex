@@ -27,6 +27,7 @@ defmodule AwardsVoter.Web.ConnCase do
       alias AwardsVoter.Web.Router.Helpers, as: Routes
 
       # The default endpoint for testing
+      Application.ensure_all_started(:awards_voter)
       @endpoint AwardsVoter.Web.Endpoint
     end
   end

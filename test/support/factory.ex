@@ -12,6 +12,7 @@ defmodule AwardsVoter.Factory do
 
   def contestant_factory do
     %Contestant{
+      id: Ecto.UUID.generate(),
       name: sequence(:contestant_name, &"Contestant##{&1}"),
       description: "test contestant description. #{lorem_ipsum()}",
       image_url: "https://via.placeholder.com/250",
@@ -28,6 +29,7 @@ defmodule AwardsVoter.Factory do
     contestants = build_list(4, :contestant)
 
     category = %Category{
+      id: Ecto.UUID.generate(),
       name: sequence(:category_name, &"Category##{&1}"),
       description: "test category description. #{lorem_ipsum()}",
       contestants: contestants
@@ -44,6 +46,7 @@ defmodule AwardsVoter.Factory do
     categories = build_list(4, :category)
 
     %Show{
+      id: Ecto.UUID.generate(),
       name: sequence(:show_name, &"Show##{&1}"),
       description: "test show description. #{lorem_ipsum()}",
       air_datetime: "2020-09-23 22:36:58.737215Z",
@@ -53,6 +56,7 @@ defmodule AwardsVoter.Factory do
 
   def vote_factory do
     %Vote{
+      id: Ecto.UUID.generate(),
       category: build(:category),
       contestant: build(:contestant)
     }
@@ -62,6 +66,7 @@ defmodule AwardsVoter.Factory do
     votes = build_list(5, :vote)
 
     %Ballot{
+      id: Ecto.UUID.generate(),
       voter: sequence(:ballot_voter, &"Ballot##{&1}"),
       votes: votes
     }
