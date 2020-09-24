@@ -7,6 +7,7 @@ defmodule AwardsVoter.Context.Models.Show do
 
   alias __MODULE__
   alias AwardsVoter.Context.Models.Category
+  alias Ecto.Changeset
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -16,6 +17,7 @@ defmodule AwardsVoter.Context.Models.Show do
           air_datetime: String.t() | nil,
           categories: list(Category.t())
         }
+  @type change_result :: {:ok, Show.t()} | {:errors, Changeset.t()}
 
   embedded_schema do
     field :name, :string
@@ -34,5 +36,34 @@ defmodule AwardsVoter.Context.Models.Show do
     ])
     |> validate_required([:name])
     |> cast_embed(:categories)
+  end
+
+  @spec to_changeset(Show.t()) :: Changeset.t()
+  def to_changeset(%Show{} = show) do
+    Show.changeset(show, %{})
+  end
+
+  @spec create(map()) :: change_result()
+  def create(attrs \\ %{}) do
+    cs = Show.changeset(%Show{}, attrs)
+
+    if cs.valid? do
+      {:ok, Changeset.apply_changes(cs)}
+    else
+      cs = %{cs | action: :create}
+      {:errors, cs}
+    end
+  end
+
+  @spec update(Show.t(), map()) :: change_result()
+  def update(%Show{} = orig_show, attrs) do
+    cs = Show.changeset(orig_show, attrs)
+
+    if cs.valid? do
+      {:ok, Changeset.apply_changes(cs)}
+    else
+      cs = %{cs | action: :update}
+      {:errors, cs}
+    end
   end
 end
