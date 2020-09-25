@@ -1,11 +1,11 @@
-<section class="p-4">
+<section class="p-4 px-10 flex flex-col items-stretch w-auto">
   <%= for show <- @shows do %>
-    <div class="flex flex-col bg-gray-100 p-4 rounded-sm">
+    <div class="flex flex-col bg-gray-100 p-4 rounded-sm my-2">
       <h1><%= show.name %></h1>
-      <%= if show.air_datetime do %><p>Airs on: <%= show.air_datetime %></p><% end %>
+      <%= if show.air_datetime do %><p>Airs on: <%= format_datetime_string(show.air_datetime) %></p><% end %>
       <%= if show.description do %><p><%= show.description %></p><% end %>
       <div class="flex flex-row justify-between">
-        <button class="bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded">See Details</button>
+        <%= link("See Details", to: "/admin/shows/#{show.id}", class: "bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded") %>
       </div>
     </div>
   <% end %>

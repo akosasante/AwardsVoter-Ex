@@ -19,6 +19,7 @@ defmodule AwardsVoter.Web.Router do
 
     live "/", PageLive, :index
     get "/admin/shows", AdminController, :list_shows
+    get "/admin/shows/:id", AdminController, :get_show
   end
 
   # Other scopes may use custom stacks.

@@ -19,7 +19,11 @@ defmodule AwardsVoter.Context.Admin do
   def get_all_shows() do
     ShowTable.all()
   end
-#  def get_show_by_id(id)
+
+  def get_show_by_id(id) do
+    ShowTable.get(id)
+  end
+
   def create_show(show_map) do
     with {:ok, show} <- Show.create(show_map),
          :ok <- ShowTable.save([{show.id, show}]) do

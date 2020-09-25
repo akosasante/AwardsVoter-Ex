@@ -1,0 +1,13 @@
+<div class="flex flex-col p-4 my-2">
+  <h3><%= @category.name %></h3>
+  <%= if @category.winner do %><p>Winner: <strong><%= @category.winner.name %></strong></p><% end %>
+  <%= if @category.description do %><p><%= @category.description %></p><% end %>
+  <%= if @category.contestants do %>
+  <details>
+    <summary>Contestants</summary>
+    <%= for contestant <- @category.contestants do %>
+      <p><%= render("contestant_details.html", contestant: contestant) %></p>
+    <% end %>
+  </details>
+  <% end %>
+</div>

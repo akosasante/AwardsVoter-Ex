@@ -16,9 +16,8 @@ defmodule AwardsVoter.Factory do
       name: sequence(:contestant_name, &"Contestant##{&1}"),
       description: "test contestant description. #{lorem_ipsum()}",
       image_url: "https://via.placeholder.com/250",
-      youtube_url: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      spotify_url:
-        "https://open.spotify.com/playlist/37i9dQZF1DX6cg4h2PoN9y?si=znVkhu3RT5-kCKjaUUmB7g",
+      youtube_url: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+      spotify_url: "https://embed.spotify.com/embed/track/6s64FyS9n0XYbGMLH3LOWU",
       wiki_url: "https://en.wikipedia.org/wiki/Curb_Your_Enthusiasm",
       billboard_stats: "Hot 100: 17/8, Hot Rock: 17/8"
     }
