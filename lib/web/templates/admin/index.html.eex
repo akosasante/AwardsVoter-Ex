@@ -1,0 +1,12 @@
+<section class="p-4">
+  <%= for show <- @shows do %>
+    <div class="flex flex-col bg-gray-100 p-4 rounded-sm">
+      <h1><%= show.name %></h1>
+      <%= if show.air_datetime do %><p>Airs on: <%= show.air_datetime %></p><% end %>
+      <%= if show.description do %><p><%= show.description %></p><% end %>
+      <div class="flex flex-row justify-between">
+        <button class="bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded">See Details</button>
+      </div>
+    </div>
+  <% end %>
+</section>

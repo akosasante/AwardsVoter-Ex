@@ -11,8 +11,22 @@ module.exports = {
     "./js/**/*.js",
   ],
   theme: {
-    extend: {},
+    typography: (theme) => ({
+      default: {
+        css: {
+          color: '#aaa',
+          'h1, h2, h3, h4, h5, h6': {
+            color: theme('colors.yellow.600'),
+            '&:hover': {
+              color: theme('colors.yellow.600'),
+            }
+          },
+        },
+      },
+    }),
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography')
+  ],
 }

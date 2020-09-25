@@ -18,6 +18,7 @@ defmodule AwardsVoter.Web.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
+    get "/admin/shows", AdminController, :list_shows
   end
 
   # Other scopes may use custom stacks.
