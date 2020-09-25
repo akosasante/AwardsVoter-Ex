@@ -8,7 +8,8 @@
 import Config
 
 config :awards_voter,
-  show_table_name: :show
+  show_table_name: :show,
+  ballot_table_name: :ballot
 
 # Configures the endpoint
 config :awards_voter, AwardsVoter.Web.Endpoint,

@@ -4,8 +4,8 @@ defmodule AwardsVoter.Context.Tables.ShowTableTest do
   alias AwardsVoter.Context.Tables.ShowTable
 
   setup do
-    show_table_name = Application.get_env(:awards_voter, :show_table_name)
-    {:ok, _} = :dets.open_file(show_table_name, file: './#{}.dets')
+    show_table_name = :test_show_table
+    {:ok, _} = :dets.open_file(show_table_name, file: './#{show_table_name}.dets')
     :ok = :dets.delete_all_objects(show_table_name)
 
     {:ok, _} =
