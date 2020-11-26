@@ -21,6 +21,7 @@ defmodule AwardsVoter.Web.Router do
     get "/admin", AdminController, :admin_index
     get "/admin/shows", AdminController, :list_shows
     get "/admin/shows/:id", AdminController, :get_show
+    post "/admin/shows/json", AdminController, :upload_show_json
   end
 
   # Other scopes may use custom stacks.

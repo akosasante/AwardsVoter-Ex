@@ -31,4 +31,22 @@ defmodule AwardsVoter.Web.AdminController do
         |> redirect(to: "/")
     end
   end
+
+  def upload_show_json(conn, %{"show_json" => %Plug.Upload{filename: filename, path: path}}) do
+    try do
+      parsed_show = File.read!(path)
+      |> Jason.decode!(keys: :atoms)
+
+      show = Admin.create_show(parsed_show)
+
+      conn
+      |> put_flash(:info, "Show created succesfully.")
+      |> redirect(to: Routes.admin_path(conn, :get_show, show.id))
+
+    rescue
+      e ->
+        Logger.error("Error uploading show: #{inspect e}")
+        redirect(conn, to: Routes.admin_path(conn, :list_shows))
+    end
+  end
 end

@@ -26,6 +26,7 @@ defmodule AwardsVoter.Context.Admin do
 
   def create_show(show_map) do
     with {:ok, show} <- Show.create(show_map),
+         show <- Show.add_id(show),
          :ok <- ShowTable.save([{show.id, show}]) do
       show
     end

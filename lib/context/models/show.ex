@@ -9,9 +9,10 @@ defmodule AwardsVoter.Context.Models.Show do
   alias AwardsVoter.Context.Models.Category
   alias Ecto.Changeset
 
-  @primary_key {:id, :binary_id, autogenerate: true}
+  @primary_key {:id, :binary_id, autogenerate: false}
 
   @type t :: %__MODULE__{
+          id: String.t(),
           name: String.t() | nil,
           description: String.t() | nil,
           air_datetime: String.t() | nil,
@@ -30,6 +31,7 @@ defmodule AwardsVoter.Context.Models.Show do
   def changeset(show, attrs) do
     show
     |> cast(attrs, [
+      :id,
       :name,
       :description,
       :air_datetime
@@ -65,5 +67,13 @@ defmodule AwardsVoter.Context.Models.Show do
       cs = %{cs | action: :update}
       {:errors, cs}
     end
+  end
+
+  def add_id(%Show{id: id} = show) when is_nil(id) do
+    %Show{show | id: Ecto.UUID.generate() }
+  end
+
+  def add_id(%Show{} = show) do
+    show
   end
 end
