@@ -6,6 +6,10 @@ defmodule AwardsVoter.Web.AdminController do
 
   require Logger
 
+  def admin_index(conn, params) do
+    redirect(conn, to: "/admin/shows")
+  end
+
   def list_shows(conn, _params) do
     case Admin.get_all_shows() do
       shows when is_list(shows) -> render(conn, :index, shows: shows)
