@@ -7,6 +7,7 @@
   <%= link("Back to All Shows", to: "/admin/shows") %>
   <div class="flex flex-col bg-gray-100 p-4 rounded-sm my-2">
     <h1><%= @show.name %></h1>
+    <%= link("Delete", to: Routes.admin_path(@conn, :delete_show, @show), method: :delete, data: [confirm: "Are you sure?"], class: "button bg-red-500 rounded w-64 p-2") %>
     <%= if @show.air_datetime do %><p>Airs on: <%= format_datetime_string(@show.air_datetime) %></p><% end %>
     <%= if @show.description do %><p><%= @show.description %></p><% end %>
     <%= if @show.categories do %>

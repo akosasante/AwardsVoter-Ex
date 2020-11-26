@@ -40,13 +40,26 @@ defmodule AwardsVoter.Web.AdminController do
       show = Admin.create_show(parsed_show)
 
       conn
-      |> put_flash(:info, "Show created succesfully.")
+      |> put_flash(:info, "Show created successfully.")
       |> redirect(to: Routes.admin_path(conn, :get_show, show.id))
 
     rescue
       e ->
         Logger.error("Error uploading show: #{inspect e}")
         redirect(conn, to: Routes.admin_path(conn, :list_shows))
+    end
+  end
+
+  def delete_show(conn, %{"id" => show_id}) do
+    case Admin.delete_show(show_id) do
+      :ok ->
+        conn
+        |> put_flash(:info, "Show deleted successfully")
+        |> redirect(to: Routes.admin_path(conn, :list_shows))
+      {:error, error} ->
+        conn
+        |> put_flash(:error, "Failed to delete show due to: #{inspect error}")
+        |> redirect(to: Routes.admin_path(conn, :get_show, show_id))
     end
   end
 end

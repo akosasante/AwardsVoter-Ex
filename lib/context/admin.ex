@@ -31,6 +31,10 @@ defmodule AwardsVoter.Context.Admin do
       show
     end
   end
+
+  def delete_show(show_id) do
+    ShowTable.delete(show_id)
+  end
 #  def update_show(show, show_map)
 #  def delete_show(show)
 #
