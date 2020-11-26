@@ -1,4 +1,9 @@
 <section class="p-4 px-10 flex flex-col items-stretch w-auto">
+  <style>
+    .horizontal-rule {
+      margin: 0 !important;
+    }
+  </style>
   <%= link("Back to All Shows", to: "/admin/shows") %>
   <div class="flex flex-col bg-gray-100 p-4 rounded-sm my-2">
     <h1><%= @show.name %></h1>
@@ -6,9 +11,16 @@
     <%= if @show.description do %><p><%= @show.description %></p><% end %>
     <%= if @show.categories do %>
       <h2>Categories</h2>
+      <div class="flex flex-row flex-wrap">
       <%= for category <- @show.categories do %>
-        <p><%= render("category_details.html", category: category) %></p>
-        <hr>
+        <div class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2">
+          <a href="#<%= String.replace(category.name, " ", "") %>"><%= category.name %></a>
+        </div>
+      <% end %>
+      </div>
+      <%= for category <- @show.categories do %>
+        <%= render("category_details.html", category: category) %>
+        <hr class="horizontal-rule">
       <% end %>
     <% end %>
   </div>
