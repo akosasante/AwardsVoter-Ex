@@ -25,7 +25,7 @@ defmodule AwardsVoter.Web.AdminShowDetails do
     socket =
       socket
       |> assign(:show_modal, true)
-      |> assign(:show_modal_type,type)
+      |> assign(:show_modal_type, type)
       |> assign(:show_modal_content, value)
     {:noreply, socket}
   end

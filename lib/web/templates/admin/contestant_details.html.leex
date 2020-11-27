@@ -12,7 +12,7 @@
       <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= @contestant.youtube_url %>" alt="<%= @contestant.name %>_youtube_link" class="object-contain h-16 mr-auto" src="/images/youtube.png">
     <% end %>
     <%= if @contestant.spotify_url do %>
-      <!--<iframe src="<%= @contestant.spotify_url %>" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>-->
+      <img phx-click="show_modal" phx-value-show_modal_type="spotify" phx-value-show_modal_content="<%= @contestant.spotify_url %>" alt="<%= @contestant.name %>_spotify_link" class="object-contain h-16 mr-auto" src="/images/spotify.png">
     <% end %>
     <%= if @contestant.wiki_url do %>
       <img phx-click="show_modal" phx-value-show_modal_type="wikipedia" phx-value-show_modal_content="<%= @contestant.wiki_url %>" alt="<%= @contestant.name %>_wikipedia_link" class="object-contain h-16 mr-auto" src="/images/wikipedia.png">

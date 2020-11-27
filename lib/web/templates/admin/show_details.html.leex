@@ -28,8 +28,8 @@
       <div class="modal-backdrop absolute top-0 left-0 bg-gray-200 h-screen w-screen z-50 flex justify-center items-center">
         <img phx-click="close_modal" class="absolute top-0 right-0 h-6 cursor-pointer" style="margin: 2rem !important;" src="/images/close.svg" alt="close modal">
         <div class="bg-white p-6">
-          <%= if @show_modal_type == "youtube" && @show_modal_content do %>
-            <iframe class="mx-auto" width="840" height="473" src="<%= @show_modal_content %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <%= if (@show_modal_type == "youtube" or @show_modal_type == "spotify") && @show_modal_content do %>
+            <iframe class="mx-auto" width="840" height="473" src="<%= @show_modal_content %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowtransparency allowfullscreen></iframe>
           <% end %>
 
           <%= if @show_modal_type == "wikipedia" && @show_modal_content do %>
