@@ -31,6 +31,10 @@
           <%= if @show_modal_type == "youtube" && @show_modal_content do %>
             <iframe class="mx-auto" width="840" height="473" src="<%= @show_modal_content %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           <% end %>
+
+          <%= if @show_modal_type == "wikipedia" && @show_modal_content do %>
+          <iframe class="mx-auto" width="1024" height="946" src="<%= @show_modal_content %>"></iframe>
+          <% end %>
         </div>
       </div>
     <% end %>

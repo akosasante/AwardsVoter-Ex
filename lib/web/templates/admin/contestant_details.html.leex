@@ -1,19 +1,24 @@
 <div class="flex flex-col p-4 my-2">
   <h3 id="<%= trim_for_id(@contestant.name) %>"><%= @contestant.name %></h3>
-  <%= if @contestant.description do %><p><%= @contestant.description %></p><% end %>
-  <%= if @contestant.image_url do %>
-    <img alt="<%= @contestant.name %>_image" class="object-contain h-48 w-full" src="<%= @contestant.image_url %>"><% end %>
-  <%= if @contestant.youtube_url do %>
-    <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= @contestant.youtube_url %>" alt="<%= @contestant.name %>_youtube_link" class="object-contain h-16 mr-auto" src="/images/youtube.png">
-
+  <%= if @contestant.description do %>
+    <p>
+      <%= if @contestant.image_url do %>
+        <img class="float-left" style="margin: 0 2rem 0 0;" alt="<%= @contestant.name %>_image" class="object-contain h-48 w-full" src="<%= @contestant.image_url %>">
+      <% end %>
+      <%= @contestant.description %></p>
   <% end %>
-  <%= if @contestant.spotify_url do %>
-    <!--<iframe src="<%= @contestant.spotify_url %>" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>-->
-  <% end %>
-  <%= if @contestant.wiki_url do %>
-    <p><%= link "Wiki Page", to: @contestant.wiki_url %></p>
-  <% end %>
-  <%= if @contestant.billboard_stats do %>
-  <p><strong>Billboard Stats: </strong><%= @contestant.billboard_stats %></p>
-  <% end %>
+  <div class="flex flex-row mt-4">
+    <%= if @contestant.youtube_url do %>
+      <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= @contestant.youtube_url %>" alt="<%= @contestant.name %>_youtube_link" class="object-contain h-16 mr-auto" src="/images/youtube.png">
+    <% end %>
+    <%= if @contestant.spotify_url do %>
+      <!--<iframe src="<%= @contestant.spotify_url %>" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>-->
+    <% end %>
+    <%= if @contestant.wiki_url do %>
+      <img phx-click="show_modal" phx-value-show_modal_type="wikipedia" phx-value-show_modal_content="<%= @contestant.wiki_url %>" alt="<%= @contestant.name %>_wikipedia_link" class="object-contain h-16 mr-auto" src="/images/wikipedia.png">
+    <% end %>
+    <%= if @contestant.billboard_stats do %>
+    <p><strong>Billboard Stats: </strong><%= @contestant.billboard_stats %></p>
+    <% end %>
+  </div>
 </div>
