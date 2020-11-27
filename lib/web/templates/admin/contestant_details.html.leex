@@ -1,5 +1,5 @@
 <div class="flex flex-col p-4 my-2">
-  <h3 id="<%= trim_for_id(@contestant.name) %>"><%= @contestant.name %></h3>
+  <h3 id="<%= trim_for_id(@contestant.name) %>"><%= @contestant.name %> <button class="ml-6 bg-blue-800 p-2 rounded" phx-click="set_as_winner" phx-value-contestant_name="<%= @contestant.name %>" phx-value-category_name="<%= @category.name %>">Set as Winner</button></h3>
   <%= if @contestant.description do %>
     <p>
       <%= if @contestant.image_url do %>

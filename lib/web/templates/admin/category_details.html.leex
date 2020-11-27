@@ -2,18 +2,17 @@
   <h3 id="<%= trim_for_id(@category.name) %>"><%= @category.name %></h3>
   <div class="flex flex-row flex-wrap">
     <%= for contestant <- @category.contestants do %>
-    <div class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2 <%= if is_winner(@category, contestant), do: "bg-green-200" %>">
+    <div class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2 <%= if is_winner(@category, contestant), do: "bg-green-200 font-bold text-gray-900" %>">
       <a href="#<%= trim_for_id(contestant.name) %>"><%= contestant.name %></a>
     </div>
     <% end %>
   </div>
-  <%= if @category.winner do %><p>Winner: <strong><%= @category.winner.name %></strong></p><% end %>
   <%= if @category.description do %><p><%= @category.description %></p><% end %>
   <%= if @category.contestants do %>
   <details>
     <summary class="cursor-pointer">Contestants</summary>
     <%= for contestant <- @category.contestants do %>
-      <%= live_component(@socket, AwardsVoter.Web.AdminContestantDetails, contestant: contestant) %>
+      <%= live_component(@socket, AwardsVoter.Web.AdminContestantDetails, contestant: contestant, category: @category) %>
     <% end %>
   </details>
   <% end %>

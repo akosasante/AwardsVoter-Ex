@@ -34,4 +34,11 @@ defmodule AwardsVoter.Web.AdminShowDetails do
     socket = assign(socket, :show_modal, false)
     {:noreply, socket}
   end
+
+  def handle_event("set_as_winner", %{"category_name" => category_name, "contestant_name" => contestant_name}, %{assigns: %{show: show}} = socket) do
+    :ok = Admin.set_category_winner(show, category_name, contestant_name)
+    updated_show = Admin.get_show_by_id(show.id)
+    socket = assign(socket, :show, updated_show)
+    {:noreply, socket}
+  end
 end

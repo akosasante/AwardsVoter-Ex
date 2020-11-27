@@ -14,7 +14,7 @@
       <h2>Categories</h2>
       <div class="flex flex-row flex-wrap">
       <%= for category <- @show.categories do %>
-        <div class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2">
+        <div class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2 <%= if !is_nil(category.winner), do: "bg-green-200 font-bold text-gray-900" %>">
           <a href="#<%= trim_for_id(category.name) %>"><%= category.name %></a>
         </div>
       <% end %>

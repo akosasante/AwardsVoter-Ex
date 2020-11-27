@@ -9,7 +9,7 @@ defmodule AwardsVoter.Context.Tables.ShowTable do
 
   require Logger
 
-  @type show_tuple :: {String.t(), Show.t()}
+  @type show_tuple :: {id:: String.t(), show :: Show.t()}
 
   def start_link(args) do
     GenServer.start_link(__MODULE__, args, name: __MODULE__)
