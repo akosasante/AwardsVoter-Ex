@@ -5,9 +5,9 @@
     }
   </style>
   <%= link("Back to All Shows", to: "/admin/shows") %>
-  <div class="flex flex-col bg-gray-100 p-4 rounded-sm my-2 <%= if @show_modal, do: "h-0 overflow-hidden" %>">
+  <div class="flex flex-col bg-gray-100 p-4 rounded-sm my-2">
     <h1><%= @show.name %></h1>
-    <%= link("Delete", to: Routes.admin_path(@socket, :delete_show, @show), method: :delete, data: [confirm: "Are you sure?"], class: "button bg-red-500 rounded w-64 p-2") %>
+    <%= link("Delete", to: Routes.admin_path(@socket, :delete_show, @show), method: :delete, data: [confirm: "Are you sure?"], class: "button bg-red-500 rounded w-64 p-2", style: "color: black; text-align: center; font-weight: bold;") %>
     <%= if @show.air_datetime do %><p>Airs on: <%= format_datetime_string(@show.air_datetime) %></p><% end %>
     <%= if @show.description do %><p><%= @show.description %></p><% end %>
     <%= if @show.categories do %>
@@ -25,7 +25,7 @@
       <% end %>
     <% end %>
     <%= if @show_modal do %>
-      <div class="modal-backdrop absolute top-0 left-0 bg-gray-200 h-screen w-screen z-50 flex justify-center items-center">
+      <div class="modal-backdrop fixed top-0 left-0 bg-gray-200 h-screen w-screen z-50 flex justify-center items-center bg-opacity-50">
         <img phx-click="close_modal" class="absolute top-0 right-0 h-6 cursor-pointer" style="margin: 2rem !important;" src="/images/close.svg" alt="close modal">
         <div class="bg-white p-6">
           <%= if (@show_modal_type == "youtube" or @show_modal_type == "spotify") && @show_modal_content do %>

@@ -3,7 +3,7 @@
   <%= if @contestant.description do %>
     <p>
       <%= if @contestant.image_url do %>
-        <img class="float-left" style="margin: 0 2rem 0 0;" alt="<%= @contestant.name %>_image" class="object-contain h-48 w-full" src="<%= @contestant.image_url %>">
+        <img class="float-left object-contain h-48" style="margin: 0 2rem 0 0;" alt="<%= @contestant.name %>_image" src="<%= @contestant.image_url %>">
       <% end %>
       <%= @contestant.description %></p>
   <% end %>
