@@ -6,4 +6,15 @@ defmodule AwardsVoter.Web.AdminView do
     %DateTime{year: year, month: month, day: day, hour: hour, minute: minute} = datetime
     "#{day}/#{month}/#{year} at #{hour}:#{minute}"
   end
+
+  def is_winner(category, contestant) do
+    winner = Map.get(category, :winner, nil)
+    if !is_nil(winner) and Map.has_key?(category.winner, :name) do
+      category.winner.name == contestant.name
+    else
+      false
+    end
+  end
+
+  def trim_for_id(value), do: String.replace(value, " ", "")
 end

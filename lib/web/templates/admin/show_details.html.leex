@@ -7,7 +7,7 @@
   <%= link("Back to All Shows", to: "/admin/shows") %>
   <div class="flex flex-col bg-gray-100 p-4 rounded-sm my-2">
     <h1><%= @show.name %></h1>
-    <%= link("Delete", to: Routes.admin_path(@conn, :delete_show, @show), method: :delete, data: [confirm: "Are you sure?"], class: "button bg-red-500 rounded w-64 p-2") %>
+    <%= link("Delete", to: Routes.admin_path(@socket, :delete_show, @show), method: :delete, data: [confirm: "Are you sure?"], class: "button bg-red-500 rounded w-64 p-2") %>
     <%= if @show.air_datetime do %><p>Airs on: <%= format_datetime_string(@show.air_datetime) %></p><% end %>
     <%= if @show.description do %><p><%= @show.description %></p><% end %>
     <%= if @show.categories do %>
@@ -15,12 +15,12 @@
       <div class="flex flex-row flex-wrap">
       <%= for category <- @show.categories do %>
         <div class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2">
-          <a href="#<%= String.replace(category.name, " ", "") %>"><%= category.name %></a>
+          <a href="#<%= trim_for_id(category.name) %>"><%= category.name %></a>
         </div>
       <% end %>
       </div>
       <%= for category <- @show.categories do %>
-        <%= render("category_details.html", category: category) %>
+        <%= live_component(@socket, AwardsVoter.Web.AdminCategoryDetails, category: category) %>
         <hr class="horizontal-rule">
       <% end %>
     <% end %>

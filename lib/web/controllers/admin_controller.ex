@@ -1,6 +1,8 @@
 defmodule AwardsVoter.Web.AdminController do
   use AwardsVoter.Web, :controller
 
+  import Phoenix.LiveView.Controller
+
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Models.Show
 
@@ -23,7 +25,10 @@ defmodule AwardsVoter.Web.AdminController do
 
   def get_show(conn, %{"id" => show_id}) do
     case Admin.get_show_by_id(show_id) do
-      %Show{} = show -> render(conn, :show_details, show: show)
+      %Show{} = show ->
+        conn
+        |> assign(:show, show)
+        |> live_render(AwardsVoter.Web.AdminShowDetails, show: show, session: %{"show_id" => show.id})
       e ->
         Logger.error("Error during Admin.get_show: #{inspect e}")
         conn
