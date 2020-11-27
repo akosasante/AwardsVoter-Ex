@@ -4,7 +4,8 @@
   <%= if @contestant.image_url do %>
     <img alt="<%= @contestant.name %>_image" class="object-contain h-48 w-full" src="<%= @contestant.image_url %>"><% end %>
   <%= if @contestant.youtube_url do %>
-    <!--<iframe class="mx-auto" width="560" height="315" src="<%= @contestant.youtube_url %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>-->
+    <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= @contestant.youtube_url %>" alt="<%= @contestant.name %>_youtube_link" class="object-contain h-16 mr-auto" src="/images/youtube.png">
+
   <% end %>
   <%= if @contestant.spotify_url do %>
     <!--<iframe src="<%= @contestant.spotify_url %>" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>-->

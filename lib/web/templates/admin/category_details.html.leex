@@ -10,8 +10,8 @@
   <%= if @category.winner do %><p>Winner: <strong><%= @category.winner.name %></strong></p><% end %>
   <%= if @category.description do %><p><%= @category.description %></p><% end %>
   <%= if @category.contestants do %>
-  <details class="cursor-pointer">
-    <summary>Contestants</summary>
+  <details>
+    <summary class="cursor-pointer">Contestants</summary>
     <%= for contestant <- @category.contestants do %>
       <%= live_component(@socket, AwardsVoter.Web.AdminContestantDetails, contestant: contestant) %>
     <% end %>
