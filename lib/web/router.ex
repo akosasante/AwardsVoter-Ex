@@ -21,6 +21,7 @@ defmodule AwardsVoter.Web.Router do
     get "/admin", AdminController, :admin_index
     get "/admin/shows", AdminController, :list_shows
     get "/admin/shows/:id", AdminController, :get_show
+    get "/admin/shows/:id/edit", AdminController, :edit_show
     delete "/admin/shows/:id", AdminController, :delete_show
     post "/admin/shows/json", AdminController, :upload_show_json
   end
