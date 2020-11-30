@@ -4,7 +4,7 @@ defmodule AwardsVoter.Web.EditShowDetails do
   alias AwardsVoter.Context.Models.Show
 
   def render(assigns) do
-    Phoenix.View.render(AwardsVoter.Web.AdminView, "edit_show_details.html", assigns)
+    AwardsVoter.Web.AdminView.render_edit_page("edit_show_details.html", assigns)
   end
 
   def update(%{show: show}, socket) do

@@ -5,7 +5,7 @@ defmodule AwardsVoter.Web.AdminShowDetails do
   alias AwardsVoter.Context.Models.Show
 
   def render(assigns) do
-    Phoenix.View.render(AwardsVoter.Web.AdminView, "show_details.html", assigns)
+    AwardsVoter.Web.AdminView.render_view_page("show_details.html", assigns)
   end
 
   def mount(params, %{"show_id" => show_id}, socket) do

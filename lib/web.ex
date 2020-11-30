@@ -42,6 +42,22 @@ defmodule AwardsVoter.Web do
     end
   end
 
+  def admin_view() do
+    quote do
+      use Phoenix.View,
+        root: "lib/web/templates/",
+        pattern: "**/*",
+        namespace: AwardsVoter.Web
+
+      # Import convenience functions from controllers
+      import Phoenix.Controller,
+             only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
+
+      # Include shared imports and aliases for views
+      unquote(view_helpers())
+    end
+  end
+
   def live_view do
     quote do
       use Phoenix.LiveView,
@@ -91,6 +107,10 @@ defmodule AwardsVoter.Web do
       #      import AwardsVoter.Web.Gettext
       alias AwardsVoter.Web.Router.Helpers, as: Routes
     end
+  end
+
+  defmacro __using__(:admin_view) do
+    apply(__MODULE__, :admin_view, [])
   end
 
   @doc """

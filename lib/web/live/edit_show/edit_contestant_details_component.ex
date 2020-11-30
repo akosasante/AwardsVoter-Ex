@@ -5,7 +5,7 @@ defmodule AwardsVoter.Web.EditContestantDetails do
   alias AwardsVoter.Context.Models.Contestant
 
   def render(assigns) do
-    Phoenix.View.render(AwardsVoter.Web.AdminView, "edit_contestant_details.html", assigns)
+    AwardsVoter.Web.AdminView.render_edit_page("edit_contestant_details.html", assigns)
   end
 
   def update(%{show: show, category_name: category_name, contestant_name: contestant_name}, socket) do

@@ -1,7 +1,10 @@
 defmodule AwardsVoter.Web.AdminView do
-  use AwardsVoter.Web, :view
+  use AwardsVoter.Web, :admin_view
 
   alias AwardsVoter.Context.Admin
+
+  def render_view_page(page_name, assigns), do: render("view_show/#{page_name}", assigns)
+  def render_edit_page(page_name, assigns), do: render("edit_show/#{page_name}", assigns)
 
   def format_datetime_string(datetime_string) do
     {:ok, datetime, _utc_offset} = DateTime.from_iso8601(datetime_string)

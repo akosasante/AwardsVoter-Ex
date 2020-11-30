@@ -8,7 +8,7 @@ defmodule AwardsVoter.Web.AdminShowEdit do
   alias AwardsVoter.Web.Router.Helpers, as: Routes
 
   def render(assigns) do
-    Phoenix.View.render(AwardsVoter.Web.AdminView, "show_edit.html", assigns)
+    AwardsVoter.Web.AdminView.render_edit_page("show_edit.html", assigns)
   end
 
   def mount(%{"id" => show_id}, _session, socket) do

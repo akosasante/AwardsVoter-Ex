@@ -10,6 +10,7 @@
     <%= for category <- @updated_show.categories do %>
     <button phx-click="show_category" phx-value-category="<%= category.name %>" class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2 <%= if @selected_category_name == category.name, do: "bg-blue-200" %>">
       <span><%= category.name %></span>
+      <span><%= raw("&times;") %></span>
     </button>
     <% end %>
   </div>
