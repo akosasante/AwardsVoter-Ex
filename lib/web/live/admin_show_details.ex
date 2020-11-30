@@ -5,12 +5,10 @@ defmodule AwardsVoter.Web.AdminShowDetails do
   alias AwardsVoter.Context.Models.Show
 
   def render(assigns) do
-#    IO.puts "RENDERING SHOW LEEX"
     Phoenix.View.render(AwardsVoter.Web.AdminView, "show_details.html", assigns)
   end
 
   def mount(params, %{"show_id" => show_id}, socket) do
-#    IO.puts "MOUNTING SHOW"
     socket = assign_new(socket, :show, fn ->
       case Admin.get_show_by_id(show_id) do
         %Show{} = show -> show
@@ -36,7 +34,9 @@ defmodule AwardsVoter.Web.AdminShowDetails do
   end
 
   def handle_event("set_as_winner", %{"category_name" => category_name, "contestant_name" => contestant_name}, %{assigns: %{show: show}} = socket) do
-    :ok = Admin.set_category_winner(show, category_name, contestant_name)
+    :ok =
+      Admin.set_category_winner(show, category_name, contestant_name)
+      |> Admin.save_show()
     updated_show = Admin.get_show_by_id(show.id)
     socket = assign(socket, :show, updated_show)
     {:noreply, socket}

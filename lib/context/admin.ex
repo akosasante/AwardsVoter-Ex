@@ -40,6 +40,10 @@ defmodule AwardsVoter.Context.Admin do
     ShowTable.delete(show_id)
   end
 
+  def save_show(show) do
+    ShowTable.save([{show.id, show}])
+  end
+
   def set_category_winner(show, category_name, winner_name) do
     with {:matching_category, matching_category} when is_not_nil(matching_category) <-
            {:matching_category, Enum.find(show.categories, fn category -> category.name == category_name end)},
@@ -51,10 +55,9 @@ defmodule AwardsVoter.Context.Admin do
            non_matching_category -> non_matching_category
          end),
          updated_show <- Map.put(show, :categories, updated_show_categories),
-         {:changeset_valid?, %{valid?: true}} <- {:changeset_valid?, Show.to_changeset(updated_show)},
-         :ok <- ShowTable.save([{updated_show.id, updated_show}])
+         {:changeset_valid?, %{valid?: true}} <- {:changeset_valid?, Show.to_changeset(updated_show)}
     do
-      :ok
+      updated_show
     else
       {:matching_category, nil} ->
         Logger.error("Could not find category matching #{category_name} in show=#{inspect show}")
@@ -70,6 +73,83 @@ defmodule AwardsVoter.Context.Admin do
         :error
     end
   end
+
+  def update_show_category(show, original_category, updated_category_map) do
+    with {:ok, updated_category} <- Category.update(original_category, updated_category_map),
+         category_name when is_not_nil(category_name) <- Map.get(original_category, :name),
+         {:matching_category, matching_category} when is_not_nil(matching_category) <-
+           {:matching_category, get_category_by_name(show, category_name)},
+         updated_show_categories <- Enum.map(show.categories, fn
+           %Category{name: ^category_name} -> updated_category
+           non_matching_category -> non_matching_category
+         end),
+         updated_show <- Map.put(show, :categories, updated_show_categories),
+         {:changeset_valid?, %{valid?: true}} <- {:changeset_valid?, Show.to_changeset(updated_show)}
+      do
+      updated_show
+    else
+      {:matching_category, nil} ->
+        Logger.error("Could not find category matching #{inspect original_category} in show=#{inspect show}")
+        :error
+      {:changeset_valid?, changeset} ->
+        Logger.error("Updated show changeset was invalid. Changeset=#{inspect changeset}")
+        :error
+      error ->
+        Logger.error("Unexpected error occurred while setting winner for show. Error=#{inspect error}. Show=#{inspect show}")
+        :error
+    end
+  end
+
+  def update_show_contestant(show, category_name, original_contestant, updated_contestant_map) do
+    with {:ok, updated_contestant} <- Contestant.update(original_contestant, updated_contestant_map),
+         contestant_name when is_not_nil(contestant_name) <- Map.get(original_contestant, :name),
+         {:matching_category, matching_category} when is_not_nil(matching_category) <-
+           {:matching_category, get_category_by_name(show, category_name)},
+         {:matching_contestant, matching_contestant} when is_not_nil(matching_contestant) <- {:matching_contestant, get_contestant_by_name(matching_category, contestant_name)},
+         updated_category_contestants <- Enum.map(matching_category.contestants, fn
+              %Contestant{name: ^contestant_name} -> updated_contestant
+           non_matching_contestant -> non_matching_contestant
+         end),
+         updated_category <- Map.put(matching_category, :contestants, updated_category_contestants),
+         updated_show_categories <- Enum.map(show.categories, fn
+           %Category{name: ^category_name} -> updated_category
+           non_matching_category -> non_matching_category
+         end),
+         updated_show <- Map.put(show, :categories, updated_show_categories),
+         {:changeset_valid?, %{valid?: true}} <- {:changeset_valid?, Show.to_changeset(updated_show)}
+      do
+        updated_show
+      else
+      {:matching_contestant, nil} ->
+          Logger.error("Could not find contestant matching #{inspect original_contestant} in show=#{inspect show}")
+          :error
+      {:matching_category, nil} ->
+        Logger.error("Could not find category matching #{inspect category_name}")
+        :error
+      {:changeset_valid?, changeset} ->
+        Logger.error("Updated show changeset was invalid. Changeset=#{inspect changeset}")
+        :error
+      error ->
+        Logger.error("Unexpected error occurred while setting winner for show. Error=#{inspect error}. Show=#{inspect show}")
+        :error
+    end
+  end
+
+  def get_category_by_name(%Show{} = show, category_name) do
+    Enum.find(show.categories, fn category -> category.name == category_name end)
+  end
+
+  def get_contestant_by_name(%Show{} = show, category_name, contestant_name) do
+    category = get_category_by_name(show, category_name)
+    get_contestant_by_name(category, contestant_name)
+  end
+
+  def get_contestant_by_name(%Category{} = category, contestant_name) do
+    Enum.find(category.contestants, fn contestant -> contestant.name == contestant_name end)
+  end
+
+
+
 #  def update_show(show, show_map)
 #  def delete_show(show)
 #
