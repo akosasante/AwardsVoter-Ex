@@ -76,4 +76,16 @@ defmodule AwardsVoter.Context.Models.Show do
   def add_id(%Show{} = show) do
     show
   end
+
+  def to_map(%Show{} = show) do
+    if Enum.empty?(show.categories) do
+      Map.from_struct(show)
+    else
+      category_maps = Enum.map(show.categories, &Category.to_map/1)
+
+      show
+      |> Map.put(:categories, category_maps)
+      |> Map.from_struct()
+    end
+  end
 end

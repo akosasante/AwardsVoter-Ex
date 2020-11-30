@@ -155,6 +155,17 @@ defmodule AwardsVoter.Context.Admin do
     Map.put(show, :categories, updated_categories)
   end
 
+  def remove_contestant_from_show(show, %Category{contestants: contestants} = category, contestant_name) do
+    updated_contestants = Enum.reject(contestants, fn contestant -> contestant.name == contestant_name end)
+    updated_category = Map.put(category, :contestants, updated_contestants)
+    update_show_category(show, category, Category.to_map(updated_category))
+  end
+
+  def remove_contestant_from_show(%Show{} = show, category_name, contestant_name) when is_binary(category_name) and is_binary(contestant_name) do
+    category = get_category_by_name(show, category_name)
+    remove_contestant_from_show(show, category, contestant_name)
+  end
+
 
 
 #  def update_show(show, show_map)
