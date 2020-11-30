@@ -1,0 +1,16 @@
+<section class="p-4 px-10 flex flex-col items-stretch w-auto h-screen prose">
+  <%= live_component(@socket, AwardsVoter.Web.EditShowDetails, show_changeset: @show_changeset) %>
+  <h2>Categories:</h2>
+  <div class="flex flex-row flex-wrap">
+    <%= for category <- @show.categories do %>
+    <button phx-click="show_category" phx-value-category="<%= category.name %>" class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2 <%= if @category_changeset && @category_changeset.data.name == category.name, do: "bg-blue-200" %>">
+      <span><%= category.name %></span>
+    </button>
+    <% end %>
+  </div>
+  <div>
+    <%= if @show_category && @category_changeset do %>
+    <%= live_component(@socket, AwardsVoter.Web.EditCategoryDetails, category_changeset: @category_changeset) %>
+    <% end %>
+  </div>
+</section>
