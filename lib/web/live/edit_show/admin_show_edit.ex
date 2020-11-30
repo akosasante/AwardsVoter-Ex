@@ -3,8 +3,6 @@ defmodule AwardsVoter.Web.AdminShowEdit do
 
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Models.Show
-  alias AwardsVoter.Context.Models.Category
-  alias AwardsVoter.Context.Models.Contestant
   alias AwardsVoter.Web.Router.Helpers, as: Routes
 
   def render(assigns) do
@@ -107,7 +105,7 @@ defmodule AwardsVoter.Web.AdminShowEdit do
     {:noreply, socket}
   end
 
-  def handle_event("submit_save", params, %{assigns: %{updated_show: show}} = socket) do
+  def handle_event("submit_save", _params, %{assigns: %{updated_show: show}} = socket) do
     :ok = Admin.save_show(show)
     {:noreply, push_redirect(socket, to: Routes.admin_path(socket, :get_show, show))}
   end
