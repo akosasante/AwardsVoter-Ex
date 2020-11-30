@@ -148,6 +148,13 @@ defmodule AwardsVoter.Context.Admin do
     Enum.find(category.contestants, fn contestant -> contestant.name == contestant_name end)
   end
 
+  def remove_category_from_show(%Show{} = show, %Category{name: category_name} = category), do: remove_category_from_show(show, category_name)
+
+  def remove_category_from_show(%Show{categories: categories} = show, category_name) do
+    updated_categories = Enum.reject(categories, fn category -> category.name == category_name end)
+    Map.put(show, :categories, updated_categories)
+  end
+
 
 
 #  def update_show(show, show_map)

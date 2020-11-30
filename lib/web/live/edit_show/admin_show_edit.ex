@@ -79,6 +79,20 @@ defmodule AwardsVoter.Web.AdminShowEdit do
     {:noreply, socket}
   end
 
+  def handle_event("delete_category", %{"category" => category_name}, %{assigns: %{updated_show: show}} = socket) do
+    new_show = Admin.remove_category_from_show(show, category_name)
+    socket =
+      if socket.assigns.show_category and socket.assigns.selected_category_name == category_name do
+        socket
+        |> assign(:selected_category_name, nil)
+        |> assign(:show_category, false)
+      else
+        socket
+      end
+      |> assign(:updated_show, new_show)
+    {:noreply, socket}
+  end
+
   def handle_event("submit_save", params, %{assigns: %{updated_show: show}} = socket) do
     :ok = Admin.save_show(show)
     {:noreply, push_redirect(socket, to: Routes.admin_path(socket, :get_show, show))}
