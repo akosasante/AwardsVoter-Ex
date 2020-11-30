@@ -1,0 +1,31 @@
+<%= f = form_for @contestant_changeset, "#", phx_submit: :save_contestant_details, class: "flex flex-col space-y-9 mb-9" %>
+<label>
+  Contestant Name: <%= text_input f, :name, class: "w-full" %>
+</label>
+
+<label>
+  Description: <%= textarea f, :description, class: "w-full" %>
+</label>
+
+<label>
+  Image URL: <%= text_input f, :image_url, class: "w-full" %>
+</label>
+
+<label>
+  Youtube URL: <%= text_input f, :youtube_url, class: "w-full" %>
+</label>
+
+<label>
+  Spotify URL: <%= text_input f, :spotify_url, class: "w-full" %>
+</label>
+
+<label>
+  Wikipedia URL: <%= text_input f, :wiki_url, class: "w-full" %>
+</label>
+
+<label>
+  Billboard Stats: <%= text_input f, :billboard_stats, class: "w-full" %>
+</label>
+
+<%= submit "Update Contestant", class: "bg-yellow-500 rounded w-64 p-2 mr-2" %>
+</form>

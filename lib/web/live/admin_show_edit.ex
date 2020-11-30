@@ -4,6 +4,7 @@ defmodule AwardsVoter.Web.AdminShowEdit do
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Models.Show
   alias AwardsVoter.Context.Models.Category
+  alias AwardsVoter.Context.Models.Contestant
 
   def render(assigns) do
     Phoenix.View.render(AwardsVoter.Web.AdminView, "show_edit.html", assigns)
@@ -20,6 +21,8 @@ defmodule AwardsVoter.Web.AdminShowEdit do
       |> assign_new(:show_changeset, fn -> Show.to_changeset(Admin.get_show_by_id(show_id)) end)
       |> assign_new(:show_category, fn -> false end)
       |> assign_new(:category_changeset, fn -> nil end)
+      |> assign_new(:contestant_changeset, fn -> nil end)
+      |> assign_new(:show_contestant, fn -> false end)
     {:ok, socket}
   end
 
@@ -47,6 +50,24 @@ defmodule AwardsVoter.Web.AdminShowEdit do
         socket
         |> assign(:category_changeset, cs)
         |> assign(:show_category, true)
+      end
+
+    {:noreply, socket}
+  end
+
+  def handle_event("show_contestant", %{"contestant" => contestant_name}, %{assigns: %{show: show, category_changeset: category_changeset}} = socket) do
+    socket =
+      if socket.assigns.show_contestant and socket.assigns.contestant_changeset.data.name == contestant_name do
+        socket
+        |> assign(:contestant_changeset, nil)
+        |> assign(:show_contestant, false)
+      else
+        category = Ecto.Changeset.apply_changes(category_changeset)
+        contestant = Enum.find(category.contestants, fn cont -> cont.name == contestant_name end)
+        cs = Contestant.to_changeset(contestant)
+        socket
+        |> assign(:contestant_changeset, cs)
+        |> assign(:show_contestant, true)
       end
 
     {:noreply, socket}
