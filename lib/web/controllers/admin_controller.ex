@@ -37,20 +37,6 @@ defmodule AwardsVoter.Web.AdminController do
     end
   end
 
-  def edit_show(conn, %{"id" => show_id}) do
-    case Admin.get_show_by_id(show_id) do
-      %Show{} = show ->
-        conn
-        |> assign(:show, show)
-        |> live_render(AwardsVoter.Web.AdminShowEdit, show: show, session: %{"show_id" => show.id})
-      e ->
-        Logger.error("Error during Admin.get_show: #{inspect e}")
-        conn
-        |> put_flash(:error, "Couldn't fetch show")
-        |> redirect(to: "/")
-    end
-  end
-
   def upload_show_json(conn, %{"show_json" => %Plug.Upload{filename: filename, path: path}}) do
     try do
       parsed_show = File.read!(path)
