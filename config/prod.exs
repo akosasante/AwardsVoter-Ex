@@ -10,7 +10,7 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :awards_voter, AwardsVoter.Web.Endpoint,
-  url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443],
+  url: [host: "awards.akosua.xyz", port: 443],
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
