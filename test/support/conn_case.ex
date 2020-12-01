@@ -8,52 +8,37 @@ defmodule AwardsVoter.Web.ConnCase do
   to build common data structures and query the data layer.
 
   Finally, if the test case interacts with the database,
-  it cannot be async. For this reason, every test runs
-  inside a transaction which is reset at the beginning
-  of the test unless the test case is marked as async.
+  we enable the SQL sandbox, so changes done to the database
+  are reverted at the end of every test. If you are using
+  PostgreSQL, you can even run database tests asynchronously
+  by setting `use AwardsVoter.Web.ConnCase, async: true`, although
+  this option is not recommended for other databases.
   """
 
   use ExUnit.CaseTemplate
-  @show_table Application.get_env(:awards_voter, :show_table)
-  @ballots_table Application.get_env(:awards_voter, :voter_ballots_table)
 
   using do
     quote do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
+      import AwardsVoter.Web.ConnCase
+
       alias AwardsVoter.Web.Router.Helpers, as: Routes
-      import AwardsVoter.TestFixtures
 
       # The default endpoint for testing
+      Application.ensure_all_started(:awards_voter)
       @endpoint AwardsVoter.Web.Endpoint
     end
   end
 
-  setup do
-    Application.put_env(:awards_voter, :show_manager_mod, AwardsVoter.Context.Admin.Shows.ShowManager)
-    Application.put_env(:awards_voter, :voter_mod, AwardsVoter.Context.Voting.Votes.Voter)
+  setup _tags do
+    #    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AwardsVoter.Repo)
+    #
+    #    unless tags[:async] do
+    #      Ecto.Adapters.SQL.Sandbox.mode(AwardsVoter.Repo, {:shared, self()})
+    #    end
+
     {:ok, conn: Phoenix.ConnTest.build_conn()}
-  end
-
-  setup context do
-    if context[:do_show_setup] do
-      :dets.open_file(@show_table, [])
-      on_exit(fn ->
-        :dets.open_file(@show_table, [])
-        :dets.delete_all_objects(@show_table)
-        :dets.close(@show_table)
-      end)
-    end
-
-    if context[:do_ballots_setup] do
-      :dets.open_file(@ballots_table, [])
-      on_exit(fn ->
-        :dets.open_file(@ballots_table, [])
-        :dets.delete_all_objects(@ballots_table)
-        :dets.close(@ballots_table)
-      end)
-    end
-    :ok
   end
 end

@@ -1,5 +1,14 @@
 import Config
 
+# Configure your database
+# config :awards_voter, AwardsVoter.Repo,
+#  username: "postgres",
+#  password: "postgres",
+#  database: "awards_voter_dev",
+#  hostname: "localhost",
+#  show_sensitive_data_on_connection_error: true,
+#  pool_size: 10
+
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -7,7 +16,12 @@ import Config
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
 config :awards_voter, AwardsVoter.Web.Endpoint,
-  http: [port: 4001],
+  https: [
+    port: 4001,
+    cipher_suite: :strong,
+    keyfile: "priv/cert/selfsigned_key.pem",
+    certfile: "priv/cert/selfsigned.pem"
+  ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
@@ -49,11 +63,10 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
 config :awards_voter, AwardsVoter.Web.Endpoint,
   live_reload: [
     patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-      ~r{priv/gettext/.*(po)$},
-      ~r{lib/web/views/.*(ex)$},
-      ~r{lib/web/templates/.*(eex)$},
-      ~r{lib/web/live/.*(ex)$}
+      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      #      ~r"priv/gettext/.*(po)$",
+      ~r"lib/web/(live|views)/.*(ex)$",
+      ~r"lib/web/templates/.*(eex)$"
     ]
   ]
 
@@ -67,13 +80,4 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
-config :awards_voter,
-  environment: :dev
-
-# Configure your database
-#config :awards_voter, AwardsVoter.Repo,
-#  username: "postgres",
-#  password: "postgres",
-#  database: "awards_voter_dev",
-#  hostname: "localhost",
-#  pool_size: 10
+config :awards_voter, environment: :dev

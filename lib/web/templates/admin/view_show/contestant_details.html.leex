@@ -1,0 +1,24 @@
+<div class="flex flex-col p-4 my-2">
+  <h3 id="<%= trim_for_id(@contestant.name) %>"><%= @contestant.name %> <button class="ml-6 bg-blue-800 p-2 rounded" phx-click="set_as_winner" phx-value-contestant_name="<%= @contestant.name %>" phx-value-category_name="<%= @category.name %>">Set as Winner</button></h3>
+  <%= if @contestant.description do %>
+    <p>
+      <%= if @contestant.image_url do %>
+        <img class="float-left object-contain h-48" style="margin: 0 2rem 0 0;" alt="<%= @contestant.name %>_image" src="<%= @contestant.image_url %>">
+      <% end %>
+      <%= @contestant.description %></p>
+  <% end %>
+  <div class="flex flex-row mt-4">
+    <%= if @contestant.youtube_url do %>
+      <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= @contestant.youtube_url %>" alt="<%= @contestant.name %>_youtube_link" class="object-contain h-16 mr-auto" src="/images/youtube.png">
+    <% end %>
+    <%= if @contestant.spotify_url do %>
+      <img phx-click="show_modal" phx-value-show_modal_type="spotify" phx-value-show_modal_content="<%= @contestant.spotify_url %>" alt="<%= @contestant.name %>_spotify_link" class="object-contain h-16 mr-auto" src="/images/spotify.png">
+    <% end %>
+    <%= if @contestant.wiki_url do %>
+      <img phx-click="show_modal" phx-value-show_modal_type="wikipedia" phx-value-show_modal_content="<%= @contestant.wiki_url %>" alt="<%= @contestant.name %>_wikipedia_link" class="object-contain h-16 mr-auto" src="/images/wikipedia.png">
+    <% end %>
+    <%= if @contestant.billboard_stats do %>
+    <p><strong>Billboard Stats: </strong><%= @contestant.billboard_stats %></p>
+    <% end %>
+  </div>
+</div>

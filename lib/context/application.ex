@@ -1,31 +1,34 @@
-defmodule AwardsVoter.Application do
+defmodule AwardsVoter.Context.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
 
   use Application
 
-  require Logger
-
   def start(_type, _args) do
-    # List all child processes to be supervised
+    show_table_name = Application.get_env(:awards_voter, :show_table_name)
+    ballot_table_name = Application.get_env(:awards_voter, :ballot_table_name)
+    {:ok, _} = :dets.open_file(show_table_name, file: './#{show_table_name}.dets')
+    {:ok, _} = :dets.open_file(ballot_table_name, file: './#{ballot_table_name}.dets')
+
     children = [
       # Start the Ecto repository
-#      AwardsVoter.Repo,
-      # Start the endpoint when the application starts
-      {Phoenix.PubSub, [name: AwardsVoter.PubSub, adapter: Phoenix.PubSub.PG2]},
+      #      AwardsVoter.Repo,
+      # Start the Telemetry supervisor
+      AwardsVoter.Web.Telemetry,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: AwardsVoter.PubSub},
+      # Start the Endpoint (http/https)
       AwardsVoter.Web.Endpoint,
-      # Starts a worker by calling: AwardsVoter.Worker.start_link(arg)
-      # {AwardsVoter.Worker, arg},
-#      {Registry, keys: :unique, name: Registry.Voter},
-      AwardsVoter.Context.Voting.Votes.Voter,
-      AwardsVoter.Context.Admin.Shows.ShowManager,
+      {AwardsVoter.Context.Tables.ShowTable, [table_name: show_table_name]},
+      {AwardsVoter.Context.Tables.BallotTable, [table_name: ballot_table_name]}
+      # Start a worker by calling: AwardsVoter.Worker.start_link(arg)
+      # {AwardsVoter.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: AwardsVoter.Supervisor]
-    Logger.info("Starting awards_voter application with children: #{inspect children}")
+    opts = [strategy: :one_for_one, name: AwardsVoter.Context.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
@@ -33,11 +36,6 @@ defmodule AwardsVoter.Application do
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
     AwardsVoter.Web.Endpoint.config_change(changed, removed)
-    :ok
-  end
-
-  def stop(state) do
-    Logger.info("Application shutting down: #{inspect state}")
     :ok
   end
 end

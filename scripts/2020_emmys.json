@@ -1,0 +1,1067 @@
+{
+  "name": "72nd Primetime Emmy Awards",
+  "categories": [
+    {
+      "name": "Outstanding Comedy Series",
+      "description": "From 1960 to 1964, this category was combined with the Comedy Specials (one time programs) category so that both type of programs competed for the same award during those years.\n\nThe Flintstones and Family Guy are the only animated series to be nominated for the award. In 2019, Fleabag made history as the first series from outside the United States to win this award.\n\nOutside the Big Three networks (ABC, CBS and NBC), Fox has won this award twice, with Ally McBeal and Arrested Development, cable network HBO has won this award four times, one with Sex and the City and three times with Veep, streaming service Prime Video for The Marvelous Mrs. Maisel, and the BBC for Fleabag (although seen later on Prime Video). The previous winner was Fleabag.",
+      "contestants": [
+        {
+          "name": "Curb Your Enthusiasm (HBO)",
+          "description": "An American comedy television series produced and broadcast by HBO that premiered on October 15, 2000. The series was created by Larry David starring as a fictionalized version of himself. The series follows Larry in his life as a semi-retired television writer and producer in Los Angeles and for one season, New York City. The plots and subplots of the episodes are established in an outline written by David (in later seasons, by David in collaboration with Jeff Schaffer and others), and the dialogue is largely improvised by the actors.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Curb_Your_Enthusiasm",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Curbyourenthusiasm.png/500px-Curbyourenthusiasm.png",
+          "youtube_url": "https://www.youtube.com/embed/DTKrEPelgv4"
+        },
+        {
+          "name": "Dead to Me (Netflix)",
+          "description": "An American dark comedy web television series created by Liz Feldman. The series premiered on May 3, 2019, on Netflix and stars Christina Applegate and Linda Cardellini as two grieving women who bond during therapy.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Dead_to_Me_(TV_series)",
+          "image_url": "https://en.wikipedia.org/wiki/File:Title_screen_for_Netflix%27s_Dead_to_Me.png",
+          "youtube_url": "https://www.youtube.com/embed/bXPX8KKwKMo"
+        },
+        {
+          "name": "The Good Place (NBC)",
+          "description": "An American fantasy comedy television series created by Michael Schur. It premiered on NBC on September 19, 2016, and concluded on January 30, 2020 after four seasons and 53 episodes. Although the story greatly evolves over the course of the series, the original premise follows Eleanor Shellstrop (Kristen Bell), a woman welcomed after her death to \"the Good Place\", a highly selective Heaven-like utopia designed and run by afterlife \"architect\" Michael (Ted Danson) as a reward for her righteous life. However, she realizes that she was sent there by mistake and must hide her morally imperfect past behavior while trying to become a better and more ethical person.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Good_Place",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/The_Good_Place_careta.png/500px-The_Good_Place_careta.png",
+          "youtube_url": "https://www.youtube.com/embed/RfBgT5djaQw"
+        },
+        {
+          "name": "Insecure (HBO)",
+          "description": "An American comedy-drama television series created by Issa Rae and Larry Wilmore, and is partially based on Rae's acclaimed web series Awkward Black Girl.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Insecure_(TV_series)",
+          "image_url": "https://en.wikipedia.org/wiki/File:Insecure_title_card.png",
+          "youtube_url": "https://www.youtube.com/embed/G1qYxOF7TUs"
+        },
+        {
+          "name": "The Kominsky Method (Netflix)",
+          "description": "An American comedy-drama web television series, created by Chuck Lorre, that premiered on November 16, 2018, on Netflix. The series stars Michael Douglas, Alan Arkin, Sarah Baker, and Nancy Travis and follows an aging acting coach who, years earlier, had a brief moment of success as an actor.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Kominsky_Method",
+          "image_url": "https://en.wikipedia.org/wiki/File:TheKominskyMethod.png",
+          "youtube_url": "https://www.youtube.com/embed/iSYR-2myTIQ"
+        },
+        {
+          "name": "The Marvelous Mrs. Maisel (Amazon Prime)",
+          "description": "An American period comedy-drama web television series, created by Amy Sherman-Palladino. The series stars Rachel Brosnahan as Miriam \"Midge\" Maisel, a housewife in late 1950s and early 1960s New York City who discovers she has a knack for stand-up comedy and pursues a career in it.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Marvelous_Mrs._Maisel",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/5/55/MarvelousMrsMaisel.png",
+          "youtube_url": "https://www.youtube.com/embed/IuHDrQ3GRnY"
+        },
+        {
+          "name": "Schitt's Creek (Pop TV)",
+          "description": "A Canadian television sitcom created by Dan and Eugene Levy. The series follows the trials and tribulations of the formerly wealthy Rose family when they are forced to relocate to Schitt's Creek, a small town they once purchased as a joke.[5] Now living in a motel, Johnny Rose (Eugene Levy) and Moira Rose (Catherine O'Hara)—along with their adult children, David (Dan Levy) and Alexis (Annie Murphy)—must adjust to life without money and with each other. The series was conceived when Dan Levy wondered how the wealthy families frequently depicted on American reality television would react if they were stripped of all their money.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Schitt%27s_Creek",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Schitt%27s_Creek_logo.png",
+          "youtube_url": "https://www.youtube.com/embed/WzSJ9QRmV_Q"
+        },
+        {
+          "name": "What We Do in the Shadows (FX)",
+          "description": "An American mockumentary comedy horror television series created by Jemaine Clement. Based on the 2014 film of the same name written by Clement and Taika Waititi, the series follows four vampire roommates in Staten Island, and stars Kayvan Novak, Matt Berry, Natasia Demetriou, Harvey Guillén, and Mark Proksch.",
+          "wiki_url": "https://en.wikipedia.org/wiki/What_We_Do_in_the_Shadows_(TV_series)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/3/31/What_We_Do_in_the_Shadows_Title_Card.jpg",
+          "youtube_url": "https://www.youtube.com/embed/c1w1BsbaAiE"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Drama Series",
+      "description": "Since its institution in 1951 the award has changed names many times in its history. It was first called Best Dramatic Show from 1951 to 1954. Since 2000, every single winner has been a serial drama: The West Wing (2000–2003), The Sopranos (2004, 2007), Lost (2005), 24 (2006), Mad Men (2008–2011), Homeland (2012), Breaking Bad (2013–2014), Game of Thrones (2015–2016, 2018, 2019), and The Handmaid's Tale (2017). Since the advent of Hill Street Blues in 1981, every winner has had some serialized arcs with the exception of Law & Order.[A] The majority of these shows have won between their first and fifth seasons. Only two shows' sixth seasons have won (both HBO shows): The Sopranos and Game of Thrones, two shows' seventh seasons have won: Law & Order and Game of Thrones and one show's eighth season has won: Game of Thrones. The previous winner was Game of Thrones.",
+      "contestants": [
+        {
+          "name": "Better Call Saul (AMC)",
+          "description": "An American television crime drama series created by Vince Gilligan and Peter Gould. It is both a spin-off and a prequel of Gilligan's previous series, Breaking Bad. Set in the early to mid 2000s in Albuquerque, New Mexico, the series develops Jimmy McGill (Bob Odenkirk), an earnest lawyer and former con-man, into a greedy criminal defense attorney known as Saul Goodman. Also shown is the moral decline of retired police officer, Mike Ehrmantraut (Jonathan Banks), who becomes closely affiliated with the Juarez drug cartel to support his family. Jimmy and Mike's interactions remain sporadic until their respective storylines fully converge.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Better_Call_Saul",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/8/8a/Better_Call_Saul_logo.svg/500px-Better_Call_Saul_logo.svg.png",
+          "youtube_url": "https://www.youtube.com/embed/fDMsR7gMxwI"
+        },
+        {
+          "name": "The Crown (Netflix)",
+          "description": "A historical drama web television series about the reign of Queen Elizabeth II. It grew out of showrunner Peter Morgan's film The Queen (2006) and his stage play The Audience (2013), and is credited as based on the latter. The first season covers the period from Elizabeth and Philip, Duke of Edinburgh's marriage in 1947 to the disintegration of her sister Princess Margaret's engagement to Group Captain Peter Townsend in 1955. The second season covers the period from the Suez Crisis in 1956 to the retirement of Prime Minister Harold Macmillan in 1963 and the birth of Prince Edward in 1964. The third season spans the period between 1964 and 1977, including Harold Wilson's two periods as prime minister, and introduces Camilla Shand. The fourth will include Margaret Thatcher's premiership and introduce Lady Diana Spencer. The fifth and sixth seasons, which will close the series, will cover the Queen's reign into the 21st century.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Crown_(TV_series)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/1/18/The_Crown_Title_Card.jpg",
+          "youtube_url": "https://www.youtube.com/embed/vLXYfgpqb8A"
+        },
+        {
+          "name": "The Handmaid's Tale (Hulu)",
+          "description": "An American dystopian tragedy web television series created by Bruce Miller, based on the 1985 novel of the same name by Canadian author Margaret Atwood. The plot features a dystopia following a Second American Civil War wherein a totalitarian society subjects fertile women, called \"Handmaids\", into child-bearing slavery.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Handmaid%27s_Tale_(TV_series)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/The_Handmaid%27s_Tale_intertitle.png/500px-The_Handmaid%27s_Tale_intertitle.png",
+          "youtube_url": "https://www.youtube.com/embed/Y7MZiZujyis"
+        },
+        {
+          "name": "Killing Eve (BBC America)",
+          "description": "A British black comedy-drama spy thriller television series. The series follows Eve Polastri (Sandra Oh), a British intelligence investigator tasked with capturing psychopathic assassin Villanelle (Jodie Comer). As the chase progresses, the two develop a mutual obsession. Based on the Villanelle novel series by Luke Jennings, each of the show's series is led by a different female head writer.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Killing_Eve",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/KillingEveLogo.png/500px-KillingEveLogo.png",
+          "youtube_url": "https://www.youtube.com/embed/Kk0PyD-XNZA"
+        },
+        {
+          "name": "The Mandalorian (Disney+)",
+          "description": "An American space Western web television series created by Jon Favreau. It is the first live-action series in the Star Wars franchise. Set five years after the events of Return of the Jedi, it follows the title character, a Mandalorian bounty hunter named Din Djarin, and his exploits beyond the reaches of the New Republic.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Mandalorian",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/2/27/The_Mandalorian_logo.jpg",
+          "youtube_url": "https://www.youtube.com/embed/eW7Twd85m2g"
+        },
+        {
+          "name": "Ozark (Netflix)",
+          "description": "An American crime drama web television series created by Bill Dubuque and Mark Williams. The series stars Jason Bateman and Laura Linney as a married couple who relocate their family to the Ozarks for money laundering.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Ozark_(TV_series)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Ozark_TV_series_logo.svg/500px-Ozark_TV_series_logo.svg.png",
+          "youtube_url": "https://www.youtube.com/embed/5hAXVqrljbs"
+        },
+        {
+          "name": "Stranger Things (Netflix)",
+          "description": "An American science fiction horror web television series created by the Duffer Brothers. The twins serve as showrunners and are executive producers along with Shawn Levy and Dan Cohen. The series premiered on Netflix on July 15, 2016. Set in the 1980s in the fictional town of Hawkins, Indiana, the first season focuses on the investigation into the disappearance of a young boy amid supernatural events occurring around the town, including the appearance of a girl with psychokinetic abilities. The Duffer Brothers developed the series as a mix of investigative drama alongside supernatural elements portrayed with horror, science fiction and childlike sensibilities. Setting the series in the 1980s, the Duffer Brothers infused references to the pop culture of that decade while several themes and directorial aspects were inspired primarily by the works of Steven Spielberg, John Carpenter, and Stephen King, as well as anime and video games. They also took inspiration from strange experiments that took place during the Cold War and real world conspiracy theories involving secret government experiments.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Stranger_Things",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Stranger_Things_logo.png/500px-Stranger_Things_logo.png",
+          "youtube_url": "https://www.youtube.com/embed/U6SGAZ6S_9k"
+        },
+        {
+          "name": "Succession (HBO)",
+          "description": "An American satirical comedy-drama television series created by Jesse Armstrong. The series centers on the Roy family, the dysfunctional owners of Waystar Royco, a global media and hospitality empire, who are fighting for control of the company amid uncertainty about the health of the family's patriarch, Logan Roy (Brian Cox).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Succession_(TV_series)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/7/73/SuccessionTV.png",
+          "youtube_url": "https://www.youtube.com/embed/Ut4pgRu5gHU"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Limited Series",
+      "description": "Represents excellence in the category of limited series that are two or more episodes with a total running time of at least 150 minutes. The program must tell a complete, non-recurring story, and not have an ongoing storyline or main characters in subsequent seasons. The decision was reversed in 1992. In 2011, due to a low number of eligible miniseries in recent years, the categories were again merged as Primetime Emmy Award for Outstanding Miniseries or Movie before reverting in 2014 following an influx in limited series following the critically and commercial popularity of the FX anthology series American Horror Story.[5] A year later, the name of the awards category was changed to Outstanding Limited Series and the rules were made to distinguish that category from that of a movie by having the work have at least two episodes and from that of a regular series by having no more than five episode.[1] The 2015 rule change allowed more short seasons cable TV programs to compete while prior rules had forced the same programs to compete in the same category with full seasons network programs.\n\nWhat has been unique about this award in recent years (and even so today) is that there is almost always at least one nominee originating from Great Britain. For example, the 2005 winner was The Lost Prince, which happened to be that year's British entry. The 2006 winner, Elizabeth I, was also a British miniseries, although it was a co-production with American television network HBO. Likewise, the most recent winner, Chernobyl, was a co-production of British and American companies (in this case, Sky UK and HBO). The previous winner was Chernobyl.",
+      "contestants": [
+        {
+          "name": "Little Fires Everywhere (Hulu)",
+          "description": "An American drama web television miniseries, based on the 2017 novel of the same name by Celeste Ng. Set in the Cleveland suburb of Shaker Heights, Ohio during the late 1990s, it features Witherspoon and Washington as mothers from different socioeconomic backgrounds.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Little_Fires_Everywhere_(miniseries)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/c/ce/Little_Fires_Everywhere_Title_Card.png",
+          "youtube_url": "https://www.youtube.com/embed/JWGkX8ClhBI"
+        },
+        {
+          "name": "Mrs. America (FX)",
+          "description": "An American historical drama television miniseries produced by FX and originally aired on sister streaming service FX on Hulu. The series details the political movement to pass the Equal Rights Amendment and the unexpected backlash led by conservative activist Phyllis Schlafly in the 1970s.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Mrs._America_(miniseries)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/6/6e/Mrs._America_%28miniseries%29_Title_Card.jpg",
+          "youtube_url": "https://www.youtube.com/embed/tiariKwWvhI"
+        },
+        {
+          "name": "Unbelievable (Netflix)",
+          "description": "An American drama web television miniseries starring Toni Collette, Merritt Wever, and Kaitlyn Dever. It is about a series of rapes in Washington State and Colorado. The miniseries is based on the 2015 news article \"An Unbelievable Story of Rape\", written by T. Christian Miller and Ken Armstrong, and originally published by ProPublica and The Marshall Project.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Unbelievable_(miniseries)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d5/Unbelievable_%28miniseries%29_Title_Card.jpg",
+          "youtube_url": "https://www.youtube.com/embed/QTIkUzkbzQk"
+        },
+        {
+          "name": "Unorthodox (Netflix)",
+          "description": "A German-American drama web television miniseries that debuted on Netflix. The first Netflix series to be primarily in Yiddish, it is inspired by Deborah Feldman's 2012 autobiography, Unorthodox: The Scandalous Rejection of My Hasidic Roots. Esty, a 19-year-old Jewish woman, is living unhappily in an arranged marriage among an ultra-Orthodox community in Williamsburg, Brooklyn, New York City.[1] She runs away to Berlin, where her estranged mother lives, and tries to navigate a secular life, discovering life outside her community and rejecting all of the beliefs she grew up with.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Unorthodox_(miniseries)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/thumb/b/b3/Unorthodox_Title_Card.png/500px-Unorthodox_Title_Card.png",
+          "youtube_url": "https://www.youtube.com/embed/-zVhRId0BTw"
+        },
+        {
+          "name": "Watchmen (HBO)",
+          "description": "An American superhero drama limited television series based on the 1986 DC Comics series Watchmen, created by Alan Moore and Dave Gibbons. The TV series was created for HBO by Damon Lindelof, who also served as an executive producer and writer. Lindelof likened the television series to a \"remix\" of the original comic series. While the series is technically a sequel that takes place 34 years after the events of the comics within the same alternate reality, Lindelof wanted to introduce new characters and conflicts that create a new story within the Watchmen continuity, rather than creating a reboot. The series focuses on events surrounding racist violence in Tulsa, Oklahoma, in 2019. A white supremacist group called the Seventh Kavalry has taken up arms against the Tulsa Police Department because of perceived racial injustices, causing the police to conceal their identities with masks to prevent the Seventh Kavalry from targeting them in their homes following the \"White Night\". Angela Abar (King), a detective known as Sister Night, investigates the murder of her friend and the chief of the police, Judd Crawford (Johnson), and discovers secrets regarding the situations around vigilantism.\n\n",
+          "wiki_url": "https://en.wikipedia.org/wiki/Watchmen_(TV_series)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Watchmen_TV_series_logo.jpg/500px-Watchmen_TV_series_logo.jpg",
+          "youtube_url": "https://www.youtube.com/embed/zymgtV99Rko"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Variety Talk Series",
+      "description": "Presented to the best television variety-style talk show of the year.\n\nIn 2015, Outstanding Variety Series was separated into two categories – Outstanding Variety Sketch Series and Outstanding Variety Talk Series. The Daily Show with Jon Stewart has the most wins (11), Late Show with David Letterman has the most nominations (17). The previous winner was Last Week Tonight with John Oliver.",
+      "contestants": [
+        {
+          "name": "The Daily Show with Trevor Noah (Comedy Central)",
+          "description": "An American late-night talk and news satire television program. It airs each Monday through Thursday on Comedy Central. Describing itself as a fake news program, The Daily Show draws its comedy and satire from recent news stories, political figures, media organizations, and often uses self-referential humor as well.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Daily_Show",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/3/3b/The_Daily_Show_with_Trevor_Noah.png",
+          "youtube_url": "https://www.youtube.com/embed/DASsR0ZhDig"
+        },
+        {
+          "name": "Full Frontal with Samantha Bee (TBS)",
+          "description": "An American late-night talk and news satire television program that airs on TBS and is hosted by comedian Samantha Bee, a former (and longest tenured) correspondent on The Daily Show.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Full_Frontal_with_Samantha_Bee",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Full_Frontal_with_Samantha_Bee.png",
+          "youtube_url": "https://www.youtube.com/embed/UwsO27CQ4_0"
+        },
+        {
+          "name": "Jimmy Kimmel Live! (ABC)",
+          "description": "An American late-night talk show, created and hosted by Jimmy Kimmel, and broadcast on ABC. The nightly hour-long show made its debut on January 26, 2003 at Hollywood Masonic Temple in Hollywood, California as part of ABC's lead-out programming for Super Bowl XXXVII. Jimmy Kimmel Live! is produced by Kimmelot in association with ABC Signature. Having aired for more than twice as long as either The Dick Cavett Show (1969–1975) or Politically Incorrect (1997–2002), it is the longest running late-night talk show on the network.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jimmy_Kimmel_Live!",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/2/28/Jimmy_Kimmel_Live.PNG",
+          "youtube_url": "https://www.youtube.com/embed/HVkykOOhFOo"
+        },
+        {
+          "name": "Last Week Tonight with John Oliver (HBO)",
+          "description": "An American late-night talk and news satire television program hosted by comedian John Oliver. Last Week Tonight shares some similarities with Comedy Central's The Daily Show (where Oliver was previously featured as a correspondent and fill-in host), as it takes a satirical look at news, politics and current events, but on a weekly basis.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Last_Week_Tonight_with_John_Oliver",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Last_Week_Tonight.svg",
+          "youtube_url": "https://www.youtube.com/embed/RymjFne5P04"
+        },
+        {
+          "name": "The Late Show with Stephen Colbert (CBS)",
+          "description": "An American late-night talk show hosted by Stephen Colbert, which premiered on September 8, 2015. It is the second iteration of CBS' Late Show franchise. The program is taped at the Ed Sullivan Theater in New York City and airs live to tape in most U.S. markets weeknights at 11:35 p.m. ET/PT, as with its competitors Jimmy Kimmel Live! and The Tonight Show Starring Jimmy Fallon.\n\nColbert was announced as the new host in April 2014, after existing host David Letterman announced his intent to retire earlier in the month; Colbert had previously hosted Comedy Central's news satire The Colbert Report, a program where Colbert portrayed himself as a parody of conservative pundits. As such, the series has carried a stronger focus on discussing and satirizing current events, especially within U.S. politics. Some of Colbert's staff moved to The Late Show, along with Jon Stewart — who previously hosted The Colbert Report's parent series The Daily Show — serving as an executive producer.\n\nAs of the conclusion of the 2019-20 season, The Late Show with Stephen Colbert has been the top late-night program in the United States for the past four seasons. Since 2019, it exceeded The Tonight Show in key demographic viewership.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Late_Show_with_Stephen_Colbert",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Late_Show_with_Stephen_Colbert_Logo_%282015%29.png/500px-Late_Show_with_Stephen_Colbert_Logo_%282015%29.png",
+          "youtube_url": "https://www.youtube.com/embed/n7g5h1NtNxI"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Competition Program",
+      "description": "Handed out for game show and talent show formats during the primetime telecast since 2003.\n\nThe Amazing Race won consecutively every year since the category's inception until Top Chef ended its streak in 2010.[1] Likewise, American Idol had been nominated every year since the category's inception, until that streak ended in 2012. The Amazing Race has the most wins (10) and the most nominations (17). The previous winner was RuPaul's Drag Race.",
+      "contestants": [
+        {
+          "name": "The Masked Singer (Fox)",
+          "description": "An American reality singing competition television series that premiered on Fox on January 2, 2019. It is the first non-Asian adaptation of the Masked Singer franchise and features celebrities singing covers of famous songs while wearing head-to-toe costumes and face masks that conceal their identities. Hosted by Nick Cannon, the program employs several panelists who are given various clues alluding to the celebrities' identities to guess who they could be after each performs. Ken Jeong, Jenny McCarthy Wahlberg, Nicole Scherzinger, and Robin Thicke appear in each episode and a guest panelist often appears alongside them. At the end of each episode, the panelists and an audience vote for their favorite singer and the least popular is eliminated, taking off their mask to reveal their identity.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Masked_Singer_(American_TV_series)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/c/c8/Masked_Singer_USA_Logo.png",
+          "youtube_url": "https://www.youtube.com/embed/v0UE9DV-_3o"
+        },
+        {
+          "name": "Nailed It! (Netflix)",
+          "description": "An American Netflix original series which premiered on March 9, 2018. The series is a bake-off competition in the style of reality television, where three amateur bakers compete to replicate complicated cakes and confectionery in order to win a $10,000 cash prize and a \"nailed it\" trophy. Nicole Byer was the first black woman nominated for the Outstanding Host Emmy award",
+          "wiki_url": "https://en.wikipedia.org/wiki/Nailed_It!",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/5/5c/Nailed_It_-_Netflix_Show_Poster.jpg",
+          "youtube_url": "https://www.youtube.com/embed/4xvYMJniZaI"
+        },
+        {
+          "name": "RuPaul's Drag Race (VH1)",
+          "description": "An American reality competition television series, the first in the Drag Race Franchise. The show documents RuPaul in the search for \"America's next drag superstar.\" RuPaul plays the role of host, mentor, and head judge for this series, as contestants are given different challenges each week. RuPaul's Drag Race employs a panel of judges, including RuPaul, Michelle Visage, and a host of other guest judges, who critique contestants' progress throughout the competition. The title of the show is a play on drag queen and drag racing, and the title sequence and song \"Drag Race\" both have a drag-racing theme.",
+          "wiki_url": "https://en.wikipedia.org/wiki/RuPaul%27s_Drag_Race",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/RuPaul%27s_Drag_Race_Logo.svg/500px-RuPaul%27s_Drag_Race_Logo.svg.png",
+          "youtube_url": "https://www.youtube.com/embed/pPhanmMzqME"
+        },
+        {
+          "name": "Top Chef (Bravo)",
+          "description": "An American reality competition television series that premiered March 8, 2006, on Bravo. The show features chefs competing against each other in culinary challenges. They are judged by a panel of professional chefs and other notables from the food and wine industry with one or more contestants eliminated in each episode. The show is produced by Magical Elves Productions, the company that created Project Runway.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Top_Chef",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/e/e0/Top_Chef_logo.png",
+          "youtube_url": "https://www.youtube.com/embed/QEt6RjQF9ww"
+        },
+        {
+          "name": "The Voice (NBC)",
+          "description": "An American singing competition television series broadcast on NBC. It premiered during the spring television cycle on April 26, 2011. Based on the original The Voice of Holland, and part of The Voice franchise it has aired eighteen seasons and aims to find currently unsigned singing talent (solo or duets, professional and amateur) contested by aspiring singers, age 13 or over, drawn from public auditions. The winner is determined by television viewers voting by telephone, internet, SMS text, and iTunes Store purchases of the audio-recorded artists' vocal performances. They receive US$100,000 and a record deal with Universal Music Group for winning the competition. The series employs a panel of four coaches who critique the artists' performances and guide their teams of selected artists through the remainder of the season. They also compete to ensure that their act wins the competition, thus making them the winning coach. Each season begins with the \"Blind Auditions,\" where coaches form their team of artists (12 in almost all seasons except seasons 1 (8), 3 (16) and 18 (10)) whom they mentor through the remainder of the season. The coaches' chairs are faced towards the audience during artists' performances; those interested in an artist press their button, which turns their chair towards the artist and illuminates the bottom of the chair to read \"I want you.\" At the conclusion of the performance, an artist either defaults to the only coach who turned around, or selects his or her coach if more than one coach expresses interest.",
+          "wiki_url": "https://en.wikipedia.org/wiki/The_Voice_(American_TV_series)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/2/27/TheVoiceTitleCard.png",
+          "youtube_url": "https://www.youtube.com/embed/ML1sJiRXJXA"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Lead Actor in a Comedy Series",
+      "description": "The award is presented to the best performance by a lead actor in a television comedy series. Ted Danson has the most nominations (14). The previous winner was Bill Hader for Barry.",
+      "contestants": [
+        {
+          "name": "Anthony Anderson as Andre 'Dre' Johnson Sr. on Black-ish (ABC)",
+          "description": "Nominated for 'Love, Boat'. Dre can't come to terms with his new reality when he discovers something shocking about Pops and Ruby; Junior feels the pressure to find love and tries to rekindle a past romance with a grand gesture.\n\n Anthony Anderson was born on August 15, 1970 in Los Angeles, California, USA. He is an actor and producer, known for The Departed (2006), Kangaroo Jack (2003) and Transformers (2007).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Anthony_Anderson",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Anthony_Anderson_2010.jpg/440px-Anthony_Anderson_2010.jpg"
+        },
+        {
+          "name": "Don Cheadle as Maurice 'Mo' Monroe on Black Monday (Showtime)",
+          "description": "Nominated for 'Who Are You Supposed to Be'. At TBDs Halloween party, Blair tries to make the trade of a lifetime, Mo and Dawn argue over an opportunity, Tiff and Corkie loosen up, and Keith phones a friend.\n\n An American actor, author, director, producer and writer. Following early roles in Hamburger Hill (1987), and as the gangster \"Rocket\" in the film Colors (1988), Cheadle built his career in the 1990s with roles in Devil in a Blue Dress (1995), Rebound: The Legend of Earl 'The Goat' Manigault (1996), Rosewood (1997), and Boogie Nights (1997). His collaboration with director Steven Soderbergh resulted in the films Out of Sight (1998), Traffic (2000), and The Ocean's Trilogy (2001–2007).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Don_Cheadle",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/60/Don_Cheadle_-_2018.jpg"
+        },
+        {
+          "name": "Ted Danson as Michael on The Good Place (NBC)",
+          "description": "Nominated for 'Whenever You're Ready', the series finale of the American fantasy-comedy television series The Good Place.\n\n Ted Danson is well known for his role as Sam Malone in the television series Cheers (1982). During the show's 11-year run, he was nominated nine times for an Emmy Award as Outstanding Lead Actor in a Comedy Series and won twice, in 1990 and 1993.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Ted_Danson",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/%27The_Good_Place%27_cast_and_crew_visit_San_Diego_Comic_Con_for_a_panel_%2843100198314%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Michael Douglas as Sandy Kominsky on The Kominsky Method (Netflix)",
+          "description": "Nominated for 'Chapter 12: A Libido Sits in the Fridge'. Interactions with two women have Sandy contemplating his changing libido. Norman tries to reconcile with both Phoebe and Madelyn.\n\n An actor with over forty years of experience in theatre, film, and television, Michael Douglas branched out into independent feature production in 1975 with the Academy Award-winning One Flew Over the Cuckoo's Nest (1975). Since then, as a producer and as an actor-producer, he has shown an uncanny knack for choosing projects that reflect changing trends and public concerns. Over the years, he has been involved in such controversial and politically influential motion pictures as One Flew Over the Cuckoo's Nest (1975), The China Syndrome (1979) and Traffic (2000), and such popular films as Fatal Attraction (1987) and Romancing the Stone (1984).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Michael_Douglas",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Michael_Douglas_C%C3%A9sar_2016_3.jpg/460px-Michael_Douglas_C%C3%A9sar_2016_3.jpg"
+        },
+        {
+          "name": "Eugene Levy as Johnny Rose on Schitt's Creek (Pop TV)",
+          "description": "Nominated for 'The Pitch'. An American reality competition television series that premiered March 8, 2006, on Bravo. Johnny, Stevie and Roland head to New York for their pitch meeting, and the family anxiously awaits their return.\n\n Eugene Levy is an award-winning actor, writer, and producer. He has appeared in more than 60 motion pictures to date, eight of which having topped the $100M mark. The box office success of films such as Bringing Down the House (2003), Cheaper by the Dozen 2 (2005) , and Father of the Bride Part II (1995) have established him as one of Hollywood's most popular comedic actors. But it was the role of Noah Levenstein in the American Pie franchise that cemented his reputation as America's favorite Dad. Levy's most recent big-screen role was that of Dory's Dad in the Disney/Pixar smash Finding Dory, in which he stars alongside Ellen DeGeneres and Diane Keaton.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Eugene_Levy",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Eugene_Levy_2%2C_2012.jpg/440px-Eugene_Levy_2%2C_2012.jpg"
+        },
+        {
+          "name": "Ramy Youssef as Ramy Hassan on Ramy (Hulu)",
+          "description": "Nominated for 'You Are Naked in Front of Your Sheikh'. In the Season 2 finale (titled “You Are Naked in Front of Your Sheikh”), Ramy's questionable choices bring negative consequences to many of those around him, despite his desire for religious salvation and inner peace.\n\n Ramy Youssef is an actor and writer, known for Ramy (2019), Why Him? (2016) and See Dad Run (2012).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Ramy_Youssef",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Ramy_Youssef_Cropped_%28cropped%29.png/440px-Ramy_Youssef_Cropped_%28cropped%29.png"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Lead Actress in a Comedy Series",
+      "description": "The award is presented to the best performance by a lead actress in a television comedy series. Julia Louis-Dreyfus has has the most nominations (12) and the most wins (7). The previous winner was Phoebe Waller-Bridge for Fleabag.",
+      "contestants": [
+        {
+          "name": "Christina Applegate as Jen Harding on Dead to Me (Netflix)",
+          "description": "Nominated for 'It's Not You, It's Me'. Filled with guilt and regret, Jen finds a civic-minded way to unleash some pent-up feelings.\n\n As a child actress, she gained recognition for starring as Kelly Bundy on the Fox sitcom Married... with Children (1987–1997). Applegate established a successful film and television career in her adult years, winning a Primetime Emmy Award from seven nominations, as well as nominations for four Golden Globe Awards and a Tony Award.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Christina_Applegate",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Christina_Applegate_2014_Comic_Con_%28cropped%29.jpg/440px-Christina_Applegate_2014_Comic_Con_%28cropped%29.jpg"
+        },
+        {
+          "name": "Rachel Brosnahan as Miriam 'Midge' Maisel on The Marvelous Mrs. Maisel  (Amazon Prime)",
+          "description": "Nominated for 'A Jewish Girl Walks Into the Apollo...'. Joel readies his club for its grand opening. Midge asks Moishe for a favor. Susie suffers a loss and turns to an unexpected source for help. Midge learns a hard show business lesson.\n\n Rachel Brosnahan was born in in Milwaukee, Wisconsin in 1990 and is an American actress. She is best known for her role as 'Midge' Maisel in the Amazon Prime Video series The Marvelous Mrs. Maisel (2017) for which she has won two Golden Globes for Best Performance by an Actress in a Television Series - Musical or Comedy (2019, 2018), one Emmy for Outstanding Lead Actress in a Comedy Series (2018), and one Critics' Choice Award for Best Actress in a Comedy Series (2018).\n\nShe is also known for her previous roles in the film Beautiful Creatures (2013) as Genevieve Duchannes, in the Netflix original series House of Cards (2013) as Rachel Posner, and in the TV series Manhattan (2014) as Abby Isaacs.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Rachel_Brosnahan",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Rachel_Brosnahan_July_9%2C_2014_%28cropped%29.jpg/440px-Rachel_Brosnahan_July_9%2C_2014_%28cropped%29.jpg"
+        },
+        {
+          "name": "Linda Cardellini as Judy Hale on Dead to Me (Netflix)",
+          "description": "Nominated for 'If Only You Knew'. Judy receives a rude awakening after a romantic night, while Jen looks to make a positive contribution to the community - and a client.\n\n  In television, she is known for her leading roles in the teen drama Freaks and Geeks (1999–2000), the medical drama ER (2003–09), the drama thriller Bloodline (2015–17), and the black tragicomedy Dead to Me (2019–present), the latter of which earned her a nomination for the Primetime Emmy Award for Outstanding Lead Actress in a Comedy Series. She also guest starred in the period drama Mad Men (2013–15), for which she received a Primetime Emmy Award nomination. Her voice work includes the animated series Scooby-Doo! Mystery Incorporated (2010–13), Regular Show (2012–15), Gravity Falls (2012–16), and Sanjay and Craig (2013–16).\n\nIn film, Cardellini is best known for her portrayal of Velma Dinkley in Scooby-Doo (2002) and its sequel Scooby-Doo 2: Monsters Unleashed (2004), and her supporting roles in Legally Blonde (2001), Brokeback Mountain (2005), Grandma’s Boy (2006), Avengers: Age of Ultron (2015), Green Book, A Simple Favor (both 2018), and Avengers: Endgame (2019).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Linda_Cardellini",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/South_by_Southwest_2019_7_%2832449999697%29_%28cropped%29.jpg/440px-South_by_Southwest_2019_7_%2832449999697%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Catherine O'Hara as Moira Rose on Schitt's Creek (Pop TV)",
+          "description": "Nominated for 'The Incident'. David is embarrassed by a childhood issue that resurfaces, and only spirals further when Patrick is so understanding; Johnny, Stevie and Roland attend a viewing for a nearby motel; Alexis helps Moira join social media.\n\n Canadian actress, writer, and comedian, Catherine O'Hara gained recognition as one of the original cast members on the Canadian television sketch comedy show SCTV (1976). On the series, she impersonated the likes of Lucille Ball, Tammy Faye Bakker, Gilda Radner, Katharine Hepburn, and Brooke Shields. O'Hara stayed with the show for its entirety (1976-1984). She went on to devote her talents to several films directed by Tim Burton, including Beetlejuice (1988), The Nightmare Before Christmas (1993) and later, Frankenweenie (2012). O'Hara also frequently collaborated with director and writer, Christopher Guest, appearing in his mockumentary films, three of which earned her awards and nominations; Waiting for Guffman (1996), Best in Show (2000), A Mighty Wind (2003), and For Your Consideration (2006). Recently, O'Hara can be seen on the Canadian television comedy series Schitt's Creek (2015). Her work in the series earned two Canadian Screen Awards for Best Lead Actress (2016 and 2017).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Catherine_O%27Hara",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/CATHERINE_OHARA.jpg"
+        },
+        {
+          "name": "Issa Rae as Issa Dee on Insecure (HBO)",
+          "description": "Nominated for 'Lowkey Happy'. Each reflecting on past mistakes and lessons learned, Issa and Lawrence discuss happiness.\n\n Jo-Issa Rae Diop (known as Issa Rae) is a producer and actress, known for Insecure (2016), The Misadventures of Awkward Black Girl (2011) and Little (2019).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Issa_Rae",
+          "image_url": "https://www.kcrw.com/culture/shows/dont-at-me/the-dream-with-issa-rae/@@images/rectangular_image/page-header?v=1547579219.6"
+        },
+        {
+          "name": "Tracee Ellis Ross as Dr. Rainbow 'Bow' Johnson on Black-ish (ABC)",
+          "description": "Nominated for 'Kid Life Crisis'. The Johnsons go on vacation at an all-inclusive beach resort in paradise; Dre and Bow meet a couple without kids and live a kidless fantasy for a while; Junior catches the eye of a cute girl and vies for her attention; Jack gets the flu.\n\n Ramy Youssef is an actor and writer, known for Ramy (2019), Why Him? (2016) and See Dad Run (2012).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tracee_Ellis_Ross",
+          "image_url": "https://static01.nyt.com/images/2019/09/17/fashion/TRACEEELLISROSS1/TRACEEELLISROSS1-superJumbo.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Lead Actor in a Drama Series",
+      "description": "The award is presented to the best performance by a lead actor in a television drama series. Bryan Cranston and Dennis Franz have the most wins (4), and NYPD Blue is the program with the most nominations (14). The previous winner was Billy Porter for Pose.",
+      "contestants": [
+        {
+          "name": "Jason Bateman as Martin 'Marty' Byrde on Ozark (Netflix)",
+          "description": "Nominated for 'Su Casa Es Mi Casa'. Marty and Wendy tell each other how they really feel, Ruth confronts Wyatt, Darlene lets her ambitions be known, and Ben's past comes into focus.\n\n Jason Bateman is an American film and television actor, known for his role as Michael Bluth on the television sitcom Arrested Development (2003), as well as his role on Valerie (1986).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jason_Bateman",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Jason_Bateman_Deauville_2011.jpg/220px-Jason_Bateman_Deauville_2011.jpg"
+        },
+        {
+          "name": "Sterling K. Brown as Randall Pearson on This is Us (NBC)",
+          "description": "Nominated for 'After the Fire'. Randall reflects on what could have been.\n\n Emmy Award-winning actor Sterling K. Brown stars in NBC's Emmy and Golden Globe nominated drama series THIS IS US. For his role as Randall Pearson, Brown won an Emmy Award for Outstanding Lead Actor in a Drama Series, as well as a Golden Globe, becoming the first African American actor to win his category in the award show's 75-year history. Additionally, Brown made history by becoming the first African American actor to receive the SAG Award for Outstanding Male Actor in a Drama.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Sterling_K._Brown",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Sterling_K._Brown_by_Gage_Skidmore.jpg/220px-Sterling_K._Brown_by_Gage_Skidmore.jpg"
+        },
+        {
+          "name": "Steve Carell as Mitch Kessler on The Morning Show (Apple TV+)",
+          "description": "Nominated for 'Lonely at the Top'. Mitch celebrates his 50th birthday and Las Vegas has a shooting.\n\n  Steve Carell is one of America's most versatile comics. Carell made his film debut as \"Tesio\" in Curly Sue (1991). In 1996, he became a cast member of The Dana Carvey Show (1996), and provided the voice for Gary, opposite Colbert in \"The Ambiguously Gay Duo\". This animated short series produced by Robert Smigel continued on Saturday Night Live (1975), but Carell has joked that he auditioned for SNL and lost the job to Will Ferrell. Carell made a number of guest appearances on such shows as Come to Papa (2004), Just Shoot Me! (1997), and Watching Ellie (2002), before landing a regular stint as a correspondent on The Daily Show (1996) from 1999 until 2005.\n He broke out as a leading man after starring in the summer box-office hit The 40-Year-Old Virgin (2005), which he also co-wrote; the film was chosen as one of the Top Ten movies of 2006 by the American Film Institute.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Steve_Carell",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Steve_Carell_November_2014.jpg/220px-Steve_Carell_November_2014.jpg"
+        },
+        {
+          "name": "Brian Cox as Logan Roy on Succession (HBO)",
+          "description": "Nominated for 'Hunting'. Logan informs his skeptical management team of his plan to make another attempt to acquire Pierce; Greg worries his pre-meeting will puts his standing with the family at risk; Connor's presidential announcement irritates Logan.\n\n Brian Cox is an Emmy Award-winning Scottish actor. Cox first came to attention in the early 1970s with performances in numerous television films. His first big break was as Dr. Hannibal Lecter in Manhunter (1986). The film was not overly successful at the box office, although Cox's career prospects and popularity continued to develop. Through the 1990s, he appeared in nearly 20 films and television series, as well as making numerous television guest appearances. More recently, Cox has had roles in some major films, including The Corruptor (1999), The Ring (2002) and X2: X-Men United (2003). He was awarded Commander of the Order of the British Empire in the 2003 Queen's New Year's Honours List for his services to drama.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Brian_Cox_(actor)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Brian_Cox_%282016%29_-_01.jpg/220px-Brian_Cox_%282016%29_-_01.jpg"
+        },
+        {
+          "name": "Billy Porter as Pray Tell on Pose (FX)",
+          "description": "Nominated for 'Love's in Need of Love Today'. After falling ill while organizing his annual AIDS Cabaret, PrayTell lands in the hospital leading to a series of unexpected visitor.\n\n Porter won the 2013 Best Actor in a Musical for his role as Lola in Kinky Boots at the 67th Tony Awards. He credits the part for \"cracking open\" his feminine side to confront toxic masculinity. For the role, Porter also won the Drama Desk Award for Outstanding Actor in a Musical and Outer Critics Circle Award for Outstanding Actor in a Musical. In 2014 Porter won the Grammy Award for Best Musical Theater Album for Kinky Boots. He currently stars in the television series Pose for which he was nominated for a Golden Globe Award and won the 2019 Primetime Emmy Award for Outstanding Lead Actor in a Drama Series, becoming the first openly gay black man to be nominated and win in any lead acting category at the Primetime Emmys.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billy_Porter_(entertainer)",
+          "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRbDjPJzhxTH1E5mxGXDfYHFSbq3WvxU8llYQ&usqp=CAU"
+        },
+        {
+          "name": "Jeremy Strong as Kendall Roy on Succession (HBO)",
+          "description": "Nominated for 'This Is Not for Tears'. In the episode, the Roys attempt to decide who to sacrifice as a public scapegoat in the fallout of a sexual misconduct scandal that jeopardizes the future of the company.\n\n He is best known for his starring role in the HBO series Succession (2018–present), for which he received a nomination for the Primetime Emmy Award for Outstanding Lead Actor in a Drama Series in 2020.[3] Strong has also appeared in many films, including Lincoln (2012), Zero Dark Thirty (2012), Selma (2014), The Big Short (2015), Molly's Game (2017), and The Gentlemen (2019).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jeremy_Strong_(actor)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/75/Jeremy_Strong_2014.jpg/220px-Jeremy_Strong_2014.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Lead Actress in a Drama Series",
+      "description": "It is given in honor of an actress who has delivered an outstanding performance in a leading role on a television drama series for the primetime network season. Tyne Daly and Michael Learned have the most wins (4). Cagney and Lacey is the program with the the most wins (6 consecutive). The previous winner was Jodie Comer for Killing Eve.",
+      "contestants": [
+        {
+          "name": "Jennifer Aniston as Alex Levy on The Morning Show (Apple TV+)",
+          "description": "Nominated for 'In the Dark of the Night of the Soul It's Always 3:30 in the Morning'. America's favorite morning news show is thrown into crisis when it becomes the news.\n\n Jennifer was raised by her mother and her father landed a role, as \"Victor Kiriakis\", on the daytime soap Days of Our Lives (1965). Jennifer had her first taste of acting at age 11 when she joined the Rudolf Steiner School's drama club. In 1990, she landed her first television role, as a series regular on Molloy (1990). She also appeared in The Edge (1992), Ferris Bueller (1990), and had a recurring part on Herman's Head (1991). By 1993, she was floundering. Then, in 1994, a pilot called \"Friends Like These\" came along. Originally asked to audition for the role of \"Monica\", Aniston refused and auditioned for the role of \"Rachel Green\", the suburban princess turned coffee peddler. With the success of the series Friends (1994), Jennifer has become famous and sought-after as she turns her fame into movie roles during the series hiatus.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jennifer_Aniston",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/16/JenniferAnistonHWoFFeb2012.jpg"
+        },
+        {
+          "name": "Olivia Colman as Queen Elizabeth II on The Crown (Netflix)",
+          "description": "Nominated for 'Cri de Coeur'. As her marriage falls apart, Princess Margaret finds solace in the arms of a much younger landscape gardener. The Queen and the nation celebrate Elizabeth II's Silver Jubilee.\n\n A graduate of the Bristol Old Vic Theatre School, Colman first came to prominence for her work in television. She made her acting breakthrough as Sophie Chapman in the Channel 4 comedy series Peep Show (2003–2015). Colman received the British Academy Television Award for Best Female Comedy Performance for the comedy programme Twenty Twelve (2011–2012), Best Supporting Actress for the anthology crime programme Accused (2012),[1] and Best Actress for the ITV crime drama programme Broadchurch (2013–2017). For her performance in the thriller miniseries The Night Manager (2016), she won a Golden Globe Award for Best Supporting Actress and was nominated for a Primetime Emmy Award. For her performance in the comedy programme Fleabag (2016–2019), Colman received a nomination for the Primetime Emmy Award for Outstanding Supporting Actress. In 2019, she portrayed Queen Elizabeth II in the Netflix period drama programme The Crown, for which she received the Golden Globe Award for Best Actress – Television Series, and a nomination for the Primetime Emmy Award for Outstanding Lead Actress.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Olivia_Colman",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Olivia_Colman_at_Moet_BIFA_2014_%28cropped%29.jpg/440px-Olivia_Colman_at_Moet_BIFA_2014_%28cropped%29.jpg"
+        },
+        {
+          "name": "Jodie Comer as Oksana Astankova/Villanelle on Killing Eve (BBC America)",
+          "description": "Nominated for 'Are You From Pinner'.Villanelle visits her family in Russia, and while the quirky reunion starts as an opportunity to reconnect and answer unknowns about her childhood, a profound moment of clarity sends her on a disturbing and downward spiral.\n\n  She is known for her role as Oksana Astankova / Villanelle in the BBC America black comedy-drama spy thriller Killing Eve (2018–present), for which she has received critical acclaim and won the Primetime Emmy Award for Outstanding Lead Actress in a Drama Series and the British Academy Television Award for Best Actress. Her other notable roles include Chloe Gemell in the E4 comedy-drama series My Mad Fat Diary (2013–2015), Kate Parks in the BBC One drama series Doctor Foster (2015–2017), Ivy Moxam in the BBC Three drama miniseries Thirteen (2016), and Elizabeth of York in the Starz historical miniseries The White Princess (2017).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jodie_Comer",
+          "image_url": "https://m.media-amazon.com/images/M/MV5BYTNmMDVlZjgtNDRiNy00YWQ2LTlhMzEtOTQzY2JhYTgwOWY4XkEyXkFqcGdeQXVyMjQwMDg0Ng@@._V1_UX99_CR0,0,99,99_AL_.jpg"
+        },
+        {
+          "name": "Laura Linney as Wendy Byrde on Ozark (Netflix)",
+          "description": "Nominated for 'Fire Pink'. Ben's confrontation with Helen and Erin sends the Byrdes into crisis mode. Meanwhile, Sam's concerns about the FBI inspire little sympathy.\n\n Linney made her Broadway debut in 1990 before going on to receive Tony Award nominations for the 2002 revival of The Crucible, the original Broadway productions of Sight Unseen (2004) and Time Stands Still (2010), and the 2017 revival of The Little Foxes. On television, she won her first Emmy Award for the television film Wild Iris (2001), and had subsequent wins for the sitcom Frasier (2003–04) and the miniseries John Adams (2008). From 2010 to 2013, she starred in the Showtime series The Big C, which won her a fourth Emmy in 2013, and in 2017 she began starring in the Netflix crime series Ozark.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Laura_Linney",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2d/Brian_Cox_%282016%29_-_01.jpg/220px-Brian_Cox_%282016%29_-_01.jpg"
+        },
+        {
+          "name": "Sandra Oh as Eve Polastri on Killing Eve (BBC America)",
+          "description": "Nominated for 'Are You Leading or Am I?'. Konstantin tries to run; Eve and Villanelle try to work out what the future may hold for them.\n\n A Canadian-American actress. She is best known for her starring roles as Cristina Yang on the ABC medical drama series Grey's Anatomy (2005–2014) and Eve Polastri in the BBC America spy thriller series Killing Eve (2018–present). She has received numerous accolades, including two Golden Globe Awards and four Screen Actors Guild Awards, and twelve Primetime Emmy Award nominations.\n\nOh first gained recognition for her roles in the Asian-Canadian films Double Happiness (1994) and The Diary of Evelyn Lau (1994). On television, she was noted for her role as Rita Wu on the HBO sitcom Arliss (1996–2002).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Sandra_Oh",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Sano.jpg/440px-Sano.jpg"
+        },
+        {
+          "name": "Zendaya as Rue Bennett on Euphoria (HBO)",
+          "description": "Nominated for 'Made You Look'. Kat starts camming; Jules falls for a boy online; Rue is confronted about her lies at NA; Cassie and McKay spend the weekend at his college.\n\n She began her career as a child model and backup dancer, before gaining prominence for her role as Rocky Blue on the Disney Channel sitcom Shake It Up (2010–2013).\n\nIn 2013, Zendaya was a contestant on the sixteenth season of the competition series Dancing with the Stars. From 2015 to 2018, she produced and starred as the titular spy, K.C Cooper, in the sitcom K.C. Undercover. In 2019, she began playing Rue Bennett, a teenage drug addict, in the HBO drama series Euphoria, for which she garnered critical praise as well as nominations for a Critics' Choice Award and a Primetime Emmy Award. Her film roles include supporting parts in the musical drama The Greatest Showman (2017) and the superhero films Spider-Man: Homecoming (2017) and Spider-Man: Far from Home (2019).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Zendaya",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Zendaya_-_2019_by_Glenn_Francis.jpg/440px-Zendaya_-_2019_by_Glenn_Francis.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Lead Actor in a Limited Series or Movie",
+      "description": "Laurence Olivier has the most wins (4). Hallmark Hall of Fame is the program with the most nominations (12). The previous winner was Jharrel Jerome for his role as Korey Wise in HBO's When They See Us.",
+      "contestants": [
+        {
+          "name": "Jeremy Irons as Adrian Veidt on Watchmen (HBO)",
+          "description": "Irons plays Adrian Veidt, a.k.a. Ozymandias, the central villain from the Watchmen graphic novel. Veidt is considered the smartest man on Earth who, at first, appears to be the rich, fancy, level-headed foil to the vigilante Rorschach’s impulsiveness in the book.\n\n Young Jeremy didn't prove very fond of figures. He visited mainland England only once a year. He wound up being grounded when his family settled down in Hertfordshire. At the age of 13 he enrolled in Sherborne School, Dorset, where he could practice his favorite sport, horse-riding. Before becoming an actor, he had considered a veterinarian surgeon's career. He trained at the Bristol Old Vic School for two years, then joined Bristol Old Vic repertory company where he gained experience working in everything from Shakespeare to contemporary dramas. He moved to London in 1971 and had a number of jobs before landing the role of \"John the Baptist\" in the hit musical \"Godspell\". He went on to have a successful early career in the West End theatre and on TV. Once described as 'the thinking woman's pin up', he has made his name in thought provoking films such as David Cronenberg's Dead Ringers (1988), for which he won the New York Critics Best Actor Award. He gained a Golden Globe Award in addition to an Oscar for Best Actor in 1990 for his role as Claus von Bulow in Reversal of Fortune (1990) alongside Glenn Close. Among his many achievements, his role as Professor Higgins in Loewe-Lerner's famous musical \"My Fair Lady\" mustn't be forgotten. It was in London, back in 1987.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jeremy_Irons",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/SDCC_2015_-_Jeremy_Irons_%2819524260758%29_%28cropped%29.jpg/440px-SDCC_2015_-_Jeremy_Irons_%2819524260758%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Hugh Jackman as Dr. Frank Tassone on Bad Education (HBO)",
+          "description": "Jackman plays the charismatic and esteemed Dr. Frank Tassone, who steals millions of dollarsr from the same public school district that they seek to make the best in the country.\n\n An Australian actor, singer, and producer. He is best known for playing Wolverine/James Howlett/Logan in the X-Men film series (2000–2018), a role for which he holds the Guinness World Record for \"longest career as a live-action Marvel superhero\". Jackman is also recognised for his lead roles in films such as the romantic comedy Kate & Leopold (2001), the action film Van Helsing (2004), the drama The Prestige (2006), the fantasy drama The Fountain (2006), the period romance Australia (2008), the film version of Les Misérables (2012), the thriller Prisoners (2013), and the musical The Greatest Showman (2017), for which he received a Grammy Award for Best Soundtrack Album. For playing Jean Valjean in Les Misérables, he was nominated for the Academy Award for Best Actor and won the Golden Globe Award for Best Actor – Motion Picture Musical or Comedy. In Broadway theatre, Jackman won the 2004 Tony Award for Best Actor in a Musical for his role in The Boy from Oz. A four-time host of the Tony Awards, he won an Emmy Award for hosting the 2005 ceremony. He also hosted the 81st Academy Awards in 2009. Jackman was appointed a Companion of the Order of Australia in the 2019 Queen's Birthday Honours for services to performing arts and to the global community.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Hugh_Jackman",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Logan_Japan_Premiere_Red_Carpet-_Hugh_Jackman_%2838445328406%29_%28rotated%29.jpg/440px-Logan_Japan_Premiere_Red_Carpet-_Hugh_Jackman_%2838445328406%29_%28rotated%29.jpg"
+        },
+        {
+          "name": "Paul Mescal as Connell Waldron on Normal People (Hulu)",
+          "description": "Connell Waldron, a well-liked, academically gifted student. His mother works as a cleaner for Marianne's family. He struggles with what he wants out of life and decides to follow Marianne's suggestion and apply to be an undergraduate at Trinity College to study English.\n\nPaul Mescal was one in a commercial for Denny, a sausage company. The commercial was so popular, that Mescal became known as \"Sausage Paul\".\n",
+          "wiki_url": "https://en.wikipedia.org/wiki/Paul_Mescal",
+          "image_url": "https://www.usmagazine.com/wp-content/uploads/2020/09/Who-Is-Paul-Mescal-5-Things-Know-About-Normal-People-Star-Landing.jpg?w=900&quality=86&strip=all"
+        },
+        {
+          "name": "Jeremy Pope as Archie Coleman on Hollywood (Netflix)",
+          "description": "Archie Coleman, a Black aspiring screenwriter facing prejudice, and Roy Fitzgerald's (fictionalized version of Rock Hudson) boyfriend. An American Broadway theater performer, actor, and singer. He became the sixth person in Tony Award history to be nominated in two categories for separate performances during the same year, when he received nominations for Choir Boy and Ain't Too Proud in 2019,[1] the latter of which also earned him a Grammy Award for Best Musical Theater Album nomination.\n\nIn 2020, Pope starred in the Netflix miniseries Hollywood, which earned him a nomination for the Primetime Emmy Award for Outstanding Lead Actor in a Limited Series or Movie.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jeremy_Pope_(actor)",
+          "image_url": "https://m.media-amazon.com/images/M/MV5BYTdjMzdhNzQtNzc4Yi00Yjc1LWE1OTItMDZjOTFkMWM2ZmZhXkEyXkFqcGdeQXVyNzU4OTE3NDM@._V1_UY317_CR27,0,214,317_AL_.jpg"
+        },
+        {
+          "name": "Mark Ruffalo as Dominick and Thomas Birdsey on I Know This Much Is True (HBO)",
+          "description": "Ruffalo plays identical twins, one of whom suffers from pranoid schizophrenia. He began acting in the early 1990s and first gained recognition for his work in Kenneth Lonergan's play This Is Our Youth (1998) and drama film You Can Count On Me (2000). He went on to star in the romantic comedies 13 Going on 30 (2004) and Just like Heaven (2005) and the thrillers Zodiac (2007) and Shutter Island (2010). He gained international recognition for playing Bruce Banner / Hulk in the Marvel Cinematic Universe superhero films The Avengers (2012), Avengers: Age of Ultron (2015), Thor: Ragnarok (2017), Avengers: Infinity War (2018), and Avengers: Endgame (2019). Ruffalo gained nominations for the Academy Award for Best Supporting Actor for playing a sperm donor in the comedy-drama The Kids Are All Right (2010), Dave Schultz in the biopic Foxcatcher (2014), and Michael Rezendes in the drama Spotlight (2015). He won the Screen Actors Guild Award for Best Actor in a TV Movie for playing a gay writer and activist in the television drama film The Normal Heart (2015).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Mark_Ruffalo",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Mark_Ruffalo_%2836201774756%29_%28cropped%29.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Lead Actress in a Limited Series or Movie",
+      "description": "It is given in honor of an actress who has delivered an outstanding performance in a leading role on a television limited series or television movie for the primetime network season. Helen Mirren has the most wins (4) and nominations (10). The previous winner was Michelle Williams for Fosse/Verdon.",
+      "contestants": [
+        {
+          "name": "Cate Blanchett as Phyllis Schlafly on Mrs. America (FX)",
+          "description": "The series details the political movement to pass the Equal Rights Amendment and the unexpected backlash led by conservative activist Phyllis Schlafly in the 1970s. \n\nAn Australian actress and theatre director. One of Australia's most accomplished actresses, she is known for her diverse roles in both blockbusters and independent films. She came to international attention for portraying Elizabeth I in the drama film Elizabeth (1998), for which she won the BAFTA Award for Best Actress and earned her first nomination for the Academy Award for Best Actress. Her portrayal of Katharine Hepburn in Martin Scorsese's The Aviator (2004), earned her the Academy Award for Best Supporting Actress, and she won the Academy Award for Best Actress for playing a neurotic former socialite in Woody Allen's Blue Jasmine (2013). Her other Oscar-nominated roles were in the dramas Notes on a Scandal (2006), Elizabeth: The Golden Age (2007), I'm Not There (2007), and Carol (2015). Blanchett's most commercially successful films include The Talented Mr. Ripley (1999), Peter Jackson's The Lord of the Rings trilogy (2001–2003) and The Hobbit trilogy (2012–2014), Babel (2006), The Curious Case of Benjamin Button (2008), Indiana Jones and the Kingdom of the Crystal Skull (2008), the How to Train Your Dragon film trilogy (2014–2019), Cinderella (2015), Thor: Ragnarok (2017) and Ocean's 8 (2018).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Cate_Blanchett",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Cate_Blanchett_Cannes_2018_2_%28cropped%29.jpg/440px-Cate_Blanchett_Cannes_2018_2_%28cropped%29.jpg"
+        },
+        {
+          "name": "Shira Haas as Esther 'Esty' Shapiro on Unorthodox (Netflix)",
+          "description": "Esty, a 19-year-old Jewish woman, is living unhappily in an arranged marriage among an ultra-Orthodox community in Williamsburg, Brooklyn, New York City. She runs away to Berlin, where her estranged mother lives, and tries to navigate a secular life, discovering life outside her community and rejecting all of the beliefs she grew up with.\n\nAn Israeli actress. She gained national prominence for her roles in Israeli drama film and television (e.g. Shtisel), before gaining international praise for her performance in the Netflix miniseries Unorthodox (2020).[4][5][6][7][8] For Unorthodox, Haas received a nomination for the Primetime Emmy Award for Outstanding Lead Actress in a Limited Series or Movie. For her film roles, she has won one Israeli Academy Award out of four nominations, as well as the Tribeca Film Festival Award for Best International Actress for her performance in Asia (2020).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Shira_Haas",
+          "image_url": "https://pmcvariety.files.wordpress.com/2020/08/shira-haas-variety-power-of-young-hollywood-1920.jpg"
+        },
+        {
+          "name": "Octavia Spencer as Madam C.J. Walker on Self Made (Netflix)",
+          "description": "Self Made is a fictionalized depiction of \"the untold story of black hair care pioneer and mogul Madam C. J. Walker and how she overcame the hostilities of turn-of-the-century America, epic rivalries, and tumultuous marriages to become America’s first Black, self-made female millionaire.\"\n\n She is one of two women of color to have received three Oscar nominations and the first black actress to receive two consecutive nominations. Spencer made her film debut in the 1996 drama A Time to Kill. Following a decade of brief roles in film and television, her breakthrough came in 2011, when she played a maid in 1960s America in The Help, for which she won several awards, including the Academy Award for Best Supporting Actress. For her performance in Ryan Coogler's biopic Fruitvale Station (2013), she won the National Board of Review Award for Best Supporting Actress. Spencer received further Academy Award nominations for Best Supporting Actress for playing other women in 1960s America, the mathematician Dorothy Vaughan in the biographical drama Hidden Figures (2016), and a cleaning woman in the fantasy drama The Shape of Water (2017). Spencer also had a recurring role in the CBS sitcom Mom (2013–15) and a starring role in the Fox teen drama series Red Band Society (2014–15). She portrays the lead role in the Apple TV+ drama series Truth Be Told (2019–present).",
+          "wiki_url": "https://en.wikipedia.org/wiki/Octavia_Spencer",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1e/%22Hidden_Figures%22_Screening_at_the_White_House_%28NHQ201612150008%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Regina King as Angela Abar/Sister Night on Watchmen (HBO)",
+          "description": "Angela Abar (King) is a detective known as Sister Night, investigates the murder of her friend and the chief of the police, Judd Crawford (Johnson), and discovers secrets regarding the situations around vigilantism.\n\n An American actress and director. She is the recipient of several awards, including an Academy Award and three Primetime Emmy Awards. Time magazine named her one of the 100 most influential people in the world in 2019. King first gained attention for her role in the television series 227 from 1985 to 1990. She rose to prominence with roles in the films Friday (1995) and Jerry Maguire (1996), and the crime television series Southland (2009–2013). From 2015 to 2017, King starred in the ABC anthology series American Crime, for which she won two Primetime Emmy Awards, and in 2018, she starred in the Netflix miniseries Seven Seconds, for which she won her third Emmy Award. Her role as a troubled mother in the 2018 film If Beale Street Could Talk won her the Academy Award for Best Supporting Actress.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Regina_King",
+          "image_url": "https://media.npr.org/assets/img/2019/10/10/gettyimages-1093861160-ec1775450fef41fa532dd67ed1bdf029f601ceb9.jpg"
+        },
+        {
+          "name": "Kerry Washington as Mia Warren on Little Fires Everywhere (Hulu)",
+          "description": "Mia Warren, a talented artist who works part time as a waitress who rents a home from Witherspoon's Elena Richardson. She gained wide public recognition for starring as crisis management expert Olivia Pope in the ABC drama series Scandal (2012–2018). For her role, she was twice nominated for the Primetime Emmy Award for Outstanding Lead Actress in a Drama Series and once for the Golden Globe Award for Best Actress – Television Series Drama. Her portrayal of Anita Hill in the HBO television political thriller film, Confirmation (2016), earned her a nomination for both the Primetime Emmy Award for Outstanding Lead Actress in a Miniseries or a Movie and the Golden Globe Award for Best Actress – Miniseries or Television Film.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Kerry_Washington",
+          "image_url": "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/mcx110118toc-004-cover-extend-1541788536.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Supporting Actor in a Comedy Series",
+      "description": "Don Knotts has the most awards (5), David Hyde Pierce has the most nominations (11). M*A*S*H is the program with the most nominations (21), The previous winner was Tony Shalhoub for The Marvelous Mrs. Maisel.",
+      "contestants": [
+        {
+          "name": "Mahershala Ali as Sheikh Ali Malik on Ramy (Hulu)",
+          "description": "Nominated for \"Little Omar\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Mahershala_Ali",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Mahershala_Ali_%2829953410761%29.jpg"
+        },
+        {
+          "name": "Alan Arkin as Norman Newlander on The Kominsky Method (Netflix)",
+          "description": "Nominated for \"Chapter 14: A Secret Leaks, a Teacher Speaks\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Alan_Arkin",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/75/AlanArkinTIFFSept2012_%28cropped%29.jpg"
+        },
+        {
+          "name": "Andre Braugher as Captain Ray Holt on Brooklyn Nine-Nine (NBC)",
+          "description": "Nominated for \"Ransom\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Andre_Braugher",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Andre_Braugher_2011_%28cropped%29.jpg"
+        },
+        {
+          "name": "Sterling K. Brown as Reggie on The Marvelous Mrs. Maisel (Amazon Prime Video)",
+          "description": "Nominated for \"Panty Pose\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Sterling_K._Brown",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/e2/Sterling_K._Brown_by_Gage_Skidmore.jpg"
+        },
+        {
+          "name": "William Jackson Harper as Chidi Anagonye on The Good Place (NBC)",
+          "description": "Nominated for \"Whenever You're Ready\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/William_Jackson_Harper",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b6/William_Jackson_Harper_at_the_2018_Comic-Con_International_%2842913092745%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Dan Levy as David Rose on Schitt's Creek (Pop TV)",
+          "description": "Nominated for \"Happy Ending\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Dan_Levy_(Canadian_actor)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Dan_Levy_2012.png"
+        },
+        {
+          "name": "Tony Shalhoub as Abe Weissman on The Marvelous Mrs. Maisel (Amazon Prime Video)",
+          "description": "Nominated for \"Marvelous Radio\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tony_Shalhoub",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/TonyShalhoub2018.png"
+        },
+        {
+          "name": "Kenan Thompson as Various Characters on Saturday Night Live (NBC)",
+          "description": "Nominated for \"At Home #2\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Kenan_Thompson",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Kenan_Thompson_2012_%28cropped%29.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Supporting Actress in a Comedy Series",
+      "description": "Rhea Perlman and Doris Roberts have the most wins (4). Rhea Perlman and Loretta Swift have the most nominations (10). The previous winner was Alex Borstein for The Marvelous Mrs. Maisel.",
+      "contestants": [
+        {
+          "name": "Alex Borstein as Susie Myerson on The Marvelous Mrs. Maisel (Amazon Prime Video)",
+          "description": "Nominated for \"Marvelous Radio\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Alex_Borstein",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5f/Alex_Borstein_by_Gage_Skidmore_4_%28retouched%29.jpg"
+        },
+        {
+          "name": "D'Arcy Carden as Janet on The Good Place (NBC)",
+          "description": "Nominated for \"You've Changed, Man\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/D%27Arcy_Carden",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/%27The_Good_Place%27_cast_and_crew_visit_San_Diego_Comic_Con_for_a_panel_cropped.jpg"
+        },
+        {
+          "name": "Betty Gilpin as Debbie \"Liberty Bell\" Eagan on GLOW (Netflix)",
+          "description": "Nominated for \"A Very GLOW Christmas\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Betty_Gilpin",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/80/Betty_Gilpin_by_Gage_Skidmore.jpg"
+        },
+        {
+          "name": "Marin Hinkle as Rose Weissman on The Marvelous Mrs. Maisel (Amazon Prime Video)",
+          "description": "Nominated for \"A Jewish Girl Walks Into the Apollo...\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Marin_Hinkle",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/29/MarinHinkleHWOFSept2011.jpg"
+        },
+        {
+          "name": "Kate McKinnon as Various Characters on Saturday Night Live (NBC)",
+          "description": "Nominated for \"Host: Daniel Craig\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Kate_McKinnon",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/Kate_McKinnon_in_2018.jpg"
+        },
+        {
+          "name": "Annie Murphy as Alexis Rose on Schitt's Creek (Pop TV)",
+          "description": "Nominated for \"The Presidential Suite\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Annie_Murphy",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/98/Annie_Murphy_%28cropped%29.jpg"
+        },
+        {
+          "name": "Yvonne Orji as Molly Carter on Insecure (HBO)",
+          "description": "Nominated for \"Lowkey Lost\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Yvonne_Orji",
+          "image_url": ""
+        },
+        {
+          "name": "Cecily Strong as Various Characters on Saturday Night Live (NBC)",
+          "description": "Nominated for \"Host: Eddie Murphy\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Cecily_Strong",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Cecily_Strong_at_the_74th_Annual_Peabody_Awards_%28cropped%29.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Supporting Actor in a Drama Series",
+      "description": "Peter Dinklage has the most wins (4) and nominations (8). FOX is the only one of the Big Four networks to not win this category. As of the 2019 ceremony, FOX is 0/1. The previous winner was Peter Dinklage for Game of Thrones.",
+      "contestants": [
+        {
+          "name": "Nicholas Braun as Greg Hirsch on Succession (HBO)",
+          "description": "Nominated for \"This Is Not for Tears\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Nicholas_Braun",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/33/Nicholas_Braun_2017.jpg"
+        },
+        {
+          "name": "Billy Crudup as Cory Ellison on The Morning Show (Apple TV+)",
+          "description": "Nominated for \"Chaos Is the New Cocaine\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Billy_Crudup",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Billy_Crudup_2015_1b.jpg"
+        },
+        {
+          "name": "Kieran Culkin as Roman Roy on Succession (HBO)",
+          "description": "Nominated for \"Tern Haven\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Kieran_Culkin",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Kieran_Culkin_2012.jpg"
+        },
+        {
+          "name": "Mark Duplass as Charlie \"Chip\" Black on The Morning Show (Apple TV+)",
+          "description": "Nominated for \"The Interview\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Mark_Duplass",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/MarkDuplassOct2011.jpg"
+        },
+        {
+          "name": "Giancarlo Esposito as Gus Fring on Better Call Saul (AMC)",
+          "description": "Nominated for \"JMM\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Giancarlo_Esposito",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/63/Giancarlo_Esposito_SXSW_2017_%28cropped%29.jpg"
+        },
+        {
+          "name": "Matthew Macfadyen as Tom Wambsgans on Succession (HBO)",
+          "description": "Nominated for \"This Is Not for Tears\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Matthew_Macfadyen",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/ca/Matthew_Macfadyen_2007.jpg"
+        },
+        {
+          "name": "Bradley Whitford as Commander Joseph Lawrence on The Handmaid's Tale (Hulu)",
+          "description": "Nominated for \"Sacrifice\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Bradley_Whitford",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/20/Bradleywhitford.jpg"
+        },
+        {
+          "name": "Jeffrey Wright as Bernard Lowe on Westworld (HBO)",
+          "description": "Nominated for \"Crisis Theory\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jeffrey_Wright",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/51/Jeffrey_Wright_by_Gage_Skidmore_3.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Supporting Actress in a Drama Series",
+      "description": "Nancy Marchand has the most wins (4). Tyne Daly has the most nominations (8). The previous winner was Julia Garner for Ozark.",
+      "contestants": [
+        {
+          "name": "Helena Bonham Carter as Princess Margaret on The Crown (Netflix)",
+          "description": "Nominated for \"Cri de Coeur\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Helena_Bonham_Carter",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Helena_Bonham_Carter_2011_AA.jpg"
+        },
+        {
+          "name": "Laura Dern as Renata Klein on Big Little Lies (HBO)",
+          "description": "Nominated for \"Tell-Tale Hearts\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Laura_Dern",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bc/Laura_Dern_Deauville_2017.jpg"
+        },
+        {
+          "name": "Julia Garner as Ruth Langmore on Ozark (Netflix)",
+          "description": "Nominated for \"In Case of Emergency\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Julia_Garner",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Julia_Garner_in_2020%2C_cropped.jpg"
+        },
+        {
+          "name": "Thandie Newton as Maeve Millay on Westworld (HBO)",
+          "description": "Nominated for \"The Winter Line\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Thandie_Newton",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9a/Thandie_Newton_by_Gage_Skidmore_2.jpg"
+        },
+        {
+          "name": "Fiona Shaw as Carolyn Martens on Killing Eve (BBC America)",
+          "description": "Nominated for \"Management Sucks\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Fiona_Shaw",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Fiona_Shaw_BAM_2011-01-16.jpg"
+        },
+        {
+          "name": "Sarah Snook as Siobhan \"Shiv\" Roy on Succession (HBO)",
+          "description": "Nominated for \"The Summer Palace\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Sarah_Snook",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Sarah_Snook_2012.jpg"
+        },
+        {
+          "name": "Meryl Streep as Mary Louise Wright on Big Little Lies (HBO)",
+          "description": "Nominated for \"I Want to Know\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Meryl_Streep",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Meryl_Streep_December_2018.jpg"
+        },
+        {
+          "name": "Samira Wiley as Moira Strand on The Handmaid's Tale (Hulu)",
+          "description": "Nominated for \"Sacrifice\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Samira_Wiley",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/72/Samira_Wiley_%28cropped%29.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Supporting Actor in a Limited Series or Movie",
+      "description": "Beau Bridges has the most wins (2). Brian Dennehy has the most nominations (4). The previous winner was Bn Whishaw for A Very English Scandal.",
+      "contestants": [
+        {
+          "name": "Yahya Abdul-Mateen II as Calvin \"Cal\" Abar / Doctor Manhattan on Watchmen (HBO)",
+          "description": "Nominated for \"A God Walks into Abar\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Yahya_Abdul-Mateen_II",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/70/Yahya_Abdul-Mateen_II_by_Gage_Skidmore.jpg"
+        },
+        {
+          "name": "Jovan Adepo as Young Will Reeves on Watchmen (HBO)",
+          "description": "Nominated for \"This Extraordinary Being\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jovan_Adepo",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Jovan_Adepo_FENCES_Interview.jpg"
+        },
+        {
+          "name": "Tituss Burgess as Titus Andromedon on Unbreakable Kimmy Schmidt: Kimmy vs. The Reverend (Netflix)",
+          "description": "Nominated for None.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tituss_Burgess",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/e/ed/Tituss_Burgess_Headshot.jpg"
+        },
+        {
+          "name": "Louis Gossett Jr. as Will Reeves on Watchmen (HBO)",
+          "description": "Nominated for \"See How They Fly\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Louis_Gossett_Jr.",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6f/Louis_Gossett_Jr_LF.JPG"
+        },
+        {
+          "name": "Dylan McDermott as Ernest \"Ernie\" West on Hollywood (Netflix)",
+          "description": "Nominated for \"Meg\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Dylan_McDermott",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Dylan_McDermott_2014.jpg"
+        },
+        {
+          "name": "Jim Parsons as Henry Willson on Hollywood (Netflix)",
+          "description": "Nominated for \"Outlaws\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jim_Parsons",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/9b/Jim_Parsons_2016.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Supporting Actress in a Limited Series or Movie",
+      "description": "It is given in honor of an actress who has delivered an outstanding performance in a supporting role on a television limited series or television movie for the primetime network season. The award ceremony garnered criticism during the 58th Primetime Emmy Awards when Ellen Burstyn received a nomination for her work in Mrs. Harris (2005), despite having 14 seconds of screen time and 38 words of dialogue.[1] This resulted in a rule change, requiring nominees submitting for the category to have more than 5% screen-time on their respective projects. Regina King has the most consecutive wins (2). Kathy Bates has the most nominations (7). The previous winner was Patricia Arquette for the Act.",
+      "contestants": [
+        {
+          "name": "Uzo Aduba as Shirley Chisholm on Mrs. America (FX)",
+          "description": "Nominated for \"Shirley\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Uzo_Aduba",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/00/Uzo_Abuda_2014_%28cropped%29.jpg"
+        },
+        {
+          "name": "Toni Collette as Det. Grace Rasmussen on Unbelievable (Netflix)",
+          "description": "Nominated for \"Episode 6\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Toni_Collette",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Toni_Collette_%2848707296653%29_%28cropped%29.jpg"
+        },
+        {
+          "name": "Margo Martindale as Bella Abzug on Mrs. America (FX)",
+          "description": "Nominated for \"Bella\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Margo_Martindale",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Margo_Martindale_MFF_2016.jpg"
+        },
+        {
+          "name": "Jean Smart as Laurie Blake on Watchmen (HBO)",
+          "description": "Nominated for \"She Was Killed by Space Junk\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Jean_Smart",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Jean_Smart_2015_PaleyFest.png"
+        },
+        {
+          "name": "Holland Taylor as Ellen Kincaid on Hollywood (Netflix)",
+          "description": "Nominated for \"Jump\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Holland_Taylor",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Holland_Taylor.jpg"
+        },
+        {
+          "name": "Tracey Ullman as Betty Friedan on Mrs. America (FX)",
+          "description": "Nominated for \"Betty\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tracey_Ullman",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/Tracy_Ullman_by_John_Mathew_Smith.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Director for a Comedy Series",
+      "description": "CBS is the network with the most wins (15). James Burrows has the most wins (5, 2 consecutively) and nominations (25). The previous winner was Harry Bradbeer for 'Episode 1' from Fleabag.",
+      "contestants": [
+        {
+          "name": "Matt Shakman for The Great (Hulu)",
+          "description": "Nominated for \"The Great\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Matt_Shakman",
+          "image_url": ""
+        },
+        {
+          "name": "Amy Sherman-Palladino for The Marvelous Mrs. Maisel (Amazon Prime Video)",
+          "description": "Nominated for \"It's Comedy or Cabbage\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Amy_Sherman-Palladino",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/54/Amy_Sherman-Palladino.jpg"
+        },
+        {
+          "name": "Daniel Palladino for The Marvelous Mrs. Maisel (Amazon Prime Video)",
+          "description": "Nominated for \"Marvelous Radio\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Daniel_Palladino",
+          "image_url": ""
+        },
+        {
+          "name": "Gail Mancuso for Modern Family (ABC)",
+          "description": "Nominated for \"Finale, Part 2\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Finale_(Modern_Family)",
+          "image_url": ""
+        },
+        {
+          "name": "Ramy Youssef for Ramy (Hulu)",
+          "description": "Nominated for \"Miakhalifa.mov\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Ramy_Youssef",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Ramy_Youssef_Cropped_%28cropped%29.png"
+        },
+        {
+          "name": "Andrew Cividino and Dan Levy for Schitt's Creek (Pop TV)",
+          "description": "Nominated for \"Happy Ending\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Andrew_Cividino",
+          "image_url": ""
+        },
+        {
+          "name": "James Burrows for Will & Grace (NBC)",
+          "description": "Nominated for \"We Love Lucy\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/James_Burrows",
+          "image_url": ""
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Director for a Drama Series",
+      "description": "NBC is the network with the most wins (21). Paul Bogart has the most wins (3). George Schaefer has the most nominations (10). The previous winner was Jason Bateman for 'Reparations' from Ozark.",
+      "contestants": [
+        {
+          "name": "Benjamin Caron for The Crown (Netflix)",
+          "description": "Nominated for \"Aberfan\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Benjamin_Caron",
+          "image_url": ""
+        },
+        {
+          "name": "Jessica Hobbs for The Crown (Netflix)",
+          "description": "Nominated for \"Cri de Coeur\".",
+          "wiki_url": "",
+          "image_url": ""
+        },
+        {
+          "name": "Lesli Linka Glatter for Homeland (Showtime)",
+          "description": "Nominated for \"Prisoners of War\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Prisoners_of_War_(Homeland)",
+          "image_url": ""
+        },
+        {
+          "name": "Mimi Leder for The Morning Show (Apple TV+)",
+          "description": "Nominated for \"The Interview\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Mimi_Leder",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/Mimi_Leder_at_the_75th_Annual_Peabody_Awards_for_The_Leftovers.jpg"
+        },
+        {
+          "name": "Alik Sakharov for Ozark (Netflix)",
+          "description": "Nominated for \"Fire Pink\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Alik_Sakharov",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Sakharov_image.jpg"
+        },
+        {
+          "name": "Ben Semanoff for Ozark (Netflix)",
+          "description": "Nominated for \"Su Casa Es Mi Casa\".",
+          "wiki_url": "",
+          "image_url": ""
+        },
+        {
+          "name": "Andrij Parekh for Succession (HBO)",
+          "description": "Nominated for \"Hunting\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Andrij_Parekh",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cf/Andrij_Parekh.jpg"
+        },
+        {
+          "name": "Mark Mylod for Succession (HBO)",
+          "description": "Nominated for \"This Is Not for Tears\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/This_Is_Not_for_Tears",
+          "image_url": ""
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Director for a Limited Series, Movie, or Dramatic Special",
+      "description": "HBO is the network with the most wins (15). John Frankenheimer has the most wins (4). Lamont Johnson and Joseph Sargent have the most nominations (9). The previous winner was Johan Renck for Chernobyl.",
+      "contestants": [
+        {
+          "name": "Lynn Shelton for Little Fires Everywhere (Hulu)",
+          "description": "Nominated for \"Find a Way\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lynn_Shelton",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/11/Lynn_Shelton.jpg"
+        },
+        {
+          "name": "Lenny Abrahamson for Normal People (Hulu)",
+          "description": "Nominated for \"Episode 5\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Lenny_Abrahamson",
+          "image_url": ""
+        },
+        {
+          "name": "Unorthodox, Directed by Maria Schrader (Netflix)",
+          "description": "Nominated for None.",
+          "wiki_url": "https://en.wikipedia.org/wiki/Maria_Schrader",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/SchraderMaria39Fenzl.jpeg"
+        },
+        {
+          "name": "Nicole Kassell for Watchmen (HBO)",
+          "description": "Nominated for \"It's Summer and We're Running Out of Ice\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/It%27s_Summer_and_We%27re_Running_Out_of_Ice",
+          "image_url": ""
+        },
+        {
+          "name": "Steph Green for Watchmen (HBO)",
+          "description": "Nominated for \"Little Fear of Lightning\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Little_Fear_of_Lightning",
+          "image_url": ""
+        },
+        {
+          "name": "Stephen Williams for Watchmen (HBO)",
+          "description": "Nominated for \"This Extraordinary Being\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/This_Extraordinary_Being",
+          "image_url": ""
+        }]
+    },
+    {
+      "name": "Outstanding Writing for a Comedy Series",
+      "description": "It recognizes writing excellence in regular comedic series, most of which can generally be described as situation comedies. It was first presented in 1955 as Outstanding Written Comedy Material. CBS is the network with the most wins (22). David Lloyd has the most nominations (9). The previous winner was Phoebe Waller-Bridge for 'Episode 1' from Fleabag.",
+      "contestants": [
+        {
+          "name": "Michael Schur for The Good Place (NBC)",
+          "description": "Nominated for \"Whenever You're Ready\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Whenever_You%27re_Ready_(The_Good_Place)",
+          "image_url": ""
+        },
+        {
+          "name": "Tony McNamara for The Great (Hulu)",
+          "description": "Nominated for \"The Great\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tony_McNamara_(writer)",
+          "image_url": ""
+        },
+        {
+          "name": "Dan Levy for Schitt's Creek (Pop TV)",
+          "description": "Nominated for \"Happy Ending\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Dan_Levy_(Canadian_actor)",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Dan_Levy_2012.png"
+        },
+        {
+          "name": "David West Read for Schitt's Creek (Pop TV)",
+          "description": "Nominated for \"The Presidential Suite\".",
+          "wiki_url": "",
+          "image_url": ""
+        },
+        {
+          "name": "Sam Johnson and Chris Marcil for What We Do in the Shadows (FX)",
+          "description": "Nominated for \"Collaboration\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Sam_Johnson_and_Chris_Marcil",
+          "image_url": ""
+        },
+        {
+          "name": "Paul Simms for What We Do in the Shadows (FX)",
+          "description": "Nominated for \"Ghosts\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Paul_Simms",
+          "image_url": ""
+        },
+        {
+          "name": "Stefani Robinson for What We Do in the Shadows (FX)",
+          "description": "Nominated for \"On the Run\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Stefani_Robinson",
+          "image_url": ""
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Writing for a Drama Series",
+      "description": "It was first awarded at the 7th Primetime Emmy Awards ceremony, held in 1955 and it is given in honor of a writer or writers who produced an outstanding story or screenplay for an episode of a television drama series during the primetime network season. Undergoing several name changes, the award received its current title at the 48th Primetime Emmy Awards in 1996. CBS is the network with the most wins (23). Rod Sterling has the most wins (6). Steven Bocho has the most nominations (19). The previous winner was Jesse Armstrong for 'Nobody Is Ever Missing' from Succession.",
+      "contestants": [
+        {
+          "name": "Thomas Schnauz for Better Call Saul (AMC)",
+          "description": "Nominated for \"Bad Choice Road\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Bad_Choice_Road",
+          "image_url": ""
+        },
+        {
+          "name": "Gordon Smith for Better Call Saul (AMC)",
+          "description": "Nominated for \"Bagman\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Bagman_(Better_Call_Saul)",
+          "image_url": ""
+        },
+        {
+          "name": "Peter Morgan for The Crown (Netflix)",
+          "description": "Nominated for \"Aberfan\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Peter_Morgan",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Peter_Morgan_2010.jpg"
+        },
+        {
+          "name": "Chris Mundy for Ozark (Netflix)",
+          "description": "Nominated for \"All In\".",
+          "wiki_url": "",
+          "image_url": ""
+        },
+        {
+          "name": "John Shiban for Ozark (Netflix)",
+          "description": "Nominated for \"Boss Fight\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/John_Shiban",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d8/John_Shiban_by_Gage_Skidmore.jpg"
+        },
+        {
+          "name": "Miki Johnson for Ozark (Netflix)",
+          "description": "Nominated for \"Fire Pink\".",
+          "wiki_url": "",
+          "image_url": ""
+        },
+        {
+          "name": "Jesse Armstrong for Succession (HBO)",
+          "description": "Nominated for \"This Is Not for Tears\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/This_Is_Not_for_Tears",
+          "image_url": ""
+        }
+      ]
+    },
+    {
+      "name": "Outstanding Writing for a Limited Series, Movie, or Dramatic Special",
+      "description": "HBO is the network with the most wins (15). The previous winner was Craig Mazin for Chernobyl.",
+      "contestants": [
+        {
+          "name": "Tanya Barfield for Mrs. America (FX)",
+          "description": "Nominated for \"Shirley\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Tanya_Barfield",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Tanya_Barfield.jpg"
+        },
+        {
+          "name": "Sally Rooney and Alice Birch for Normal People (Hulu)",
+          "description": "Nominated for \"Episode 3\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Sally_Rooney",
+          "image_url": ""
+        },
+        {
+          "name": "Susannah Grant, Michael Chabon and Ayelet Waldman for Unbelievable (Netflix)",
+          "description": "Nominated for \"Episode 1\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Susannah_Grant",
+          "image_url": ""
+        },
+        {
+          "name": "Anna Winger for Unorthodox (Netflix)",
+          "description": "Nominated for \"Part 1\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/Anna_Winger",
+          "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Anna_Winger_-_Creator_Deutschland83_%28cropped%29.jpg"
+        },
+        {
+          "name": "Damon Lindelof and Cord Jefferson for Watchmen (HBO)",
+          "description": "Nominated for \"This Extraordinary Being\".",
+          "wiki_url": "https://en.wikipedia.org/wiki/This_Extraordinary_Being",
+          "image_url": ""
+        }
+      ]
+    }
+  ]
+}

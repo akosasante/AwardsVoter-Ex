@@ -22,8 +22,7 @@ defmodule AwardsVoter.Web do
       use Phoenix.Controller, namespace: AwardsVoter.Web
 
       import Plug.Conn
-      import AwardsVoter.Web.Gettext
-      import Phoenix.LiveView.Controller
+      #      import AwardsVoter.Web.Gettext
       alias AwardsVoter.Web.Router.Helpers, as: Routes
     end
   end
@@ -35,21 +34,51 @@ defmodule AwardsVoter.Web do
         namespace: AwardsVoter.Web
 
       # Import convenience functions from controllers
-      import Phoenix.Controller, only: [get_flash: 1, get_flash: 2, view_module: 1]
+      import Phoenix.Controller,
+        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
 
-      # Use all HTML functionality (forms, tags, etc)
-      use Phoenix.HTML
+      # Include shared imports and aliases for views
+      unquote(view_helpers())
+    end
+  end
 
-      import AwardsVoter.Web.ErrorHelpers
-      import AwardsVoter.Web.Gettext
-      import Phoenix.LiveView.Helpers
-      alias AwardsVoter.Web.Router.Helpers, as: Routes
+  def admin_view() do
+    quote do
+      use Phoenix.View,
+        root: "lib/web/templates/",
+        pattern: "**/*",
+        namespace: AwardsVoter.Web
+
+      # Import convenience functions from controllers
+      import Phoenix.Controller,
+        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
+
+      # Include shared imports and aliases for views
+      unquote(view_helpers())
+    end
+  end
+
+  def live_view do
+    quote do
+      use Phoenix.LiveView,
+        layout: {AwardsVoter.Web.LayoutView, "live.html"}
+
+      unquote(view_helpers())
+    end
+  end
+
+  def live_component do
+    quote do
+      use Phoenix.LiveComponent
+
+      unquote(view_helpers())
     end
   end
 
   def router do
     quote do
       use Phoenix.Router
+
       import Plug.Conn
       import Phoenix.Controller
       import Phoenix.LiveView.Router
@@ -59,8 +88,29 @@ defmodule AwardsVoter.Web do
   def channel do
     quote do
       use Phoenix.Channel
-      import AwardsVoter.Web.Gettext
+      #      import AwardsVoter.Web.Gettext
     end
+  end
+
+  defp view_helpers do
+    quote do
+      # Use all HTML functionality (forms, tags, etc)
+      use Phoenix.HTML
+
+      # Import LiveView helpers (live_render, live_component, live_patch, etc)
+      import Phoenix.LiveView.Helpers
+
+      # Import basic rendering functionality (render, render_layout, etc)
+      import Phoenix.View
+
+      import AwardsVoter.Web.ErrorHelpers
+      #      import AwardsVoter.Web.Gettext
+      alias AwardsVoter.Web.Router.Helpers, as: Routes
+    end
+  end
+
+  defmacro __using__(:admin_view) do
+    apply(__MODULE__, :admin_view, [])
   end
 
   @doc """

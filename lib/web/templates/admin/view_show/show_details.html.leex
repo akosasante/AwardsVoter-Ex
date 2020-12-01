@@ -1,0 +1,45 @@
+<section class="p-4 px-10 flex flex-col items-stretch w-auto">
+  <style>
+    .horizontal-rule {
+      margin: 0 !important;
+    }
+  </style>
+  <%= link("Back to All Shows", to: "/admin/shows") %>
+  <div class="flex flex-col bg-gray-100 p-4 rounded-sm my-2">
+    <h1><%= @show.name %></h1>
+    <div class="flex flex-row">
+      <%= link("Edit Show", to: Routes.live_path(@socket, AwardsVoter.Web.AdminShowEdit, @show.id), class: "button bg-green-500 rounded w-64 p-2 mr-2", style: "color: black; text-align: center; font-weight: bold;") %>
+      <%= link("Delete", to: Routes.admin_path(@socket, :delete_show, @show), method: :delete, data: [confirm: "Are you sure?"], class: "button bg-red-500 rounded w-64 p-2", style: "color: black; text-align: center; font-weight: bold;") %>
+    </div>
+    <%= if @show.air_datetime do %><p>Airs on: <%= format_datetime_string(@show.air_datetime) %></p><% end %>
+    <%= if @show.description do %><p><%= @show.description %></p><% end %>
+    <%= if @show.categories do %>
+      <h2>Categories</h2>
+      <div class="flex flex-row flex-wrap">
+      <%= for category <- @show.categories do %>
+        <div class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2 <%= if !is_nil(category.winner), do: "bg-green-200 font-bold text-gray-900" %>">
+          <a href="#<%= trim_for_id(category.name) %>"><%= category.name %></a>
+        </div>
+      <% end %>
+      </div>
+      <%= for category <- @show.categories do %>
+        <%= live_component(@socket, AwardsVoter.Web.AdminCategoryDetails, category: category) %>
+        <hr class="horizontal-rule">
+      <% end %>
+    <% end %>
+    <%= if @show_modal do %>
+      <div class="modal-backdrop fixed top-0 left-0 bg-gray-200 h-screen w-screen z-50 flex justify-center items-center bg-opacity-50">
+        <img phx-click="close_modal" class="absolute top-0 right-0 h-6 cursor-pointer" style="margin: 2rem !important;" src="/images/close.svg" alt="close modal">
+        <div class="bg-white p-6">
+          <%= if (@show_modal_type == "youtube" or @show_modal_type == "spotify") && @show_modal_content do %>
+            <iframe class="mx-auto" width="840" height="473" src="<%= @show_modal_content %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowtransparency allowfullscreen></iframe>
+          <% end %>
+
+          <%= if @show_modal_type == "wikipedia" && @show_modal_content do %>
+          <iframe class="mx-auto" width="1024" height="946" src="<%= @show_modal_content %>"></iframe>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</section>

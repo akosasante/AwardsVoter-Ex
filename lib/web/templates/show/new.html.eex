@@ -1,5 +1,0 @@
-<h1>Adding New Show</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.show_path(@conn, :create)) %>
-
-<span><%= link "Back", to: Routes.show_path(@conn, :index) %></span>

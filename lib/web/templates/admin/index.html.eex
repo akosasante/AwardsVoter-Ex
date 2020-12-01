@@ -1,0 +1,18 @@
+<section class="p-4 px-10 flex flex-col items-stretch w-auto">
+  <h1>Admin Show Management</h1>
+  <%= form_for @conn, Routes.admin_path(@conn, :upload_show_json), [multipart: true], fn f -> %>
+  <%= file_input f, :show_json, [accept: ".json, application/json"] %>
+  <%= submit "Upload Show", class: "bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded w-1/4" %>
+  <% end %>
+
+  <%= for show <- @shows do %>
+    <div class="flex flex-col bg-gray-100 p-4 rounded-sm my-2">
+      <h2><%= show.name %></h2>
+      <%= if show.air_datetime do %><p>Airs on: <%= format_datetime_string(show.air_datetime) %></p><% end %>
+      <%= if show.description do %><p><%= show.description %></p><% end %>
+      <div class="flex flex-row justify-between">
+        <%= link("See Details", to: "/admin/shows/#{show.id}", class: "bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded") %>
+      </div>
+    </div>
+  <% end %>
+</section>

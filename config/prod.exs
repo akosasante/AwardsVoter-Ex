@@ -10,28 +10,11 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :awards_voter, AwardsVoter.Web.Endpoint,
-  http: [:inet6, port: System.get_env("PORT") || 4000],
-  url: [host: "awards.akosua.xyz"],
-  cache_static_manifest: "priv/static/cache_manifest.json",
-  check_origin: ["//awards.akosua.xyz"]
+  url: [host: "awards.akosua.xyz", port: 443],
+  cache_static_manifest: "priv/static/cache_manifest.json"
 
-# Log to file in production
-config :logger,
-       backends: [{LoggerFileBackend, :error_log}]
-config :logger,
-       backends: [{LoggerFileBackend, :info_log}]
-config :logger, :info_log,
-       path: "/var/log/awards_predictor/info.log",
-       level: :info
-config :logger, :error_log,
-       path: "/var/log/awards_predictor/error.log",
-       level: :error
-
-config :awards_voter,
-       environment: :prod
-
-config :awards_voter,
-       environment: :prod
+# Do not print debug messages in production
+config :logger, level: :info
 
 # ## SSL Support
 #
@@ -42,11 +25,11 @@ config :awards_voter,
 #       ...
 #       url: [host: "example.com", port: 443],
 #       https: [
-#         :inet6,
 #         port: 443,
 #         cipher_suite: :strong,
 #         keyfile: System.get_env("SOME_APP_SSL_KEY_PATH"),
-#         certfile: System.get_env("SOME_APP_SSL_CERT_PATH")
+#         certfile: System.get_env("SOME_APP_SSL_CERT_PATH"),
+#         transport_options: [socket_opts: [:inet6]]
 #       ]
 #
 # The `cipher_suite` is set to `:strong` to support only the
@@ -66,22 +49,4 @@ config :awards_voter,
 #       force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.
-
-# ## Using releases (distillery)
-#
-# If you are doing OTP releases, you need to instruct Phoenix
-# to start the server for all endpoints:
-#
-#     config :phoenix, :serve_endpoints, true
-#
-# Alternatively, you can configure exactly which server to
-# start per endpoint:
-#
-#     config :awards_voter, AwardsVoter.Web.Endpoint, server: true
-#
-# Note you can't rely on `System.get_env/1` when using releases.
-# See the releases documentation accordingly.
-
-# Finally import the config/prod.secret.exs which should be versioned
-# separately.
-#import_config "prod.secret.exs"
+config :awards_voter, environment: :prod

@@ -1,0 +1,11 @@
+<%= f = form_for @category_changeset, "#", phx_submit: :save_category_details, class: "flex flex-col space-y-9 mb-9" %>
+<label>
+  Category Name: <%= text_input f, :name, class: "w-full" %>
+</label>
+
+<label>
+  Description: <%= textarea f, :description, class: "w-full" %>
+</label>
+
+<%= submit "Update Category", class: "bg-yellow-500 rounded w-64 p-2 mr-2" %>
+</form>

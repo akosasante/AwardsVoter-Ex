@@ -1,0 +1,33 @@
+<section class="p-4 px-10 flex flex-col items-stretch w-auto prose">
+  <div class="flex flex-row">
+    <%= link("Back to Show", to: Routes.admin_path(@socket, :get_show, @original_show), class: "bg-yellow-500 rounded p-2 mr-2 font-bold") %>
+    <%= link("Back to All Shows", to: Routes.admin_path(@socket, :list_shows), class: "bg-yellow-500 rounded p-2 mr-2 font-bold") %>
+  </div>
+  <%= live_component(@socket, AwardsVoter.Web.EditShowDetails, show: @updated_show) %>
+  <button phx-click="submit_save" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Save</button>
+  <h2>Categories:</h2>
+  <div class="flex flex-row flex-wrap <%= if !@show_category, do: "mb-12" %>">
+    <%= for category <- @updated_show.categories do %>
+    <button phx-click="show_category" phx-value-category="<%= category.name %>" class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2 <%= if @selected_category_name == category.name, do: "bg-blue-200" %>">
+      <span><%= category.name %></span>
+      <span phx-click="delete_category" phx-value-category="<%= category.name %>" data-confirm="Are you sure?" class="ml-9 p-2 rounded-full bg-red-500 hover:bg-red-400"><%= raw("&times;") %></span>
+    </button>
+    <% end %>
+  </div>
+  <div>
+    <%= if @show_category && @selected_category_name do %>
+      <%= live_component(@socket, AwardsVoter.Web.EditCategoryDetails, show: @updated_show, category_name: @selected_category_name) %>
+      <div class="flex flex-row flex-wrap <%= if !@show_contestant, do: "mb-12" %>">
+        <%= for contestant <- Map.get(get_category(@updated_show, @selected_category_name), :contestants) do %>
+        <button phx-click="show_contestant" phx-value-contestant="<%= contestant.name %>" class="bg-yellow-200 border-2 rounded mx-2 my-1 p-2 <%= if @selected_contestant_name == contestant.name, do: "bg-blue-200" %>">
+          <span><%= contestant.name %></span>
+          <span phx-click="delete_contestant" phx-value-contestant="<%= contestant.name %>" data-confirm="Are you sure?" class="ml-9 p-2 rounded-full bg-red-500 hover:bg-red-400"><%= raw("&times;") %></span>
+        </button>
+        <% end %>
+      </div>
+      <%= if @show_contestant && @selected_contestant_name do %>
+        <%= live_component(@socket, AwardsVoter.Web.EditContestantDetails, show: @updated_show, category_name: @selected_category_name, contestant_name: @selected_contestant_name) %>
+      <% end %>
+    <% end %>
+  </div>
+</section>
