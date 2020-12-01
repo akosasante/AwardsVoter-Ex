@@ -8,12 +8,12 @@ defmodule AwardsVoter.Web.AdminShowDetails do
     AwardsVoter.Web.AdminView.render_view_page("show_details.html", assigns)
   end
 
-  def mount(params, %{"show_id" => show_id}, socket) do
+  def mount(_params, %{"show_id" => show_id}, socket) do
     socket =
       assign_new(socket, :show, fn ->
         case Admin.get_show_by_id(show_id) do
           %Show{} = show -> show
-          e -> nil
+          _ -> nil
         end
       end)
       |> assign_new(:show_modal, fn -> false end)

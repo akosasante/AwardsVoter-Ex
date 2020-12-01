@@ -8,7 +8,7 @@ defmodule AwardsVoter.Web.AdminController do
 
   require Logger
 
-  def admin_index(conn, params) do
+  def admin_index(conn, _params) do
     redirect(conn, to: "/admin/shows")
   end
 
@@ -45,7 +45,7 @@ defmodule AwardsVoter.Web.AdminController do
     end
   end
 
-  def upload_show_json(conn, %{"show_json" => %Plug.Upload{filename: filename, path: path}}) do
+  def upload_show_json(conn, %{"show_json" => %Plug.Upload{filename: _filename, path: path}}) do
     try do
       parsed_show =
         File.read!(path)

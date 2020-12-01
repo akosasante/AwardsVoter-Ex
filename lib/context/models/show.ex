@@ -12,7 +12,7 @@ defmodule AwardsVoter.Context.Models.Show do
   @primary_key {:id, :binary_id, autogenerate: false}
 
   @type t :: %__MODULE__{
-          id: String.t(),
+          id: String.t() | nil,
           name: String.t() | nil,
           description: String.t() | nil,
           air_datetime: String.t() | nil,
