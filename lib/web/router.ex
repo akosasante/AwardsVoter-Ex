@@ -18,7 +18,6 @@ defmodule AwardsVoter.Web.Router do
   scope "/", AwardsVoter.Web do
     pipe_through :browser
 
-    live "/", PageLive, :index
     get "/admin", AdminController, :admin_index
     get "/admin/shows", AdminController, :list_shows
     get "/admin/shows/:id", AdminController, :get_show
