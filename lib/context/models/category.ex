@@ -66,17 +66,19 @@ defmodule AwardsVoter.Context.Models.Category do
 
   def to_map(%Category{} = category) do
     contestants = category.contestants || []
-    contestant_maps = Enum.map(contestants, fn
-      %Contestant{} = contestant -> Map.from_struct(contestant)
-      contestant -> contestant
-    end)
 
-    if Map.has_key?(category, :winner) and not(is_nil(category.winner)) do
+    contestant_maps =
+      Enum.map(contestants, fn
+        %Contestant{} = contestant -> Map.from_struct(contestant)
+        contestant -> contestant
+      end)
+
+    if Map.has_key?(category, :winner) and not is_nil(category.winner) do
       Map.put(category, :winner, Map.from_struct(category.winner))
     else
       category
     end
     |> Map.put(:contestants, contestant_maps)
-    |> Map.from_struct
+    |> Map.from_struct()
   end
 end

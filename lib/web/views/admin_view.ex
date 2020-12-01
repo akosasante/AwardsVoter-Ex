@@ -14,6 +14,7 @@ defmodule AwardsVoter.Web.AdminView do
 
   def is_winner(category, contestant) do
     winner = Map.get(category, :winner, nil)
+
     if !is_nil(winner) and Map.has_key?(category.winner, :name) do
       category.winner.name == contestant.name
     else

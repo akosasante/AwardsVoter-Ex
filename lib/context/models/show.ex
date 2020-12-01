@@ -70,7 +70,7 @@ defmodule AwardsVoter.Context.Models.Show do
   end
 
   def add_id(%Show{id: id} = show) when is_nil(id) do
-    %Show{show | id: Ecto.UUID.generate() }
+    %Show{show | id: Ecto.UUID.generate()}
   end
 
   def add_id(%Show{} = show) do

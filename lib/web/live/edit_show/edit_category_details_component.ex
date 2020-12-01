@@ -10,7 +10,10 @@ defmodule AwardsVoter.Web.EditCategoryDetails do
 
   def update(%{show: show, category_name: category_name}, socket) do
     selected_category = Admin.get_category_by_name(show, category_name)
-    socket = assign_new(socket, :category_changeset, fn -> Category.to_changeset(selected_category) end)
+
+    socket =
+      assign_new(socket, :category_changeset, fn -> Category.to_changeset(selected_category) end)
+
     {:ok, socket}
   end
 end
