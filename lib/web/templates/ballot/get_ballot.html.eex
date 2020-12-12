@@ -1,0 +1,18 @@
+<section class="p-10">
+    <div class="bg-white">
+        <header class="bg-gray-100 p-4 text-center font-bold">
+            <h1>Ballot Name</h1>
+        </header>
+        <main class="p-4">
+            <p><strong>x</strong> out of <strong>y</strong> votes cast in this ballot.</p>
+            <a class="font-bold text-yellow-400 hover:text-yellow-200" href="">See scoreboard for this award show.</a>
+            <table class="border-separate border border-yellow-800 w-full mt-4">
+                <tr>
+                    <td class="border border-yellow-600 p-4">Category Name</td>
+                    <td class="border border-yellow-600 p-4">Voted for</td>
+                    <td class="border border-yellow-600 p-4 text-right">Update Vote || Cast Vote</td>
+                </tr>
+            </table>
+        </main>
+    </div>
+</section>

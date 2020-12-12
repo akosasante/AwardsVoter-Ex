@@ -1,4 +1,4 @@
-<section class="p-4 px-10 flex flex-col items-stretch w-auto">
+<section class="py-4 px-10 flex flex-col items-stretch w-auto">
   <h1>Admin Show Management</h1>
   <%= form_for @conn, Routes.admin_path(@conn, :upload_show_json), [multipart: true], fn f -> %>
   <%= file_input f, :show_json, [accept: ".json, application/json"] %>
