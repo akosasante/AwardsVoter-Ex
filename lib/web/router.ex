@@ -24,6 +24,8 @@ defmodule AwardsVoter.Web.Router do
     live "/admin/shows/:id/edit", AdminShowEdit
     delete "/admin/shows/:id", AdminController, :delete_show
     post "/admin/shows/json", AdminController, :upload_show_json
+    get "/ballots/:show_id/new", BallotController, :new_ballot
+    post "/ballots", BallotController, :create_ballot
     get "/ballots/:id", BallotController, :get_ballot
   end
 
