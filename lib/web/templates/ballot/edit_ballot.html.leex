@@ -1,6 +1,26 @@
-<section>
-    # list all categories on the side as a column of clickable links
-    # list current category in the middle here
-    <%= inspect @original_ballot %>
+<section class="flex flex-row">
+    <aside class="p-4 mr-4">
+        <ul>
+            <%= for category <- @show.categories do %>
+                <li>
+                    <%# category.name %>
+                    <%= live_patch category.name, to: Routes.live_path(@socket, AwardsVoter.Web.BallotEdit, @original_ballot.id, current_category: category.name) %>
+                </li>
+            <% end %>
+        </ul>
+    </aside>
+    <main class="p-4">
+        <h1>Who do you think will win <%= @current_category.name %>?</h1>
+        <ul>
+            <%= for contestant <- @current_category.contestants do %>
+                <li>
+                    <%= radio_button(:"#{@current_category.name}", :vote, contestant.name) %>
+                    <label><%= contestant.name %></label>
+                </li>
+            <% end %>
+        </ul>
 
+        <%= inspect @original_ballot %>
+        <%# inspect @updated_ballot %>
+    </main>
 </section>
