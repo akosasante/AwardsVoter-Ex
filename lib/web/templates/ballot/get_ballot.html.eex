@@ -10,8 +10,15 @@
                 <tr>
                     <td class="border border-yellow-600 p-4">Category Name</td>
                     <td class="border border-yellow-600 p-4">Voted for</td>
-                    <td class="border border-yellow-600 p-4 text-right">Update Vote || Cast Vote</td>
+                    <td class="border border-yellow-600 p-4"></td>
                 </tr>
+                <%= for category <- @show.categories do %>
+                    <tr>
+                        <td class="border border-yellow-600 p-4"><%= category.name %></td>
+                        <td class="border border-yellow-600 p-4"></td>
+                        <td class="border border-yellow-600 p-4  text-right">Update Vote || Cast Vote</td>
+                    </tr>
+                <% end %>
             </table>
         </main>
     </div>
