@@ -1,7 +1,7 @@
 <section class="p-10">
     <div class="bg-white">
         <header class="bg-gray-100 p-4 text-center font-bold">
-            <h1>Ballot Name</h1>
+            <h1><%= @ballot.voter %>'s <%= @show.name %> ballot</h1>
         </header>
         <main class="p-4">
             <p><strong>x</strong> out of <strong>y</strong> votes cast in this ballot.</p>

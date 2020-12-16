@@ -1,10 +1,10 @@
 <section>
-    <h1>New ballot for show_name</h1>
+    <h1>New ballot for <%= @show.name %></h1>
 
     <%= form_for @ballot_changeset, Routes.ballot_path(@conn, :create_ballot), fn f -> %>
         <%= label f, :voter %>
         <%= text_input f, :voter %>
-        <%= hidden_input f, :show_id, value: @show_id %>
+        <%= hidden_input f, :show_id, value: @show.id %>
 
         <%= submit "Start Voting!" %>
     <% end %>
