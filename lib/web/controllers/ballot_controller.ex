@@ -41,12 +41,15 @@ defmodule AwardsVoter.Web.BallotController do
     |> redirect(to: Routes.ballot_path(conn, :get_ballot, ballot.id))
   end
 
-  def edit_ballot(conn, _params) do
+  def edit_ballot(conn, %{"id" => id}) do
+    ballot = Ballots.get_ballot(id)
+    show = Admin.get_show_by_id(ballot.show_id)
     # gett show for ballot.show_id
     # html is gonna list showw.catgoriees to give yoou a thing to click on to
     # by default start at the firsst cateegory
     # could be a live page so that we can kepp ballot in state without refrshing
     # save button savss whol ballot
     # keep in state an array of votes
+    render(conn, :edit_ballot, show: show, ballot: ballot)
   end
 end
