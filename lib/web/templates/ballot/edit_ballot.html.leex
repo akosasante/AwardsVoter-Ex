@@ -11,16 +11,17 @@
     </aside>
     <main class="p-4">
         <h1>Who do you think will win <%= @current_category.name %>?</h1>
-        <ul>
+        <%= form_for :current_category, "#", [phx_change: :update_vote, class: "flex flex-col"], fn f -> %>
             <%= for contestant <- @current_category.contestants do %>
-                <li>
-                    <%= radio_button(:"#{@current_category.name}", :vote, contestant.name) %>
-                    <label><%= contestant.name %></label>
-                </li>
-            <% end %>
-        </ul>
-
+                <%= label do %>
+                    <%= radio_button :vote, @current_category.name, contestant.name, checked: is_matching_contestant(@vote_map, @current_category, contestant) %>
+                    <%= contestant.name %>
+                <% end %>
+             <% end %>
+        <% end %>
         <%= inspect @original_ballot %>
+        <br>
+        <%= inspect @vote_map %>
         <%# inspect @updated_ballot %>
     </main>
 </section>
