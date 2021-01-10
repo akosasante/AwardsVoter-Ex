@@ -33,4 +33,11 @@ defmodule AwardsVoter.Context.Ballots do
   def save_ballot(%Ballot{} = existing_ballot) do
     BallotTable.save([{existing_ballot.id, existing_ballot}])
   end
+
+  def find_ballot_by_voter_and_show(voter_name, show_id) do
+    case BallotTable.get_by_voter_and_show(voter_name, show_id) do
+      %Ballot{} = ballot -> ballot
+      _ -> nil
+    end
+  end
 end

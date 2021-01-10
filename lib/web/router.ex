@@ -17,7 +17,7 @@ defmodule AwardsVoter.Web.Router do
 
   scope "/admin", AwardsVoter.Web do
     pipe_through :browser
-    
+
     get "/", AdminController, :admin_index
     get "/shows", AdminController, :list_shows
     get "/shows/:id", AdminController, :get_show
@@ -31,7 +31,7 @@ defmodule AwardsVoter.Web.Router do
 
     get "/", BallotController, :home
     get "/ballots/:show_id/new", BallotController, :new_ballot
-    post "/ballots", BallotController, :create_ballot
+    post "/ballots", BallotController, :create_or_update_ballot
     get "/ballots/:id", BallotController, :get_ballot
     live "/ballots/:id/edit", BallotEdit
   end

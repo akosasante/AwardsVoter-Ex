@@ -33,8 +33,11 @@ defmodule AwardsVoter.Web.BallotController do
     render(conn, :new_ballot, ballot_changeset: ballot, show: show)
   end
 
-  def create_ballot(conn, %{"ballot" => ballot_map}) do
-    ballot = Ballots.create_ballot(ballot_map)
+  def create_or_update_ballot(conn, %{"ballot" => %{"voter" => voter, "show_id" => show_id} = ballot_map}) do
+    ballot = case Ballots.find_ballot_by_voter_and_show(voter, show_id) do
+      nil -> Ballots.create_ballot(ballot_map)
+      ballot -> ballot
+    end
 
     conn
     |> put_flash(:info, "Ballot created successfully.")
