@@ -41,4 +41,11 @@ defmodule AwardsVoter.Web.BallotEdit do
 
     {:noreply, socket}
   end
+
+  def handle_event("reset_vote", %{"category" => category_name_to_reset}, %{assigns: %{vote_map: vote_map}} = socket) do
+    vote_map = Map.put(vote_map, category_name_to_reset, nil)
+    socket = assign(socket, :vote_map, vote_map)
+
+    {:noreply, socket}
+  end
 end
