@@ -34,7 +34,7 @@ defmodule AwardsVoter.Web.BallotController do
   end
 
   def create_ballot(conn, %{"ballot" => ballot_map}) do
-    ballot = Ballots.save_ballot(ballot_map)
+    ballot = Ballots.create_ballot(ballot_map)
 
     conn
     |> put_flash(:info, "Ballot created successfully.")

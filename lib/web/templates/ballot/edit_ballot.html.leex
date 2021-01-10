@@ -21,7 +21,9 @@
         <% end %>
         <button phx-click="reset_vote" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Reset Vote</button>
         <br>
-        <!--<button phx-click="submit_save" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Save</button>-->
-        <%# inspect @updated_ballot %>
+        <button phx-click="submit_ballot" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Submit Ballot</button>
+        <%= inspect @vote_map %>
+        <br>
+        <%= inspect @original_ballot.votes %>
     </main>
 </section>

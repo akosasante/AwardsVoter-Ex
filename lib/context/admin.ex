@@ -16,6 +16,8 @@ defmodule AwardsVoter.Context.Admin do
   defdelegate show_changeset(show), to: Show, as: :to_changeset
   defdelegate category_changeset(category), to: Category, as: :to_changeset
   defdelegate contestant_changeset(contestant), to: Contestant, as: :to_changeset
+  defdelegate category_to_map(category), to: Category, as: :to_map
+  def contestant_to_map(%Contestant{} = contestant), do: Map.from_struct(contestant)
 
   def get_all_shows() do
     ShowTable.all()
