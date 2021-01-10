@@ -16,16 +16,20 @@ defmodule AwardsVoter.Web.BallotEdit do
       |> assign_new(:vote_map, fn -> Map.new() end)
 
     socket = assign_new(socket, :show, fn -> Admin.get_show_by_id(socket.assigns.original_ballot.show_id) end)
-    socket = assign_new(socket, :current_category, fn -> socket.assigns.show.categories |> List.first() end)
-    # Figure out how to set params on first view?
 
-    {:ok, socket}
+    {:ok,socket}
   end
 
   def handle_params(%{"current_category" => current_category_name}, _uri, %{assigns: %{show: show}} = socket) do
     current_category = Admin.get_category_by_name(show, current_category_name)
     socket = assign(socket, :current_category, current_category)
     {:noreply, socket}
+  end
+
+  def handle_params(_params, uri, %{assigns: %{show: show}} = socket) do
+    first_category = socket.assigns.show.categories |> List.first()
+
+    {:noreply, push_patch(socket, to: "#{URI.parse(uri).path}?current_category=#{first_category.name}")}
   end
 
   def handle_event("update_vote", %{"vote" => vote}, %{assigns: %{current_category: category, vote_map: vote_map}} = socket) do
