@@ -4,19 +4,24 @@
             <h1><%= @ballot.voter %>'s <%= @show.name %> ballot</h1>
         </header>
         <main class="p-4">
-            <p><strong>x</strong> out of <strong>y</strong> votes cast in this ballot.</p>
+            <p><strong><%= Enum.count(@ballot.votes, fn vote -> vote.contestant end) %></strong> out of <strong><%= length(@show.categories) %></strong> votes cast in this ballot.</p>
             <a class="font-bold text-yellow-400 hover:text-yellow-200" href="">See scoreboard for this award show.</a>
             <table class="border-separate border border-yellow-800 w-full mt-4">
                 <tr>
                     <td class="border border-yellow-600 p-4">Category Name</td>
                     <td class="border border-yellow-600 p-4">Voted for</td>
-                    <td class="border border-yellow-600 p-4"></td>
+                    <td></td>
                 </tr>
                 <%= for category <- @show.categories do %>
                     <tr>
                         <td class="border border-yellow-600 p-4"><%= category.name %></td>
-                        <td class="border border-yellow-600 p-4"></td>
-                        <td class="border border-yellow-600 p-4  text-right">Update Vote || Cast Vote</td>
+                        <td class="border border-yellow-600 p-4"><%= get_voted_for_contestant(@ballot, category) |> Map.get(:name, nil) %></td>
+                        <td class="text-center p-4">
+                            <%= link(case map_size(get_voted_for_contestant(@ballot, category)) do
+                          0 -> "Cast Vote"
+                          _ -> "Update Vote"
+                        end, to: Routes.live_path(@conn, AwardsVoter.Web.BallotEdit, @ballot.id, current_category: category.name), class: "button bg-green-500 rounded w-64 p-2 mr-2", style: "color: black; text-align: center; font-weight: bold;") %>
+                        </td>
                     </tr>
                 <% end %>
             </table>
