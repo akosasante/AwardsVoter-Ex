@@ -10,10 +10,8 @@ defmodule AwardsVoter.Web.BallotEdit do
   end
 
   def mount(%{"id" => ballot_id}, _session, socket) do
-    socket =
-      socket
-      |> assign_new(:original_ballot, fn -> Ballots.get_ballot(ballot_id) end)
-      |> assign_new(:vote_map, fn -> Map.new() end)
+    socket = assign_new(socket, :original_ballot, fn -> Ballots.get_ballot(ballot_id) end)
+    socket = assign_new(socket, :vote_map, fn -> generate_vote_map(socket.assigns.original_ballot.votes) end)
 
     socket = assign_new(socket, :show, fn -> Admin.get_show_by_id(socket.assigns.original_ballot.show_id) end)
 
@@ -55,6 +53,12 @@ defmodule AwardsVoter.Web.BallotEdit do
     :ok = Ballots.save_ballot(updated_ballot)
 
     {:noreply, socket}
+  end
+
+  defp generate_vote_map(votes) do
+    Enum.reduce(votes, %{}, fn vote, vote_map ->
+      Map.put(vote_map, vote.category.name, vote.contestant.name)
+    end)
   end
 
   defp vote_map_into_votes(vote_map, show) do
