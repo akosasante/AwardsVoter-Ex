@@ -5,6 +5,7 @@ defmodule AwardsVoter.Web.BallotEdit do
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Web.Router.Helpers, as: Routes
 
+
   def render(assigns) do
     AwardsVoter.Web.BallotView.render("edit_ballot.html", assigns)
   end

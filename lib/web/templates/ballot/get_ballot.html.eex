@@ -10,18 +10,22 @@
                 <tr>
                     <th class="border border-yellow-600 p-4">Category Name</th>
                     <th class="border border-yellow-600 p-4">Voted for</th>
-                    <th class="border border-yellow-600 p-4"></th>
+                    <%= if @can_vote? do %>
+                        <th class="border border-yellow-600 p-4"></th>
+                    <% end %>
                 </tr>
                 <%= for category <- @show.categories do %>
                     <tr>
                         <td class="border border-yellow-600 p-4"><%= category.name %></td>
                         <td class="border border-yellow-600 p-4"><%= get_voted_for_contestant(@ballot, category) |> Map.get(:name, nil) %></td>
-                        <td class="border border-yellow-600 text-center p-4">
-                            <%= link(case map_size(get_voted_for_contestant(@ballot, category)) do
-                          0 -> "Cast Vote"
-                          _ -> "Update Vote"
-                        end, to: Routes.live_path(@conn, AwardsVoter.Web.BallotEdit, @ballot.id, current_category: category.name), class: "button bg-green-500 rounded w-64 p-2 mr-2", style: "color: black; text-align: center; font-weight: bold;") %>
-                        </td>
+                        <%= if @can_vote? do %>
+                            <td class="border border-yellow-600 text-center p-4">
+                                <%= link(case map_size(get_voted_for_contestant(@ballot, category)) do
+                              0 -> "Cast Vote"
+                              _ -> "Update Vote"
+                            end, to: Routes.live_path(@conn, AwardsVoter.Web.BallotEdit, @ballot.id, current_category: category.name), class: "button bg-green-500 rounded w-64 p-2 mr-2", style: "color: black; text-align: center; font-weight: bold;") %>
+                            </td>
+                        <% end %>
                     </tr>
                 <% end %>
             </table>

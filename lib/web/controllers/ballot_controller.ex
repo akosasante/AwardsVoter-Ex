@@ -21,10 +21,11 @@ defmodule AwardsVoter.Web.BallotController do
     end
   end
 
-  def get_ballot(conn, %{"id" => id}) do
+  def get_ballot(conn, %{"id" => id} = params) do
+    read_only? = Map.get(params, "read_only") == "true"
     ballot = Ballots.get_ballot(id)
     show = Admin.get_show_by_id(ballot.show_id)
-    render(conn, :get_ballot, ballot: ballot, show: show)
+    render(conn, :get_ballot, ballot: ballot, show: show, can_vote?: !read_only?)
   end
 
   def new_ballot(conn, %{"show_id" => show_id}) do
