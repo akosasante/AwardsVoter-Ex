@@ -34,6 +34,8 @@ defmodule AwardsVoter.Web.Router do
     post "/ballots", BallotController, :create_or_update_ballot
     get "/ballots/:id", BallotController, :get_ballot
     live "/ballots/:id/edit", BallotEdit
+    live "/show/:id/scoreboard", Scoreboard
+    live "/show/:id/summary", BallotsSummary
   end
 
   # Other scopes may use custom stacks.
