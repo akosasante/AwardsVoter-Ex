@@ -8,15 +8,15 @@
             <%= live_redirect "See scoreboard for this award show.", to: Routes.live_path(@conn, AwardsVoter.Web.Scoreboard, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-200" %>
             <table class="border-separate border border-yellow-800 w-full mt-4">
                 <tr>
-                    <td class="border border-yellow-600 p-4">Category Name</td>
-                    <td class="border border-yellow-600 p-4">Voted for</td>
-                    <td></td>
+                    <th class="border border-yellow-600 p-4">Category Name</th>
+                    <th class="border border-yellow-600 p-4">Voted for</th>
+                    <th class="border border-yellow-600 p-4"></th>
                 </tr>
                 <%= for category <- @show.categories do %>
                     <tr>
                         <td class="border border-yellow-600 p-4"><%= category.name %></td>
                         <td class="border border-yellow-600 p-4"><%= get_voted_for_contestant(@ballot, category) |> Map.get(:name, nil) %></td>
-                        <td class="text-center p-4">
+                        <td class="border border-yellow-600 text-center p-4">
                             <%= link(case map_size(get_voted_for_contestant(@ballot, category)) do
                           0 -> "Cast Vote"
                           _ -> "Update Vote"

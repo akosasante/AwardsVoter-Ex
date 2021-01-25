@@ -40,4 +40,15 @@ defmodule AwardsVoter.Context.Ballots do
       _ -> nil
     end
   end
+
+  def fetch_ballots_for_show(show_id) do
+    case BallotTable.all_ballots_for_show(show_id) do
+      {:error, _} -> []
+      ballots -> ballots
+    end
+  end
+
+  def count_correct_votes(%Ballot{votes: votes}) do
+    Enum.count(votes, fn %Vote{} = vote -> Vote.is_winning_vote?(vote) end)
+  end
 end
