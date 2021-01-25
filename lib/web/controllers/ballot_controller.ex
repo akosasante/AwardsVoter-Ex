@@ -34,13 +34,18 @@ defmodule AwardsVoter.Web.BallotController do
   end
 
   def create_or_update_ballot(conn, %{"ballot" => %{"voter" => voter, "show_id" => show_id} = ballot_map}) do
-    ballot = case Ballots.find_ballot_by_voter_and_show(voter, show_id) do
-      nil -> Ballots.create_ballot(ballot_map)
-      ballot -> ballot
+    {ballot_type, ballot} = case Ballots.find_ballot_by_voter_and_show(voter, show_id) do
+      nil -> {:new, Ballots.create_ballot(ballot_map)}
+      ballot -> {:existing, ballot}
+    end
+
+    flash = case ballot_type do
+      :new -> "Ballot created successfully."
+      :existing -> "Existing ballot opened."
     end
 
     conn
-    |> put_flash(:info, "Ballot created successfully.")
+    |> put_flash(:info, flash)
     |> redirect(to: Routes.ballot_path(conn, :get_ballot, ballot.id))
   end
 
