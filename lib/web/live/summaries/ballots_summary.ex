@@ -1,11 +1,11 @@
 defmodule AwardsVoter.Web.BallotsSummary do
   use Phoenix.LiveView
 
-  def render() do
-    :ok
+  def render(assigns) do
+    AwardsVoter.Web.SummariesView.render("ballots_summary.html", assigns)
   end
 
-  def mount() do
-    :ok
+  def mount(_, _, socket) do
+    {:ok, socket}
   end
 end
