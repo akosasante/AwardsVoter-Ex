@@ -1,0 +1,34 @@
+<section class="p-10">
+    <div class="bg-white">
+        <header class="bg-gray-100 p-4 text-center font-bold">
+            <h1>Summary of ballots cast for <%= @show.name %></h1>
+        </header>
+
+        <main class="p-4">
+            <div class="flex flex-row justify-between">
+                <%= live_redirect "See live scoreboard for this show", to: Routes.live_path(@socket,  AwardsVoter.Web.Scoreboard, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
+                <p><strong><%= num_winners(@show) %> / <%= num_categories(@show) %></strong> categories have been updated with winners</p>
+            </div>
+
+            <table class="border border-separate border-yellow-800 w-full mt-4">
+                <tr>
+                    <th class="text-left">Category</th>
+                    <th class="text-left">Winner</th>
+                    <th class="text-right">Number of correctly cast votes</th>
+                    <th class="text-right">% of votes correctly cast</th>
+                    <th class="text-right">Most commonly cast vote</th>
+                </tr>
+
+                <%= for category <- winning_categories(@show) do %>
+                <tr>
+                    <td><%= category.name %></td>
+                    <td><%= category.winner.name %></td>
+                    <td class="text-right"><%= num_correct_voted_for_category(@show, category, @ballots) %></td>
+                    <td class="text-right"><%= percent_correct_voted_for_category(@show, category, @ballots) %></td>
+                    <td class="text-right"><%= elem(most_common_vote(@show, category, @ballots), 0) %> (<%= elem(most_common_vote(@show, category, @ballots), 1) %>)</td>
+                </tr>
+                <% end %>
+            </table>
+        </main>
+    </div>
+</section>

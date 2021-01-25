@@ -15,15 +15,27 @@ defmodule AwardsVoter.Web.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/admin", AwardsVoter.Web do
+    pipe_through :browser
+
+    get "/", AdminController, :admin_index
+    get "/shows", AdminController, :list_shows
+    get "/shows/:id", AdminController, :get_show
+    live "/shows/:id/edit", AdminShowEdit
+    delete "/shows/:id", AdminController, :delete_show
+    post "/shows/json", AdminController, :upload_show_json
+  end
+
   scope "/", AwardsVoter.Web do
     pipe_through :browser
 
-    get "/admin", AdminController, :admin_index
-    get "/admin/shows", AdminController, :list_shows
-    get "/admin/shows/:id", AdminController, :get_show
-    live "/admin/shows/:id/edit", AdminShowEdit
-    delete "/admin/shows/:id", AdminController, :delete_show
-    post "/admin/shows/json", AdminController, :upload_show_json
+    get "/", BallotController, :home
+    get "/ballots/:show_id/new", BallotController, :new_ballot
+    post "/ballots", BallotController, :create_or_update_ballot
+    get "/ballots/:id", BallotController, :get_ballot
+    live "/ballots/:id/edit", BallotEdit
+    live "/show/:id/scoreboard", Scoreboard
+    live "/show/:id/summary", BallotsSummary
   end
 
   # Other scopes may use custom stacks.

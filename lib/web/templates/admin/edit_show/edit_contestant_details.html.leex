@@ -1,31 +1,24 @@
-<%= f = form_for @contestant_changeset, "#", phx_submit: :save_contestant_details, class: "flex flex-col space-y-9 mb-9" %>
-<label>
-  Contestant Name: <%= text_input f, :name, class: "w-full" %>
-</label>
+<%= form_for @contestant_changeset, "#", [phx_submit: :save_contestant_details, class: "flex flex-col space-y-9 mb-9"], fn f -> %>
+  <%= label f, :name, "Contestant Name" %>
+  <%= text_input f, :name, class: "w-full" %>
 
-<label>
-  Description: <%= textarea f, :description, class: "w-full" %>
-</label>
+  <%= label f, :description, "Description" %>
+  <%= textarea f, :description, class: "w-full" %>
 
-<label>
-  Image URL: <%= text_input f, :image_url, class: "w-full" %>
-</label>
+  <%= label f, :image_url, "Image URL" %>
+  <%= text_input f, :image_url, class: "w-full" %>
 
-<label>
-  Youtube URL: <%= text_input f, :youtube_url, class: "w-full" %>
-</label>
+  <%= label f, :youtube_url, "Youtube URL" %>
+  <%= text_input f, :youtube_url, class: "w-full" %>
 
-<label>
-  Spotify URL: <%= text_input f, :spotify_url, class: "w-full" %>
-</label>
+  <%= label f, :spotify_url, "Spotify URL" %>
+  <%= text_input f, :spotify_url, class: "w-full" %>
 
-<label>
-  Wikipedia URL: <%= text_input f, :wiki_url, class: "w-full" %>
-</label>
+  <%= label f, :wikipedia_url, "Wikipedia URL" %>
+  <%= text_input f, :wiki_url, class: "w-full" %>
 
-<label>
-  Billboard Stats: <%= text_input f, :billboard_stats, class: "w-full" %>
-</label>
+  <%= label f, :billboard_stats, "Billboard Stats" %>
+  <%= text_input f, :billboard_stats, class: "w-full" %>
 
-<%= submit "Update Contestant", class: "bg-yellow-500 rounded w-64 p-2 mr-2" %>
-</form>
+  <%= submit "Update Contestant", class: "bg-yellow-500 rounded w-64 p-2 mr-2" %>
+<% end %>

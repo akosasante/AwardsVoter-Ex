@@ -60,4 +60,8 @@ defmodule AwardsVoter.Context.Models.Vote do
       {:errors, cs}
     end
   end
+
+  def is_winning_vote?(%Vote{category: category, contestant: contestant}) do
+    !is_nil(category.winner) and category.winner.name == contestant.name
+  end
 end

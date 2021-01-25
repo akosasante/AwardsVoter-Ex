@@ -1,14 +1,13 @@
 defmodule AwardsVoter.Context.Admin do
   @moduledoc """
-  Deals with modifying and creating shows and their constituents
+  Deals with modifying and creating shows and their constituent components
   """
 
   alias AwardsVoter.Context.Models.Show
   alias AwardsVoter.Context.Tables.ShowTable
   alias AwardsVoter.Context.Models.Category
   alias AwardsVoter.Context.Models.Contestant
-  alias AwardsVoter.Context.Models.Vote
-  alias AwardsVoter.Context.Models.Ballot
+
 
   require Logger
 
@@ -17,8 +16,8 @@ defmodule AwardsVoter.Context.Admin do
   defdelegate show_changeset(show), to: Show, as: :to_changeset
   defdelegate category_changeset(category), to: Category, as: :to_changeset
   defdelegate contestant_changeset(contestant), to: Contestant, as: :to_changeset
-  defdelegate vote_changeset(vote), to: Vote, as: :to_changeset
-  defdelegate ballot_changeset(ballot), to: Ballot, as: :to_changeset
+  defdelegate category_to_map(category), to: Category, as: :to_map
+  def contestant_to_map(%Contestant{} = contestant), do: Map.from_struct(contestant)
 
   def get_all_shows() do
     ShowTable.all()

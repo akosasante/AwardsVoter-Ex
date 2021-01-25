@@ -1,0 +1,27 @@
+<section class="flex flex-row">
+    <aside class="p-4 mr-4">
+        <ul>
+            <%= for category <- @show.categories do %>
+                <li>
+                    <%= live_patch category.name, to: Routes.live_path(@socket, AwardsVoter.Web.BallotEdit, @original_ballot.id, current_category: category.name), class: "#{if category.name == @current_category.name, do: "font-bold"}" %>
+                </li>
+            <% end %>
+        </ul>
+    </aside>
+    <main class="p-4">
+        <h1>Who do you think will win <%= @current_category.name %>?</h1>
+        <%= form_for :current_category, "#", [phx_change: :update_vote, class: "flex flex-col"], fn f -> %>
+            <%= for contestant <- @current_category.contestants do %>
+                <%= label do %>
+                    <%= radio_button :vote, @current_category.name, contestant.name, checked: is_matching_contestant(@vote_map, @current_category, contestant) %>
+                    <%= contestant.name %>
+                <% end %>
+             <% end %>
+        <% end %>
+        <button phx-click="next_category" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Go to Next Category</button>
+        <button phx-click="reset_vote" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Reset Vote</button>
+        <br>
+        <button phx-click="submit_ballot" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Submit Ballot</button>
+        <br>
+    </main>
+</section>

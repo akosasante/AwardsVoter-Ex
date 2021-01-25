@@ -13,7 +13,8 @@ defmodule AwardsVoter.Web.AdminShowEdit do
     %Show{} = show = Admin.get_show_by_id(show_id)
 
     socket =
-      assign_new(socket, :original_show, fn -> show end)
+      socket
+      |> assign_new(:original_show, fn -> show end)
       |> assign_new(:updated_show, fn -> show end)
       |> assign_new(:show_category, fn -> false end)
       |> assign_new(:selected_category_name, fn -> nil end)

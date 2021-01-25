@@ -1,0 +1,11 @@
+<main>
+    <h1>Welcome to Awards Voter. Get ready to cast your votes on all the latest awards shows!</h1>
+
+    <section>
+        <ul>
+            <%= for show <- @shows do %>
+                <li><%= link(show.name, to: Routes.ballot_path(@conn, :new_ballot, show.id)) %></li>
+            <% end %>
+        </ul>
+    </section>
+</main>

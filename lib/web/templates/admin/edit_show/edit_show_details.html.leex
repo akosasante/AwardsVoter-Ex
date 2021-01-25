@@ -1,15 +1,15 @@
-<%= f = form_for @show_changeset, "#", phx_submit: :save_show_details, class: "flex flex-col space-y-9 mb-9" %>
-<label>
-  Show Name: <%= text_input f, :name, class: "w-full" %>
-</label>
+<%= form_for @show_changeset, "#", [phx_submit: :save_show_details, class: "flex flex-col space-y-9 mb-9"], fn f -> %>
+  <%= label f, :name, "Show Name" %>
+  <%= text_input f, :name, class: "w-full" %>
 
-<label>
-  Description: <%= textarea f, :description, class: "w-full" %>
-</label>
 
-<label>
-  Show Airdate: <%= datetime_local_input f, :air_datetime %>
-</label>
+  <%= label f, :description, "Description" %>
+  <%= textarea f, :description, class: "w-full" %>
 
-<%= submit "Update Show", class: "bg-yellow-500 rounded w-64 p-2 mr-2" %>
-</form>
+
+  <%= label f, :air_datetime, "Show Airdate" %>
+  <%= datetime_local_input f, :air_datetime %>
+
+
+  <%= submit "Update Show", class: "bg-yellow-500 rounded w-64 p-2 mr-2" %>
+<% end %>
