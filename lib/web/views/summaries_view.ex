@@ -68,8 +68,7 @@ defmodule AwardsVoter.Web.SummariesView do
       end
     end)
     |> Map.drop([:not_vote])
-    |> IO.inspect
-    |> Enum.max_by(fn {_, num_votes} -> num_votes end, nil, fn -> {nil, nil} end)
+    |> Enum.max_by(fn {_, num_votes} -> num_votes end, &>=/2, fn -> {nil, nil} end)
   end
 
   def num_correct(ballot), do: Ballots.count_correct_votes(ballot)

@@ -25,4 +25,10 @@ defmodule AwardsVoter.Web.Scoreboard do
     socket = assign(socket, :show, show)
     {:noreply, socket}
   end
+
+  def handle_info(%Phoenix.Socket.Broadcast{event: "ballot_updated", payload: _map_with_updated_ballot, topic: "show:" <> show_id}, socket) do
+    ballots = Ballots.fetch_ballots_for_show(show_id)
+    socket = assign(socket, :ballots, ballots)
+    {:noreply, socket}
+  end
 end
