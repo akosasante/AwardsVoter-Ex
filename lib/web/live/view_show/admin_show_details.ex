@@ -49,6 +49,7 @@ defmodule AwardsVoter.Web.AdminShowDetails do
       Admin.set_category_winner(show, category_name, contestant_name)
       |> Admin.save_show()
 
+    AwardsVoter.Web.Endpoint.broadcast_from!(self(), "show:#{show.id}", "winner_updated", %{category: category_name, contestant: contestant_name})
     updated_show = Admin.get_show_by_id(show.id)
     socket = assign(socket, :show, updated_show)
     {:noreply, socket}

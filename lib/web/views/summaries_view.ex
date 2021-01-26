@@ -17,7 +17,7 @@ defmodule AwardsVoter.Web.SummariesView do
     if num_voted == 0 or num_correct == 0 do
       "0.00"
     else
-      div(num_correct, num_voted) |> div(1) |> Float.round(2)
+      div(num_correct, num_voted) |> Kernel./(1) |> Float.round(2)
     end
   end
 
@@ -28,7 +28,7 @@ defmodule AwardsVoter.Web.SummariesView do
     if num_categories == 0 or num_correct == 0 do
       "0.00"
     else
-      div(num_correct, num_categories) |> div(1) |> Float.round(2)
+      div(num_correct, num_categories) |> Kernel./(1) |> Float.round(2)
     end
   end
 
@@ -56,19 +56,20 @@ defmodule AwardsVoter.Web.SummariesView do
     if num_ballots_with_vote_for_category == 0 or num_ballots_with_correct_votes == 0 do
       "0.00"
     else
-      div(num_ballots_with_correct_votes, num_ballots_with_vote_for_category) |> div(1) |> Float.round(2)
+      div(num_ballots_with_correct_votes, num_ballots_with_vote_for_category) |> Kernel./(1) |> Float.round(2)
     end
   end
 
   def most_common_vote(show, %Category{contestants: contestants, name: category_name}, ballots) do
-    Enum.frequencies_by(ballots, fn %Ballot{votes: votes} ->
+    frequency_map = Enum.frequencies_by(ballots, fn %Ballot{votes: votes} ->
       case Enum.find(votes, fn vote -> vote.category.name == category_name end) do
         %Vote{contestant: contestant} -> contestant.name
         _ -> :not_vote
       end
     end)
     |> Map.drop([:not_vote])
-    |> Enum.max_by(fn {_, num_votes} -> num_votes end)
+    |> IO.inspect
+    |> Enum.max_by(fn {_, num_votes} -> num_votes end, nil, fn -> {nil, nil} end)
   end
 
   def num_correct(ballot), do: Ballots.count_correct_votes(ballot)
