@@ -4,6 +4,7 @@
             <%= for category <- @show.categories do %>
                 <li>
                     <%= live_patch category.name, to: Routes.live_path(@socket, AwardsVoter.Web.BallotEdit, @original_ballot.id, current_category: category.name), class: "#{if category.name == @current_category.name, do: "font-bold"}" %>
+                    <%= if !has_vote?(category, @vote_map, @original_ballot) do %><span>&nbsp <strong>*</strong></span><% end %>
                 </li>
             <% end %>
         </ul>

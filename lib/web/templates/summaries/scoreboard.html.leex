@@ -14,6 +14,7 @@
                 <tr>
                     <th class="text-left">Ballot username</th>
                     <th class="text-right">Number of votes cast</th>
+                    <th class="text-right">Number of correct votes</th>
                     <th class="text-right">% Correct votes (of cast votes)</th>
                     <th class="text-right">% Correct votes (of updated categories)</th>
                     <th></th>
@@ -23,8 +24,9 @@
                  <tr>
                      <td><%= ballot.voter %></td>
                      <td class="text-right"><%= num_voted(ballot) %></td>
-                     <td class="text-right"><%= num_correct_by_voted(ballot) %></td>
-                     <td class="text-right"><%= num_correct_by_categories(ballot, @show) %></td>
+                     <td class="text-right"><%= num_correct(ballot) %></td>
+                     <td class="text-right"><%= percent_correct_by_voted(ballot) %></td>
+                     <td class="text-right"><%= percent_correct_by_categories(ballot, @show) %></td>
                      <td class="text-center"><%= link "View this ballot", to: Routes.ballot_path(@socket, :get_ballot, ballot.id, read_only: true), class: "font-bold text-yellow-400 hover:text-yellow-600" %></td>
                  </tr>
                 <% end %>

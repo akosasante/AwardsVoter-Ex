@@ -10,13 +10,25 @@ defmodule AwardsVoter.Web.BallotsSummary do
   end
 
   def mount(%{"id" => show_id}, _, socket) do
-    %Show{} = show = Admin.get_show_by_id(show_id)
+    AwardsVoter.Web.Endpoint.subscribe("show:#{show_id}")
 
     socket =
       socket
-      |> assign_new(:show, fn -> show end)
+      |> assign_new(:show, fn -> Admin.get_show_by_id(show_id) end)
       |> assign_new(:ballots, fn -> Ballots.fetch_ballots_for_show(show_id) end)
 
     {:ok, socket}
+  end
+
+  def handle_info(%Phoenix.Socket.Broadcast{event: "winner_updated", payload: _map_with_category_and_contestant, topic: "show:" <> show_id}, socket) do
+    %Show{} = show = Admin.get_show_by_id(show_id)
+    socket = assign(socket, :show, show)
+    {:noreply, socket}
+  end
+
+  def handle_info(%Phoenix.Socket.Broadcast{event: "ballot_updated", payload: _map_with_updated_ballot, topic: "show:" <> show_id}, socket) do
+    ballots = Ballots.fetch_ballots_for_show(show_id)
+    socket = assign(socket, :ballots, ballots)
+    {:noreply, socket}
   end
 end

@@ -64,6 +64,8 @@ defmodule AwardsVoter.Web.BallotEdit do
 
     :ok = Ballots.save_ballot(updated_ballot)
 
+    AwardsVoter.Web.Endpoint.broadcast_from!(self(), "show:#{show.id}", "ballot_updated", %{ballot: updated_ballot})
+
     {:noreply, push_redirect(socket, to: Routes.ballot_path(socket, :get_ballot, original_ballot.id))}
   end
 
