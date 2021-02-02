@@ -5,23 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || "AwardsVoter", suffix: " · Phoenix Framework" %>
+    <%= live_title_tag assigns[:page_title] || "AwardsVoter" %>
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body class="bg-gray-200">
-    <header class="bg-blue-900">
+    <header class="bg-gray-800">
       <section>
         <nav role="navigation">
-          <ul class="flex flex-row space-x-6 p-3 text-yellow-500 text-2xl">
-            <li class="hover:text-yellow-200"><a href="/">AwardsVoter</a></li>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li class="hover:text-yellow-200"><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
+          <ul class="flex flex-row justify-center p-4 pb-9 text-yellow-500">
+            <li class="hover:text-yellow-200 font-title">
+              <a href="/">
+                <img class="m-auto max-w-1/2" src="<%= Routes.static_path(@conn, "/images/trophy-award-svgrepo-com.svg") %>" alt="trophy logo"/>
+                <span class="text-5xl">AwardsVoter</span>
+              </a>
+            </li>
           </ul>
         </nav>
+        <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+        <span class="hover:text-yellow-200 self-end ml-4 absolute top-0 left-0"><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></span>
+        <% end %>
       </section>
     </header>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#1f2a37" transform="translate(-350, -30) scale(1.5, 1)" fill-opacity="1" d="M0,288L80,245.3C160,203,320,117,480,74.7C640,32,800,32,960,69.3C1120,107,1280,181,1360,218.7L1440,256L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path></svg>
     <%= @inner_content %>
   </body>
 </html>
