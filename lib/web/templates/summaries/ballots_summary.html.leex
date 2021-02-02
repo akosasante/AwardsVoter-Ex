@@ -23,12 +23,12 @@
                 <tr>
                     <td><%= category.name %></td>
                     <td><%= category.winner.name %></td>
-                    <td class="text-right"><%= num_correct_voted_for_category(@show, category, @ballots) %></td>
+                    <td class="text-right"><%= num_correct_voted_for_category(category, @ballots) %></td>
                     <td class="text-right"><%= percent_correct_voted_for_category(@show, category, @ballots) %></td>
                     <td class="text-right">
-                        <%= case most_common_vote(@show, category, @ballots) do %>
+                        <%= case most_common_vote(category, @ballots) do %>
                         <% {nil, nil} -> %> <span></span>
-                        <% {name, vote_count} -> %> <%= elem(most_common_vote(@show, category, @ballots), 0) %> (<%= elem(most_common_vote(@show, category, @ballots), 1) %>)
+                        <% {name, vote_count} -> %> <%= name %> (<%= vote_count %>)
                         <% end %>
                     </td>
                 </tr>
