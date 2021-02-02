@@ -15,7 +15,10 @@ defmodule AwardsVoter.Web.Scoreboard do
     socket =
       socket
       |> assign_new(:show, fn -> Admin.get_show_by_id(show_id) end)
-      |> assign_new(:ballots, fn -> Ballots.fetch_ballots_for_show(show_id) end)
+      |> assign_new(:ballots, fn ->
+        Ballots.fetch_ballots_for_show(show_id)
+        |> Enum.sort_by(fn ballot -> {AwardsVoter.Web.SummariesView.num_correct(ballot), AwardsVoter.Web.SummariesView.num_voted(ballot)} end, :desc)
+      end)
 
     {:ok, socket}
   end
@@ -27,8 +30,15 @@ defmodule AwardsVoter.Web.Scoreboard do
   end
 
   def handle_info(%Phoenix.Socket.Broadcast{event: "ballot_updated", payload: _map_with_updated_ballot, topic: "show:" <> show_id}, socket) do
-    ballots = Ballots.fetch_ballots_for_show(show_id)
+    ballots =
+      Ballots.fetch_ballots_for_show(show_id)
+      |> Enum.sort_by(fn ballot -> {AwardsVoter.Web.SummariesView.num_correct(ballot), AwardsVoter.Web.SummariesView.num_voted(ballot)} end, :desc)
     socket = assign(socket, :ballots, ballots)
     {:noreply, socket}
   end
+
+  # TODO: maybe only update the bits that need updating? Can we get some animation happening?
+  # TODO: Updating things when admin edits other parts of the show
+  # Styliing, page transitions, interactivity
+  # password protection, proper users
 end

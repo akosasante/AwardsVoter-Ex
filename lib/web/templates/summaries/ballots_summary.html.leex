@@ -19,7 +19,7 @@
                     <th class="text-right">Most commonly cast vote</th>
                 </tr>
 
-                <%= for category <- winning_categories(@show) do %>
+                <%= for category <- winning_categories(@show, @ballots) do %>
                 <tr>
                     <td><%= category.name %></td>
                     <td><%= category.winner.name %></td>

@@ -11,34 +11,38 @@ defmodule AwardsVoter.Web.SummariesView do
     Enum.count(votes, fn vote -> !is_nil(vote.contestant) end)
   end
 
-  def num_correct_by_voted(ballot) do
+  def percent_correct_by_voted(ballot) do
     num_voted = num_voted(ballot)
     num_correct = num_correct(ballot)
     if num_voted == 0 or num_correct == 0 do
-      "0.00"
+      "0.00" |> String.to_float()
     else
-      div(num_correct, num_voted) |> Kernel./(1) |> Float.round(2)
+      Kernel./(num_correct, num_voted) |> Kernel.*(100) |> Float.round(1)
     end
   end
 
-  def num_correct_by_categories(ballot, show) do
+  def percent_correct_by_categories(ballot, show) do
     num_categories = num_categories(show)
     num_correct = num_correct(ballot)
 
     if num_categories == 0 or num_correct == 0 do
-      "0.00"
+      "0.00" |> String.to_float()
     else
-      div(num_correct, num_categories) |> Kernel./(1) |> Float.round(2)
+      Kernel./(num_correct, num_categories) |> Kernel.*(100)  |> Float.round(1)
     end
   end
 
   def num_winners(%Show{} = show) do
-    Enum.count(winning_categories(show))
+    Enum.count(winning_categories(show, []))
   end
 
   def num_categories(%Show{categories: categories}), do: Enum.count(categories)
 
-  def winning_categories(%Show{categories: categories}), do: Enum.filter(categories, fn category -> !is_nil(category.winner) end)
+  def winning_categories(%Show{categories: categories} = show, ballots) do
+    categories
+    |> Enum.filter(fn category -> !is_nil(category.winner) end)
+    |> Enum.sort_by(fn category -> num_correct_voted_for_category(show, category, ballots) end, :desc)
+  end
 
   def num_correct_voted_for_category(show, category, ballots) do
     Enum.count(ballots, fn %Ballot{votes: votes} ->
@@ -54,9 +58,9 @@ defmodule AwardsVoter.Web.SummariesView do
     num_ballots_with_correct_votes = num_correct_voted_for_category(show, category, ballots)
 
     if num_ballots_with_vote_for_category == 0 or num_ballots_with_correct_votes == 0 do
-      "0.00"
+      "0.00" |> String.to_float()
     else
-      div(num_ballots_with_correct_votes, num_ballots_with_vote_for_category) |> Kernel./(1) |> Float.round(2)
+      Kernel./(num_ballots_with_correct_votes, num_ballots_with_vote_for_category) |> Kernel.*(100)  |> Float.round(1)
     end
   end
 
