@@ -36,9 +36,4 @@ defmodule AwardsVoter.Web.Scoreboard do
     socket = assign(socket, :ballots, ballots)
     {:noreply, socket}
   end
-
-  # TODO: maybe only update the bits that need updating? Can we get some animation happening?
-  # TODO: Updating things when admin edits other parts of the show
-  # Styliing, page transitions, interactivity
-  # password protection, proper users
 end
