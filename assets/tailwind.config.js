@@ -11,24 +11,6 @@ module.exports = {
     "./js/**/*.js",
   ],
   theme: {
-    typography: (theme) => ({
-      default: {
-        css: {
-          color: '#aaa',
-          'max-width': 'inherit',
-          'h1, h2, h3, h4, h5, h6': {
-            color: theme('colors.yellow.600'),
-            '&:hover': {
-              color: theme('colors.yellow.600'),
-            }
-          },
-          'a': {
-            color: 'inherit',
-            'text-decoration': 'none'
-          }
-        },
-      },
-    }),
     container: {
       padding: "2rem"
     },
@@ -79,6 +61,9 @@ module.exports = {
       },
       fontFamily: {
         'title': ['Limelight', 'ui-sans-serif', 'system-ui']
+      },
+      zIndex: {
+          '-1': '-1'
       }
     }
   },

@@ -111,3 +111,7 @@
 
 /*noinspection CssInvalidAtRule*/
 @tailwind utilities;
+
+a {
+  text-decoration: none !important;
+}
