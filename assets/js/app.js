@@ -24,6 +24,15 @@ let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToke
 window.addEventListener("phx:page-loading-start", info => NProgress.start())
 window.addEventListener("phx:page-loading-stop", info => NProgress.done())
 
+// Dismiss alert bars by clicking on the close button
+let dismissButton = document.querySelector('.alert [data-dismiss="alert"]')
+if (dismissButton) {
+    dismissButton.addEventListener("click", e => {
+        const alertDiv = e.path[1]
+        alertDiv.style.display = "none"
+    })
+}
+
 // connect if there are any LiveViews on the page
 liveSocket.connect()
 
