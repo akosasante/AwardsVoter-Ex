@@ -1,4 +1,6 @@
-<div class="prose mx-auto lg:my-4 my-12"><h1>Creating new ballot for <%= @show.name %></h1></div>
+<div class="prose mx-auto lg:my-6 my-12 px-4 lg:px-0">
+    <h1>Creating new ballot for <%= @show.name %></h1>
+</div>
 <section class="prose mx-auto my-4">
     <%= form_for @ballot_changeset, Routes.ballot_path(@conn, :create_or_update_ballot), fn f -> %>
         <%= label f, :voter, "Enter a name for your ballot: " %>

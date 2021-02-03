@@ -1,34 +1,36 @@
+<div class="prose mx-auto lg:my-4 my-12">
+    <h1><%= @ballot.voter %>'s <%= @show.name %> ballot</h1>
+</div>
 <section class="p-10">
-    <div class="bg-white">
-        <header class="bg-gray-100 p-4 text-center font-bold">
-            <h1><%= @ballot.voter %>'s <%= @show.name %> ballot</h1>
-        </header>
-        <main class="p-4">
-            <p><strong><%= Enum.count(@ballot.votes, fn vote -> vote.contestant end) %></strong> out of <strong><%= length(@show.categories) %></strong> votes cast in this ballot.</p>
-            <%= live_redirect "See scoreboard for this award show.", to: Routes.live_path(@conn, AwardsVoter.Web.Scoreboard, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-200" %>
-            <table class="border-separate border border-yellow-800 w-full mt-4">
-                <tr>
-                    <th class="border border-yellow-600 p-4">Category Name</th>
-                    <th class="border border-yellow-600 p-4">Voted for</th>
+    <div class="bg-white p-4 overflow-x-auto">
+        <p><strong><%= Enum.count(@ballot.votes, fn vote -> vote.contestant end) %></strong> out of <strong><%= length(@show.categories) %></strong> votes cast in this ballot.</p>
+        <%= live_redirect "See scoreboard for this award show.", to: Routes.live_path(@conn, AwardsVoter.Web.Scoreboard, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-200" %>
+        <table class="min-w-full table-auto mt-4">
+            <thead class="justify-between">
+            <tr>
+                <th class="bg-yellow-500 bg-opacity-90 p-4">Category Name</th>
+                <th class="bg-yellow-500 bg-opacity-90 p-4">Voted for</th>
+                <%= if @can_vote? do %>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4"></th>
+                <% end %>
+            </tr>
+            </thead>
+            <tbody class="bg-gray-200">
+            <%= for category <- @show.categories do %>
+                <tr class="bg-white border-b-2 border-gray-200">
+                    <td class="p-4"><%= category.name %></td>
+                    <td class="p-4"><%= get_voted_for_contestant(@ballot, category) |> Map.get(:name, nil) %></td>
                     <%= if @can_vote? do %>
-                        <th class="border border-yellow-600 p-4"></th>
+                        <td class="p-4">
+                            <%= link(case map_size(get_voted_for_contestant(@ballot, category)) do
+                          0 -> "Cast Vote"
+                          _ -> "Update Vote"
+                        end, to: Routes.live_path(@conn, AwardsVoter.Web.BallotEdit, @ballot.id, current_category: category.name), class: "button bg-transparent hover:bg-yellow-400 border-2 border-yellow-400 rounded w-52 lg:w-60 block p-2 mr-2 font-medium") %>
+                        </td>
                     <% end %>
                 </tr>
-                <%= for category <- @show.categories do %>
-                    <tr>
-                        <td class="border border-yellow-600 p-4"><%= category.name %></td>
-                        <td class="border border-yellow-600 p-4"><%= get_voted_for_contestant(@ballot, category) |> Map.get(:name, nil) %></td>
-                        <%= if @can_vote? do %>
-                            <td class="border border-yellow-600 text-center p-4">
-                                <%= link(case map_size(get_voted_for_contestant(@ballot, category)) do
-                              0 -> "Cast Vote"
-                              _ -> "Update Vote"
-                            end, to: Routes.live_path(@conn, AwardsVoter.Web.BallotEdit, @ballot.id, current_category: category.name), class: "button bg-green-500 rounded w-64 p-2 mr-2", style: "color: black; text-align: center; font-weight: bold;") %>
-                            </td>
-                        <% end %>
-                    </tr>
-                <% end %>
-            </table>
-        </main>
+            <% end %>
+            </tbody>
+        </table>
     </div>
 </section>
