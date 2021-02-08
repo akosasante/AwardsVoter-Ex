@@ -1,31 +1,32 @@
+<div class="prose mx-auto lg:my-4 my-12">
+    <h1>Summary of ballots cast for <%= @show.name %></h1>
+</div>
 <section class="p-10">
-    <div class="bg-white">
-        <header class="bg-gray-100 p-4 text-center font-bold">
-            <h1>Summary of ballots cast for <%= @show.name %></h1>
-        </header>
+    <div class="bg-white p-4 overflow-x-auto">
+        <div class="flex flex-row justify-between">
+            <%= live_redirect "See live scoreboard for this show", to: Routes.live_path(@socket,  AwardsVoter.Web.Scoreboard, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
+            <p><strong><%= num_winners(@show) %> / <%= num_categories(@show) %></strong> categories have been updated with winners</p>
+        </div>
 
-        <main class="p-4">
-            <div class="flex flex-row justify-between">
-                <%= live_redirect "See live scoreboard for this show", to: Routes.live_path(@socket,  AwardsVoter.Web.Scoreboard, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
-                <p><strong><%= num_winners(@show) %> / <%= num_categories(@show) %></strong> categories have been updated with winners</p>
-            </div>
-
-            <table class="border border-separate border-yellow-800 w-full mt-4">
+        <table class="min-w-full table-auto mt-4">
+            <thead class="justify-between">
                 <tr>
-                    <th class="text-left">Category</th>
-                    <th class="text-left">Winner</th>
-                    <th class="text-right">Number of correctly cast votes</th>
-                    <th class="text-right">% of votes correctly cast</th>
-                    <th class="text-right">Most commonly cast vote</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-left">Category</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-left">Winner</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">Number of correctly cast votes</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">% of votes correctly cast</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">Most commonly cast vote</th>
                 </tr>
+            </thead>
 
+            <tbody class="bg-gray-200">
                 <%= for category <- winning_categories(@show, @ballots) do %>
-                <tr>
-                    <td><%= category.name %></td>
-                    <td><%= category.winner.name %></td>
-                    <td class="text-right"><%= num_correct_voted_for_category(category, @ballots) %></td>
-                    <td class="text-right"><%= percent_correct_voted_for_category(@show, category, @ballots) %></td>
-                    <td class="text-right">
+                <tr class="bg-white border-b-2 border-gray-200">
+                    <td class="p-4"><%= category.name %></td>
+                    <td class="p-4"><%= category.winner.name %></td>
+                    <td class="p-4 text-right"><%= num_correct_voted_for_category(category, @ballots) %></td>
+                    <td class="p-4 text-right"><%= percent_correct_voted_for_category(@show, category, @ballots) %></td>
+                    <td class="p-4 text-right">
                         <%= case most_common_vote(category, @ballots) do %>
                         <% {nil, nil} -> %> <span></span>
                         <% {name, vote_count} -> %> <%= name %> (<%= vote_count %>)
@@ -33,7 +34,7 @@
                     </td>
                 </tr>
                 <% end %>
-            </table>
-        </main>
+            </tbody>
+        </table>
     </div>
 </section>
