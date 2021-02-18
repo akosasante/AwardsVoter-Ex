@@ -10,7 +10,7 @@
         </ul>
     </aside>
     <main role="main" class="text-yellow-900 mt-28 ml-2 text-left">
-        <h1 class="font-bold text-center text-gray-900 text-xl mb-4">Who do you think will win <%= @current_category.name %>?</h1>
+        <h1 class="font-bold text-left text-gray-900 text-xl mb-4 w-9/12">Who do you think will win <%= @current_category.name %>?</h1>
         <%= form_for :current_category, "#", [phx_change: :update_vote, class: "flex flex-col mb-4 justify-evenly h-72 text-lg"], fn _ -> %>
             <%= for contestant <- @current_category.contestants do %>
                 <%= label do %>
