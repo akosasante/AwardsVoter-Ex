@@ -21,7 +21,8 @@ defmodule AwardsVoter.Context.Application do
       # Start the Endpoint (http/https)
       AwardsVoter.Web.Endpoint,
       {AwardsVoter.Context.Tables.ShowTable, [table_name: show_table_name]},
-      {AwardsVoter.Context.Tables.BallotTable, [table_name: ballot_table_name]}
+      {AwardsVoter.Context.Tables.BallotTable, [table_name: ballot_table_name]},
+      {AwardsVoter.Context.Tables.BackupServer, [tables: [show_table_name, ballot_table_name]]}
       # Start a worker by calling: AwardsVoter.Worker.start_link(arg)
       # {AwardsVoter.Worker, arg}
     ]
