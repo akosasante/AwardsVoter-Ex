@@ -41,10 +41,10 @@ defmodule AwardsVoter.Web.SummariesView do
   def winning_categories(%Show{categories: categories} = show, ballots) do
     categories
     |> Enum.filter(fn category -> !is_nil(category.winner) end)
-    |> Enum.sort_by(fn category -> num_correct_voted_for_category(show, category, ballots) end, :desc)
+    |> Enum.sort_by(fn category -> num_correct_voted_for_category(category, ballots) end, :desc)
   end
 
-  def num_correct_voted_for_category(show, category, ballots) do
+  def num_correct_voted_for_category(category, ballots) do
     Enum.count(ballots, fn %Ballot{votes: votes} ->
       case Enum.find(votes, fn vote -> vote.category.name == category.name end) do
         %Vote{contestant: contestant} -> contestant.name == category.winner.name
@@ -55,7 +55,7 @@ defmodule AwardsVoter.Web.SummariesView do
 
   def percent_correct_voted_for_category(show, category, ballots) do
     num_ballots_with_vote_for_category = Enum.count(ballots, fn %Ballot{votes: votes} -> Enum.find(votes, fn vote -> vote.category.name == category.name end) end)
-    num_ballots_with_correct_votes = num_correct_voted_for_category(show, category, ballots)
+    num_ballots_with_correct_votes = num_correct_voted_for_category(category, ballots)
 
     if num_ballots_with_vote_for_category == 0 or num_ballots_with_correct_votes == 0 do
       "0.00" |> String.to_float()
@@ -64,8 +64,8 @@ defmodule AwardsVoter.Web.SummariesView do
     end
   end
 
-  def most_common_vote(show, %Category{contestants: contestants, name: category_name}, ballots) do
-    frequency_map = Enum.frequencies_by(ballots, fn %Ballot{votes: votes} ->
+  def most_common_vote(%Category{name: category_name}, ballots) do
+    Enum.frequencies_by(ballots, fn %Ballot{votes: votes} ->
       case Enum.find(votes, fn vote -> vote.category.name == category_name end) do
         %Vote{contestant: contestant} -> contestant.name
         _ -> :not_vote

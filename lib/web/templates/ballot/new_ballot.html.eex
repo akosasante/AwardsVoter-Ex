@@ -1,11 +1,12 @@
-<section>
-    <h1>New ballot for <%= @show.name %></h1>
-
+<div class="prose mx-auto lg:my-6 my-12 px-4 lg:px-0">
+    <h1>Creating new ballot for <%= @show.name %></h1>
+</div>
+<section class="prose mx-auto my-4">
     <%= form_for @ballot_changeset, Routes.ballot_path(@conn, :create_or_update_ballot), fn f -> %>
-        <%= label f, :voter %>
-        <%= text_input f, :voter %>
+        <%= label f, :voter, "Enter a name for your ballot: " %>
+        <%= text_input f, :voter, class: "w-1/2 rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30", required: true %>
         <%= hidden_input f, :show_id, value: @show.id %>
 
-        <%= submit "Start Voting!" %>
+        <%= submit "Start Voting!", class: "block mx-auto mt-4 bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded" %>
     <% end %>
 </section>

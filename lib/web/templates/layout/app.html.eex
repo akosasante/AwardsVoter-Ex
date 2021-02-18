@@ -1,5 +1,15 @@
-<main role="main" class="container prose text-yellow-900">
-  <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-  <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+<main role="main" class="text-yellow-900 mt-11 m-auto text-center">
+  <%= if get_flash(@conn, :info) do %>
+  <div class="alert alert-info alert-dismissible flex flex-row content-between" role="alert">
+    <span class="block flex-auto"><%= get_flash(@conn, :info) %></span>
+    <button type="button" class="close align-self-end" data-dismiss="alert" aria-hidden="true">×</button>
+  </div>
+  <% end %>
+  <%= if get_flash(@conn, :error) do %>
+    <div class="alert alert-danger alert-dismissible flex flex-row content-between" role="alert">
+      <span class="block flex-auto"><%= get_flash(@conn, :error) %></span>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    </div>
+  <% end %>
   <%= @inner_content %>
 </main>

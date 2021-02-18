@@ -1,28 +1,28 @@
 <section class="flex flex-row">
-    <aside class="p-4 mr-4">
-        <ul>
+    <aside class="p-4 mr-4 bg-yellow-100 sticky left-0 rounded-r-full shadow-sm" style="margin-top: -15vh; shape-outside: border-box;">
+        <ul class="break-word w-9/12 p-4 flex flex-col justify-evenly h-full">
             <%= for category <- @show.categories do %>
-                <li>
+                <li class="mb-1 cursor-pointer hover:text-yellow-500">
                     <%= live_patch category.name, to: Routes.live_path(@socket, AwardsVoter.Web.BallotEdit, @original_ballot.id, current_category: category.name), class: "#{if category.name == @current_category.name, do: "font-bold"}" %>
                     <%= if !has_vote?(category, @vote_map, @original_ballot) do %><span>&nbsp <strong>*</strong></span><% end %>
                 </li>
             <% end %>
         </ul>
     </aside>
-    <main class="p-4">
-        <h1>Who do you think will win <%= @current_category.name %>?</h1>
-        <%= form_for :current_category, "#", [phx_change: :update_vote, class: "flex flex-col"], fn f -> %>
+    <main role="main" class="text-yellow-900 mt-28 ml-2 text-left">
+        <h1 class="font-bold text-left text-gray-900 text-xl mb-4 w-9/12">Who do you think will win <%= @current_category.name %>?</h1>
+        <%= form_for :current_category, "#", [phx_change: :update_vote, class: "flex flex-col mb-4 justify-evenly h-72 text-lg"], fn _ -> %>
             <%= for contestant <- @current_category.contestants do %>
                 <%= label do %>
-                    <%= radio_button :vote, @current_category.name, contestant.name, checked: is_matching_contestant(@vote_map, @current_category, contestant) %>
-                    <%= contestant.name %>
+                    <%= radio_button :vote, @current_category.name, contestant.name, checked: is_matching_contestant(@vote_map, @current_category, contestant), class: "mr-2 p-2" %>
+                    <span class="cursor-pointer"><%= contestant.name %></span>
                 <% end %>
              <% end %>
         <% end %>
-        <button phx-click="next_category" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Go to Next Category</button>
-        <button phx-click="reset_vote" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Reset Vote</button>
+        <button phx-click="next_category" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-16">Go to Next Category</button>
+        <button phx-click="reset_vote" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-16">Reset Vote</button>
         <br>
-        <button phx-click="submit_ballot" class="bg-yellow-500 rounded p-2 mr-2 font-bold mb-16">Submit Ballot</button>
+        <button phx-click="submit_ballot" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-16">Submit Ballot</button>
         <br>
     </main>
 </section>

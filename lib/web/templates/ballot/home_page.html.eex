@@ -1,11 +1,13 @@
-<main>
-    <h1>Welcome to Awards Voter. Get ready to cast your votes on all the latest awards shows!</h1>
+<div class="prose mx-auto lg:my-4 my-12"><h1>Cast your votes on all the latest awards shows!</h1></div>
 
-    <section>
-        <ul>
-            <%= for show <- @shows do %>
-                <li><%= link(show.name, to: Routes.ballot_path(@conn, :new_ballot, show.id)) %></li>
+<section>
+    <%= for show <- @shows do %>
+        <article class="flex flex-col prose mx-auto max-w-6xl bg-white rounded-b h-auto border shadow mb-4 pb-4">
+            <h2 class="py-4 border-dashed border-b-2"><%= show.name %></h2>
+            <%= if show.description do %>
+                <p class="block rounded-b p-4 flex flex-col justify-between leading-normal"><%= show.description %></p>
             <% end %>
-        </ul>
-    </section>
-</main>
+            <%= link("Vote!", to: Routes.ballot_path(@conn, :new_ballot, show.id), class: "bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 mt-4 rounded lg:w-1/4 w-4/5 text-2xl md:text-base m-auto") %>
+        </article>
+    <% end %>
+</section>

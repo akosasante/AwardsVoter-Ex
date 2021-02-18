@@ -96,6 +96,13 @@
 /*  margin: -1rem 0 2rem;*/
 /*}*/
 
+@font-face {
+  font-family: "Limelight";
+  src: url("/fonts/Limelight.ttf");
+}
+
+
+
 /*noinspection CssInvalidAtRule*/
 @tailwind base;
 
@@ -104,3 +111,7 @@
 
 /*noinspection CssInvalidAtRule*/
 @tailwind utilities;
+
+a {
+  text-decoration: none !important;
+}

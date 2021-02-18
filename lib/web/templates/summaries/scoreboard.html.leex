@@ -1,36 +1,37 @@
+<div class="prose mx-auto lg:my-4 my-12">
+    <h1>Scoreboard for <%= @show.name %></h1>
+</div>
 <section class="p-10">
-    <div class="bg-white">
-        <header class="bg-gray-100 p-4 text-center font-bold">
-            <h1>Scoreboard for <%= @show.name %></h1>
-        </header>
+    <div class="bg-white p-4 overflow-x-auto">
+        <div class="flex flex-row justify-between">
+            <%= live_redirect "See ballot summary for this show", to: Routes.live_path(@socket,  AwardsVoter.Web.BallotsSummary, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
+            <p><strong><%= num_winners(@show) %> / <%= num_categories(@show) %></strong> categories have been updated with winners</p>
+        </div>
 
-        <main class="p-4">
-            <div class="flex flex-row justify-between">
-                <%= live_redirect "See ballot summary for this show", to: Routes.live_path(@socket,  AwardsVoter.Web.BallotsSummary, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
-                <p><strong><%= num_winners(@show) %> / <%= num_categories(@show) %></strong> categories have been updated with winners</p>
-            </div>
-
-            <table class="border border-separate border-yellow-800 w-full mt-4">
+        <table class="min-w-full table-auto mt-4">
+            <thead class="justify-between">
                 <tr>
-                    <th class="text-left">Ballot username</th>
-                    <th class="text-right">Number of votes cast</th>
-                    <th class="text-right">Number of correct votes</th>
-                    <th class="text-right">% Correct votes (of cast votes)</th>
-                    <th class="text-right">% Correct votes (of updated categories)</th>
-                    <th></th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-left">Ballot username</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">Number of votes cast</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">Number of correct votes</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">% Correct votes (of cast votes)</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">% Correct votes (of updated categories)</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4"></th>
                 </tr>
+            </thead>
 
+            <tbody class="bg-gray-200">
                 <%= for ballot <- @ballots do %>
-                 <tr>
-                     <td><%= ballot.voter %></td>
-                     <td class="text-right"><%= num_voted(ballot) %></td>
-                     <td class="text-right"><%= num_correct(ballot) %></td>
-                     <td class="text-right"><%= percent_correct_by_voted(ballot) %></td>
-                     <td class="text-right"><%= percent_correct_by_categories(ballot, @show) %></td>
-                     <td class="text-center"><%= link "View this ballot", to: Routes.ballot_path(@socket, :get_ballot, ballot.id, read_only: true), class: "font-bold text-yellow-400 hover:text-yellow-600" %></td>
+                 <tr class="bg-white border-b-2 border-gray-200">
+                     <td class="p-4"><%= ballot.voter %></td>
+                     <td class="p-4 text-right"><%= num_voted(ballot) %></td>
+                     <td class="p-4 text-right"><%= num_correct(ballot) %></td>
+                     <td class="p-4 text-right"><%= percent_correct_by_voted(ballot) %></td>
+                     <td class="p-4 text-right"><%= percent_correct_by_categories(ballot, @show) %></td>
+                     <td class="p-4 text-center"><%= link "View this ballot", to: Routes.ballot_path(@socket, :get_ballot, ballot.id, read_only: true), class: "font-bold text-yellow-400 hover:text-yellow-600" %></td>
                  </tr>
                 <% end %>
-            </table>
-        </main>
+            </tbody>
+        </table>
     </div>
 </section>
