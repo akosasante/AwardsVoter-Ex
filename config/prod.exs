@@ -12,7 +12,7 @@ import Config
 config :awards_voter, AwardsVoter.Web.Endpoint,
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
-    url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443],
+#    url: [host: System.get_env("APP_NAME") <> ".gigalixirapp.com", port: 443],
     check_origin: ["https://awards.akosua.xyz"],
     transport_options: [socket_opts: [:inet6]]
   ],
