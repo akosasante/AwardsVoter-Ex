@@ -9,7 +9,12 @@ defmodule AwardsVoter.Web.AdminView do
   def format_datetime_string(datetime_string) do
     {:ok, datetime, _utc_offset} = DateTime.from_iso8601(datetime_string <> ":00Z")
     %DateTime{year: year, month: month, day: day, hour: hour, minute: minute} = datetime
-    "#{day}/#{month}/#{year} at #{hour}:#{minute}"
+    time = if hour > 12 do
+      "#{hour - 12}:#{minute}PM"
+    else
+      "#{hour}:#{minute}AM"
+    end
+    "#{day}/#{month}/#{year} at #{time}"
   end
 
   def is_winner(category, contestant) do

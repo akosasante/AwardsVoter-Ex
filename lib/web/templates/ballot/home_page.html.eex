@@ -5,7 +5,10 @@
         <article class="flex flex-col prose mx-auto max-w-6xl bg-white rounded-b h-auto border shadow mb-4 pb-4">
             <h2 class="py-4 border-dashed border-b-2"><%= show.name %></h2>
             <%= if show.description do %>
-                <p class="block rounded-b p-4 flex flex-col justify-between leading-normal"><%= show.description %></p>
+                <p class="block rounded-b px-6 flex flex-col text-left justify-between leading-normal"><%= show.description %></p>
+            <% end %>
+            <%= if show.air_datetime do %>
+                <p class="m-0"><strong>Airs on: </strong><%= format_datetime_string(show.air_datetime) %></p>
             <% end %>
             <%= link("Vote!", to: Routes.ballot_path(@conn, :new_ballot, show.id), class: "bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 mt-4 rounded lg:w-1/4 w-4/5 text-2xl md:text-base m-auto") %>
         </article>
