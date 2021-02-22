@@ -7,7 +7,7 @@ defmodule AwardsVoter.Web.AdminView do
   def render_edit_page(page_name, assigns), do: render("edit_show/#{page_name}", assigns)
 
   def format_datetime_string(datetime_string) do
-    {:ok, datetime, _utc_offset} = DateTime.from_iso8601(datetime_string)
+    {:ok, datetime, _utc_offset} = DateTime.from_iso8601(datetime_string <> ":00Z")
     %DateTime{year: year, month: month, day: day, hour: hour, minute: minute} = datetime
     "#{day}/#{month}/#{year} at #{hour}:#{minute}"
   end
