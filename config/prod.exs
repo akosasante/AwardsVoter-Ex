@@ -10,16 +10,15 @@ import Config
 # which you should run after static files are built and
 # before starting your production server.
 config :awards_voter, AwardsVoter.Web.Endpoint,
-#  http: [
-#    port: 4000,
-#    url: [host: "awards.akosua.xyz", port: 443],
-#    transport_options: [socket_opts: [:inet6]]
-#  ],
+  http: [port: System.get_env("PORT", "4000") |> String.to_integer()],
+  url: [host: "awards.akosua.xyz", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
+  transport_options: [socket_opts: [:inet6]],
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   server: true
 
 # Do not print debug messages in production
-config :logger, level: :debug
+config :logger, level: :info
 
 # ## SSL Support
 #
