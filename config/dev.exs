@@ -80,4 +80,11 @@ config :phoenix, :stacktrace_depth, 20
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
 
+config :ex_aws,
+  access_key_id: "test",
+  secret_access_key: "test"
+
+config :awards_voter,
+       run_backups: false
+
 config :awards_voter, environment: :dev

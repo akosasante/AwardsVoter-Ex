@@ -9,7 +9,8 @@ import Config
 
 config :awards_voter,
   show_table_name: :dev_show,
-  ballot_table_name: :dev_ballot
+  ballot_table_name: :dev_ballot,
+  run_backups: true
 
 # Configures the endpoint
 config :awards_voter, AwardsVoter.Web.Endpoint,
