@@ -14,7 +14,6 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
   url: [host: "awards.akosua.xyz", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
   transport_options: [socket_opts: [:inet6]],
-  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   server: true
 
 # Do not print debug messages in production
@@ -53,4 +52,9 @@ config :logger, level: :info
 #       force_ssl: [hsts: true]
 #
 # Check `Plug.SSL` for all available options in `force_ssl`.
+
+config :awards_voter,
+       show_table_name: :show,
+       ballot_table_name: :ballot
+
 config :awards_voter, environment: :prod
