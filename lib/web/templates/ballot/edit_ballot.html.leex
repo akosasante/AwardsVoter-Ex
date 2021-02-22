@@ -1,5 +1,5 @@
 <section class="flex flex-row">
-    <aside class="p-4 mr-4 bg-yellow-100 sticky left-0 rounded-r-full shadow-sm" style="margin-top: -15vh; shape-outside: border-box;">
+    <aside class="p-4 mr-4 bg-yellow-100 sticky left-0 shadow-sm" style="margin-top: -15vh; shape-outside: border-box; border-top-right-radius: 50%; border-bottom-right-radius: 50%;">
         <ul class="break-word w-9/12 p-4 flex flex-col justify-evenly h-full">
             <%= for category <- @show.categories do %>
                 <li class="mb-1 cursor-pointer hover:text-yellow-500">
@@ -9,7 +9,7 @@
             <% end %>
         </ul>
     </aside>
-    <main role="main" class="text-yellow-900 mt-28 ml-2 text-left">
+    <main role="main" class="text-yellow-900 mt-28 text-left" style="margin-left: 10%">
         <h1 class="font-bold text-left text-gray-900 text-xl mb-4 w-9/12">Who do you think will win <%= @current_category.name %>?</h1>
         <%= form_for :current_category, "#", [phx_change: :update_vote, class: "flex flex-col mb-4 justify-evenly h-72 text-lg"], fn _ -> %>
             <%= for contestant <- @current_category.contestants do %>
