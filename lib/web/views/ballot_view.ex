@@ -4,7 +4,7 @@ defmodule AwardsVoter.Web.BallotView do
   alias AwardsVoter.Context.Models.Vote
   alias AwardsVoter.Context.Models.Show
 
-  @buffer_airdate_duration 60 * 10 # users can still enter their votes up to 10 minutes after the starting time of the
+  @buffer_airdate_duration 60 * 10 # users can still enter their votes up to 10 minutes after the starting time of the show
 
   def is_matching_contestant(vote_map, category, contestant) do
     Map.get(vote_map, category.name) == contestant.name
@@ -51,6 +51,8 @@ defmodule AwardsVoter.Web.BallotView do
       "#{base_url}embed/track#{spotify_id}"
     end
   end
+
+  def airtime_is_valid(%Show{air_datetime: nil}), do: true
 
   def airtime_is_valid(%Show{air_datetime: air_datetime}) do
     {:ok, datetime, _utc_offset} = DateTime.from_iso8601(air_datetime <> ":00Z")
