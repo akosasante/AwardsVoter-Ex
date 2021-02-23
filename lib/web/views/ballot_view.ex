@@ -2,6 +2,9 @@ defmodule AwardsVoter.Web.BallotView do
   use AwardsVoter.Web, :view
 
   alias AwardsVoter.Context.Models.Vote
+  alias AwardsVoter.Context.Models.Show
+
+  @buffer_airdate_duration 60 * 10 # users can still enter their votes up to 10 minutes after the starting time of the
 
   def is_matching_contestant(vote_map, category, contestant) do
     Map.get(vote_map, category.name) == contestant.name
@@ -22,7 +25,7 @@ defmodule AwardsVoter.Web.BallotView do
 
   def format_datetime_string(datetime_string) do
     {:ok, datetime, _utc_offset} = DateTime.from_iso8601(datetime_string <> ":00Z")
-    %DateTime{year: year, month: month, day: day, hour: hour, minute: minute} = datetime
+    {:ok, %DateTime{year: year, month: month, day: day, hour: hour, minute: minute}} = DateTime.from_naive(datetime, "America/Toronto", Tz.TimeZoneDatabase)
     time = if hour > 12 do
       "#{hour - 12}:#{minute}PM"
     else
@@ -47,5 +50,12 @@ defmodule AwardsVoter.Web.BallotView do
       [base_url, spotify_id] = String.split(spotify_url, "track")
       "#{base_url}embed/track#{spotify_id}"
     end
+  end
+
+  def airtime_is_valid(%Show{air_datetime: air_datetime}) do
+    {:ok, datetime, _utc_offset} = DateTime.from_iso8601(air_datetime <> ":00Z")
+    {:ok, datetime_est} = DateTime.from_naive(datetime, "America/Toronto", Tz.TimeZoneDatabase)
+    {:ok, now} = DateTime.now("America/Toronto", Tz.TimeZoneDatabase)
+    DateTime.diff(now, datetime_est) <= @buffer_airdate_duration
   end
 end

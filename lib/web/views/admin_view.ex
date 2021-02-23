@@ -8,7 +8,7 @@ defmodule AwardsVoter.Web.AdminView do
 
   def format_datetime_string(datetime_string) do
     {:ok, datetime, _utc_offset} = DateTime.from_iso8601(datetime_string <> ":00Z")
-    %DateTime{year: year, month: month, day: day, hour: hour, minute: minute} = datetime
+    {:ok, %DateTime{year: year, month: month, day: day, hour: hour, minute: minute}} = DateTime.from_naive(datetime, "America/Toronto", Tz.TimeZoneDatabase)
     time = if hour > 12 do
       "#{hour - 12}:#{minute}PM"
     else
