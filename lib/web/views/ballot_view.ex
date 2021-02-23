@@ -30,4 +30,22 @@ defmodule AwardsVoter.Web.BallotView do
     end
     "#{day}/#{month}/#{year} at #{time}"
   end
+
+  def format_youtube_url(youtube_url) do
+    if String.contains?(youtube_url, "/embed") do
+      youtube_url
+    else
+      [video_id] = Regex.run(~r/watch\?v=(.*)/, youtube_url, capture: :all_but_first)
+      "https://www.youtube.com/embed/#{video_id}"
+    end
+  end
+
+  def format_spotify_url(spotify_url) do
+    if String.contains?(spotify_url, "/embed") do
+      spotify_url
+    else
+      [base_url, spotify_id] = String.split(spotify_url, "track")
+      "#{base_url}embed/track#{spotify_id}"
+    end
+  end
 end

@@ -16,6 +16,8 @@ defmodule AwardsVoter.Web.BallotEdit do
 
     socket = assign_new(socket, :show, fn -> Admin.get_show_by_id(socket.assigns.original_ballot.show_id) end)
 
+    socket = assign_new(socket, :show_modal, fn -> false end)
+
     {:ok,socket}
   end
 
@@ -67,6 +69,25 @@ defmodule AwardsVoter.Web.BallotEdit do
     AwardsVoter.Web.Endpoint.broadcast_from!(self(), "show:#{show.id}", "ballot_updated", %{ballot: updated_ballot})
 
     {:noreply, push_redirect(socket, to: Routes.ballot_path(socket, :get_ballot, original_ballot.id))}
+  end
+
+  def handle_event(
+        "show_modal",
+        %{"show_modal_type" => type, "show_modal_content" => value},
+        socket
+      ) do
+    socket =
+      socket
+      |> assign(:show_modal, true)
+      |> assign(:show_modal_type, type)
+      |> assign(:show_modal_content, value)
+
+    {:noreply, socket}
+  end
+
+  def handle_event("close_modal", _params, socket) do
+    socket = assign(socket, :show_modal, false)
+    {:noreply, socket}
   end
 
   defp generate_vote_map(votes) do
