@@ -6,6 +6,8 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
   # Only restart if it terminates abnormally. we may want to remove this and keep the default of always restarting :permanent
   use GenServer, restart: :transient
 
+  alias AwardsVoter.Context.Tables.ShowTable
+
   require Logger
 
   @bucket_name "awards-voter-backups"
@@ -44,10 +46,11 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
 
   defp download_tables_if_empty(tables) do
     for table <- tables do
-      if File.exists?("#{table}.dets") do
-        Logger.info("#{table} table file already exists, no need to download new one")
+      # Since we auto-create a table file in the application module, we need to check the contents
+      if File.exists?("#{table}.dets") and ShowTable.all() != [] do
+        Logger.info("#{table} table file already exists and is non-empty, no need to download new one")
       else
-        Logger.info("#{table} table file not found, downloading from S3, if available")
+        Logger.info("#{table} table file not found or is empty table, downloading from S3, if available")
         res = download_from_s3(table)
         Logger.info("#{table} downloaded from S3 with result=#{inspect res}")
       end
