@@ -3,8 +3,10 @@ defmodule AwardsVoter.Web.BallotEdit do
 
   alias AwardsVoter.Context.Ballots
   alias AwardsVoter.Context.Admin
+  alias AwardsVoter.Context.Models.Show
   alias AwardsVoter.Web.Router.Helpers, as: Routes
 
+  @buffer_airdate_duration 60 * 10 # users can still enter their votes up to 10 minutes after the starting time of the show
 
   def render(assigns) do
     AwardsVoter.Web.BallotView.render("edit_ballot.html", assigns)
@@ -61,14 +63,19 @@ defmodule AwardsVoter.Web.BallotEdit do
   end
 
   def handle_event("submit_ballot", _, %{assigns: %{vote_map: vote_map, original_ballot: original_ballot, show: show}} = socket) do
-    votes = vote_map_into_votes(vote_map, show)
-    updated_ballot = Map.put(original_ballot, :votes, votes)
+    if airtime_is_valid(show) do
+      votes = vote_map_into_votes(vote_map, show)
+      updated_ballot = Map.put(original_ballot, :votes, votes)
 
-    :ok = Ballots.save_ballot(updated_ballot)
+      :ok = Ballots.save_ballot(updated_ballot)
 
-    AwardsVoter.Web.Endpoint.broadcast_from!(self(), "show:#{show.id}", "ballot_updated", %{ballot: updated_ballot})
+      AwardsVoter.Web.Endpoint.broadcast_from!(self(), "show:#{show.id}", "ballot_updated", %{ballot: updated_ballot})
 
-    {:noreply, push_redirect(socket, to: Routes.ballot_path(socket, :get_ballot, original_ballot.id))}
+      {:noreply, push_redirect(socket, to: Routes.ballot_path(socket, :get_ballot, original_ballot.id))}
+    else
+      socket = put_flash(socket, :error, "The show has already started, no new votes allowed.")
+      {:noreply, redirect(socket, to: Routes.ballot_path(socket, :get_ballot, original_ballot.id))}
+    end
   end
 
   def handle_event(
@@ -102,5 +109,14 @@ defmodule AwardsVoter.Web.BallotEdit do
       contestant = Admin.get_contestant_by_name(category, contestant_name) |> Admin.contestant_to_map()
       Ballots.create_vote(%{category: category |> Admin.category_to_map(), contestant: contestant})
     end)
+  end
+
+  defp airtime_is_valid(%Show{air_datetime: nil}), do: true
+
+  defp airtime_is_valid(%Show{air_datetime: air_datetime}) do
+    {:ok, datetime, _utc_offset} = DateTime.from_iso8601(air_datetime <> ":00Z")
+    {:ok, datetime_est} = DateTime.from_naive(datetime, "America/Toronto", Tz.TimeZoneDatabase)
+    {:ok, now} = DateTime.now("America/Toronto", Tz.TimeZoneDatabase)
+    DateTime.diff(now, datetime_est) <= @buffer_airdate_duration
   end
 end
