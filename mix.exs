@@ -53,6 +53,7 @@ defmodule AwardsVoter.MixProject do
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},
       {:sweet_xml, "~> 0.6"},
+      {:tz, "~> 0.12.0"},
     ]
   end
 
