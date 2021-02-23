@@ -10,7 +10,10 @@
             <%= if show.air_datetime do %>
                 <p class="m-0"><strong>Airs on: </strong><%= format_datetime_string(show.air_datetime) %></p>
             <% end %>
-            <%= link("Vote!", to: Routes.ballot_path(@conn, :new_ballot, show.id), class: "bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 mt-4 rounded lg:w-1/4 w-4/5 text-2xl md:text-base m-auto") %>
+            <div class="flex flex-row justify-center">
+                <%= link("Vote!", to: Routes.ballot_path(@conn, :new_ballot, show.id), class: "bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 mt-4 ml-auto mr-2 rounded lg:w-1/4 w-4/5 text-2xl md:text-base") %>
+                <%= link("See Scoreboard", to: Routes.live_path(@conn, AwardsVoter.Web.Scoreboard, show.id), class: "hover:text-yellow-500 font-bold py-2 px-4 mt-4 ml-2 mr-auto rounded lg:w-1/4 w-4/5 text-2xl md:text-base") %>
+            </div>
         </article>
     <% end %>
 </section>
