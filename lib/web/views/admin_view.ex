@@ -10,9 +10,9 @@ defmodule AwardsVoter.Web.AdminView do
     {:ok, datetime, _utc_offset} = DateTime.from_iso8601(datetime_string <> ":00Z")
     {:ok, %DateTime{year: year, month: month, day: day, hour: hour, minute: minute}} = DateTime.from_naive(datetime, "America/Toronto", Tz.TimeZoneDatabase)
     time = if hour > 12 do
-      "#{hour - 12}:#{minute}PM"
+      "#{hour - 12}:#{String.pad_leading("#{minute}", 2, "0")}PM"
     else
-      "#{hour}:#{minute}AM"
+      "#{hour}:#{String.pad_leading("#{minute}", 2, "0")}AM"
     end
     "#{day}/#{month}/#{year} at #{time}"
   end
