@@ -7,6 +7,7 @@ defmodule AwardsVoter.Context.Tables.BallotTable do
   use GenServer, restart: :transient
 
   alias AwardsVoter.Context.Models.Ballot
+  alias AwardsVoter.Context.Tables.BackupServer
 
   require Logger
   require Ex2ms
@@ -17,9 +18,17 @@ defmodule AwardsVoter.Context.Tables.BallotTable do
     GenServer.start_link(__MODULE__, args, name: __MODULE__)
   end
 
-  def init(args) do
-    Logger.info("BallotTable starting #{args[:table_name]}")
-    {:ok, args}
+  def init(_args) do
+    ballot_table_name = Application.get_env(:awards_voter, :ballot_table_name)
+    ensure_table_is_available("#{ballot_table_name}.dets")
+    {:ok, _} = :dets.open_file(ballot_table_name, file: './#{ballot_table_name}.dets')
+
+    Logger.info("BallotTable starting #{ballot_table_name}")
+    {:ok, [table_name: ballot_table_name]}
+  end
+
+  defp ensure_table_is_available(table_name) do
+    BackupServer.download_table_if_empty(table_name)
   end
 
   ### ====== API ======= ###

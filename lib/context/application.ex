@@ -8,12 +8,7 @@ defmodule AwardsVoter.Context.Application do
   require Logger
 
   def start(_type, _args) do
-    show_table_name = Application.get_env(:awards_voter, :show_table_name)
-    ballot_table_name = Application.get_env(:awards_voter, :ballot_table_name)
-    {:ok, _} = :dets.open_file(show_table_name, file: './#{show_table_name}.dets')
-    {:ok, _} = :dets.open_file(ballot_table_name, file: './#{ballot_table_name}.dets')
-
-    children = [
+    web_children = [
       # Start the Ecto repository
       #      AwardsVoter.Repo,
       # Start the Telemetry supervisor
@@ -22,19 +17,23 @@ defmodule AwardsVoter.Context.Application do
       {Phoenix.PubSub, name: AwardsVoter.PubSub},
       # Start the Endpoint (http/https)
       AwardsVoter.Web.Endpoint,
-      {AwardsVoter.Context.Tables.ShowTable, [table_name: show_table_name]},
-      {AwardsVoter.Context.Tables.BallotTable, [table_name: ballot_table_name]}
       # Start a worker by calling: AwardsVoter.Worker.start_link(arg)
       # {AwardsVoter.Worker, arg}
     ]
 
-    children = if Application.get_env(:awards_voter, :run_backups) do
-      children ++ [{AwardsVoter.Context.Tables.BackupServer, [tables: [show_table_name, ballot_table_name]]}]
+    dets_children = [
+      {AwardsVoter.Context.Tables.ShowTable, []},
+      {AwardsVoter.Context.Tables.BallotTable, []}
+    ]
+
+    dets_children = if Application.get_env(:awards_voter, :run_backups) do
+      dets_children ++ [{AwardsVoter.Context.Tables.BackupServer, [tables: [AwardsVoter.Context.Tables.ShowTable, AwardsVoter.Context.Tables.BallotTable]]}]
     else
       Logger.info("Will not backup DETS tables to S3")
-      children
+      dets_children
     end
 
+    children = dets_children ++ web_children
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
