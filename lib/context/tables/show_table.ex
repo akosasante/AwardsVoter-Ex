@@ -16,9 +16,11 @@ defmodule AwardsVoter.Context.Tables.ShowTable do
     GenServer.start_link(__MODULE__, args, name: __MODULE__)
   end
 
-  def init(_args) do
+  def init(args) do
     show_table_name = Application.get_env(:awards_voter, :show_table_name)
-    ensure_table_is_available("#{show_table_name}.dets")
+    if Keyword.get(args, :download_backups) do
+      ensure_table_is_available("#{show_table_name}.dets")
+    end
     {:ok, _} = :dets.open_file(show_table_name, file: './#{show_table_name}.dets')
 
     Logger.info("ShowTable starting #{show_table_name}")

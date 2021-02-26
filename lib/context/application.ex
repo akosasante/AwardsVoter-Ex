@@ -21,12 +21,14 @@ defmodule AwardsVoter.Context.Application do
       # {AwardsVoter.Worker, arg}
     ]
 
+    run_backups = Application.get_env(:awards_voter, :run_backups)
+
     dets_children = [
-      {AwardsVoter.Context.Tables.ShowTable, []},
-      {AwardsVoter.Context.Tables.BallotTable, []}
+      {AwardsVoter.Context.Tables.ShowTable, [download_backups: run_backups]},
+      {AwardsVoter.Context.Tables.BallotTable, [download_backups: run_backups]}
     ]
 
-    dets_children = if Application.get_env(:awards_voter, :run_backups) do
+    dets_children = if run_backups do
       dets_children ++ [{AwardsVoter.Context.Tables.BackupServer, [tables: [AwardsVoter.Context.Tables.ShowTable, AwardsVoter.Context.Tables.BallotTable]]}]
     else
       Logger.info("Will not backup DETS tables to S3")

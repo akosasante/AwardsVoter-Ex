@@ -21,4 +21,13 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
+config :awards_voter,
+       show_table_name: :test_show_table,
+       ballot_table_name: :test_ballot_table,
+       run_backups: false
+
+config :ex_aws,
+       access_key_id: "test",
+       secret_access_key: "test"
+
 config :awards_voter, environment: :test

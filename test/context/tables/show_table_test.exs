@@ -4,15 +4,18 @@ defmodule AwardsVoter.Context.Tables.ShowTableTest do
   alias AwardsVoter.Context.Tables.ShowTable
 
   setup do
-    show_table_name = :test_show_table
+    show_table_name = Application.get_env(:awards_voter, :show_table_name)
+#    IO.puts("Opening DETS")
     {:ok, _} = :dets.open_file(show_table_name, file: './#{show_table_name}.dets')
+#    IO.puts("Deleting all objects")
     :ok = :dets.delete_all_objects(show_table_name)
+#    IO.inspect(:dets.match(show_table_name, {:_, :"$1"}), label: :checking_all)
 
     {:ok, _} =
-      start_supervised({AwardsVoter.Context.Tables.ShowTable, [table_name: show_table_name]})
+      start_supervised({AwardsVoter.Context.Tables.ShowTable, [download_backups: false]})
 
     on_exit(fn ->
-      #      IO.puts("Test complete. Cleaning up...")
+#      IO.puts("Test complete. Cleaning up...")
       :dets.close(show_table_name)
     end)
 
