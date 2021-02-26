@@ -3,6 +3,7 @@ defmodule AwardsVoter.Web.BallotNew do
 
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Ballots
+  alias AwardsVoter.Context.Models.Ballot
   alias AwardsVoter.Web.Router.Helpers, as: Routes
 
   require Logger
@@ -26,7 +27,12 @@ defmodule AwardsVoter.Web.BallotNew do
           {:blank_ballot_name, nil}
         end
 
-      ballot -> {:existing, ballot}
+      ballot ->
+        if String.length(ballot_name) > 0 do
+          Ballots.save_ballot(%Ballot{ballot | ballot_name: ballot_name})
+        end
+
+        {:existing, ballot}
     end
 
     socket = if ballot_type == :blank_ballot_name do
