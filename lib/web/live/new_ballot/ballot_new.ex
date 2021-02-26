@@ -15,7 +15,7 @@ defmodule AwardsVoter.Web.BallotNew do
   end
 
   def handle_event("submit_new_ballot", %{"ballot_voter" => ballot_name, "userId" => userId}, socket) do
-    IO.inspect(userCredential, label: :userCredential)
+    IO.inspect(userId, label: :userCredential)
     socket
   end
 end
