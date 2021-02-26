@@ -30,7 +30,6 @@ defmodule AwardsVoter.Web.Router do
     pipe_through :browser
 
     get "/", BallotController, :home
-    post "/ballots", BallotController, :create_or_update_ballot
     get "/ballots/:id", BallotController, :get_ballot
     live "/ballots/:show_id/new", BallotNew
     live "/ballots/:id/edit", BallotEdit
