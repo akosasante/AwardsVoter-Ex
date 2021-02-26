@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Web.BallotEdit do
-  use Phoenix.LiveView
+  use AwardsVoter.Web, :live_view
 
   alias AwardsVoter.Context.Ballots
   alias AwardsVoter.Context.Admin

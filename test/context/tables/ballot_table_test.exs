@@ -4,12 +4,12 @@ defmodule AwardsVoter.Context.Tables.BallotTableTest do
   alias AwardsVoter.Context.Tables.BallotTable
 
   setup do
-    ballot_table_name = :test_ballot_table
+    ballot_table_name = Application.get_env(:awards_voter, :ballot_table_name)
     {:ok, _} = :dets.open_file(ballot_table_name, file: './#{ballot_table_name}.dets')
     :ok = :dets.delete_all_objects(ballot_table_name)
 
     {:ok, _} =
-      start_supervised({AwardsVoter.Context.Tables.BallotTable, [table_name: ballot_table_name]})
+      start_supervised({AwardsVoter.Context.Tables.BallotTable, [download_backups: false]})
 
     on_exit(fn ->
       #      IO.puts("Test complete. Cleaning up...")

@@ -38,7 +38,7 @@ defmodule AwardsVoter.Web.SummariesView do
 
   def num_categories(%Show{categories: categories}), do: Enum.count(categories)
 
-  def winning_categories(%Show{categories: categories} = show, ballots) do
+  def winning_categories(%Show{categories: categories}, ballots) do
     categories
     |> Enum.filter(fn category -> !is_nil(category.winner) end)
     |> Enum.sort_by(fn category -> num_correct_voted_for_category(category, ballots) end, :desc)
@@ -53,7 +53,7 @@ defmodule AwardsVoter.Web.SummariesView do
     end)
   end
 
-  def percent_correct_voted_for_category(show, category, ballots) do
+  def percent_correct_voted_for_category(_show, category, ballots) do
     num_ballots_with_vote_for_category = Enum.count(ballots, fn %Ballot{votes: votes} -> Enum.find(votes, fn vote -> vote.category.name == category.name end) end)
     num_ballots_with_correct_votes = num_correct_voted_for_category(category, ballots)
 

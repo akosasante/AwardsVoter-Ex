@@ -11,7 +11,7 @@
         <table class="min-w-full table-auto mt-4">
             <thead class="justify-between">
                 <tr>
-                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-left">Ballot username</th>
+                    <th class="bg-yellow-500 bg-opacity-90 p-4 text-left">Ballot name</th>
                     <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">Number of votes cast</th>
                     <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">Number of correct votes</th>
                     <th class="bg-yellow-500 bg-opacity-90 p-4 text-right">% Correct votes (of cast votes)</th>
@@ -23,7 +23,7 @@
             <tbody class="bg-gray-200">
                 <%= for ballot <- @ballots do %>
                  <tr class="bg-white border-b-2 border-gray-200">
-                     <td class="p-4"><%= ballot.voter %></td>
+                     <td class="p-4"><%= ballot.ballot_name %></td>
                      <td class="p-4 text-right"><%= num_voted(ballot) %></td>
                      <td class="p-4 text-right"><%= num_correct(ballot) %></td>
                      <td class="p-4 text-right"><%= percent_correct_by_voted(ballot) %></td>

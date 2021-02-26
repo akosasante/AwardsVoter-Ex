@@ -14,6 +14,7 @@ defmodule AwardsVoter.Context.Models.Ballot do
   @type t :: %__MODULE__{
           id: String.t() | nil,
           voter: String.t() | nil,
+          ballot_name: String.t() | nil,
           show_id: String.t() | nil,
           votes: list(Vote.t())
         }
@@ -21,6 +22,7 @@ defmodule AwardsVoter.Context.Models.Ballot do
 
   embedded_schema do
     field :voter, :string
+    field :ballot_name, :string
     field :show_id, :string
     embeds_many :votes, Vote, on_replace: :delete
   end
@@ -28,8 +30,8 @@ defmodule AwardsVoter.Context.Models.Ballot do
   @spec changeset(Ballot.t(), map()) :: Ecto.Changeset.t()
   def changeset(ballot, attrs) do
     ballot
-    |> cast(attrs, [:voter, :show_id])
-    |> validate_required([:voter, :show_id])
+    |> cast(attrs, [:voter, :show_id, :ballot_name])
+    |> validate_required([:voter, :show_id, :ballot_name])
     |> cast_embed(:votes)
   end
 

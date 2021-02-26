@@ -1,5 +1,5 @@
 <div class="prose mx-auto lg:my-4 my-12">
-    <h1><%= @ballot.voter %>'s <%= @show.name %> ballot</h1>
+    <h1><%= @ballot.ballot_name %> - <%= @show.name %> ballot</h1>
 </div>
 <section class="p-10">
     <div class="bg-white p-4 overflow-x-auto">
