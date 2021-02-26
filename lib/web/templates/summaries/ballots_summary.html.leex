@@ -20,19 +20,25 @@
             </thead>
 
             <tbody class="bg-gray-200">
-                <%= for category <- winning_categories(@show, @ballots) do %>
-                <tr class="bg-white border-b-2 border-gray-200">
-                    <td class="p-4"><%= category.name %></td>
-                    <td class="p-4"><%= category.winner.name %></td>
-                    <td class="p-4 text-right"><%= num_correct_voted_for_category(category, @ballots) %></td>
-                    <td class="p-4 text-right"><%= percent_correct_voted_for_category(@show, category, @ballots) %></td>
-                    <td class="p-4 text-right">
-                        <%= case most_common_vote(category, @ballots) do %>
-                        <% {nil, nil} -> %> <span></span>
-                        <% {name, vote_count} -> %> <%= name %> (<%= vote_count %>)
-                        <% end %>
-                    </td>
-                </tr>
+                <%= if Enum.empty? winning_categories(@show, @ballots) do %>
+                    <tr class="bg-white border-b-2 border-l-2 border-r-2 border-gray-200">
+                        <td colspan="5" class="p-4">No winners have been selected yet for this show.</td>
+                    </tr>
+                <% else %>
+                    <%= for category <- winning_categories(@show, @ballots) do %>
+                    <tr class="bg-white border-b-2 border-gray-200">
+                        <td class="p-4 text-left"><%= category.name %></td>
+                        <td class="p-4 text-left"><%= category.winner.name %></td>
+                        <td class="p-4 text-right"><%= num_correct_voted_for_category(category, @ballots) %></td>
+                        <td class="p-4 text-right"><%= percent_correct_voted_for_category(@show, category, @ballots) %></td>
+                        <td class="p-4 text-right">
+                            <%= case most_common_vote(category, @ballots) do %>
+                            <% {nil, nil} -> %> <span></span>
+                            <% {name, vote_count} -> %> <%= name %> (<%= vote_count %>)
+                            <% end %>
+                        </td>
+                    </tr>
+                    <% end %>
                 <% end %>
             </tbody>
         </table>

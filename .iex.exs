@@ -1,9 +1,10 @@
 IO.puts("Setting up AwardsVoter for console")
-# import_if_available(AwardsVoter)
+ import_if_available(AwardsVoter)
 # alias AwardsVoter.Context.Voting.Ballots
 # alias AwardsVoter.Context.Voting.Votes
 # alias AwardsVoter.Context.Voting
-# alias AwardsVoter.Context.Admin
+ alias AwardsVoter.Context.Admin
+ alias AwardsVoter.Context.Ballots
 # alias AwardsVoter.Context.Admin.Shows
 # alias AwardsVoter.Context.Admin.Categories
 # alias AwardsVoter.Context.Admin.Contestants
