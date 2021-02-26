@@ -16,7 +16,8 @@ defmodule AwardsVoter.Context.Models.Show do
           name: String.t() | nil,
           description: String.t() | nil,
           air_datetime: String.t() | nil,
-          categories: list(Category.t())
+          categories: list(Category.t()),
+          voting_enabled?: boolean
         }
   @type change_result :: {:ok, Show.t()} | {:errors, Changeset.t()}
 
@@ -24,6 +25,7 @@ defmodule AwardsVoter.Context.Models.Show do
     field :name, :string
     field :description, :string
     field :air_datetime, :string
+    field :voting_enabled?, :boolean, default: false
     embeds_many :categories, Category, on_replace: :delete
   end
 
@@ -34,7 +36,8 @@ defmodule AwardsVoter.Context.Models.Show do
       :id,
       :name,
       :description,
-      :air_datetime
+      :air_datetime,
+      :voting_enabled?
     ])
     |> validate_required([:name])
     |> cast_embed(:categories)

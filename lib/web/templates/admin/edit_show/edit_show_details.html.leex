@@ -2,6 +2,8 @@
   <%= label f, :name, "Show Name" %>
   <%= text_input f, :name, class: "w-full" %>
 
+  <%= label f, :voting_enabled?, "Is Voting Enabled?" %>
+  <%= select f, :voting_enabled?, [true, false] %>
 
   <%= label f, :description, "Description" %>
   <%= textarea f, :description, class: "w-full" %>

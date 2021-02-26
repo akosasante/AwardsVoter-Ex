@@ -12,6 +12,7 @@
       <%= link("Delete", to: Routes.admin_path(@socket, :delete_show, @show), method: :delete, data: [confirm: "Are you sure?"], class: "button bg-red-500 rounded w-64 p-2", style: "color: black; text-align: center; font-weight: bold;") %>
     </div>
     <%= if @show.air_datetime do %><p>Airs on: <%= format_datetime_string(@show.air_datetime) %></p><% end %>
+    <p>Voting Enabled?: <%= @show.voting_enabled? %></p>
     <%= if @show.description do %><p><%= @show.description %></p><% end %>
     <%= if @show.categories do %>
       <h2>Categories</h2>

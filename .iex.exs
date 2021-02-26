@@ -5,7 +5,7 @@ IO.puts("Setting up AwardsVoter for console")
 # alias AwardsVoter.Context.Voting
  alias AwardsVoter.Context.Admin
  alias AwardsVoter.Context.Ballots
-# alias AwardsVoter.Context.Admin.Shows
+ alias AwardsVoter.Context.Models
 # alias AwardsVoter.Context.Admin.Categories
 # alias AwardsVoter.Context.Admin.Contestants
 #

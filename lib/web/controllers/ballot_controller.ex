@@ -13,7 +13,7 @@ defmodule AwardsVoter.Web.BallotController do
   def home(conn, _params) do
     case Admin.get_all_shows() do
       shows when is_list(shows) ->
-        render(conn, :home_page, shows: shows)
+        render(conn, :home_page, shows: Enum.reject(shows, fn show -> !show.voting_enabled? end))
 
       e ->
         Logger.error("Error during Admin.get_all_shows: #{inspect e}")
