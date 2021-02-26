@@ -66,7 +66,7 @@ defmodule AwardsVoter.Factory do
 
     %Ballot{
       id: Ecto.UUID.generate(),
-      voter: sequence(:ballot_voter),
+      voter: sequence("ballot_voter"),
       ballot_name: sequence(:ballot_name, &"Ballot##{&1}"),
       show_id: Ecto.UUID.generate(),
       votes: votes
