@@ -51,8 +51,8 @@ defmodule AwardsVoter.Web.BallotNew do
     {:noreply, socket}
   end
 
-  def handle_event("submit_new_ballot", %{"errorMessage" => errMessage, "errorCode" => errCode}, %{assigns: %{show: show}} = socket) do
-    Logger.error("Error when submiting a new ballot: code=#{errCode} message=#{errMessage}")
+  def handle_event("submit_new_ballot", %{"errorMessage" => errMessage, "errorCode" => errCode}, socket) do
+    Logger.error("Error when submitting a new ballot: code=#{errCode} message=#{errMessage}")
 
     socket = socket
              |> put_flash(:error, errMessage)
