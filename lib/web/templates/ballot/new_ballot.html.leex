@@ -3,15 +3,18 @@
 </div>
 <section class="prose mx-auto my-4">
     <form phx-hook="newBallotForm" id="ballot" class="flex flex-col">
-        <label class="my-2" for="ballot_voter" data-lpignore="true">Enter a name for your ballot:
-            <input data-lpignore="true" id="ballot_voter" name="ballot[voter]" type="text" value="" class="w-1/2 rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30" required>
-        </label>
         <p>Enter your email and password below. If this is your first time here, this will create a user to track all your ballot votes.</p>
         <label class="my-2 flex flex-row items-stretch" for="email">Email:
             <input id="email"  autocomplete="email" name="firebase[email]" type="text" value="" class="w-9/12 ml-4 flex-grow rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30" required>
         </label>
         <label class="my-2 flex flex-row items-stretch" for="password">Password:
             <input id="password" autocomplete="current-password" name="password" type="password" value="" class="w-9/12 ml-4 flex-grow rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30" required>
+        </label>
+
+        <p class="my-4 text-left">If creating a new ballot for this show, enter a name for your ballot below. <br/>
+            Note, only one ballot is allowed per email address, so if an existing email account is used, this will just update the ballot name. Feel free to leave it blank otherwise.</p>
+        <label class="my-2 text-left flex flex-row items-stretch" for="ballot_voter" data-lpignore="true">Ballot name:
+            <input data-lpignore="true" id="ballot_voter" name="ballot[voter]" type="text" value="" class="w-9/12 ml-4 flex-grow rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30">
         </label>
 
         <button type="submit" class="block mx-auto mt-4 bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded" id="new-ballot-submit">Start Voting!</button>

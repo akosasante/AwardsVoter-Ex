@@ -1,5 +1,5 @@
 defmodule AwardsVoter.Web.AdminShowDetails do
-  use Phoenix.LiveView
+  use AwardsVoter.Web, :live_view
 
   alias AwardsVoter.Context.Admin
   alias AwardsVoter.Context.Models.Show

@@ -31,7 +31,7 @@ export function signInWithEmailPassword(email, password) {
                 return userCredential
             })
         } else {
-            console.error(err)
+            throw err
         }
     });
 }

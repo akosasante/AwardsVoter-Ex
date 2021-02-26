@@ -27,15 +27,13 @@ Hooks.newBallotForm = {
             const email = e.target.querySelector("#email").value
             const password = e.target.querySelector("#password").value
 
-            signInWithEmailPassword(email, password).then(userCredentials => {
-                this.pushEvent("submit_new_ballot", {ballot_voter, userId: userCredentials.user.uid})
-            })
-
-            // const x = signInWithEmailPassword(email, password)
-            // console.log(x)
-            // this.pushEvent("submit_new_ballot", {ballot_voter, userCredential: x})
-
-            // this.pushEvent("submit_new_ballot", {ballot_voter, email, password})
+            signInWithEmailPassword(email, password)
+                .then(userCredentials => {
+                    this.pushEvent("submit_new_ballot", {ballot_voter, userId: userCredentials.user.uid})
+                })
+                .catch(err => {
+                    this.pushEvent("submit_new_ballot", {errorCode: err.code, errorMessage: err.message})
+                })
         }, false)
     }
 }
