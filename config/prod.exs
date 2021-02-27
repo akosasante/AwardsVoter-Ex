@@ -14,7 +14,7 @@ config :awards_voter, AwardsVoter.Web.Endpoint,
   url: [host: "awards.akosua.xyz", port: 443],
   cache_static_manifest: "priv/static/cache_manifest.json",
   transport_options: [socket_opts: [:inet6]],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  force_ssl: [hsts: true, rewrite_on: [:x_forwarded_proto]],
   server: true
 
 # Do not print debug messages in production
