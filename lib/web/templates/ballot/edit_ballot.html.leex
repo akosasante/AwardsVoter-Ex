@@ -2,42 +2,40 @@
     <aside class="p-4 mr-4 bg-yellow-100 sticky left-0 shadow-sm flex-grow-0 flex-shrink-0" style="margin-top: -15vh; shape-outside: border-box; border-top-right-radius: 50%; border-bottom-right-radius: 50%; flex-basis: 25vw">
         <ul class="break-word w-9/12 p-4 flex flex-col justify-evenly h-full">
             <%= for category <- @show.categories do %>
-                <li class="mb-1 cursor-pointer hover:text-yellow-500">
+                <li class="mb-1 cursor-pointer hover:text-yellow-500 text-left">
                     <%= live_patch category.name, to: Routes.live_path(@socket, AwardsVoter.Web.BallotEdit, @original_ballot.id, current_category: category.name), class: "#{if category.name == @current_category.name, do: "font-bold"}" %>
                     <%= if !has_vote?(category, @vote_map, @original_ballot) do %><span>&nbsp <strong>*</strong></span><% end %>
                 </li>
             <% end %>
         </ul>
     </aside>
-    <main role="main" class="text-yellow-900 mt-28 text-left" style="margin-left: 5%">
+    <main role="main" class="text-gray-800 mt-28 text-left" style="margin-left: 5%">
         <h1 class="font-bold text-left text-gray-900 text-xl mb-4 w-9/12">Who do you think will win <%= @current_category.name %>?</h1>
-        <%= form_for :current_category, "#", [phx_change: :update_vote, class: "flex flex-col mb-4 justify-evenly text-lg"], fn _ -> %>
+        <div class="flex flex-col mb-4 justify-evenly text-lg w-9/12" >
             <%= for contestant <- @current_category.contestants do %>
-                <%= label class: "mb-4" do %>
-                    <div class="cursor-pointer flex flex-row">
-                        <%= radio_button :vote, @current_category.name, contestant.name, checked: is_matching_contestant(@vote_map, @current_category, contestant), class: "mr-2 p-2" %>
-                        <aside class="mr-6" style="width: 150px; height: 150px; margin-top: 5%;">
-                            <img src="<%= contestant.image_url %>" class="object-cover" style="height: 150px;">
-                        </aside>
-                        <section class="flex-1 ml-2 mx-6" style="max-width: 55%;">
-                            <p class="text-center font-bold"><%= contestant.name %></p>
-                            <%= if contestant.description do %><p class="mt-2"><%= contestant.description %></p><% end %>
-                        </section>
-                        <aside class="flex flex-col justify-around">
-                            <%= if contestant.youtube_url do %>
-                            <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= format_youtube_url(contestant.youtube_url) %>" alt="<%= contestant.name %>_youtube_link" class="object-contain h-8 mr-auto bg-white p-2 z-50" src="/images/youtube.png">
-                            <% end %>
-                            <%= if contestant.spotify_url do %>
-                            <img phx-click="show_modal" phx-value-show_modal_type="spotify" phx-value-show_modal_content="<%= format_spotify_url(contestant.spotify_url) %>" alt="<%= contestant.name %>_spotify_link" class="object-contain h-8 mr-auto bg-white p-2 z-50" src="/images/spotify.png">
-                            <% end %>
-                            <%= if contestant.wiki_url do %>
-                            <img phx-click="show_modal" phx-value-show_modal_type="wikipedia" phx-value-show_modal_content="<%= contestant.wiki_url %>" alt="<%= contestant.name %>_wikipedia_link" class="object-contain h-8 mr-auto bg-white p-2 z-50" src="/images/wikipedia.png">
-                            <% end %>
-                        </aside>
-                    </div>
-                <% end %>
+                <div phx-click="update_vote" phx-value-vote="<%= contestant.name %>" class="cursor-pointer flex flex-row mb-4 bg-white rounded justify-center items-center <%= if is_matching_contestant(@vote_map, @current_category, contestant) do %> bg-yellow-200 <% end %>">
+                    <%# radio_button :vote, @current_category.name, contestant.name, checked: , class: "mr-2 p-2" %>
+                    <aside class="mr-6 ml-2">
+                        <img src="<%= contestant.image_url %>" class="object-cover" style="height: 150px;">
+                    </aside>
+                        <section class="flex-1 mx-6 my-4">
+                        <p class="text-center font-bold"><%= contestant.name %></p>
+                        <%= if contestant.description do %><p class="mt-2"><%= contestant.description %></p><% end %>
+                    </section>
+                    <aside class="flex flex-col justify-around self-stretch ml-auto p-4 bg-yellow-100">
+                        <%= if contestant.youtube_url do %>
+                        <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= format_youtube_url(contestant.youtube_url) %>" alt="<%= contestant.name %>_youtube_link" class="object-contain h-8 mr-auto bg-transparent p-2 z-50" src="/images/youtube.png">
+                        <% end %>
+                        <%= if contestant.spotify_url do %>
+                        <img phx-click="show_modal" phx-value-show_modal_type="spotify" phx-value-show_modal_content="<%= format_spotify_url(contestant.spotify_url) %>" alt="<%= contestant.name %>_spotify_link" class="object-contain h-8 mr-auto bg-transparent p-2 z-50" src="/images/spotify.png">
+                        <% end %>
+                        <%= if contestant.wiki_url do %>
+                        <img phx-click="show_modal" phx-value-show_modal_type="wikipedia" phx-value-show_modal_content="<%= contestant.wiki_url %>" alt="<%= contestant.name %>_wikipedia_link" class="object-contain h-8 mr-auto bg-transparent p-2 z-50" src="/images/wikipedia.png">
+                        <% end %>
+                    </aside>
+                </div>
              <% end %>
-        <% end %>
+        </div>
         <%= if @show_modal do %>
         <div class="modal-backdrop fixed top-0 left-0 bg-gray-200 h-screen w-screen z-50 flex justify-center items-center bg-opacity-50">
             <img phx-click="close_modal" class="absolute top-0 right-0 h-6 cursor-pointer" style="margin: 2rem !important;" src="/images/close.svg" alt="close modal">
@@ -54,8 +52,9 @@
         <% end %>
         <button phx-click="next_category" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-16">Go to Next Category</button>
         <button phx-click="reset_vote" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-16">Reset Vote</button>
+
+        <p>When you're all done, hit the Submit button to submit all your votes. You can always come back and finish or update your votes, until the show starts!</p>
         <br>
         <button phx-click="submit_ballot" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-16">Submit Ballot</button>
-        <br>
     </main>
 </section>

@@ -39,9 +39,7 @@ defmodule AwardsVoter.Web.BallotEdit do
     {:noreply, push_patch(socket, to: "#{URI.parse(uri).path}?current_category=#{first_category.name}")}
   end
 
-  def handle_event("update_vote", %{"vote" => vote}, %{assigns: %{current_category: category, vote_map: vote_map}} = socket) do
-    voted_contestant = Map.get(vote, category.name)
-
+  def handle_event("update_vote", %{"vote" => voted_contestant}, %{assigns: %{current_category: category, vote_map: vote_map}} = socket) do
     vote_map = Map.put(vote_map, category.name, voted_contestant)
     socket = assign(socket, :vote_map, vote_map)
 
