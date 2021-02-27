@@ -18,7 +18,7 @@ defmodule AwardsVoter.Web.BallotNew do
     {:ok, socket}
   end
 
-  def handle_event("submit_new_ballot", %{"ballot_voter" => ballot_name, "userId" => user_id}, %{assigns: %{show: show}} = socket) do
+  def handle_event("submit_new_ballot", %{"ballot_voter" => ballot_name, "userId" => user_id, "go_to_view" => redirect_to_view_ballot}, %{assigns: %{show: show}} = socket) do
     {ballot_type, ballot} = case Ballots.find_ballot_by_voter_and_show(user_id, show.id) do
       nil ->
         if String.length(ballot_name) > 0 do
@@ -43,9 +43,11 @@ defmodule AwardsVoter.Web.BallotNew do
         :existing -> "Existing ballot opened."
       end
 
+      redirect_to = if redirect_to_view_ballot, do: Routes.ballot_path(socket, :get_ballot, ballot.id), else: Routes.live_path(socket, AwardsVoter.Web.BallotEdit, ballot.id)
+
       socket
       |> put_flash(:info, flash)
-      |> push_redirect(to: Routes.ballot_path(socket, :get_ballot, ballot.id))
+      |> push_redirect(to: redirect_to)
     end
 
     {:noreply, socket}
