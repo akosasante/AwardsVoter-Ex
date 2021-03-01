@@ -27,8 +27,8 @@
                  <tr class="bg-white border-b-2 border-gray-200">
                      <td class="p-4"><%= ballot.ballot_name %></td>
                      <td class="p-4 text-right"><%= num_voted(ballot) %></td>
-                     <td class="p-4 text-right"><%= num_correct(ballot) %></td>
-                     <td class="p-4 text-right"><%= percent_correct_by_voted(ballot) %></td>
+                     <td class="p-4 text-right"><%= num_correct(ballot, @show) %></td>
+                     <td class="p-4 text-right"><%= percent_correct_by_voted(ballot, @show) %></td>
                      <td class="p-4 text-right"><%= percent_correct_by_categories(ballot, @show) %></td>
                      <%= if @show_view_ballot do %>
                         <td class="p-4 text-center"><%= link "View this ballot", to: Routes.ballot_path(@socket, :get_ballot, ballot.id, read_only: true), class: "font-bold text-yellow-400 hover:text-yellow-600" %></td>

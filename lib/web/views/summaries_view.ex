@@ -11,9 +11,9 @@ defmodule AwardsVoter.Web.SummariesView do
     Enum.count(votes, fn vote -> !is_nil(vote.contestant) end)
   end
 
-  def percent_correct_by_voted(ballot) do
+  def percent_correct_by_voted(ballot, show) do
     num_voted = num_voted(ballot)
-    num_correct = num_correct(ballot)
+    num_correct = num_correct(ballot, show)
     if num_voted == 0 or num_correct == 0 do
       "0.00" |> String.to_float()
     else
@@ -23,7 +23,7 @@ defmodule AwardsVoter.Web.SummariesView do
 
   def percent_correct_by_categories(ballot, show) do
     num_categories = num_categories(show)
-    num_correct = num_correct(ballot)
+    num_correct = num_correct(ballot, show)
 
     if num_categories == 0 or num_correct == 0 do
       "0.00" |> String.to_float()
@@ -75,6 +75,13 @@ defmodule AwardsVoter.Web.SummariesView do
     |> Enum.max_by(fn {_, num_votes} -> num_votes end, &>=/2, fn -> {nil, nil} end)
   end
 
-  def num_correct(ballot), do: Ballots.count_correct_votes(ballot)
+  def num_correct(ballot, %Show{categories: categories}) do
+    Enum.count(ballot.votes, fn
+      %Vote{category: category, contestant: contestant} ->
+        cat = Enum.find(categories, fn show_category -> show_category.name == category.name end)
+        contestant.name == Map.get(cat.winner || %{}, :name)
+      _ -> false
+    end)
+  end
 
 end
