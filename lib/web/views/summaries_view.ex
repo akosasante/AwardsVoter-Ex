@@ -22,13 +22,13 @@ defmodule AwardsVoter.Web.SummariesView do
   end
 
   def percent_correct_by_categories(ballot, show) do
-    num_categories = num_categories(show)
+    num_winners = num_winners(show)
     num_correct = num_correct(ballot, show)
 
-    if num_categories == 0 or num_correct == 0 do
+    if num_winners == 0 or num_correct == 0 do
       "0.00" |> String.to_float()
     else
-      Kernel./(num_correct, num_categories) |> Kernel.*(100)  |> Float.round(1)
+      Kernel./(num_correct, num_winners) |> Kernel.*(100)  |> Float.round(1)
     end
   end
 
