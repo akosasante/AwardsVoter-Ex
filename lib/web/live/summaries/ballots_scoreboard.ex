@@ -35,7 +35,7 @@ defmodule AwardsVoter.Web.Scoreboard do
   def handle_info(%Phoenix.Socket.Broadcast{event: "ballot_updated", payload: _map_with_updated_ballot, topic: "show:" <> show_id}, socket) do
     ballots =
       Ballots.fetch_ballots_for_show(show_id)
-      |> Enum.sort_by(fn ballot -> {AwardsVoter.Web.SummariesView.num_correct(ballot, socket.assigns.show), AwardsVoter.Web.SummariesView.num_voted(ballot, socket.assigns.show)} end, :desc)
+      |> Enum.sort_by(fn ballot -> {AwardsVoter.Web.SummariesView.num_correct(ballot, socket.assigns.show), AwardsVoter.Web.SummariesView.num_voted(ballot)} end, :desc)
     socket = assign(socket, :ballots, ballots)
     {:noreply, socket}
   end

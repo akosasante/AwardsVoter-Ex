@@ -1,7 +1,6 @@
 defmodule AwardsVoter.Web.SummariesView do
   use AwardsVoter.Web, :view
 
-  alias AwardsVoter.Context.Ballots
   alias AwardsVoter.Context.Models.Ballot
   alias AwardsVoter.Context.Models.Vote
   alias AwardsVoter.Context.Models.Category
