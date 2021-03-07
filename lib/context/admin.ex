@@ -219,6 +219,11 @@ defmodule AwardsVoter.Context.Admin do
     remove_contestant_from_show(show, category, contestant_name)
   end
 
+  def add_show_category(%Show{} = show, category_map) do
+    {:ok, new_category} = Category.create(category_map)
+    %Show{show | categories: [new_category | show.categories]}
+  end
+
   #  def update_show(show, show_map)
   #  def delete_show(show)
   #

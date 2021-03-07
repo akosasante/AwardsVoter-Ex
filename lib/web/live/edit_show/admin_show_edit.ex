@@ -52,6 +52,22 @@ defmodule AwardsVoter.Web.AdminShowEdit do
   end
 
   def handle_event(
+        "save_category_details",
+        %{"new_category" => new_category_map},
+        %{assigns: %{selected_category_name: selected_category_name, updated_show: updated_show}} =
+          socket
+      ) do
+    new_show = Admin.add_show_category(updated_show, new_category_map)
+
+    socket =
+      socket
+      |> assign(:updated_show, new_show)
+      |> assign(:selected_category_name, new_category_map["name"])
+
+    {:noreply, socket}
+  end
+
+  def handle_event(
         "save_contestant_details",
         %{"contestant" => updated_contestant_map},
         %{
@@ -156,5 +172,14 @@ defmodule AwardsVoter.Web.AdminShowEdit do
   def handle_event("submit_save", _params, %{assigns: %{updated_show: show}} = socket) do
     :ok = Admin.save_show(show)
     {:noreply, push_redirect(socket, to: Routes.admin_path(socket, :get_show, show))}
+  end
+
+  def handle_event("show_add_category", _params, socket) do
+    socket =
+      socket
+      |> assign(:selected_category_name, "")
+      |> assign(:show_category, true)
+
+    {:noreply, socket}
   end
 end
