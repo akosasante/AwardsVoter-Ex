@@ -97,6 +97,15 @@ defmodule AwardsVoter.Web.AdminShowEdit do
     {:noreply, socket}
   end
 
+  def handle_event("save_contestant_details", %{"new_contestant" => new_contestant_map}, %{assigns: %{updated_show: updated_show, selected_category_name: selected_category_name}} = socket) do
+      show = Admin.add_show_contestant(updated_show, selected_category_name, new_contestant_map)
+      socket =
+        socket
+        |> assign(:updated_show, show)
+        |> assign(:selected_contestant_name, new_contestant_map["name"])
+    {:noreply, socket}
+  end
+
   def handle_event("show_category", %{"category" => category_name}, socket) do
     socket =
       if socket.assigns.show_category and socket.assigns.selected_category_name == category_name do
@@ -179,6 +188,15 @@ defmodule AwardsVoter.Web.AdminShowEdit do
       socket
       |> assign(:selected_category_name, "")
       |> assign(:show_category, true)
+
+    {:noreply, socket}
+  end
+
+  def handle_event("show_add_contestant", _params, socket) do
+    socket =
+      socket
+      |> assign(:selected_contestant_name, "")
+      |> assign(:show_contestant, true)
 
     {:noreply, socket}
   end
