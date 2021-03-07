@@ -14,7 +14,7 @@ defmodule AwardsVoter.Web.EditContestantDetails do
       ) do
 
     socket = case Admin.get_contestant_by_name(show, category_name, contestant_name) do
-      nil -> socket
+      nil -> assign(socket, :contestant_changeset, nil)
       selected_contestant -> assign_new(socket, :contestant_changeset, fn ->
         Contestant.to_changeset(selected_contestant)
       end)
