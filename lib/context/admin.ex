@@ -226,11 +226,14 @@ defmodule AwardsVoter.Context.Admin do
 
   def add_show_contestant(%Show{} = show, category_name, contestant_map) do
     {:ok, new_contestant} = Contestant.create(contestant_map)
-    category = get_category_by_name(show, category_name) |> IO.inspect(label: :category)
+    new_contestant_map = contestant_to_map(new_contestant)
+
+    category = get_category_by_name(show, category_name)
     updated_category =
       category
       |> category_to_map()
-      |> Map.put(:contestants, [contestant_to_map(new_contestant) | category.contestants])
+      |> Map.update(:contestants, [new_contestant_map], &([new_contestant_map | &1]))
+
     update_show_category(show, category, updated_category)
   end
 
