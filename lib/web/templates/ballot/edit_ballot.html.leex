@@ -24,10 +24,10 @@
                     </section>
                     <aside class="flex flex-col justify-around self-stretch ml-auto p-4 bg-yellow-100">
                         <%= if contestant.youtube_url do %>
-                        <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= format_youtube_url(contestant.youtube_url) %>" alt="<%= contestant.name %>_youtube_link" class="object-contain h-8 mr-auto bg-transparent p-2 z-50" src="/images/youtube.png">
+                        <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= format_youtube_url(contestant.youtube_url) %>" alt="<%= contestant.name %>_youtube_link" class="object-contain h-8 mr-auto bg-transparent p-1 z-50" src="/images/youtube.png">
                         <% end %>
                         <%= if contestant.spotify_url do %>
-                        <img phx-click="show_modal" phx-value-show_modal_type="spotify" phx-value-show_modal_content="<%= format_spotify_url(contestant.spotify_url) %>" alt="<%= contestant.name %>_spotify_link" class="object-contain h-8 mr-auto bg-transparent p-2 z-50" src="/images/spotify.png">
+                        <img phx-click="show_modal" phx-value-show_modal_type="spotify" phx-value-show_modal_content="<%= format_spotify_url(contestant.spotify_url) %>" alt="<%= contestant.name %>_spotify_link" class="object-contain h-8 mr-auto bg-transparent p-0 z-50" src="/images/spotify.png">
                         <% end %>
                         <%= if contestant.wiki_url do %>
                         <img phx-click="show_modal" phx-value-show_modal_type="wikipedia" phx-value-show_modal_content="<%= contestant.wiki_url %>" alt="<%= contestant.name %>_wikipedia_link" class="object-contain h-8 mr-auto bg-transparent p-2 z-50" src="/images/wikipedia.png">
