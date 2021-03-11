@@ -60,4 +60,14 @@ defmodule AwardsVoter.Web.BallotView do
     {:ok, now} = DateTime.now("America/Toronto", Tz.TimeZoneDatabase)
     DateTime.diff(now, datetime_est) <= @buffer_airdate_duration
   end
+
+  def comparison_bg_color(category, ballot) do
+    voted_for = get_voted_for_contestant(ballot, category)
+
+    cond do
+      is_nil(category.winner) -> "bg-white"
+      Map.get(voted_for, :name) == category.winner.name -> "bg-green-300"
+      true -> "bg-red-300"
+    end
+  end
 end

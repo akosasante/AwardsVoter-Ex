@@ -1,0 +1,49 @@
+<div class="prose mx-auto lg:my-4 my-12">
+    <h1>Comparing ballots for <%= @show.name %></h1>
+</div>
+<div class="flex flex-row justify-around">
+    <section class="p-4 w-6/12">
+        <div class="prose mx-auto lg:my-2 my-6">
+            <h3><%= @ballot1.ballot_name %></h3>
+        </div>
+        <table class="min-w-full table-auto">
+            <thead class="justify-between">
+            <tr>
+                <th class="bg-yellow-500 bg-opacity-90 p-4">Category Name</th>
+                <th class="bg-yellow-500 bg-opacity-90 p-4">Voted for</th>
+            </tr>
+            </thead>
+
+            <tbody class="bg-gray-200">
+            <%= for category <- @show.categories do %>
+            <tr class="<%= comparison_bg_color(category, @ballot1) %> border-b-2 border-gray-200">
+                <td class="p-4"><%= category.name %></td>
+                <td class="p-4"><%= get_voted_for_contestant(@ballot1, category) |> Map.get(:name, nil) %></td>
+            </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </section>
+    <section class="p-4 w-6/12">
+        <div class="prose mx-auto lg:my-2 my-6">
+            <h3><%= @ballot2.ballot_name %></h3>
+        </div>
+        <table class="min-w-full table-auto">
+            <thead class="justify-between">
+            <tr>
+                <th class="bg-yellow-500 bg-opacity-90 p-4">Category Name</th>
+                <th class="bg-yellow-500 bg-opacity-90 p-4">Voted for</th>
+            </tr>
+            </thead>
+
+            <tbody class="bg-gray-200">
+            <%= for category <- @show.categories do %>
+            <tr class="<%= comparison_bg_color(category, @ballot2) %> border-b-2 border-gray-200">
+                <td class="p-4"><%= category.name %></td>
+                <td class="p-4"><%= get_voted_for_contestant(@ballot2, category) |> Map.get(:name, nil) %></td>
+            </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </section>
+</div>

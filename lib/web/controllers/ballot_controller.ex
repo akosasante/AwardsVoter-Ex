@@ -32,6 +32,13 @@ defmodule AwardsVoter.Web.BallotController do
     render(conn, :get_ballot, ballot: ballot, show: show, can_vote?: !read_only? and within_airtime)
   end
 
+  def compare_ballots(conn, %{"first_ballot" => ballot_1_id, "second_ballot" => ballot_2_id}) do
+    ballot1 = Ballots.get_ballot(ballot_1_id)
+    ballot2 = Ballots.get_ballot(ballot_2_id)
+    show = Admin.get_show_by_id(ballot1.show_id)
+    render(conn, :compare_ballots, ballot1: ballot1, ballot2: ballot2, show: show)
+  end
+
   defp airtime_is_valid(%Show{air_datetime: nil}), do: true
 
   defp airtime_is_valid(%Show{air_datetime: air_datetime}) do
