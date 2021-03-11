@@ -61,13 +61,21 @@ defmodule AwardsVoter.Web.BallotView do
     DateTime.diff(now, datetime_est) <= @buffer_airdate_duration
   end
 
-  def comparison_bg_color(category, ballot) do
+  def comparison_bg_color(category, ballot, other_ballot) do
     voted_for = get_voted_for_contestant(ballot, category)
 
     cond do
+      is_nil(category.winner) and !is_nil(Map.get(voted_for, :name)) and is_unique_vote?(category, ballot, other_ballot) -> "bg-yellow-200"
       is_nil(category.winner) -> "bg-white"
       Map.get(voted_for, :name) == category.winner.name -> "bg-green-300"
       true -> "bg-red-300"
     end
+  end
+
+  defp is_unique_vote?(category, ballot, other_ballot) do
+    ballot_1_voted_for = get_voted_for_contestant(ballot, category)
+    ballot_2_voted_for = get_voted_for_contestant(other_ballot, category)
+
+    Map.get(ballot_1_voted_for, :name) != Map.get(ballot_2_voted_for, :name)
   end
 end

@@ -16,7 +16,7 @@
 
             <tbody class="bg-gray-200">
             <%= for category <- @show.categories do %>
-            <tr class="<%= comparison_bg_color(category, @ballot1) %> border-b-2 border-gray-200">
+            <tr class="<%= comparison_bg_color(category, @ballot1, @ballot2) %> border-b-2 border-gray-200">
                 <td class="p-4"><%= category.name %></td>
                 <td class="p-4"><%= get_voted_for_contestant(@ballot1, category) |> Map.get(:name, nil) %></td>
             </tr>
@@ -38,7 +38,7 @@
 
             <tbody class="bg-gray-200">
             <%= for category <- @show.categories do %>
-            <tr class="<%= comparison_bg_color(category, @ballot2) %> border-b-2 border-gray-200">
+            <tr class="<%= comparison_bg_color(category, @ballot2, @ballot1) %> border-b-2 border-gray-200">
                 <td class="p-4"><%= category.name %></td>
                 <td class="p-4"><%= get_voted_for_contestant(@ballot2, category) |> Map.get(:name, nil) %></td>
             </tr>
