@@ -4,7 +4,7 @@
 <section class="p-10">
     <div class="bg-white p-4 overflow-x-auto">
         <div class="flex flex-row justify-between">
-            <%= live_redirect "See live scoreboard for this show", to: Routes.live_path(@socket,  AwardsVoter.Web.Scoreboard, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
+            <%= live_redirect "See live scoreboard for this show", to: Routes.live_path(@socket,  AwardsVoter.Web.Scoreboard, @show.id, current_ballot: @current_ballot_id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
             <p><strong><%= num_winners(@show) %> / <%= num_categories(@show) %></strong> categories have been updated with winners</p>
         </div>
 
