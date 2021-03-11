@@ -33,7 +33,7 @@ defmodule AwardsVoter.Web.Router do
     get "/ballots/:id", BallotController, :get_ballot
     live "/ballots/:show_id/new", BallotNew
     live "/ballots/:id/edit", BallotEdit
-    get "/ballots/:first_ballot/:second_ballot", BallotController, :compare_ballots
+    live "/ballots/:first_ballot/:second_ballot", BallotCompare
     live "/show/:id/scoreboard", Scoreboard
     live "/show/:id/summary", BallotsSummary
   end
