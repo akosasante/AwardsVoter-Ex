@@ -1,6 +1,17 @@
+<style>
+    .color-box {
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+    }
+</style>
 <div class="prose mx-auto lg:my-4 my-12">
     <h1>Comparing ballots for <%= @show.name %></h1>
 </div>
+<details class="cursor-pointer w-full text-center">
+    <summary class="font-bold">Row colours legend</summary>
+    <p><span class="color-box bg-red-400"></span> rows indicate incorrect votes <br> <span class="color-box bg-green-400"></span>  rows are correct votes <br> <span class="color-box bg-yellow-400"></span>  rows are ones where you voted differently than the opponent, or vice-versa</p>
+</details>
 <div class="flex flex-row justify-around">
     <section class="p-4 w-6/12">
         <div class="prose mx-auto lg:my-2 my-6">
