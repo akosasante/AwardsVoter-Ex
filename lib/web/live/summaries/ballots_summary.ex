@@ -20,6 +20,12 @@ defmodule AwardsVoter.Web.BallotsSummary do
     {:ok, socket}
   end
 
+  def handle_params(params, _uri, socket) do
+    current_ballot_id = Map.get(params, "current_ballot")
+    socket = assign(socket, current_ballot_id: current_ballot_id)
+    {:noreply, socket}
+  end
+
   def handle_info(%Phoenix.Socket.Broadcast{event: "winner_updated", payload: _map_with_category_and_contestant, topic: "show:" <> show_id}, socket) do
     %Show{} = show = Admin.get_show_by_id(show_id)
     socket = assign(socket, :show, show)

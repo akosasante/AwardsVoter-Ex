@@ -4,7 +4,9 @@
 <section class="p-10">
     <div class="bg-white p-4 overflow-x-auto">
         <p><strong><%= Enum.count(@ballot.votes, fn vote -> vote.contestant end) %></strong> out of <strong><%= length(@show.categories) %></strong> votes cast in this ballot.</p>
-        <%= live_redirect "See scoreboard for this award show.", to: Routes.live_path(@conn, AwardsVoter.Web.Scoreboard, @show.id), class: "font-bold text-yellow-400 hover:text-yellow-200" %>
+        <%= if @can_vote? do %>
+            <%= live_redirect "See scoreboard for this award show.", to: Routes.live_path(@conn, AwardsVoter.Web.Scoreboard, @show.id, current_ballot: @ballot.id), class: "font-bold text-yellow-400 hover:text-yellow-200" %>
+        <% end %>
         <table class="min-w-full table-auto mt-4">
             <thead class="justify-between">
             <tr>
