@@ -31,9 +31,17 @@
                      <td class="p-4 text-right"><%= percent_correct_by_voted(ballot, @show) %></td>
                      <td class="p-4 text-right"><%= percent_correct_by_categories(ballot, @show) %></td>
                      <%= if @show_view_ballot do %>
-                        <%= if is_nil(@current_ballot_id) do %>
-                            <td class="p-4 text-center"><%= link "View this ballot", to: Routes.ballot_path(@socket, :get_ballot, ballot.id, read_only: true), class: "font-bold text-yellow-400 hover:text-yellow-600" %></td>
-                        <% end %>
+                        <td class="p-4 text-center">
+                            <%= if is_nil(@current_ballot_id) do %>
+                                <%= link "View this ballot", to: Routes.ballot_path(@socket, :get_ballot, ballot.id, read_only: true), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
+                            <% else %>
+                                <%= if ballot.id == @current_ballot_id do %>
+                                    <%= link "View my ballot", to: Routes.ballot_path(@socket, :get_ballot, ballot.id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
+                                <% else %>
+                                    <%= link "Compare with this ballot", to: Routes.ballot_path(@socket, :compare_ballot, @current_ballot_id, ballot.id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
+                                <% end %>
+                            <% end %>
+                        </td>
                      <% end %>
                  </tr>
                 <% end %>
