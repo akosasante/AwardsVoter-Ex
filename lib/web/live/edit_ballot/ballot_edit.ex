@@ -102,11 +102,14 @@ defmodule AwardsVoter.Web.BallotEdit do
   end
 
   defp vote_map_into_votes(vote_map, show) do
-    Enum.map(vote_map, fn {category_name, contestant_name} ->
-      category = Admin.get_category_by_name(show, category_name)
-      contestant = Admin.get_contestant_by_name(category, contestant_name) |> Admin.contestant_to_map()
-      Ballots.create_vote(%{category: category |> Admin.category_to_map(), contestant: contestant})
+    Enum.map(vote_map, fn
+      {_, nil} -> nil
+      {category_name, contestant_name} ->
+        category = Admin.get_category_by_name(show, category_name)
+        contestant = Admin.get_contestant_by_name(category, contestant_name) |> Admin.contestant_to_map()
+        Ballots.create_vote(%{category: category |> Admin.category_to_map(), contestant: contestant})
     end)
+    |> Enum.reject(&is_nil/1)
   end
 
   defp airtime_is_valid(%Show{air_datetime: nil}), do: true
