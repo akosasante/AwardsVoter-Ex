@@ -47,8 +47,13 @@ defmodule AwardsVoter.Web.BallotView do
     if String.contains?(spotify_url, "/embed") do
       spotify_url
     else
-      [base_url, spotify_id] = String.split(spotify_url, "track")
-      "#{base_url}embed/track#{spotify_id}"
+      pattern = ~r/^https:\/\/open\.spotify\.com\/(\w+)\/(.*)$/
+      case Regex.run(pattern, spotify_url, capture: :all_but_first) do
+        [type_of_spotify_entity, spotify_id] ->
+          [base_url, _] = String.split(spotify_url, type_of_spotify_entity)
+          "#{base_url}embed/#{type_of_spotify_entity}/#{spotify_id}"
+        nil -> ""
+      end
     end
   end
 
