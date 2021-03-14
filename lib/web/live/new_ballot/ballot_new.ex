@@ -18,13 +18,13 @@ defmodule AwardsVoter.Web.BallotNew do
     {:ok, socket}
   end
 
-  def handle_event("submit_new_ballot", %{"ballot_voter" => ballot_name, "userId" => user_id, "go_to_view" => redirect_to_view_ballot}, %{assigns: %{show: show}} = socket) do
+  def handle_event("submit_new_ballot", %{"ballot_voter" => ballot_name, "userId" => user_id, "go_to_view" => redirect_to_view_ballot, "email" => email}, %{assigns: %{show: show}} = socket) do
     {ballot_type, ballot} = case Ballots.find_ballot_by_voter_and_show(user_id, show.id) do
       nil ->
         if String.length(ballot_name) > 0 do
           {:new, Ballots.create_ballot(%{"voter" => user_id, "show_id" => show.id, "ballot_name" => ballot_name})}
         else
-          {:blank_ballot_name, nil}
+          {:new, Ballots.create_ballot(%{"voter" => user_id, "show_id" => show.id, "ballot_name" => email})}
         end
 
       ballot ->

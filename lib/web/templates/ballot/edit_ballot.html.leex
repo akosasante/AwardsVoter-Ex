@@ -1,34 +1,35 @@
 <section class="flex flex-row">
-    <aside class="p-4 mr-4 bg-yellow-100 sticky left-0 shadow-sm flex-grow-0 flex-shrink-0" style="margin-top: -15vh; shape-outside: border-box; border-top-right-radius: 50%; border-bottom-right-radius: 50%; flex-basis: 25vw">
+    <aside class="p-4 mr-4 bg-yellow-100 sticky left-0 shadow-sm flex-grow-0 flex-shrink-0 hidden md:block" style="margin-top: -15vh; shape-outside: border-box; border-top-right-radius: 50%; border-bottom-right-radius: 50%; flex-basis: 25vw">
         <ul class="break-word w-9/12 p-4 flex flex-col justify-evenly h-full">
             <%= for category <- @show.categories do %>
                 <li class="mb-1 cursor-pointer hover:text-yellow-500 text-left">
-                    <%= live_patch category.name, to: Routes.live_path(@socket, AwardsVoter.Web.BallotEdit, @original_ballot.id, current_category: category.name), class: "#{if category.name == @current_category.name, do: "font-bold"}" %>
+                    <%= live_redirect category.name, to: Routes.live_path(@socket, AwardsVoter.Web.BallotEdit, @original_ballot.id, current_category: category.name), class: "#{if category.name == @current_category.name, do: "font-bold"}" %>
                     <%= if !has_vote?(category, @vote_map, @original_ballot) do %><span>&nbsp <strong>*</strong></span><% end %>
                 </li>
             <% end %>
         </ul>
     </aside>
-    <main role="main" class="text-gray-800 mt-28 text-left" style="margin-left: 5%">
-        <h1 class="font-bold text-left text-gray-900 text-xl w-9/12 <%= if !is_nil(@current_category.description), do: "mb-2", else: "mb-4" %>">Who do you think will win <%= @current_category.name %>?</h1>
+    <main role="main" class="text-gray-800 mt-4 md:mt-28 text-left" style="margin-left: 5%">
+        <h1 class="font-bold text-left text-gray-900 text-xl w-full md:w-9/12 <%= if !is_nil(@current_category.description), do: "mb-2", else: "mb-4" %>">Who do you think will win <%= @current_category.name %>?</h1>
+        <h2 class="font-bold text-lg text-gray-600 md:hidden mb-4">Tap on the picture or nominee name to select your vote; the selected vote will be highlighted in yellow.</h2>
         <%= if !is_nil(@current_category.description) do %>
-        <details class="mb-4 cursor-pointer w-9/12">
+        <details class="mb-4 cursor-pointer w-full md:w-9/12">
             <summary class="font-bold">Category Description</summary>
             <p><%= @current_category.description %></p>
         </details>
         <% end %>
-        <div class="flex flex-col mb-4 justify-evenly text-lg w-9/12" >
+        <div class="flex flex-col mb-4 justify-evenly text-lg w-11/12 md:w-9/12" >
             <%= for contestant <- @current_category.contestants do %>
-                <div phx-click="update_vote" phx-value-vote="<%= contestant.name %>" class="cursor-pointer flex flex-row mb-4 bg-white rounded justify-center items-center <%= if is_matching_contestant(@vote_map, @current_category, contestant) do %> bg-yellow-200 <% end %>">
+                <div phx-click="update_vote" phx-value-vote="<%= contestant.name %>" class="cursor-pointer flex flex-col md:flex-row mb-4 bg-white rounded justify-center items-center <%= if is_matching_contestant(@vote_map, @current_category, contestant) do %> bg-yellow-200 <% end %>">
                     <%# radio_button :vote, @current_category.name, contestant.name, checked: , class: "mr-2 p-2" %>
                     <aside class="mr-6 ml-2">
                         <img src="<%= contestant.image_url %>" class="object-cover" style="height: 150px;">
                     </aside>
-                        <section class="flex-1 mx-6 my-4">
-                        <p class="text-center font-bold"><%= contestant.name %></p>
-                        <%= if contestant.description do %><p class="mt-2"><%= contestant.description %></p><% end %>
+                    <section class="flex-1 mx-2 md:mx-6 my-4">
+                        <p class="md:text-center font-bold"><%= contestant.name %></p>
+                        <%= if contestant.description do %><p class="mt-2 hidden md:block"><%= contestant.description %></p><% end %>
                     </section>
-                    <aside class="flex flex-col justify-around self-stretch ml-auto p-4 bg-yellow-100">
+                    <aside class="hidden md:flex flex-col justify-around self-stretch ml-auto p-4 bg-yellow-100">
                         <%= if contestant.youtube_url do %>
                         <img phx-click="show_modal" phx-value-show_modal_type="youtube" phx-value-show_modal_content="<%= format_youtube_url(contestant.youtube_url) %>" alt="<%= contestant.name %>_youtube_link" class="object-contain h-8 mr-auto bg-transparent p-1 z-50" src="/images/youtube.png">
                         <% end %>
@@ -56,10 +57,11 @@
             </div>
         </div>
         <% end %>
-        <button phx-click="next_category" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-16">Go to Next Category</button>
-        <button phx-click="reset_vote" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-16">Reset Vote</button>
+        <button phx-click="next_category" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-4 md:mb-16">Go to Next Category</button>
+        <button phx-click="prev_category" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-4 md:mb-16 md:hidden">Go to Previous Category</button>
+        <button phx-click="reset_vote" phx-value-category="<%=@current_category.name %>" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-8 md:mb-16">Reset Selection</button>
 
-        <p>When you're all done, hit the Submit button to submit all your votes. You can always come back and finish or update your votes, until the show starts!</p>
+        <p>When you're done with all your votes, hit the Submit button below. You can always come back and finish or update your votes, until the show starts!</p>
         <br>
         <button phx-click="submit_ballot" class="bg-yellow-500 hover:bg-yellow-400 rounded p-2 mr-2 font-bold mb-16">Submit Ballot</button>
     </main>

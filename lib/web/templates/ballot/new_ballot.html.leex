@@ -1,25 +1,23 @@
 <div class="prose mx-auto lg:my-10 my-12 px-4 lg:px-0">
     <h1>Creating new ballot for <%= @show.name %></h1>
 </div>
-<section class="prose mx-auto my-4">
+<section class="prose mx-auto my-4 px-8 md:px-0">
     <form phx-hook="newBallotForm" id="ballot" class="flex flex-col">
         <p>Enter your email and password below. If this is your first time here, this will create a user to track all your ballot votes.</p>
-        <label class="my-2 flex flex-row items-stretch" for="email">Email:
-            <input id="email"  autocomplete="email" name="firebase[email]" type="text" value="" class="w-9/12 ml-4 flex-grow rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30" required>
+        <label class="my-2 flex flex-col md:flex-row items-stretch" for="email"><span class="w-auto md:w-2/12 text-left">Email:</span>
+            <input id="email"  autocomplete="email" name="firebase[email]" type="text" value="" class="w-full md:w-10/12 flex-grow rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30" required>
         </label>
-        <label class="my-2 flex flex-row items-stretch" for="password">Password:
-            <input id="password" autocomplete="current-password" name="password" type="password" value="" class="w-9/12 ml-4 flex-grow rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30" required>
+        <label class="my-2 flex flex-col md:flex-row items-stretch" for="password"><span class="w-auto md:w-2/12 text-left">Password:</span>
+            <input id="password" autocomplete="current-password" name="password" type="password" value="" class="w-full md:w-10/12 flex-grow rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30" required>
         </label>
-
-        <p class="my-4 text-left">If creating a new ballot for this show, enter a name for your ballot below. <br/>
-            Note, only one ballot is allowed per email address, so if an existing email account is used, this will just update the ballot name. Feel free to leave it blank otherwise.</p>
-        <label class="my-2 text-left flex flex-row items-stretch" for="ballot_voter" data-lpignore="true">Ballot name:
-            <input data-lpignore="true" id="ballot_voter" name="ballot[voter]" type="text" value="" class="w-9/12 ml-4 flex-grow rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30">
+        <label class="my-2 text-left flex flex-col md:flex-row items-stretch" for="ballot_voter" data-lpignore="true"><span class="w-auto md:w-2/12 text-left">Ballot name (optional):</span>
+            <input data-lpignore="true" id="ballot_voter" name="ballot[voter]" type="text" value="" class="w-full md:w-10/12 flex-grow rounded-md border-gray-200 shadow-sm bg-yellow-200 bg-opacity-20 focus:border-yellow-300 focus:ring focus:ring-yellow-200 focus:ring-opacity-30">
         </label>
+        <p class="my-4 text-left">Note, only one ballot is allowed per email address, so if an existing email account is used, entering a new one above will just update the ballot name. Feel free to leave it blank otherwise.</p>
 
         <div class="flex flex-row">
-            <button type="submit" class="block mx-auto mt-4 bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded" id="new-ballot-submit">Start Voting!</button>
-            <button type="reset" class="block mx-auto mt-4 bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded" id="new-ballot-view">View My Ballot</button>
+            <button type="submit" class="block mx-2 md:mx-auto mt-4 bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded" id="new-ballot-submit">Start Voting!</button>
+            <button type="reset" class="block mx-2 md:mx-auto mt-4 bg-yellow-500 hover:bg-yellow-400 font-bold py-2 px-4 rounded" id="new-ballot-view">View My Ballot</button>
         </div>
     </form>
 </section>

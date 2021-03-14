@@ -29,7 +29,7 @@ Hooks.newBallotForm = {
 
             signInWithEmailPassword(email, password)
                 .then(userCredentials => {
-                    this.pushEvent("submit_new_ballot", {ballot_voter, userId: userCredentials.user.uid, go_to_view: false})
+                    this.pushEvent("submit_new_ballot", {ballot_voter, email, userId: userCredentials.user.uid, go_to_view: false})
                 })
                 .catch(err => {
                     this.pushEvent("submit_new_ballot", {errorCode: err.code, errorMessage: err.message})
@@ -44,7 +44,7 @@ Hooks.newBallotForm = {
 
             signInWithEmailPassword(email, password)
                 .then(userCredentials => {
-                    this.pushEvent("submit_new_ballot", {ballot_voter, userId: userCredentials.user.uid, go_to_view: true})
+                    this.pushEvent("submit_new_ballot", {ballot_voter, email, userId: userCredentials.user.uid, go_to_view: true})
                 })
                 .catch(err => {
                     this.pushEvent("submit_new_ballot", {errorCode: err.code, errorMessage: err.message})

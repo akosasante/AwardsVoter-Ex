@@ -1,9 +1,9 @@
-<div class="prose mx-auto lg:my-4 my-12">
+<div class="prose mx-auto lg:my-4 my-12 px-4">
     <h1>Summary of ballots cast for <%= @show.name %></h1>
 </div>
-<section class="p-10">
-    <div class="bg-white p-4 overflow-x-auto">
-        <div class="flex flex-row justify-between">
+<section class="p-0 md:p-10">
+    <div class="bg-white p-0 pt-4 md:p-4 overflow-x-auto">
+        <div class="flex flex-col md:flex-row justify-between">
             <%= live_redirect "See live scoreboard for this show", to: Routes.live_path(@socket,  AwardsVoter.Web.Scoreboard, @show.id, current_ballot: @current_ballot_id), class: "font-bold text-yellow-400 hover:text-yellow-600" %>
             <p><strong><%= num_winners(@show) %> / <%= num_categories(@show) %></strong> categories have been updated with winners</p>
         </div>
