@@ -50,14 +50,14 @@ defmodule AwardsVoter.Web.BallotEdit do
     index = Enum.find_index(show.categories, fn category -> category.name == current_category_name end)
     next_category = Enum.at(show.categories, rem(index + 1, length(show.categories)))
 
-   {:noreply, push_redirect(socket, to: Routes.live_path(socket, AwardsVoter.Web.BallotEdit, original_ballot.id, current_category: next_category.name))}
+   {:noreply, push_patch(socket, to: Routes.live_path(socket, AwardsVoter.Web.BallotEdit, original_ballot.id, current_category: next_category.name))}
   end
 
   def handle_event("prev_category", %{"category" => current_category_name}, %{assigns: %{show: show, original_ballot: original_ballot}} = socket) do
     index = Enum.find_index(show.categories, fn category -> category.name == current_category_name end)
     next_category = Enum.at(show.categories, rem(index, length(show.categories)) - 1)
 
-   {:noreply, push_redirect(socket, to: Routes.live_path(socket, AwardsVoter.Web.BallotEdit, original_ballot.id, current_category: next_category.name))}
+   {:noreply, push_patch(socket, to: Routes.live_path(socket, AwardsVoter.Web.BallotEdit, original_ballot.id, current_category: next_category.name))}
   end
 
   def handle_event("reset_vote", %{"category" => category_name_to_reset}, %{assigns: %{vote_map: vote_map}} = socket) do

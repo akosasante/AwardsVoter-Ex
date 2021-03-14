@@ -3,7 +3,7 @@
         <ul class="break-word w-9/12 p-4 flex flex-col justify-evenly h-full">
             <%= for category <- @show.categories do %>
                 <li class="mb-1 cursor-pointer hover:text-yellow-500 text-left">
-                    <%= live_redirect category.name, to: Routes.live_path(@socket, AwardsVoter.Web.BallotEdit, @original_ballot.id, current_category: category.name), class: "#{if category.name == @current_category.name, do: "font-bold"}" %>
+                    <%= live_patch category.name, to: Routes.live_path(@socket, AwardsVoter.Web.BallotEdit, @original_ballot.id, current_category: category.name), class: "#{if category.name == @current_category.name, do: "font-bold"}" %>
                     <%= if !has_vote?(category, @vote_map, @original_ballot) do %><span>&nbsp <strong>*</strong></span><% end %>
                 </li>
             <% end %>
