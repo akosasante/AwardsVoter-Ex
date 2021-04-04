@@ -10,6 +10,7 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
 
   @bucket_name "awards-voter-backups"
   @default_dets_file_size 5464
+  @backup_interval 600_000 #backup every 10 minutes
 
   def start_link(args) do
     GenServer.start_link(__MODULE__, args, name: __MODULE__)
@@ -80,6 +81,6 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
   end
 
   defp schedule_work() do
-    Process.send_after(self(), :upload_backup, 600_000)
+    Process.send_after(self(), :upload_backup, @backup_interval)
   end
 end
