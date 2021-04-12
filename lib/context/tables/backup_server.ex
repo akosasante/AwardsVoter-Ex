@@ -36,7 +36,7 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
     for table <- tables do
       if File.exists?("#{table}.dets") do
         Logger.info("#{table} table file exists, uploading to S3")
-        upload_to_s3("#{table}.dets")
+        upload_to_s3("#{get_s3_prefix()}#{table}.dets")
       else
         Logger.info("#{table} table file not found, skipping upload...")
       end
@@ -67,7 +67,7 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
   defp download_from_s3(table_name) do
     Logger.debug("downloading from S3")
     @bucket_name
-    |> ExAws.S3.download_file(table_name, "./#{table_name}")
+    |> ExAws.S3.download_file("#{get_s3_prefix()}#{table_name}", "./#{table_name}")
     |> ExAws.request(region: "us-east-2")
   end
 
@@ -82,5 +82,13 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
 
   defp schedule_work() do
     Process.send_after(self(), :upload_backup, @backup_interval)
+  end
+
+  defp get_s3_prefix() do
+    if Application.get_env(:awards_voter, :environment) == :prod do
+      "prod/"
+    else
+      "dev/"
+    end
   end
 end
