@@ -36,7 +36,7 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
     for table <- tables do
       if File.exists?("#{table}.dets") do
         Logger.info("#{table} table file exists, uploading to S3")
-        upload_to_s3("#{get_s3_prefix()}#{table}.dets")
+        upload_to_s3("#{table}.dets")
       else
         Logger.info("#{table} table file not found, skipping upload...")
       end
@@ -65,7 +65,7 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
   end
 
   defp download_from_s3(table_name) do
-    Logger.debug("downloading from S3")
+    Logger.debug("downloading from S3 @ #{get_s3_prefix()}#{table_name}")
     @bucket_name
     |> ExAws.S3.download_file("#{get_s3_prefix()}#{table_name}", "./#{table_name}")
     |> ExAws.request(region: "us-east-2")
@@ -74,7 +74,7 @@ defmodule AwardsVoter.Context.Tables.BackupServer do
   defp upload_to_s3(table_name) do
     res = table_name
     |> ExAws.S3.Upload.stream_file()
-    |> ExAws.S3.upload(@bucket_name, table_name)
+    |> ExAws.S3.upload(@bucket_name, "#{get_s3_prefix()}#{table_name}")
     |> ExAws.request(region: "us-east-2")
 
     Logger.info("S3 upload completed with result: #{inspect res}")
