@@ -49,7 +49,7 @@ defmodule AwardsVoter.MixProject do
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:ex_machina, "~> 2.4", only: [:test, :dev]},
-      {:ex2ms, "~> 1.0"},
+      {:ex2ms, "~> 1.6.1"},
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},
