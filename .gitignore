@@ -41,3 +41,7 @@ priv/static/
 # variables.
 config/*.secret.exs
 /config/releases.exs
+
+# OS and IDE files
+.DS_Store
+/.idea/
