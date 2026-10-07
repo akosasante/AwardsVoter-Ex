@@ -1,0 +1,276 @@
+{
+  "name": "98th Academy Awards",
+  "description": "The 98th Academy Awards, hosted by Conan O'Brien at the Dolby Theatre, Hollywood on March 15, 2026. Honoring the best films of 2025. Sinners leads with a record 16 nominations.",
+  "voting_enabled?": false,
+  "categories": [
+    {
+      "name": "Best Picture",
+      "description": "Awarded to the producers of the best film of the year.",
+      "contestants": [
+        {"name": "Bugonia", "description": "Directed by Yorgos Lanthimos. Producers: Ed Guiney, Andrew Lowe, Yorgos Lanthimos, Emma Stone, Lars Knudsen.", "wiki_url": "https://en.wikipedia.org/wiki/Bugonia_(film)"},
+        {"name": "F1", "description": "Directed by Joseph Kosinski. Producers: Chad Oman, Brad Pitt, Dede Gardner, Jeremy Kleiner, Joseph Kosinski, Jerry Bruckheimer.", "wiki_url": "https://en.wikipedia.org/wiki/F1_(film)"},
+        {"name": "Frankenstein", "description": "Directed by Guillermo del Toro. Producers: Guillermo del Toro, J. Miles Dale, Scott Stuber.", "wiki_url": "https://en.wikipedia.org/wiki/Frankenstein_(2025_film)"},
+        {"name": "Hamnet", "description": "Directed by Chloé Zhao. Producers: Liza Marshall, Pippa Harris, Nicolas Gonda, Steven Spielberg, Sam Mendes.", "wiki_url": "https://en.wikipedia.org/wiki/Hamnet_(film)"},
+        {"name": "Marty Supreme", "description": "Directed by Josh Safdie. Producers: Eli Bush, Ronald Bronstein, Josh Safdie, Anthony Katagas, Timothée Chalamet.", "wiki_url": "https://en.wikipedia.org/wiki/Marty_Supreme"},
+        {"name": "One Battle After Another", "description": "Directed by Paul Thomas Anderson. Producers: Adam Somner, Sara Murphy, Paul Thomas Anderson.", "wiki_url": "https://en.wikipedia.org/wiki/One_Battle_After_Another"},
+        {"name": "The Secret Agent", "description": "Directed by Kleber Mendonça Filho. Producer: Emilie Lesclaux.", "wiki_url": "https://en.wikipedia.org/wiki/The_Secret_Agent_(2025_film)"},
+        {"name": "Sentimental Value", "description": "Directed by Joachim Trier. Producers: Maria Ekerhovd, Andrea Berentsen Ottmar.", "wiki_url": "https://en.wikipedia.org/wiki/Sentimental_Value"},
+        {"name": "Sinners", "description": "Directed by Ryan Coogler. Producers: Zinzi Coogler, Sev Ohanian, Ryan Coogler. Record 16 nominations — most in Oscar history.", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"},
+        {"name": "Train Dreams", "description": "Producers: Marissa McMahon, Teddy Schwarzman, Will Janowitz, Ashley Schlaifer, Michael Heimler.", "wiki_url": "https://en.wikipedia.org/wiki/Train_Dreams_(film)"}
+      ]
+    },
+    {
+      "name": "Best Directing",
+      "description": "Awarded to the director of the best-directed film of the year.",
+      "contestants": [
+        {"name": "Chloé Zhao", "description": "Hamnet — second woman, and first woman of color, nominated for Best Director twice", "wiki_url": "https://en.wikipedia.org/wiki/Chloé_Zhao"},
+        {"name": "Josh Safdie", "description": "Marty Supreme", "wiki_url": "https://en.wikipedia.org/wiki/Josh_Safdie"},
+        {"name": "Paul Thomas Anderson", "description": "One Battle After Another", "wiki_url": "https://en.wikipedia.org/wiki/Paul_Thomas_Anderson"},
+        {"name": "Joachim Trier", "description": "Sentimental Value", "wiki_url": "https://en.wikipedia.org/wiki/Joachim_Trier"},
+        {"name": "Ryan Coogler", "description": "Sinners", "wiki_url": "https://en.wikipedia.org/wiki/Ryan_Coogler"}
+      ]
+    },
+    {
+      "name": "Best Actor in a Leading Role",
+      "description": "Awarded to the best performance by an actor in a leading role.",
+      "contestants": [
+        {"name": "Timothée Chalamet", "description": "as Marty Mauser in Marty Supreme. Youngest actor to earn three acting nominations since Marlon Brando.", "wiki_url": "https://en.wikipedia.org/wiki/Timothée_Chalamet"},
+        {"name": "Leonardo DiCaprio", "description": "as Bob Ferguson in One Battle After Another", "wiki_url": "https://en.wikipedia.org/wiki/Leonardo_DiCaprio"},
+        {"name": "Ethan Hawke", "description": "as Lorenz Hart in Blue Moon", "wiki_url": "https://en.wikipedia.org/wiki/Ethan_Hawke"},
+        {"name": "Michael B. Jordan", "description": "as Elijah \"Smoke\" Moore / Elias \"Stack\" Moore in Sinners", "wiki_url": "https://en.wikipedia.org/wiki/Michael_B._Jordan"},
+        {"name": "Wagner Moura", "description": "as Armando Solimões in The Secret Agent. First Brazilian nominated for Best Actor.", "wiki_url": "https://en.wikipedia.org/wiki/Wagner_Moura"}
+      ]
+    },
+    {
+      "name": "Best Actress in a Leading Role",
+      "description": "Awarded to the best performance by an actress in a leading role.",
+      "contestants": [
+        {"name": "Jessie Buckley", "description": "as Agnes Shakespeare in Hamnet", "wiki_url": "https://en.wikipedia.org/wiki/Jessie_Buckley"},
+        {"name": "Rose Byrne", "description": "as Linda in If I Had Legs I'd Kick You", "wiki_url": "https://en.wikipedia.org/wiki/Rose_Byrne"},
+        {"name": "Kate Hudson", "description": "as Claire Sardina in Song Sung Blue", "wiki_url": "https://en.wikipedia.org/wiki/Kate_Hudson"},
+        {"name": "Renate Reinsve", "description": "as Nora Borg in Sentimental Value", "wiki_url": "https://en.wikipedia.org/wiki/Renate_Reinsve"},
+        {"name": "Emma Stone", "description": "as Michelle Fuller in Bugonia", "wiki_url": "https://en.wikipedia.org/wiki/Emma_Stone"}
+      ]
+    },
+    {
+      "name": "Best Actor in a Supporting Role",
+      "description": "Awarded to the best performance by an actor in a supporting role.",
+      "contestants": [
+        {"name": "Benicio del Toro", "description": "as Sensei Sergio St. Carlos in One Battle After Another", "wiki_url": "https://en.wikipedia.org/wiki/Benicio_del_Toro"},
+        {"name": "Jacob Elordi", "description": "as The Creature in Frankenstein", "wiki_url": "https://en.wikipedia.org/wiki/Jacob_Elordi"},
+        {"name": "Delroy Lindo", "description": "as Delta Slim in Sinners", "wiki_url": "https://en.wikipedia.org/wiki/Delroy_Lindo"},
+        {"name": "Sean Penn", "description": "as Col. Steven J. Lockjaw in One Battle After Another", "wiki_url": "https://en.wikipedia.org/wiki/Sean_Penn"},
+        {"name": "Stellan Skarsgård", "description": "as Gustav Borg in Sentimental Value. First actor nominated for Best Supporting Actor for a non-English language international feature film.", "wiki_url": "https://en.wikipedia.org/wiki/Stellan_Skarsgård"}
+      ]
+    },
+    {
+      "name": "Best Actress in a Supporting Role",
+      "description": "Awarded to the best performance by an actress in a supporting role.",
+      "contestants": [
+        {"name": "Elle Fanning", "description": "as Rachel Kemp in Sentimental Value", "wiki_url": "https://en.wikipedia.org/wiki/Elle_Fanning"},
+        {"name": "Inga Ibsdotter Lilleaas", "description": "as Agnes Borg Pettersen in Sentimental Value", "wiki_url": "https://en.wikipedia.org/wiki/Inga_Ibsdotter_Lilleaas"},
+        {"name": "Amy Madigan", "description": "as Gladys in Weapons. Record 40-year gap between nominations.", "wiki_url": "https://en.wikipedia.org/wiki/Amy_Madigan"},
+        {"name": "Wunmi Mosaku", "description": "as Annie in Sinners", "wiki_url": "https://en.wikipedia.org/wiki/Wunmi_Mosaku"},
+        {"name": "Teyana Taylor", "description": "as Perfidia Beverly Hills in One Battle After Another", "wiki_url": "https://en.wikipedia.org/wiki/Teyana_Taylor"}
+      ]
+    },
+    {
+      "name": "Best Original Screenplay",
+      "description": "Awarded for the best original script written directly for the screen.",
+      "contestants": [
+        {"name": "Blue Moon", "description": "Written by Robert Kaplow", "wiki_url": "https://en.wikipedia.org/wiki/Blue_Moon_(2025_film)"},
+        {"name": "It Was Just an Accident", "description": "Written by Jafar Panahi in collaboration with Nader Saïvar, Shadmehr Rastin, and Mehdi Mahmoudian", "wiki_url": "https://en.wikipedia.org/wiki/It_Was_Just_an_Accident"},
+        {"name": "Marty Supreme", "description": "Written by Ronald Bronstein and Josh Safdie", "wiki_url": "https://en.wikipedia.org/wiki/Marty_Supreme"},
+        {"name": "Sentimental Value", "description": "Written by Eskil Vogt and Joachim Trier", "wiki_url": "https://en.wikipedia.org/wiki/Sentimental_Value"},
+        {"name": "Sinners", "description": "Written by Ryan Coogler", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"}
+      ]
+    },
+    {
+      "name": "Best Adapted Screenplay",
+      "description": "Awarded for the best script adapted from another medium.",
+      "contestants": [
+        {"name": "Bugonia", "description": "Written by Will Tracy; based on the film Save the Green Planet! by Jang Joon-hwan", "wiki_url": "https://en.wikipedia.org/wiki/Bugonia_(film)"},
+        {"name": "Frankenstein", "description": "Written by Guillermo del Toro; based on the novel by Mary Shelley", "wiki_url": "https://en.wikipedia.org/wiki/Frankenstein_(2025_film)"},
+        {"name": "Hamnet", "description": "Written by Chloé Zhao and Maggie O'Farrell; based on the novel by Maggie O'Farrell", "wiki_url": "https://en.wikipedia.org/wiki/Hamnet_(film)"},
+        {"name": "One Battle After Another", "description": "Written by Paul Thomas Anderson; based on the novel Vineland by Thomas Pynchon", "wiki_url": "https://en.wikipedia.org/wiki/One_Battle_After_Another"},
+        {"name": "Train Dreams", "description": "Written by Clint Bentley and Greg Kwedar; based on the novella by Denis Johnson", "wiki_url": "https://en.wikipedia.org/wiki/Train_Dreams_(film)"}
+      ]
+    },
+    {
+      "name": "Best Animated Feature Film",
+      "description": "Awarded to the best feature-length animated film.",
+      "contestants": [
+        {"name": "Arco", "description": "Directed by Ugo Bienvenu and Félix de Givry. Produced by Sophie Mas and Natalie Portman.", "wiki_url": "https://en.wikipedia.org/wiki/Arco_(film)"},
+        {"name": "Elio", "description": "Directed by Madeline Sharafian, Domee Shi, and Adrian Molina. A Pixar film.", "wiki_url": "https://en.wikipedia.org/wiki/Elio_(film)"},
+        {"name": "KPop Demon Hunters", "description": "Directed by Maggie Kang and Chris Appelhans.", "wiki_url": "https://en.wikipedia.org/wiki/KPop_Demon_Hunters"},
+        {"name": "Little Amélie or the Character of Rain", "description": "Directed by Maïlys Vallade.", "wiki_url": "https://en.wikipedia.org/wiki/Little_Amélie_or_the_Character_of_Rain"},
+        {"name": "Zootopia 2", "description": "Directed by Jared Bush and Byron Howard. A Disney animated sequel.", "wiki_url": "https://en.wikipedia.org/wiki/Zootopia_2"}
+      ]
+    },
+    {
+      "name": "Best International Feature Film",
+      "description": "Awarded to the best feature film produced outside the United States with a predominantly non-English dialogue track.",
+      "contestants": [
+        {"name": "It Was Just an Accident", "description": "France | Persian and Azerbaijani | Directed by Jafar Panahi", "wiki_url": "https://en.wikipedia.org/wiki/It_Was_Just_an_Accident"},
+        {"name": "The Secret Agent", "description": "Brazil | Portuguese and German | Directed by Kleber Mendonça Filho", "wiki_url": "https://en.wikipedia.org/wiki/The_Secret_Agent_(2025_film)"},
+        {"name": "Sentimental Value", "description": "Norway | Norwegian, Swedish, and English | Directed by Joachim Trier", "wiki_url": "https://en.wikipedia.org/wiki/Sentimental_Value"},
+        {"name": "Sirāt", "description": "Spain | Spanish, French, and Arabic | Directed by Oliver Laxe", "wiki_url": "https://en.wikipedia.org/wiki/Sirāt"},
+        {"name": "The Voice of Hind Rajab", "description": "Tunisia | Arabic | Directed by Kaouther Ben Hania", "wiki_url": "https://en.wikipedia.org/wiki/The_Voice_of_Hind_Rajab"}
+      ]
+    },
+    {
+      "name": "Best Documentary Feature Film",
+      "description": "Awarded to the best feature-length documentary film.",
+      "contestants": [
+        {"name": "The Alabama Solution", "description": "Directed by Andrew Jarecki and Charlotte Kaufman", "wiki_url": "https://en.wikipedia.org/wiki/The_Alabama_Solution"},
+        {"name": "Come See Me in the Good Light", "description": "Directed by Ryan White. Featuring Tig Notaro.", "wiki_url": "https://en.wikipedia.org/wiki/Come_See_Me_in_the_Good_Light"},
+        {"name": "Cutting Through Rocks", "description": "Directed by Sara Khaki and Mohammadreza Eyni", "wiki_url": "https://en.wikipedia.org/wiki/Cutting_Through_Rocks"},
+        {"name": "Mr Nobody Against Putin", "description": "Directed by David Borenstein and Pavel Talankin", "wiki_url": "https://en.wikipedia.org/wiki/Mr_Nobody_Against_Putin"},
+        {"name": "The Perfect Neighbor", "description": "Directed by Geeta Gandbhir and Alisa Payne", "wiki_url": "https://en.wikipedia.org/wiki/The_Perfect_Neighbor"}
+      ]
+    },
+    {
+      "name": "Best Documentary Short Film",
+      "description": "Awarded to the best documentary short film.",
+      "contestants": [
+        {"name": "All the Empty Rooms", "description": "Directed by Joshua Seftel and Conall Jones", "wiki_url": "https://en.wikipedia.org/wiki/All_the_Empty_Rooms"},
+        {"name": "Armed Only with a Camera", "description": "The Life and Death of Brent Renaud. Directed by Craig Renaud and Juan Arredondo.", "wiki_url": "https://en.wikipedia.org/wiki/Armed_Only_with_a_Camera:_The_Life_and_Death_of_Brent_Renaud"},
+        {"name": "Children No More", "description": "\"Were and Are Gone\". Directed by Hilla Medalia and Sheila Nevins.", "wiki_url": ""},
+        {"name": "The Devil Is Busy", "description": "Directed by Christalyn Hampton and Geeta Gandbhir", "wiki_url": "https://en.wikipedia.org/wiki/The_Devil_Is_Busy"},
+        {"name": "Perfectly a Strangeness", "description": "Directed by Alison McAlpine", "wiki_url": "https://en.wikipedia.org/wiki/Perfectly_a_Strangeness"}
+      ]
+    },
+    {
+      "name": "Best Live Action Short Film",
+      "description": "Awarded to the best live action short film.",
+      "contestants": [
+        {"name": "Butcher's Stain", "description": "Directed by Meyer Levinson-Blount and Oron Caspi", "wiki_url": ""},
+        {"name": "A Friend of Dorothy", "description": "Directed by Lee Knight and James Dean", "wiki_url": "https://en.wikipedia.org/wiki/A_Friend_of_Dorothy"},
+        {"name": "Jane Austen's Period Drama", "description": "Directed by Julia Aks and Steve Pinder", "wiki_url": "https://en.wikipedia.org/wiki/Jane_Austen%27s_Period_Drama"},
+        {"name": "The Singers", "description": "Directed by Sam A. Davis and Jack Piatt", "wiki_url": "https://en.wikipedia.org/wiki/The_Singers"},
+        {"name": "Two People Exchanging Saliva", "description": "Directed by Alexandre Singh and Natalie Musteata", "wiki_url": "https://en.wikipedia.org/wiki/Two_People_Exchanging_Saliva"}
+      ]
+    },
+    {
+      "name": "Best Animated Short Film",
+      "description": "Awarded to the best animated short film.",
+      "contestants": [
+        {"name": "Butterfly", "description": "Directed by Florence Miailhe and Ron Dyens", "wiki_url": ""},
+        {"name": "Forevergreen", "description": "Directed by Nathan Engelhardt and Jeremy Spears", "wiki_url": "https://en.wikipedia.org/wiki/Forevergreen_(film)"},
+        {"name": "The Girl Who Cried Pearls", "description": "Directed by Chris Lavis and Maciek Szczerbowski", "wiki_url": "https://en.wikipedia.org/wiki/The_Girl_Who_Cried_Pearls"},
+        {"name": "Retirement Plan", "description": "Directed by John Kelly and Andrew Freedman", "wiki_url": "https://en.wikipedia.org/wiki/Retirement_Plan_(film)"},
+        {"name": "The Three Sisters", "description": "Directed by Konstantin Bronzit", "wiki_url": ""}
+      ]
+    },
+    {
+      "name": "Best Original Score",
+      "description": "Awarded for the best original score written for a film.",
+      "contestants": [
+        {"name": "Bugonia", "description": "Score by Jerskin Fendrix", "wiki_url": "https://en.wikipedia.org/wiki/Bugonia_(film)"},
+        {"name": "Frankenstein", "description": "Score by Alexandre Desplat", "wiki_url": "https://en.wikipedia.org/wiki/Frankenstein_(2025_film)"},
+        {"name": "Hamnet", "description": "Score by Max Richter", "wiki_url": "https://en.wikipedia.org/wiki/Hamnet_(film)"},
+        {"name": "One Battle After Another", "description": "Score by Jonny Greenwood", "wiki_url": "https://en.wikipedia.org/wiki/One_Battle_After_Another"},
+        {"name": "Sinners", "description": "Score by Ludwig Göransson", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"}
+      ]
+    },
+    {
+      "name": "Best Original Song",
+      "description": "Awarded for the best original song written for a film. Note: only two songs will be performed live this year.",
+      "contestants": [
+        {"name": "\"Dear Me\" – Diane Warren: Relentless", "description": "Music and lyrics by Diane Warren", "wiki_url": ""},
+        {"name": "\"Golden\" – KPop Demon Hunters", "description": "Music and lyrics by Ejae, Mark Sonnenblick, 24, Ido, and Teddy Park", "wiki_url": "https://en.wikipedia.org/wiki/Golden_(Huntrix_song)"},
+        {"name": "\"I Lied to You\" – Sinners", "description": "Music and lyrics by Raphael Saadiq and Ludwig Göransson", "wiki_url": "https://en.wikipedia.org/wiki/I_Lied_to_You"},
+        {"name": "\"Sweet Dreams of Joy\" – Viva Verdi!", "description": "Music and lyrics by Nicholas Pike", "wiki_url": ""},
+        {"name": "\"Train Dreams\" – Train Dreams", "description": "Music by Nick Cave and Bryce Dessner; lyrics by Nick Cave", "wiki_url": ""}
+      ]
+    },
+    {
+      "name": "Best Sound",
+      "description": "Awarded for the best overall sound in a film.",
+      "contestants": [
+        {"name": "F1", "description": "Gareth John, Al Nelson, Gwendolyn Yates Whittle, Gary A. Rizzo, Juan Peralta", "wiki_url": "https://en.wikipedia.org/wiki/F1_(film)"},
+        {"name": "Frankenstein", "description": "Greg Chapman, Nathan Robitaille, Nelson Ferreira, Christian Cooke, Brad Zoern", "wiki_url": "https://en.wikipedia.org/wiki/Frankenstein_(2025_film)"},
+        {"name": "One Battle After Another", "description": "José Antonio García, Christopher Scarabosio, Tony Villaflor", "wiki_url": "https://en.wikipedia.org/wiki/One_Battle_After_Another"},
+        {"name": "Sinners", "description": "Chris Welcker, Benjamin A. Burtt, Felipe Pacheco, Brandon Proctor, Steve Boeddeker", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"},
+        {"name": "Sirāt", "description": "Amanda Villavieja, Laia Casanovas, Yasmina Praderas", "wiki_url": "https://en.wikipedia.org/wiki/Sirāt"}
+      ]
+    },
+    {
+      "name": "Best Casting",
+      "description": "First-ever competitive Oscar for casting directors, introduced at the 98th ceremony.",
+      "contestants": [
+        {"name": "Hamnet", "description": "Casting by Nina Gold", "wiki_url": "https://en.wikipedia.org/wiki/Hamnet_(film)"},
+        {"name": "Marty Supreme", "description": "Casting by Jennifer Venditti", "wiki_url": "https://en.wikipedia.org/wiki/Marty_Supreme"},
+        {"name": "One Battle After Another", "description": "Casting by Cassandra Kulukundis", "wiki_url": "https://en.wikipedia.org/wiki/One_Battle_After_Another"},
+        {"name": "The Secret Agent", "description": "Casting by Gabriel Domingues", "wiki_url": "https://en.wikipedia.org/wiki/The_Secret_Agent_(2025_film)"},
+        {"name": "Sinners", "description": "Casting by Francine Maisler", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"}
+      ]
+    },
+    {
+      "name": "Best Production Design",
+      "description": "Awarded for the best achievement in production design and set decoration.",
+      "contestants": [
+        {"name": "Frankenstein", "description": "Production Design: Tamara Deverell; Set Decoration: Shane Vieau", "wiki_url": "https://en.wikipedia.org/wiki/Frankenstein_(2025_film)"},
+        {"name": "Hamnet", "description": "Production Design: Fiona Crombie; Set Decoration: Alice Felton", "wiki_url": "https://en.wikipedia.org/wiki/Hamnet_(film)"},
+        {"name": "Marty Supreme", "description": "Production Design: Jack Fisk; Set Decoration: Adam Willis", "wiki_url": "https://en.wikipedia.org/wiki/Marty_Supreme"},
+        {"name": "One Battle After Another", "description": "Production Design: Florencia Martin; Set Decoration: Anthony Carlino", "wiki_url": "https://en.wikipedia.org/wiki/One_Battle_After_Another"},
+        {"name": "Sinners", "description": "Production Design: Hannah Beachler; Set Decoration: Monique Champagne", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"}
+      ]
+    },
+    {
+      "name": "Best Cinematography",
+      "description": "Awarded for the best achievement in cinematography.",
+      "contestants": [
+        {"name": "Frankenstein", "description": "Cinematography by Dan Laustsen", "wiki_url": "https://en.wikipedia.org/wiki/Frankenstein_(2025_film)"},
+        {"name": "Marty Supreme", "description": "Cinematography by Darius Khondji", "wiki_url": "https://en.wikipedia.org/wiki/Marty_Supreme"},
+        {"name": "One Battle After Another", "description": "Cinematography by Michael Bauman", "wiki_url": "https://en.wikipedia.org/wiki/One_Battle_After_Another"},
+        {"name": "Sinners", "description": "Cinematography by Autumn Durald Arkapaw — first woman of color nominated in this category", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"},
+        {"name": "Train Dreams", "description": "Cinematography by Adolpho Veloso", "wiki_url": "https://en.wikipedia.org/wiki/Train_Dreams_(film)"}
+      ]
+    },
+    {
+      "name": "Best Makeup and Hairstyling",
+      "description": "Awarded for the best achievement in makeup and hairstyling.",
+      "contestants": [
+        {"name": "Frankenstein", "description": "Mike Hill, Jordan Samuel, Cliona Furey", "wiki_url": "https://en.wikipedia.org/wiki/Frankenstein_(2025_film)"},
+        {"name": "Kokuho", "description": "Kyoko Toyokawa, Naomi Hibino, Tadashi Nishimatsu", "wiki_url": "https://en.wikipedia.org/wiki/Kokuho_(film)"},
+        {"name": "Sinners", "description": "Ken Diaz, Mike Fontaine, Shunika Terry", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"},
+        {"name": "The Smashing Machine", "description": "Kazu Hiro, Glen Griffin, Bjoern Rehbein", "wiki_url": "https://en.wikipedia.org/wiki/The_Smashing_Machine_(2025_film)"},
+        {"name": "The Ugly Stepsister", "description": "Thomas Foldberg, Anne Cathrine Sauerberg", "wiki_url": "https://en.wikipedia.org/wiki/The_Ugly_Stepsister"}
+      ]
+    },
+    {
+      "name": "Best Costume Design",
+      "description": "Awarded for the best achievement in costume design.",
+      "contestants": [
+        {"name": "Avatar: Fire and Ash", "description": "Costumes by Deborah L. Scott", "wiki_url": "https://en.wikipedia.org/wiki/Avatar:_Fire_and_Ash"},
+        {"name": "Frankenstein", "description": "Costumes by Kate Hawley", "wiki_url": "https://en.wikipedia.org/wiki/Frankenstein_(2025_film)"},
+        {"name": "Hamnet", "description": "Costumes by Malgosia Turzanska", "wiki_url": "https://en.wikipedia.org/wiki/Hamnet_(film)"},
+        {"name": "Marty Supreme", "description": "Costumes by Miyako Bellizzi", "wiki_url": "https://en.wikipedia.org/wiki/Marty_Supreme"},
+        {"name": "Sinners", "description": "Costumes by Ruth E. Carter — most-nominated Black woman in Oscar history with her 5th nomination", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"}
+      ]
+    },
+    {
+      "name": "Best Film Editing",
+      "description": "Awarded for the best achievement in film editing.",
+      "contestants": [
+        {"name": "F1", "description": "Edited by Stephen Mirrione", "wiki_url": "https://en.wikipedia.org/wiki/F1_(film)"},
+        {"name": "Marty Supreme", "description": "Edited by Ronald Bronstein and Josh Safdie", "wiki_url": "https://en.wikipedia.org/wiki/Marty_Supreme"},
+        {"name": "One Battle After Another", "description": "Edited by Andy Jurgensen", "wiki_url": "https://en.wikipedia.org/wiki/One_Battle_After_Another"},
+        {"name": "Sentimental Value", "description": "Edited by Olivier Bugge Coutté", "wiki_url": "https://en.wikipedia.org/wiki/Sentimental_Value"},
+        {"name": "Sinners", "description": "Edited by Michael P. Shawver", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"}
+      ]
+    },
+    {
+      "name": "Best Visual Effects",
+      "description": "Awarded for the best achievement in visual effects.",
+      "contestants": [
+        {"name": "Avatar: Fire and Ash", "description": "Joe Letteri, Richard Baneham, Eric Saindon, Daniel Barrett", "wiki_url": "https://en.wikipedia.org/wiki/Avatar:_Fire_and_Ash"},
+        {"name": "F1", "description": "Ryan Tudhope, Nicolas Chevallier, Robert Harrington, Keith Dawson", "wiki_url": "https://en.wikipedia.org/wiki/F1_(film)"},
+        {"name": "Jurassic World Rebirth", "description": "David Vickery, Stephen Aplin, Charmaine Chan, Neil Corbould", "wiki_url": "https://en.wikipedia.org/wiki/Jurassic_World_Rebirth"},
+        {"name": "The Lost Bus", "description": "Charlie Noble, David Zaretti, Russell Bowen, Brandon K. McLaughlin", "wiki_url": "https://en.wikipedia.org/wiki/The_Lost_Bus"},
+        {"name": "Sinners", "description": "Michael Ralla, Espen Nordahl, Guido Wolter, Donnie Dean", "wiki_url": "https://en.wikipedia.org/wiki/Sinners_(2025_film)"}
+      ]
+    }
+  ]
+}
