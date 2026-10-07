@@ -15,7 +15,8 @@ config :awards_voter,
 # Configures the endpoint
 config :awards_voter, AwardsVoter.Web.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "9zLooVgBIf0vBCxPsL9zjVleVnI9o5PTr3g8DGPZQHfhqpxaRCgm7u5vbvaiWh1O",
+  secret_key_base:
+    System.get_env("SECRET_KEY_BASE", "insecure-dev-and-test-key-only-set-SECRET_KEY_BASE-in-prod-0123456789"),
   render_errors: [view: AwardsVoter.Web.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: AwardsVoter.PubSub,
   live_view: [signing_salt: "n04BFKW8"]
